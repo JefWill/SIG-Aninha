@@ -17,6 +17,7 @@ void tela_menu_relatorio(void);
 int main(void) {
     tela_menu_principal();
     tela_menu_cliente();
+    tela_menu_signos();
     return 0;
 }
 
@@ -72,4 +73,29 @@ void tela_menu_cliente(void) {
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+}
+
+void tela_menu_signos(void) {
+    char op_signos;
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                |\n");
+    printf("| ✦✧✦✧✦   SIG-Aninha - Módulo signos  ✦✧✦✧✦ |\n");
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|           1. Listar Signos                     |\n");
+    printf("|           2. Consultar Signo                   |\n");
+    printf("|           3. Consultar Compatibilidade         |\n");
+    printf("|           4. Gerar Horoscopo Diário            |\n");
+    printf("|           5. Calcular Signo                    |\n");
+    printf("|           0. Sair                              |\n");
+    printf("|                                                |\n");
+    printf("|            Escolha a opção desejada:           |");
+    scanf("%c", &op_signos);
+    getchar();
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();    
 }
