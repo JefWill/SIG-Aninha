@@ -16,11 +16,12 @@ void tela_menu_relatorio(void);
 
 int main(void) {
     tela_menu_principal();
+    tela_menu_cliente();
     return 0;
 }
 
 void tela_menu_principal(void) {
-    char op;
+    char op; //isso é a variável de opção principal
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
@@ -33,10 +34,38 @@ void tela_menu_principal(void) {
     printf("|           4. Módulo Tarot                      |\n");
     printf("|           5. Módulo Relatórios                 |\n");
     printf("|           6. Sobre                             |\n");
+    printf("|           7. Equipe                            |\n");
+    printf("|           0. Sair                              |\n");
+    printf("|                                                |\n");
+    printf("|            Escolha a opção desejada:           |");
+    scanf("%c", &op); //o scan é basicamente o input do python, o "C"
+    getchar();
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
+
+void tela_menu_cliente(void) {
+    char op_cliente;  //aqui cria uma variável de opção só pro modulo de cliente
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                |\n");
+    printf("| ✦✧✦✧✦ SIG-Aninha - Módulo Cliente   ✦✧✦✧✦ |\n");
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|           1. Cadastrar Cliente                 |\n");
+    printf("|           2. Buscar cliente                    |\n");
+    printf("|           3. Listar Clientes                   |\n");
+    printf("|           4. Atualizar Cliente                 |\n");
+    printf("|           5. Excluir Cliente                   |\n");
+    printf("|           6. Sobre                             |\n");
+    printf("|           7. Equipe                            |\n");
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
     printf("|            Escolha a opção desejada: ");
-    scanf("%c", &op);
+    scanf("%c", &op_cliente);
     getchar();
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
