@@ -5,6 +5,7 @@
 
 // Assinatura das funções
 void tela_menu_principal(void);
+void tela_menu_informacoes(void);
 void tela_sobre(void);
 void tela_equipe(void);
 
@@ -18,7 +19,38 @@ int main(void) {
     tela_menu_principal();
     tela_menu_cliente();
     tela_menu_signos();
+    tela_menu_sobre();
+    tela_menu_equipe();
+    tela_menu_cliente();
+    tela_menu_agendamento();
+    tela_menu_tarot();
+  
     return 0;
+}
+
+
+/// FUNÇÕES: ///
+
+void tela_menu_informacoes(void) {
+    system("clear||cls");
+
+    char op_info;
+    printf("\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                    |\n");
+    printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Informações  ✦✧✦✧✦ |\n");
+    printf("|                                                    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                    |\n");
+    printf("|          1 - Informações sobre o Projeto           |\n");
+    printf("|          2 - Informações sobre a Equipe            |\n");
+    printf("|                                                    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("           Escolha a opção desejada: ");
+    scanf("%c", &op_info);
+    printf("\n");
+    printf("        >>> Tecle <ENTER> para continuar... <<<      \n");
+    getchar();
 }
 
 void tela_menu_principal(void) {
@@ -123,7 +155,7 @@ void tela_menu_tarot(void) {
 }
 
 void tela_menu_agendamento(void) {
-    char op_signos;
+    char op_agendamento;
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
@@ -138,7 +170,7 @@ void tela_menu_agendamento(void) {
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
     printf("|            Escolha a opção desejada:           |");
-    scanf("%c", &op_signos);
+    scanf("%c", &op_agendamento);
     getchar();
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
