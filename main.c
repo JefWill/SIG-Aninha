@@ -121,3 +121,28 @@ void tela_menu_tarot(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();    
 }
+
+void tela_menu_agendamento(void) {
+    char op_signos;
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                |\n");
+    printf("| ✦✧✦✧ SIG-Aninha - Módulo agendamento ✧✦✧✦  |\n");
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|           1. Agendar consulta                  |\n");
+    printf("|           2. Atualizar agendamento             |\n");
+    printf("|           3. Listar agendamentos (no dia)      |\n");
+    printf("|           4. Buscar agendamento por cliente    |\n");
+    printf("|           5. Cancelar agendamento              |\n");
+    printf("|           0. Sair                              |\n");
+    printf("|                                                |\n");
+    printf("|            Escolha a opção desejada:           |");
+    scanf("%c", &op_signos);
+    getchar();
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();  
+}
