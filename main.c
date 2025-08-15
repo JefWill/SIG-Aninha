@@ -29,6 +29,29 @@ int main(void) {
 }
 
 /// FUNÇÕES: ///
+
+void tela_menu_informacoes(void) {
+    system("clear||cls");
+
+    char op_info;
+    printf("\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                    |\n");
+    printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Informações  ✦✧✦✧✦ |\n");
+    printf("|                                                    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                    |\n");
+    printf("|          1 - Informações sobre o Projeto           |\n");
+    printf("|          2 - Informações sobre a Equipe            |\n");
+    printf("|                                                    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("           Escolha a opção desejada: ");
+    scanf("%c", &op_info);
+    printf("\n");
+    printf("        >>> Tecle <ENTER> para continuar... <<<      \n");
+    getchar();
+}
+
 void tela_sobre(void) {
     system("clear||cls");
 
