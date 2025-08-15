@@ -116,14 +116,11 @@ char tela_menu_principal(void) {
     printf("|           6. Sobre                             |\n");
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
-    printf("|            Escolha a opção desejada:           |");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
+    printf("            Escolha a opção desejada: ");
     scanf("%c", &op); //o scan é basicamente o input do python, o "C"
     getchar();
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
     printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
 
     return op;
 }
