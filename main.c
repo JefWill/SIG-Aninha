@@ -4,7 +4,7 @@
 
 
 // Assinatura das funções
-void tela_menu_principal(void);
+char tela_menu_principal(void);
 void tela_menu_informacoes(void);
 
 void tela_menu_cliente(void);
@@ -58,7 +58,7 @@ void tela_menu_informacoes(void) {
     getchar();
 }
 
-void tela_menu_principal(void) {
+char tela_menu_principal(void) {
     char op; //isso é a variável de opção principal
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -82,6 +82,8 @@ void tela_menu_principal(void) {
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+
+    return op;
 }
 
 void tela_menu_cliente(void) {
