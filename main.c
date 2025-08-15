@@ -7,7 +7,6 @@
 void tela_menu_principal(void);
 void tela_menu_informacoes(void);
 void tela_sobre(void);
-void tela_equipe(void);
 
 void tela_menu_cliente(void);
 void tela_menu_agendamento(void);
@@ -17,10 +16,10 @@ void tela_menu_relatorio(void);
 
 int main(void) {
     tela_menu_principal();
+    tela_menu_informacoes();
     tela_menu_cliente();
     tela_menu_signos();
-    tela_menu_sobre();
-    tela_menu_equipe();
+    tela_sobre();
     tela_menu_cliente();
     tela_menu_agendamento();
     tela_menu_tarot();
@@ -67,7 +66,6 @@ void tela_menu_principal(void) {
     printf("|           4. Módulo Tarot                      |\n");
     printf("|           5. Módulo Relatórios                 |\n");
     printf("|           6. Sobre                             |\n");
-    printf("|           7. Equipe                            |\n");
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
     printf("|            Escolha a opção desejada:           |");
@@ -93,8 +91,6 @@ void tela_menu_cliente(void) {
     printf("|           3. Listar Clientes                   |\n");
     printf("|           4. Atualizar Cliente                 |\n");
     printf("|           5. Excluir Cliente                   |\n");
-    printf("|           6. Sobre                             |\n");
-    printf("|           7. Equipe                            |\n");
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
     printf("|            Escolha a opção desejada: ");
