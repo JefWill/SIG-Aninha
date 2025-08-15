@@ -61,26 +61,43 @@ int main(void) {
 /// FUNÇÕES: ///
 
 void tela_menu_informacoes(void) {
-    system("clear||cls");
-
     char op_info;
-    printf("\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                    |\n");
-    printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Informações  ✦✧✦✧✦ |\n");
-    printf("|                                                    |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                    |\n");
-    printf("|          1. Informações sobre o Projeto            |\n");
-    printf("|          2. Informações sobre a Equipe             |\n");
-    printf("|          0. Voltar ao menu principal               |\n");
-    printf("|                                                    |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("           Escolha a opção desejada: ");
-    scanf("%c", &op_info);
-    printf("\n");
-    printf("        >>> Tecle <ENTER> para continuar... <<<      \n");
-    getchar();
+    while (op_info != '0') {
+        system("clear||cls");
+
+        printf("\n");
+        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+        printf("|                                                    |\n");
+        printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Informações  ✦✧✦✧✦ |\n");
+        printf("|                                                    |\n");
+        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+        printf("|                                                    |\n");
+        printf("|          1. Informações sobre o Projeto            |\n");
+        printf("|          2. Informações sobre a Equipe             |\n");
+        printf("|          0. Voltar ao menu principal               |\n");
+        printf("|                                                    |\n");
+        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+        printf("           Escolha a opção desejada: ");
+        scanf("%c", &op_info);
+        getchar();
+
+        if (op_info == '1') {
+            tela_sobre();
+
+        } else if (op_info == '2') {
+            tela_equipe();
+
+        } else if (op_info == '0') {
+            printf("Voltando ao menu principal...\n");
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+
+        } else {
+            printf("\nOpção inválida! Tente novamente.\n");
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+        }
+    }
 }
 
 char tela_menu_principal(void) {
