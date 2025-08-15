@@ -5,30 +5,55 @@
 
 // Assinatura das funções
 char tela_menu_principal(void);
-void tela_menu_informacoes(void);
 
 void tela_menu_cliente(void);
 void tela_menu_agendamento(void);
 void tela_menu_signos(void);
 void tela_menu_tarot(void);
 void tela_menu_numerologia(void);
+void tela_menu_relatorio(void);
+void tela_menu_informacoes(void);
 void tela_sobre(void);
 void tela_equipe(void);
-void tela_menu_relatorio(void);
+
 
 int main(void) {
-    tela_menu_principal();
-    tela_menu_informacoes();
-    tela_menu_cliente();
-    tela_menu_signos();
-    tela_menu_numerologia();
-    tela_menu_relatorio();
-    tela_sobre();
-    tela_equipe();
-    tela_menu_cliente();
-    tela_menu_agendamento();
-    tela_menu_tarot();
-  
+    char op;
+
+    while (op != '0') {
+        op = tela_menu_principal();
+
+        if (op == '1') {
+            tela_menu_cliente();
+
+        } else if (op == '2') {
+            tela_menu_agendamento();
+
+        } else if (op == '3') {
+            tela_menu_signos();
+
+        } else if (op == '4') {
+            tela_menu_tarot();
+
+        } else if (op == '5') {
+            tela_menu_numerologia();
+
+        } else if (op == '6') {
+            tela_menu_relatorio();
+
+        } else if (op == '7') {
+            tela_menu_informacoes();
+
+        } else if (op == '0') {
+            printf("Encerrando o sistema... Até logo!\n");
+
+        } else {
+            printf("\nOpção inválida! Tente novamente.\n");
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+        }
+    }
+
     return 0;
 }
 
@@ -36,26 +61,43 @@ int main(void) {
 /// FUNÇÕES: ///
 
 void tela_menu_informacoes(void) {
-    system("clear||cls");
-
     char op_info;
-    printf("\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                    |\n");
-    printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Informações  ✦✧✦✧✦ |\n");
-    printf("|                                                    |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                    |\n");
-    printf("|          1. Informações sobre o Projeto            |\n");
-    printf("|          2. Informações sobre a Equipe             |\n");
-    printf("|          0. Voltar ao menu principal               |\n");
-    printf("|                                                    |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("           Escolha a opção desejada: ");
-    scanf("%c", &op_info);
-    printf("\n");
-    printf("        >>> Tecle <ENTER> para continuar... <<<      \n");
-    getchar();
+    while (op_info != '0') {
+        system("clear||cls");
+
+        printf("\n");
+        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+        printf("|                                                    |\n");
+        printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Informações  ✦✧✦✧✦ |\n");
+        printf("|                                                    |\n");
+        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+        printf("|                                                    |\n");
+        printf("|          1. Informações sobre o Projeto            |\n");
+        printf("|          2. Informações sobre a Equipe             |\n");
+        printf("|          0. Voltar ao menu principal               |\n");
+        printf("|                                                    |\n");
+        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+        printf("           Escolha a opção desejada: ");
+        scanf("%c", &op_info);
+        getchar();
+
+        if (op_info == '1') {
+            tela_sobre();
+
+        } else if (op_info == '2') {
+            tela_equipe();
+
+        } else if (op_info == '0') {
+            printf("Voltando ao menu principal...\n");
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+
+        } else {
+            printf("\nOpção inválida! Tente novamente.\n");
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+        }
+    }
 }
 
 char tela_menu_principal(void) {
@@ -74,14 +116,11 @@ char tela_menu_principal(void) {
     printf("|           6. Sobre                             |\n");
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
-    printf("|            Escolha a opção desejada:           |");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
+    printf("            Escolha a opção desejada: ");
     scanf("%c", &op); //o scan é basicamente o input do python, o "C"
     getchar();
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
     printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
 
     return op;
 }
@@ -173,14 +212,13 @@ void tela_menu_agendamento(void) {
     printf("|           5. Cancelar agendamento              |\n");
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
-    printf("|            Escolha a opção desejada:           |");
-    scanf("%c", &op_agendamento);
-    getchar();
-    printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
+    printf("            Escolha a opção desejada: ");
+    scanf("%c", &op_agendamento);
+    getchar(); 
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();  
+     
 }
 
 void tela_sobre(void) {
