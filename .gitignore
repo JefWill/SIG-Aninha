@@ -55,6 +55,11 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+/.vscode
+teste.c
+/.vscode
+
+
 ### CMake ###
 CMakeLists.txt.user
 CMakeCache.txt
@@ -95,3 +100,4 @@ CMakeUserPresets.json
 
 # End of https://www.toptal.com/developers/gitignore/api/c,cmake,visualstudiocode
 teste.c
+
