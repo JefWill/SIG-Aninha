@@ -213,3 +213,45 @@ void tela_sobre(void) {
     printf("                   >>> Tecle <ENTER> para continuar... <<<            \n");
     getchar();
 }
+
+
+void tela_equipe(void) {
+    system("clear||cls");
+
+    printf("\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                     |\n");
+    printf("|           ✦✧✦✧✦  SIG-Aninha - Cigana Vitual  ✦✧✦✧✦             |\n");
+    printf("|                                                                     |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                     |\n");
+    printf("|            Universidade Federal do Rio Grande do Norte              |\n");
+    printf("|               Centro de Ensino Superior do Seridó                   |\n");
+    printf("|             Departamento de Computação e Tecnologia                 |\n");
+    printf("|                Disciplina DCT1106 -- Programação                    |\n");
+    printf("|                   Professor: Flavius Gorgônio                       |\n");
+    printf("|               Projeto: SIG-Aninha: Cigana Virtual                   |\n");
+    printf("|           Developed by: Jaine Souza e Jefferson Willame             |\n");
+    printf("|                        Since: Ago, 2025                             |\n");
+    printf("|                                                                     |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                     |\n");
+    printf("|                    ✦✧✦✧✦  EQUIPE  ✦✧✦✧✦                        |\n");
+    printf("|                                                                     |\n");
+    printf("|             Este projeto foi desenvolvido por:                      |\n");
+    printf("|                                                                     |\n");
+    printf("|             Alun@: Jaine Souza                                      |\n");
+    printf("|             Email: jaine.luz.138@ufrn.edu.br                        |\n"); 
+    printf("|             Redes Sociais: @_jaine.souza_                           |\n");
+    printf("|             Git: https://github.com/JefWill/SIG-Aninha.git          |\n");
+    printf("|                                                                     |\n");
+    printf("|             Alun@: Jefferson Willame                                |\n");
+    printf("|             Email: jefferson.willame.712@ufrn.edu.br                |\n");
+    printf("|             Redes Sociais: @jefferson_willame                       |\n");
+    printf("|             Git: https://github.com/JefWill/SIG-Aninha.git          |\n");
+    printf("|                                                                     |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("\n");
+    printf("                   >>> Tecle <ENTER> para continuar... <<<            \n");
+    getchar();
+}
