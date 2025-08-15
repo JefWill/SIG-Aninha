@@ -30,6 +30,29 @@ int main(void) {
 
 /// FUNÇÕES: ///
 
+void tela_menu_numerologia(void) {
+    system("clear||cls");
+
+    char op_num;
+    printf("\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                    |\n");
+    printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Numerologia  ✦✧✦✧✦ |\n");
+    printf("|                                                    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                    |\n");
+    printf("|          1 - Descobrir qual é o seu Número         |\n");
+    printf("|          2 - Significado dos Números               |\n");
+    printf("|                                                    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("           Escolha a opção desejada: ");
+    scanf("%c", &op_num);
+    printf("\n");
+    printf("        >>> Tecle <ENTER> para continuar... <<<      \n");
+    getchar();
+}
+
+
 void tela_menu_informacoes(void) {
     system("clear||cls");
 
