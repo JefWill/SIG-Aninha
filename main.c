@@ -4,14 +4,16 @@
 
 
 // Assinatura das funções
-void tela_menu_principal(void);
+char tela_menu_principal(void);
 void tela_menu_informacoes(void);
-void tela_sobre(void);
 
 void tela_menu_cliente(void);
 void tela_menu_agendamento(void);
 void tela_menu_signos(void);
 void tela_menu_tarot(void);
+void tela_menu_numerologia(void);
+void tela_sobre(void);
+void tela_equipe(void);
 void tela_menu_relatorio(void);
 
 int main(void) {
@@ -19,7 +21,10 @@ int main(void) {
     tela_menu_informacoes();
     tela_menu_cliente();
     tela_menu_signos();
+    tela_menu_numerologia();
+    tela_menu_relatorio();
     tela_sobre();
+    tela_equipe();
     tela_menu_cliente();
     tela_menu_agendamento();
     tela_menu_tarot();
@@ -41,8 +46,9 @@ void tela_menu_informacoes(void) {
     printf("|                                                    |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                    |\n");
-    printf("|          1 - Informações sobre o Projeto           |\n");
-    printf("|          2 - Informações sobre a Equipe            |\n");
+    printf("|          1. Informações sobre o Projeto            |\n");
+    printf("|          2. Informações sobre a Equipe             |\n");
+    printf("|          0. Voltar ao menu principal               |\n");
     printf("|                                                    |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("           Escolha a opção desejada: ");
@@ -52,7 +58,7 @@ void tela_menu_informacoes(void) {
     getchar();
 }
 
-void tela_menu_principal(void) {
+char tela_menu_principal(void) {
     char op; //isso é a variável de opção principal
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -76,6 +82,8 @@ void tela_menu_principal(void) {
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
+
+    return op;
 }
 
 void tela_menu_cliente(void) {
@@ -213,3 +221,96 @@ void tela_sobre(void) {
     printf("                   >>> Tecle <ENTER> para continuar... <<<            \n");
     getchar();
 }
+
+
+void tela_equipe(void) {
+    system("clear||cls");
+
+    printf("\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                     |\n");
+    printf("|           ✦✧✦✧✦  SIG-Aninha - Cigana Vitual  ✦✧✦✧✦             |\n");
+    printf("|                                                                     |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                     |\n");
+    printf("|            Universidade Federal do Rio Grande do Norte              |\n");
+    printf("|               Centro de Ensino Superior do Seridó                   |\n");
+    printf("|             Departamento de Computação e Tecnologia                 |\n");
+    printf("|                Disciplina DCT1106 -- Programação                    |\n");
+    printf("|                   Professor: Flavius Gorgônio                       |\n");
+    printf("|               Projeto: SIG-Aninha: Cigana Virtual                   |\n");
+    printf("|           Developed by: Jaine Souza e Jefferson Willame             |\n");
+    printf("|                        Since: Ago, 2025                             |\n");
+    printf("|                                                                     |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                     |\n");
+    printf("|                    ✦✧✦✧✦  EQUIPE  ✦✧✦✧✦                        |\n");
+    printf("|                                                                     |\n");
+    printf("|             Este projeto foi desenvolvido por:                      |\n");
+    printf("|                                                                     |\n");
+    printf("|             Alun@: Jaine Souza                                      |\n");
+    printf("|             Email: jaine.luz.138@ufrn.edu.br                        |\n"); 
+    printf("|             Redes Sociais: @_jaine.souza_                           |\n");
+    printf("|             Git: https://github.com/JefWill/SIG-Aninha.git          |\n");
+    printf("|                                                                     |\n");
+    printf("|             Alun@: Jefferson Willame                                |\n");
+    printf("|             Email: jefferson.willame.712@ufrn.edu.br                |\n");
+    printf("|             Redes Sociais: @jefferson_willame                       |\n");
+    printf("|             Git: https://github.com/JefWill/SIG-Aninha.git          |\n");
+    printf("|                                                                     |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("\n");
+    printf("                   >>> Tecle <ENTER> para continuar... <<<            \n");
+    getchar();
+}
+
+void tela_menu_numerologia(void) {
+    system("clear||cls");
+
+    char op_num;
+    printf("\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                    |\n");
+    printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Numerologia  ✦✧✦✧✦ |\n");
+    printf("|                                                    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                    |\n");
+    printf("|          1. Descobrir qual é o seu Número          |\n");
+    printf("|          2. Significado dos Números                |\n");
+    printf("|          0. Voltar para o menu Principal           |\n");
+    printf("|                                                    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("           Escolha a opção desejada: ");
+    scanf("%c", &op_num);
+    printf("\n");
+    printf("        >>> Tecle <ENTER> para continuar... <<<      \n");
+    getchar();
+}
+
+
+void tela_menu_relatorio(void) {
+    system("clear||cls");
+
+    char op_rel;
+    printf("\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                    |\n");
+    printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Relatórios  ✦✧✦✧✦  |\n");
+    printf("|                                                    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                    |\n");
+    printf("|    1. Relatório de Clientes Cadastrados            |\n");
+    printf("|    2. Relatório de Atendimentos Realizados         |\n");
+    printf("|    3. Relatório por Tipo de Serviço (Tarot,        |\n");
+    printf("|    Signos, Numerologia)                            |\n");
+    printf("|    4. Relatório de Agendamentos Pendentes          |\n");
+    printf("|    5. Relatório de Clientes Atendidos por Período  |\n");
+    printf("|    0. Voltar ao Menu Principal                     |\n");
+    printf("|                                                    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("           Escolha a opção desejada: ");
+    scanf("%c", &op_rel);
+    printf("\n");
+    printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
+    getchar();
+} 
