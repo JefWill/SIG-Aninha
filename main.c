@@ -46,8 +46,9 @@ void tela_menu_informacoes(void) {
     printf("|                                                    |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                    |\n");
-    printf("|          1 - Informações sobre o Projeto           |\n");
-    printf("|          2 - Informações sobre a Equipe            |\n");
+    printf("|          1. Informações sobre o Projeto            |\n");
+    printf("|          2. Informações sobre a Equipe             |\n");
+    printf("|          0. Voltar ao menu principal               |\n");
     printf("|                                                    |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("           Escolha a opção desejada: ");
