@@ -6,12 +6,14 @@
 // Assinatura das funções
 void tela_menu_principal(void);
 void tela_menu_informacoes(void);
-void tela_sobre(void);
 
 void tela_menu_cliente(void);
 void tela_menu_agendamento(void);
 void tela_menu_signos(void);
 void tela_menu_tarot(void);
+void tela_menu_numerologia(void);
+void tela_sobre(void);
+void tela_equipe(void);
 void tela_menu_relatorio(void);
 
 int main(void) {
@@ -19,7 +21,10 @@ int main(void) {
     tela_menu_informacoes();
     tela_menu_cliente();
     tela_menu_signos();
+    tela_menu_numerologia();
+    tela_menu_relatorio();
     tela_sobre();
+    tela_equipe();
     tela_menu_cliente();
     tela_menu_agendamento();
     tela_menu_tarot();
@@ -253,5 +258,28 @@ void tela_equipe(void) {
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("\n");
     printf("                   >>> Tecle <ENTER> para continuar... <<<            \n");
+    getchar();
+}
+
+void tela_menu_numerologia(void) {
+    system("clear||cls");
+
+    char op_num;
+    printf("\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                    |\n");
+    printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Numerologia  ✦✧✦✧✦ |\n");
+    printf("|                                                    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                    |\n");
+    printf("|          1. Descobrir qual é o seu Número          |\n");
+    printf("|          2. Significado dos Números                |\n");
+    printf("|          0. Voltar para o menu Principal           |\n");
+    printf("|                                                    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("           Escolha a opção desejada: ");
+    scanf("%c", &op_num);
+    printf("\n");
+    printf("        >>> Tecle <ENTER> para continuar... <<<      \n");
     getchar();
 }
