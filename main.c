@@ -5,30 +5,55 @@
 
 // Assinatura das funções
 char tela_menu_principal(void);
-void tela_menu_informacoes(void);
 
 void tela_menu_cliente(void);
 void tela_menu_agendamento(void);
 void tela_menu_signos(void);
 void tela_menu_tarot(void);
 void tela_menu_numerologia(void);
+void tela_menu_relatorio(void);
+void tela_menu_informacoes(void);
 void tela_sobre(void);
 void tela_equipe(void);
-void tela_menu_relatorio(void);
+
 
 int main(void) {
-    tela_menu_principal();
-    tela_menu_informacoes();
-    tela_menu_cliente();
-    tela_menu_signos();
-    tela_menu_numerologia();
-    tela_menu_relatorio();
-    tela_sobre();
-    tela_equipe();
-    tela_menu_cliente();
-    tela_menu_agendamento();
-    tela_menu_tarot();
-  
+    char op;
+
+    while (op != '0') {
+        op = tela_menu_principal();
+
+        if (op == '1') {
+            tela_menu_cliente();
+
+        } else if (op == '2') {
+            tela_menu_agendamento();
+
+        } else if (op == '3') {
+            tela_menu_signos();
+
+        } else if (op == '4') {
+            tela_menu_tarot();
+
+        } else if (op == '5') {
+            tela_menu_numerologia();
+
+        } else if (op == '6') {
+            tela_menu_relatorio();
+
+        } else if (op == '7') {
+            tela_menu_informacoes();
+
+        } else if (op == '0') {
+            printf("Encerrando o sistema... Até logo!\n");
+
+        } else {
+            printf("\nOpção inválida! Tente novamente.\n");
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+        }
+    }
+
     return 0;
 }
 
