@@ -215,14 +215,13 @@ void tela_menu_agendamento(void) {
     printf("|           5. Cancelar agendamento              |\n");
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
-    printf("|            Escolha a opção desejada:           |");
-    scanf("%c", &op_agendamento);
-    getchar();
-    printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
+    printf("            Escolha a opção desejada: ");
+    scanf("%c", &op_agendamento);
+    getchar(); 
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();  
+     
 }
 
 void tela_sobre(void) {
