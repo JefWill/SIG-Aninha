@@ -146,3 +146,42 @@ void tela_menu_agendamento(void) {
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();  
 }
+
+void tela_sobre(void) {
+    system("clear||cls");
+
+    printf("\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                     |\n");
+    printf("|           ✦✧✦✧✦  SIG-Aninha - Cigana Vitual  ✦✧✦✧✦             |\n");
+    printf("|                                                                     |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                     |\n");
+    printf("|            Universidade Federal do Rio Grande do Norte              |\n");
+    printf("|               Centro de Ensino Superior do Seridó                   |\n");
+    printf("|             Departamento de Computação e Tecnologia                 |\n");
+    printf("|                Disciplina DCT1106 -- Programação                    |\n");
+    printf("|                   Professor: Flavius Gorgônio                       |\n");
+    printf("|               Projeto: SIG-Aninha: Cigana Virtual                   |\n");
+    printf("|           Developed by: Jaine Souza e Jefferson Willame             |\n");
+    printf("|                        Since: Ago, 2025                             |\n");
+    printf("|                                                                     |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                     |\n");
+    printf("|       O SIG-Aninha é uma cigana virtual criada para auxiliar        |\n");
+    printf("|       no atendimento holístico, unindo tecnologia e misticismo.     |\n");
+    printf("|                                                                     |\n");
+    printf("|       Este sistema oferece funcionalidades como cadastro de         |\n");
+    printf("|       clientes, agendamento de consultas e acessos a serviços       |\n");
+    printf("|       online como mapa astral, tarot e numerologia.                 |\n");
+    printf("|       O sistema também oferece geração de relatórios                |\n");
+    printf("|       personalizados sobre clientes e atendimentos, facilitando     |\n");
+    printf("|       a análise e acompanhamento dos serviços prestados.            |\n");
+    printf("|                                                                     |\n");
+    printf("|       Unindo organização e espiritualidade num só lugar.            |\n");
+    printf("|                                                                     |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("\n");
+    printf("                   >>> Tecle <ENTER> para continuar... <<<            \n");
+    getchar();
+}
