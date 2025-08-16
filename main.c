@@ -5,6 +5,7 @@
 
 // Assinatura das funções
 char tela_menu_principal(void);
+char escolha(void);
 
 void tela_menu_cliente(void);
 void tela_menu_agendamento(void);
@@ -77,9 +78,7 @@ void tela_menu_informacoes(void) {
         printf("|          0. Voltar ao menu principal               |\n");
         printf("|                                                    |\n");
         printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-        printf("           Escolha a opção desejada: ");
-        scanf("%c", &op_info);
-        getchar();
+        op_info = escolha();
 
         if (op_info == '1') {
             tela_sobre();
@@ -118,11 +117,7 @@ char tela_menu_principal(void) {
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
-    printf("            Escolha a opção desejada: ");
-    scanf("%c", &op); //o scan é basicamente o input do python, o "C"
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar... <<<         \n");
-    getchar();
+    op = escolha();
 
     return op;
 }
@@ -143,12 +138,7 @@ void tela_menu_cliente(void) {
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("           Escolha a opção desejada: ");
-    scanf("%c", &op_cliente);
-    getchar();
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
+    op_cliente = escolha();
 }
 
 void tela_menu_signos(void) {
@@ -167,11 +157,7 @@ void tela_menu_signos(void) {
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("           Escolha a opção desejada: ");
-    scanf("%c", &op_signos);
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar... <<<         \n");
-    getchar(); 
+    op_signos = escolha();
 }
 
 void tela_menu_tarot(void) {
@@ -187,12 +173,7 @@ void tela_menu_tarot(void) {
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("           Escolha a opção desejada: ");
-    scanf("%c", &op_tarot);
-    getchar();
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();    
+    op_tarot = escolha(); 
 }
 
 void tela_menu_agendamento(void) {
@@ -211,11 +192,7 @@ void tela_menu_agendamento(void) {
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
-    printf("            Escolha a opção desejada: ");
-    scanf("%c", &op_agendamento);
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();  
+    op_agendamento = escolha();
 }
 
 void tela_sobre(void) {
@@ -315,11 +292,7 @@ void tela_menu_numerologia(void) {
     printf("|          0. Voltar para o menu Principal           |\n");
     printf("|                                                    |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("           Escolha a opção desejada: ");
-    scanf("%c", &op_num);
-    printf("\n");
-    printf("        >>> Tecle <ENTER> para continuar... <<<      \n");
-    getchar();
+    op_num = escolha();
 }
 
 
@@ -343,9 +316,15 @@ void tela_menu_relatorio(void) {
     printf("|    0. Voltar ao Menu Principal                     |\n");
     printf("|                                                    |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("           Escolha a opção desejada: ");
-    scanf("%c", &op_rel);
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar... <<<         \n");
-    getchar();
+    op_rel = escolha();
 } 
+
+char escolha(void) {
+    char opcao;
+    printf("           Escolha a opção desejada: ");
+    scanf("%c", &opcao);
+    printf("\n");
+    printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
+    getchar();
+    return opcao;
+}
