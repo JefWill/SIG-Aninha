@@ -112,15 +112,17 @@ char tela_menu_principal(void) {
     printf("|           2. Módulo Agendamento                |\n");
     printf("|           3. Módulo Signos                     |\n");
     printf("|           4. Módulo Tarot                      |\n");
-    printf("|           5. Módulo Relatórios                 |\n");
-    printf("|           6. Sobre                             |\n");
+    printf("|           5. Módulo Numerologia                |\n");
+    printf("|           6. Módulo Relatorio                  |\n");
+    printf("|           7. Informações                       |\n");
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
     printf("            Escolha a opção desejada: ");
     scanf("%c", &op); //o scan é basicamente o input do python, o "C"
-    getchar();
     printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar... <<<         \n");
+    getchar();
 
     return op;
 }
@@ -130,7 +132,7 @@ void tela_menu_cliente(void) {
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
-    printf("| ✦✧✦✧✦ SIG-Aninha - Módulo Cliente   ✦✧✦✧✦ |\n");
+    printf("| ✦✧✦✧✦ SIG-Aninha - Módulo Cliente   ✦✧✦✧✦      |\n");
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|           1. Cadastrar Cliente                 |\n");
@@ -140,11 +142,10 @@ void tela_menu_cliente(void) {
     printf("|           5. Excluir Cliente                   |\n");
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
-    printf("|            Escolha a opção desejada: ");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("           Escolha a opção desejada: ");
     scanf("%c", &op_cliente);
     getchar();
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
@@ -165,14 +166,12 @@ void tela_menu_signos(void) {
     printf("|           5. Calcular Signo                    |\n");
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
-    printf("|            Escolha a opção desejada:           |");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("           Escolha a opção desejada: ");
     scanf("%c", &op_signos);
-    getchar();
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
     printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();    
+    printf("\t\t\t>>> Tecle <ENTER> para continuar... <<<         \n");
+    getchar(); 
 }
 
 void tela_menu_tarot(void) {
@@ -187,11 +186,10 @@ void tela_menu_tarot(void) {
     printf("|           2. Menu Consultas tarot              |\n");
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
-    printf("|            Escolha a opção desejada:           |");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("           Escolha a opção desejada: ");
     scanf("%c", &op_tarot);
     getchar();
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();    
@@ -215,10 +213,9 @@ void tela_menu_agendamento(void) {
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
     printf("            Escolha a opção desejada: ");
     scanf("%c", &op_agendamento);
-    getchar(); 
     printf("\n");
     printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-     
+    getchar();  
 }
 
 void tela_sobre(void) {
@@ -349,6 +346,6 @@ void tela_menu_relatorio(void) {
     printf("           Escolha a opção desejada: ");
     scanf("%c", &op_rel);
     printf("\n");
-    printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar... <<<         \n");
     getchar();
 } 
