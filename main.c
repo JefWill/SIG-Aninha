@@ -1,7 +1,12 @@
+// Universidade Federal do Rio Grande do Norte - UFRN
+// Centro de Ensino Superior do Seridó - CERES
+// Departamento de Computação e Tecnologia - DCT
+// Disciplina DCT1106 - Programação
+// Projeto Sistema de Gestão Mística (SIG-Aninha)
+// Desenvolvido por: @JaineSouz e @JeffWill - since Ago, 2025
 
 #include <stdio.h>
 #include <stdlib.h>
-
 
 // Assinatura das funções
 char tela_menu_principal(void);
@@ -17,38 +22,48 @@ void tela_menu_informacoes(void);
 void tela_sobre(void);
 void tela_equipe(void);
 
-
-int main(void) {
+int main(void)
+{
     char op;
 
-    while (op != '0') {
+    while (op != '0')
+    {
         op = tela_menu_principal();
 
-        if (op == '1') {
+        if (op == '1')
+        {
             tela_menu_cliente();
-
-        } else if (op == '2') {
+        }
+        else if (op == '2')
+        {
             tela_menu_agendamento();
-
-        } else if (op == '3') {
+        }
+        else if (op == '3')
+        {
             tela_menu_signos();
-
-        } else if (op == '4') {
+        }
+        else if (op == '4')
+        {
             tela_menu_tarot();
-
-        } else if (op == '5') {
+        }
+        else if (op == '5')
+        {
             tela_menu_numerologia();
-
-        } else if (op == '6') {
+        }
+        else if (op == '6')
+        {
             tela_menu_relatorio();
-
-        } else if (op == '7') {
+        }
+        else if (op == '7')
+        {
             tela_menu_informacoes();
-
-        } else if (op == '0') {
+        }
+        else if (op == '0')
+        {
             printf("Encerrando o sistema... Até logo!\n");
-
-        } else {
+        }
+        else
+        {
             printf("\nOpção inválida! Tente novamente.\n");
             printf(">>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
@@ -58,12 +73,13 @@ int main(void) {
     return 0;
 }
 
-
 /// FUNÇÕES: ///
 
-void tela_menu_informacoes(void) {
+void tela_menu_informacoes(void)
+{
     char op_info;
-    while (op_info != '0') {
+    while (op_info != '0')
+    {
         system("clear||cls");
 
         printf("\n");
@@ -80,18 +96,22 @@ void tela_menu_informacoes(void) {
         printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
         op_info = escolha();
 
-        if (op_info == '1') {
+        if (op_info == '1')
+        {
             tela_sobre();
-
-        } else if (op_info == '2') {
+        }
+        else if (op_info == '2')
+        {
             tela_equipe();
-
-        } else if (op_info == '0') {
+        }
+        else if (op_info == '0')
+        {
             printf("Voltando ao menu principal...\n");
             printf(">>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
-
-        } else {
+        }
+        else
+        {
             printf("\nOpção inválida! Tente novamente.\n");
             printf(">>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
@@ -99,8 +119,9 @@ void tela_menu_informacoes(void) {
     }
 }
 
-char tela_menu_principal(void) {
-    char op; //isso é a variável de opção principal
+char tela_menu_principal(void)
+{
+    char op; // isso é a variável de opção principal
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
@@ -122,8 +143,9 @@ char tela_menu_principal(void) {
     return op;
 }
 
-void tela_menu_cliente(void) {
-    char op_cliente;  //aqui cria uma variável de opção só pro modulo de cliente
+void tela_menu_cliente(void)
+{
+    char op_cliente; // aqui cria uma variável de opção só pro modulo de cliente
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
@@ -141,7 +163,8 @@ void tela_menu_cliente(void) {
     op_cliente = escolha();
 }
 
-void tela_menu_signos(void) {
+void tela_menu_signos(void)
+{
     char op_signos;
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -160,7 +183,8 @@ void tela_menu_signos(void) {
     op_signos = escolha();
 }
 
-void tela_menu_tarot(void) {
+void tela_menu_tarot(void)
+{
     char op_tarot;
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -173,10 +197,11 @@ void tela_menu_tarot(void) {
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    op_tarot = escolha(); 
+    op_tarot = escolha();
 }
 
-void tela_menu_agendamento(void) {
+void tela_menu_agendamento(void)
+{
     char op_agendamento;
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -195,7 +220,8 @@ void tela_menu_agendamento(void) {
     op_agendamento = escolha();
 }
 
-void tela_sobre(void) {
+void tela_sobre(void)
+{
     system("clear||cls");
 
     printf("\n");
@@ -234,8 +260,8 @@ void tela_sobre(void) {
     getchar();
 }
 
-
-void tela_equipe(void) {
+void tela_equipe(void)
+{
     system("clear||cls");
 
     printf("\n");
@@ -261,7 +287,7 @@ void tela_equipe(void) {
     printf("|             Este projeto foi desenvolvido por:                      |\n");
     printf("|                                                                     |\n");
     printf("|             Alun@: Jaine Souza                                      |\n");
-    printf("|             Email: jaine.luz.138@ufrn.edu.br                        |\n"); 
+    printf("|             Email: jaine.luz.138@ufrn.edu.br                        |\n");
     printf("|             Redes Sociais: @_jaine.souza_                           |\n");
     printf("|             Git: https://github.com/JefWill/SIG-Aninha.git          |\n");
     printf("|                                                                     |\n");
@@ -276,7 +302,8 @@ void tela_equipe(void) {
     getchar();
 }
 
-void tela_menu_numerologia(void) {
+void tela_menu_numerologia(void)
+{
     system("clear||cls");
 
     char op_num;
@@ -295,8 +322,8 @@ void tela_menu_numerologia(void) {
     op_num = escolha();
 }
 
-
-void tela_menu_relatorio(void) {
+void tela_menu_relatorio(void)
+{
     system("clear||cls");
 
     char op_rel;
@@ -317,9 +344,10 @@ void tela_menu_relatorio(void) {
     printf("|                                                    |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     op_rel = escolha();
-} 
+}
 
-char escolha(void) {
+char escolha(void)
+{
     char opcao;
     printf("           Escolha a opção desejada: ");
     scanf("%c", &opcao);
