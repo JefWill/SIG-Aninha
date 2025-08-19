@@ -24,7 +24,7 @@ void tela_equipe(void);
 
 int main(void)
 {
-    char op;
+    char op = ' ';
 
     while (op != '0')
     {
@@ -77,7 +77,7 @@ int main(void)
 
 void tela_menu_informacoes(void)
 {
-    char op_info;
+    char op_info = ' ';
     while (op_info != '0')
     {
         system("clear||cls");
