@@ -13,8 +13,10 @@ char tela_menu_principal(void);
 char escolha(void);
 
 void tela_menu_cliente(void);
+
 void tela_menu_agendamento(void);
 void agendar_consulta(void);
+void atualizar_agendamento(void);
 
 void tela_menu_signos(void);
 void tela_menu_tarot(void);
@@ -165,6 +167,35 @@ void agendar_consulta(void)
     scanf("%s", horario);
 
     printf("\nConsulta agendada com sucesso!\n");
+    printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
+    getchar();
+    getchar();
+}
+
+void atualizar_agendamento(void)
+{
+    char cpf[15], nome[100], data[11], horario[6], tipo_consulta[20];
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|         ✦✧✦✧ Atualizar Agendamento ✧✦✧✦        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+
+    printf("Digite o CPF do cliente: ");
+    scanf("%s", cpf);
+
+    printf("Digite o nome do cliente: ");
+    scanf("%s", nome);
+
+    printf("Digite qual tipo de consulta deseja (Tarot, Signos, Numerologia): ");
+    scanf("%s", tipo_consulta);
+
+    printf("Digite a data da consulta: ");
+    scanf("%s", data);
+
+    printf("Digite o horário da consulta: ");
+    scanf("%s", horario);
+
+    printf("\nAgendamento atualizado com sucesso!\n");
     printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
     getchar();
     getchar();
