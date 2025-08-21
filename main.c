@@ -468,9 +468,10 @@ char escolha(void)
 {
     char opcao;
     printf("           Escolha a opção desejada: ");
-    scanf("%c", &opcao);
+    scanf(" %c", &opcao);
     printf("\n");
     printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
+    getchar();
     getchar();
     return opcao;
 }
