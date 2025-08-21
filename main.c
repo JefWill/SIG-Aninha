@@ -14,7 +14,7 @@ char escolha(void);
 
 void tela_menu_cliente(void);
 
-void tela_menu_agendamento(void);
+char tela_menu_agendamento(void);
 void agendar_consulta(void);
 void atualizar_agendamento(void);
 void listar_agendamentos(void);
@@ -126,7 +126,7 @@ void tela_menu_cliente(void)
     op_cliente = escolha();
 }
 
-void tela_menu_agendamento(void)
+char tela_menu_agendamento(void)
 {
     char op_agendamento;
     system("clear||cls");
