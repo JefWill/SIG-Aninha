@@ -18,6 +18,7 @@ void tela_menu_agendamento(void);
 void agendar_consulta(void);
 void atualizar_agendamento(void);
 void listar_agendamentos(void);
+void buscar_agendamento_por_cpf(void);
 
 void tela_menu_signos(void);
 void tela_menu_tarot(void);
@@ -213,6 +214,23 @@ void listar_agendamentos(void)
     printf("Digite a data desejada (dd/mm/aaaa): ");
     scanf("%s", data);
     printf("Agendamentos para a data %s:\n", data);
+
+    printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
+    getchar();
+    getchar();
+}
+
+void buscar_agendamento_por_cpf(void)
+{
+    char cpf[15];
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|          ✦✧✦✧ Buscar Agendamento ✧✦✧✦          |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+
+    printf("Digite o CPF do cliente: ");
+    scanf("%s", cpf);
+    printf("Agendamentos do cliente %s:\n", cpf);
 
     printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
     getchar();
