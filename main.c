@@ -31,7 +31,7 @@ void tela_equipe(void);
 
 int main(void)
 {
-    char op = ' ';
+    char op = '1';
 
     while (op != '0')
     {
