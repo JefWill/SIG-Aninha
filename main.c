@@ -15,6 +15,7 @@ char escolha(void);
 void tela_menu_cliente(void);
 
 char tela_menu_agendamento(void);
+void modulo_agendamentos(void);
 void agendar_consulta(void);
 void atualizar_agendamento(void);
 void listar_agendamentos(void);
@@ -146,6 +147,53 @@ char tela_menu_agendamento(void)
     op_agendamento = escolha();
 
     return op_agendamento;
+}
+
+void modulo_agendamentos(void)
+{
+    char op_agendamento = '1';
+    char cpf[15];
+    char nome[100];
+    char data[11];
+    char horario[6];
+
+    while (op_agendamento != '0')
+    {
+        op_agendamento = tela_menu_agendamento();
+
+        if (op_agendamento == '1')
+        {
+            agendar_consulta();
+        }
+        else if (op_agendamento == '2')
+        {
+            atualizar_agendamento();
+        }
+        else if (op_agendamento == '3')
+        {
+            listar_agendamentos();
+        }
+        else if (op_agendamento == '4')
+        {
+            buscar_agendamento_por_cpf();
+        }
+        else if (op_agendamento == '5')
+        {
+            excluir_agendamento();
+        }
+        else if (op_agendamento == '0')
+        {
+            printf("           Voltando ao menu principal...\n");
+            printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
+            getchar();
+        }
+        else
+        {
+            printf("                Opção inválida!\n");
+            printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
+            getchar();
+        }
+    }
 }
 
 void agendar_consulta(void)
