@@ -10,6 +10,7 @@
 
 // Assinatura das funções
 char tela_menu_principal(void);
+char escolha(void);
 
 void tela_menu_cliente(void);
 void tela_menu_agendamento(void);
@@ -23,7 +24,7 @@ void tela_equipe(void);
 
 int main(void)
 {
-    char op;
+    char op = ' ';
 
     while (op != '0')
     {
@@ -74,9 +75,154 @@ int main(void)
 
 /// FUNÇÕES: ///
 
+char tela_menu_principal(void)
+{
+    char op; // isso é a variável de opção principal
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                |\n");
+    printf("|   ✦✧✦✧✦ SIG-Aninha - A sigana virtual ✦✧✦✧✦    |\n");
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|           1. Módulo Cliente                    |\n");
+    printf("|           2. Módulo Agendamento                |\n");
+    printf("|           3. Módulo Signos                     |\n");
+    printf("|           4. Módulo Tarot                      |\n");
+    printf("|           5. Módulo Numerologia                |\n");
+    printf("|           6. Módulo Relatorio                  |\n");
+    printf("|           7. Informações                       |\n");
+    printf("|           0. Sair                              |\n");
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
+    op = escolha();
+
+    return op;
+}
+
+void tela_menu_cliente(void)
+{
+    char op_cliente; // aqui cria uma variável de opção só pro modulo de cliente
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                |\n");
+    printf("|   ✦✧✦✧✦ SIG-Aninha - Módulo Cliente   ✦✧✦✧✦    |\n");
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|           1. Cadastrar Cliente                 |\n");
+    printf("|           2. Buscar cliente                    |\n");
+    printf("|           3. Listar Clientes                   |\n");
+    printf("|           4. Atualizar Cliente                 |\n");
+    printf("|           5. Excluir Cliente                   |\n");
+    printf("|           0. Sair                              |\n");
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    op_cliente = escolha();
+}
+
+void tela_menu_agendamento(void)
+{
+    char op_agendamento;
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                |\n");
+    printf("| ✦✧✦✧ SIG-Aninha - Módulo agendamento ✧✦✧✦  |\n");
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|           1. Agendar consulta                  |\n");
+    printf("|           2. Atualizar agendamento             |\n");
+    printf("|           3. Listar agendamentos (no dia)      |\n");
+    printf("|           4. Buscar agendamento por cliente    |\n");
+    printf("|           5. Cancelar agendamento              |\n");
+    printf("|           0. Sair                              |\n");
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
+    op_agendamento = escolha();
+}
+
+void tela_menu_signos(void)
+{
+    char op_signos;
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                |\n");
+    printf("|    ✦✧✦✧✦   SIG-Aninha - Módulo signos  ✦✧✦✧✦   |\n");
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|           1. Listar Signos                     |\n");
+    printf("|           2. Consultar Signo                   |\n");
+    printf("|           3. Consultar Compatibilidade         |\n");
+    printf("|           4. Gerar Horoscopo Diário            |\n");
+    printf("|           5. Calcular Signo                    |\n");
+    printf("|           0. Sair                              |\n");
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    op_signos = escolha();
+}
+
+void tela_menu_tarot(void)
+{
+    char op_tarot;
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                |\n");
+    printf("| ✦✧✦✧✦   SIG-Aninha - Módulo tarot   ✦✧✦✧✦      |\n");
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|           1. Menu Cartas                       |\n");
+    printf("|           2. Menu Consultas tarot              |\n");
+    printf("|           0. Sair                              |\n");
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    op_tarot = escolha();
+}
+
+void tela_menu_numerologia(void)
+{
+    system("clear||cls");
+
+    char op_num;
+    printf("\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                    |\n");
+    printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Numerologia  ✦✧✦✧✦      |\n");
+    printf("|                                                    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                    |\n");
+    printf("|          1. Descobrir qual é o seu Número          |\n");
+    printf("|          2. Significado dos Números                |\n");
+    printf("|          0. Voltar para o menu Principal           |\n");
+    printf("|                                                    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    op_num = escolha();
+}
+
+void tela_menu_relatorio(void)
+{
+    system("clear||cls");
+
+    char op_rel;
+    printf("\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                    |\n");
+    printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Relatórios  ✦✧✦✧✦       |\n");
+    printf("|                                                    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                    |\n");
+    printf("|    1. Relatório de Clientes Cadastrados            |\n");
+    printf("|    2. Relatório de Atendimentos Realizados         |\n");
+    printf("|    3. Relatório por Tipo de Serviço (Tarot,        |\n");
+    printf("|    Signos, Numerologia)                            |\n");
+    printf("|    4. Relatório de Agendamentos Pendentes          |\n");
+    printf("|    5. Relatório de Clientes Atendidos por Período  |\n");
+    printf("|    0. Voltar ao Menu Principal                     |\n");
+    printf("|                                                    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    op_rel = escolha();
+}
+
 void tela_menu_informacoes(void)
 {
-    char op_info;
+    char op_info = ' ';
     while (op_info != '0')
     {
         system("clear||cls");
@@ -84,7 +230,7 @@ void tela_menu_informacoes(void)
         printf("\n");
         printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
         printf("|                                                    |\n");
-        printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Informações  ✦✧✦✧✦ |\n");
+        printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Informações  ✦✧✦✧✦      |\n");
         printf("|                                                    |\n");
         printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
         printf("|                                                    |\n");
@@ -93,9 +239,7 @@ void tela_menu_informacoes(void)
         printf("|          0. Voltar ao menu principal               |\n");
         printf("|                                                    |\n");
         printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-        printf("           Escolha a opção desejada: ");
-        scanf("%c", &op_info);
-        getchar();
+        op_info = escolha();
 
         if (op_info == '1')
         {
@@ -120,141 +264,16 @@ void tela_menu_informacoes(void)
     }
 }
 
-char tela_menu_principal(void)
-{
-    char op; // isso é a variável de opção principal
-    system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                |\n");
-    printf("| ✦✧✦✧✦ SIG-Aninha - A sigana virtual ✦✧✦✧✦ |\n");
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|           1. Módulo Cliente                    |\n");
-    printf("|           2. Módulo Agendamento                |\n");
-    printf("|           3. Módulo Signos                     |\n");
-    printf("|           4. Módulo Tarot                      |\n");
-    printf("|           5. Módulo Relatórios                 |\n");
-    printf("|           6. Sobre                             |\n");
-    printf("|           0. Sair                              |\n");
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
-    printf("            Escolha a opção desejada: ");
-    scanf("%c", &op); // o scan é basicamente o input do python, o "C"
-    getchar();
-    printf("\n");
-
-    return op;
-}
-
-void tela_menu_cliente(void)
-{
-    char op_cliente; // aqui cria uma variável de opção só pro modulo de cliente
-    system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                |\n");
-    printf("| ✦✧✦✧✦ SIG-Aninha - Módulo Cliente   ✦✧✦✧✦ |\n");
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|           1. Cadastrar Cliente                 |\n");
-    printf("|           2. Buscar cliente                    |\n");
-    printf("|           3. Listar Clientes                   |\n");
-    printf("|           4. Atualizar Cliente                 |\n");
-    printf("|           5. Excluir Cliente                   |\n");
-    printf("|           0. Sair                              |\n");
-    printf("|                                                |\n");
-    printf("|            Escolha a opção desejada: ");
-    scanf("%c", &op_cliente);
-    getchar();
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-}
-
-void tela_menu_signos(void)
-{
-    char op_signos;
-    system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                |\n");
-    printf("| ✦✧✦✧✦   SIG-Aninha - Módulo signos  ✦✧✦✧✦ |\n");
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|           1. Listar Signos                     |\n");
-    printf("|           2. Consultar Signo                   |\n");
-    printf("|           3. Consultar Compatibilidade         |\n");
-    printf("|           4. Gerar Horoscopo Diário            |\n");
-    printf("|           5. Calcular Signo                    |\n");
-    printf("|           0. Sair                              |\n");
-    printf("|                                                |\n");
-    printf("|            Escolha a opção desejada:           |");
-    scanf("%c", &op_signos);
-    getchar();
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-}
-
-void tela_menu_tarot(void)
-{
-    char op_tarot;
-    system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                |\n");
-    printf("| ✦✧✦✧✦   SIG-Aninha - Módulo tarot   ✦✧✦✧✦ |\n");
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|           1. Menu Cartas                       |\n");
-    printf("|           2. Menu Consultas tarot              |\n");
-    printf("|           0. Sair                              |\n");
-    printf("|                                                |\n");
-    printf("|            Escolha a opção desejada:           |");
-    scanf("%c", &op_tarot);
-    getchar();
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-    getchar();
-}
-
-void tela_menu_agendamento(void)
-{
-    char op_agendamento;
-    system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                |\n");
-    printf("| ✦✧✦✧ SIG-Aninha - Módulo agendamento ✧✦✧✦  |\n");
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|           1. Agendar consulta                  |\n");
-    printf("|           2. Atualizar agendamento             |\n");
-    printf("|           3. Listar agendamentos (no dia)      |\n");
-    printf("|           4. Buscar agendamento por cliente    |\n");
-    printf("|           5. Cancelar agendamento              |\n");
-    printf("|           0. Sair                              |\n");
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
-    printf("            Escolha a opção desejada: ");
-    scanf("%c", &op_agendamento);
-    getchar();
-    printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
-}
-
 void tela_sobre(void)
 {
     system("clear||cls");
 
     printf("\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                     |\n");
-    printf("|           ✦✧✦✧✦  SIG-Aninha - Cigana Vitual  ✦✧✦✧✦             |\n");
+    printf("|           ✦✧✦✧✦  SIG-Aninha - Cigana Vitual  ✦✧✦✧✦                  |\n");
     printf("|                                                                     |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                     |\n");
     printf("|            Universidade Federal do Rio Grande do Norte              |\n");
     printf("|               Centro de Ensino Superior do Seridó                   |\n");
@@ -279,7 +298,7 @@ void tela_sobre(void)
     printf("|                                                                     |\n");
     printf("|       Unindo organização e espiritualidade num só lugar.            |\n");
     printf("|                                                                     |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("\n");
     printf("                   >>> Tecle <ENTER> para continuar... <<<            \n");
     getchar();
@@ -290,11 +309,11 @@ void tela_equipe(void)
     system("clear||cls");
 
     printf("\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                     |\n");
-    printf("|           ✦✧✦✧✦  SIG-Aninha - Cigana Vitual  ✦✧✦✧✦             |\n");
+    printf("|           ✦✧✦✧✦  SIG-Aninha - Cigana Vitual  ✦✧✦✧✦                  |\n");
     printf("|                                                                     |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                     |\n");
     printf("|            Universidade Federal do Rio Grande do Norte              |\n");
     printf("|               Centro de Ensino Superior do Seridó                   |\n");
@@ -305,9 +324,9 @@ void tela_equipe(void)
     printf("|           Developed by: Jaine Souza e Jefferson Willame             |\n");
     printf("|                        Since: Ago, 2025                             |\n");
     printf("|                                                                     |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                     |\n");
-    printf("|                    ✦✧✦✧✦  EQUIPE  ✦✧✦✧✦                        |\n");
+    printf("|                    ✦✧✦✧✦  EQUIPE  ✦✧✦✧✦                             |\n");
     printf("|                                                                     |\n");
     printf("|             Este projeto foi desenvolvido por:                      |\n");
     printf("|                                                                     |\n");
@@ -321,60 +340,19 @@ void tela_equipe(void)
     printf("|             Redes Sociais: @jefferson_willame                       |\n");
     printf("|             Git: https://github.com/JefWill/SIG-Aninha.git          |\n");
     printf("|                                                                     |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("\n");
     printf("                   >>> Tecle <ENTER> para continuar... <<<            \n");
     getchar();
 }
 
-void tela_menu_numerologia(void)
+char escolha(void)
 {
-    system("clear||cls");
-
-    char op_num;
-    printf("\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                    |\n");
-    printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Numerologia  ✦✧✦✧✦ |\n");
-    printf("|                                                    |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                    |\n");
-    printf("|          1. Descobrir qual é o seu Número          |\n");
-    printf("|          2. Significado dos Números                |\n");
-    printf("|          0. Voltar para o menu Principal           |\n");
-    printf("|                                                    |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    char opcao;
     printf("           Escolha a opção desejada: ");
-    scanf("%c", &op_num);
-    printf("\n");
-    printf("        >>> Tecle <ENTER> para continuar... <<<      \n");
-    getchar();
-}
-
-void tela_menu_relatorio(void)
-{
-    system("clear||cls");
-
-    char op_rel;
-    printf("\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                    |\n");
-    printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Relatórios  ✦✧✦✧✦  |\n");
-    printf("|                                                    |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                    |\n");
-    printf("|    1. Relatório de Clientes Cadastrados            |\n");
-    printf("|    2. Relatório de Atendimentos Realizados         |\n");
-    printf("|    3. Relatório por Tipo de Serviço (Tarot,        |\n");
-    printf("|    Signos, Numerologia)                            |\n");
-    printf("|    4. Relatório de Agendamentos Pendentes          |\n");
-    printf("|    5. Relatório de Clientes Atendidos por Período  |\n");
-    printf("|    0. Voltar ao Menu Principal                     |\n");
-    printf("|                                                    |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("           Escolha a opção desejada: ");
-    scanf("%c", &op_rel);
+    scanf("%c", &opcao);
     printf("\n");
     printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
     getchar();
+    return opcao;
 }
