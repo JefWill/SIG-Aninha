@@ -44,7 +44,7 @@ int main(void)
         }
         else if (op == '2')
         {
-            tela_menu_agendamento();
+            modulo_agendamentos();
         }
         else if (op == '3')
         {
