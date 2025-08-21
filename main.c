@@ -184,13 +184,13 @@ void modulo_agendamentos(void)
         else if (op_agendamento == '0')
         {
             printf("           Voltando ao menu principal...\n");
-            printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
+            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
         }
         else
         {
             printf("                Opção inválida!\n");
-            printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
+            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
         }
     }
@@ -220,7 +220,7 @@ void agendar_consulta(void)
     scanf("%s", horario);
 
     printf("\nConsulta agendada com sucesso!\n");
-    printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
+    printf("      >>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
     getchar();
 }
@@ -249,7 +249,7 @@ void atualizar_agendamento(void)
     scanf("%s", horario);
 
     printf("\nAgendamento atualizado com sucesso!\n");
-    printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
+    printf("      >>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
     getchar();
 }
@@ -266,7 +266,7 @@ void listar_agendamentos(void)
     scanf("%s", data);
     printf("Agendamentos para a data %s:\n", data);
 
-    printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
+    printf("      >>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
     getchar();
 }
@@ -283,7 +283,7 @@ void buscar_agendamento_por_cpf(void)
     scanf("%s", cpf);
     printf("Agendamentos do cliente %s:\n", cpf);
 
-    printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
+    printf("      >>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
     getchar();
 }
@@ -300,7 +300,7 @@ void excluir_agendamento(void)
     scanf("%s", cpf);
 
     printf("\nAgendamento excluido com sucesso!\n");
-    printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
+    printf("      >>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
     getchar();
 }
