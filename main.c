@@ -144,6 +144,8 @@ void tela_menu_agendamento(void)
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
     op_agendamento = escolha();
+
+    return op_agendamento;
 }
 
 void agendar_consulta(void)
