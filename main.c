@@ -19,6 +19,7 @@ void agendar_consulta(void);
 void atualizar_agendamento(void);
 void listar_agendamentos(void);
 void buscar_agendamento_por_cpf(void);
+void excluir_agendamento(void);
 
 void tela_menu_signos(void);
 void tela_menu_tarot(void);
@@ -232,6 +233,23 @@ void buscar_agendamento_por_cpf(void)
     scanf("%s", cpf);
     printf("Agendamentos do cliente %s:\n", cpf);
 
+    printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
+    getchar();
+    getchar();
+}
+
+void excluir_agendamento(void)
+{
+    char cpf[15];
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|          ✦✧✦✧ Excluir Agendamento ✧✦✧✦          |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+
+    printf("Digite o CPF do cliente: ");
+    scanf("%s", cpf);
+
+    printf("\nAgendamento excluido com sucesso!\n");
     printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
     getchar();
     getchar();
