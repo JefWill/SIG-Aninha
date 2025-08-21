@@ -17,6 +17,7 @@ void tela_menu_cliente(void);
 void tela_menu_agendamento(void);
 void agendar_consulta(void);
 void atualizar_agendamento(void);
+void listar_agendamentos(void);
 
 void tela_menu_signos(void);
 void tela_menu_tarot(void);
@@ -196,6 +197,23 @@ void atualizar_agendamento(void)
     scanf("%s", horario);
 
     printf("\nAgendamento atualizado com sucesso!\n");
+    printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
+    getchar();
+    getchar();
+}
+
+void listar_agendamentos(void)
+{
+    char data[11];
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|           ✦✧✦✧ Listar Agendamentos ✧✦✧✦          |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+
+    printf("Digite a data desejada (dd/mm/aaaa): ");
+    scanf("%s", data);
+    printf("Agendamentos para a data %s:\n", data);
+
     printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
     getchar();
     getchar();
