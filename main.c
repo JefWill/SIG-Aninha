@@ -7,11 +7,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 // Assinatura das funções
 char tela_menu_principal(void);
 char escolha(void);
-
+void input(char *nome,int tamanho, char *mensagem);
 void tela_menu_cliente(void);
 
 char tela_menu_agendamento(void);
@@ -522,4 +523,12 @@ char escolha(void)
     getchar();
     getchar();
     return opcao;
+}
+
+void input(char *nome,int tamanho, char *mensagem){
+    int tam;
+    printf("%s\n", mensagem);
+    fgets(nome, tamanho,stdin);
+    tam = strlen(nome);
+    nome[tam-1] = '\0';
 }
