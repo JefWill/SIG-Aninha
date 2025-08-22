@@ -110,7 +110,7 @@ int tela_menu_principal(void)
 
 void tela_menu_cliente(void)
 {
-    char op_cliente; // aqui cria uma variável de opção só pro modulo de cliente
+    int op_cliente; // aqui cria uma variável de opção só pro modulo de cliente
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
@@ -130,7 +130,7 @@ void tela_menu_cliente(void)
 
 int tela_menu_agendamento(void)
 {
-    int op_agendamento;
+    int op_agendamento = 11;
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
@@ -326,7 +326,7 @@ void excluir_agendamento(void)
 
 void tela_menu_signos(void)
 {
-    char op_signos;
+    int op_signos;
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
@@ -346,7 +346,7 @@ void tela_menu_signos(void)
 
 void tela_menu_tarot(void)
 {
-    char op_tarot;
+    int op_tarot;
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
@@ -365,7 +365,7 @@ void tela_menu_numerologia(void)
 {
     system("clear||cls");
 
-    char op_num;
+    int op_num;
     printf("\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                    |\n");
@@ -385,7 +385,7 @@ void tela_menu_relatorio(void)
 {
     system("clear||cls");
 
-    char op_rel;
+    int op_rel;
     printf("\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                    |\n");
@@ -407,8 +407,8 @@ void tela_menu_relatorio(void)
 
 void tela_menu_informacoes(void)
 {
-    char op_info = ' ';
-    while (op_info != '0')
+    int op_info = 11;
+    while (op_info != 0)
     {
         system("clear||cls");
 
@@ -426,15 +426,15 @@ void tela_menu_informacoes(void)
         printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
         op_info = escolha();
 
-        if (op_info == '1')
+        if (op_info == 1)
         {
             tela_sobre();
         }
-        else if (op_info == '2')
+        else if (op_info == 2)
         {
             tela_equipe();
         }
-        else if (op_info == '0')
+        else if (op_info == 0)
         {
             printf("Voltando ao menu principal...\n");
             printf(">>> Tecle <ENTER> para continuar... <<<\n");
@@ -538,7 +538,6 @@ int escolha(void)
     scanf("%d", &opcao);
     printf("\n");
     printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
-    getchar();
     getchar();
     return opcao;
 }
