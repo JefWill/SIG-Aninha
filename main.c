@@ -10,12 +10,12 @@
 #include <string.h>
 
 // Assinatura das funções
-char tela_menu_principal(void);
-char escolha(void);
+int tela_menu_principal(void);
+int escolha(void);
 void input(char *nome,int tamanho, char *mensagem);
 void tela_menu_cliente(void);
 
-char tela_menu_agendamento(void);
+int tela_menu_agendamento(void);
 void modulo_agendamentos(void);
 void agendar_consulta(void);
 void atualizar_agendamento(void);
@@ -33,41 +33,41 @@ void tela_equipe(void);
 
 int main(void)
 {
-    char op = '1';
+    int op = 10;
 
-    while (op != '0')
+    while (op != 0)
     {
         op = tela_menu_principal();
 
-        if (op == '1')
+        if (op == 1)
         {
             tela_menu_cliente();
         }
-        else if (op == '2')
+        else if (op == 2)
         {
             modulo_agendamentos();
         }
-        else if (op == '3')
+        else if (op == 3)
         {
             tela_menu_signos();
         }
-        else if (op == '4')
+        else if (op == 4)
         {
             tela_menu_tarot();
         }
-        else if (op == '5')
+        else if (op == 5)
         {
             tela_menu_numerologia();
         }
-        else if (op == '6')
+        else if (op == 6)
         {
             tela_menu_relatorio();
         }
-        else if (op == '7')
+        else if (op == 7)
         {
             tela_menu_informacoes();
         }
-        else if (op == '0')
+        else if (op == 0)
         {
             printf("Encerrando o sistema... Até logo!\n");
         }
@@ -84,9 +84,9 @@ int main(void)
 
 /// FUNÇÕES: ///
 
-char tela_menu_principal(void)
+int tela_menu_principal(void)
 {
-    char op; // isso é a variável de opção principal
+    int op; // isso é a variável de opção principal
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
@@ -128,9 +128,9 @@ void tela_menu_cliente(void)
     op_cliente = escolha();
 }
 
-char tela_menu_agendamento(void)
+int tela_menu_agendamento(void)
 {
-    char op_agendamento;
+    int op_agendamento;
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
@@ -152,37 +152,36 @@ char tela_menu_agendamento(void)
 
 void modulo_agendamentos(void)
 {
-    char op_agendamento = '1';
+    char op_agendamento = 11;
     char cpf[15];
     char nome[100];
     char data[11];
     char horario[6];
-
-    while (op_agendamento != '0')
+    while (op_agendamento != 0)
     {
         op_agendamento = tela_menu_agendamento();
 
-        if (op_agendamento == '1')
+        if (op_agendamento == 1)
         {
             agendar_consulta();
         }
-        else if (op_agendamento == '2')
+        else if (op_agendamento == 2)
         {
             atualizar_agendamento();
         }
-        else if (op_agendamento == '3')
+        else if (op_agendamento == 3)
         {
             listar_agendamentos();
         }
-        else if (op_agendamento == '4')
+        else if (op_agendamento == 4)
         {
             buscar_agendamento_por_cpf();
         }
-        else if (op_agendamento == '5')
+        else if (op_agendamento == 5)
         {
             excluir_agendamento();
         }
-        else if (op_agendamento == '0')
+        else if (op_agendamento == 0)
         {
             printf("           Voltando ao menu principal...\n");
             printf("      >>> Tecle <ENTER> para continuar... <<<\n");
@@ -197,6 +196,25 @@ void modulo_agendamentos(void)
     }
 }
 
+void cliente_cadastrar(void) {
+    char cpf[16] = " ";
+    char nome[50] = " ";
+    char data_nascimento[12] = " ";
+    system("clear||clr");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|         ✦✧✦✧  Cadastrar Cliente ✧✦✧✦         |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+
+    input(cpf,16,"insira seu cpf");
+    input(nome, 50, "Digite o seu nome: ");
+    input(data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
+    printf("cliente cadastrado com sucesso!\n");
+    printf("Nome: %s.\nCPF: %s.\nData nascimento: %s.", nome, cpf, data_nascimento);
+    printf("\nprecione ente pra continuar");
+    getchar();
+
+
+}
 void agendar_consulta(void)
 {
     char cpf[15], nome[100], data[11], horario[6], tipo_consulta[20];
@@ -513,11 +531,11 @@ void tela_equipe(void)
     getchar();
 }
 
-char escolha(void)
+int escolha(void)
 {
-    char opcao;
+    int opcao;
     printf("           Escolha a opção desejada: ");
-    scanf(" %c", &opcao);
+    scanf("%d", &opcao);
     printf("\n");
     printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
     getchar();
