@@ -13,7 +13,15 @@
 int tela_menu_principal(void);
 int escolha(void);
 void input(char *nome,int tamanho, char *mensagem);
-void tela_menu_cliente(void);
+
+void modulo_cliente(void);
+void cadastrar_cliente(void);
+int tela_menu_cliente(void);
+void buscar_cliente(void);
+void listar_clientes(void);
+void excluir_cliente(void);
+void alterar_cliente(void);
+
 
 int tela_menu_agendamento(void);
 void modulo_agendamentos(void);
@@ -41,7 +49,7 @@ int main(void)
 
         if (op == 1)
         {
-            tela_menu_cliente();
+            modulo_cliente();
         }
         else if (op == 2)
         {
@@ -108,7 +116,7 @@ int tela_menu_principal(void)
     return op;
 }
 
-void tela_menu_cliente(void)
+int tela_menu_cliente(void)
 {
     int op_cliente; // aqui cria uma variável de opção só pro modulo de cliente
     system("clear||cls");
@@ -126,6 +134,8 @@ void tela_menu_cliente(void)
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     op_cliente = escolha();
+    
+    return op_cliente;
 }
 
 int tela_menu_agendamento(void)
@@ -149,10 +159,143 @@ int tela_menu_agendamento(void)
 
     return op_agendamento;
 }
+//////// MODULO CLIENTE ////////
 
+void modulo_cliente(void)
+{
+    int op_cliente = 11;
+    char cpf[15];
+    char nome[100];
+    char data[11];
+    char horario[6];
+    while (op_cliente != 0)
+    {
+        op_cliente = tela_menu_cliente();
+
+        if (op_cliente == 1)
+        {
+            cadastrar_cliente();
+        }
+        else if (op_cliente == 2)
+        {
+            buscar_cliente();
+        }
+        else if (op_cliente == 3)
+        {
+            listar_clientes();
+        }
+        else if (op_cliente == 4)
+        {
+            alterar_cliente();
+        }
+        else if (op_cliente == 5)
+        {
+            excluir_cliente();
+        }
+        else if (op_cliente == 0)
+        {
+            printf("           Voltando ao menu principal...\n");
+            getchar();
+        }
+        else
+        {
+            printf("                Opção inválida!\n");
+            getchar();
+        }
+    }
+}
+
+void cadastrar_cliente(void) {
+    char cpf[16] = " ";
+    char nome[50] = " ";
+    char data_nascimento[12] = " ";
+    system("clear||clr");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|         ✦✧✦✧  Cadastrar Cliente ✧✦✧✦         |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+
+    input(cpf,16,"insira seu cpf");
+    input(nome, 50, "Digite o seu nome: ");
+    input(data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
+    printf("cliente cadastrado com sucesso!\n");
+    printf("Nome: %s.\nCPF: %s.\nData nascimento: %s.", nome, cpf, data_nascimento);
+    printf("\nPressione Enter para continuar");
+    getchar();
+
+
+}
+
+void buscar_cliente(void) {
+    char cpf[15];
+
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|         ✦✧✦✧✦  Buscar Cliente  ✦✧✦✧✦            |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    printf("Digite o CPF do cliente para buscar: ");
+    scanf("%s", cpf);
+
+    printf("\nCliente com CPF %s encontrado!\n", cpf);
+    printf("(aqui seriam exibidos os dados detalhados)\n\n");
+
+    printf("Pressione ENTER para voltar ao menu...");
+    getchar(); getchar();
+}
+
+void listar_clientes(void) {
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|        ✦✧✦✧✦     Listar Clientes     ✦✧✦✧✦     |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    printf("[ Lista de clientes exibida.\n");
+    printf("Pressione ENTER para continuar...");
+    getchar();
+}
+
+void excluir_cliente(void) {
+    char cpf[15];
+    char opcao;
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|        ✦✧✦✧✦  Excluir Cliente  ✦✧✦✧✦           |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    printf("Informe o CPF do cliente que deseja excluir: ");
+    scanf("%14s", cpf);
+
+    printf("\nConfirma exclusão do cliente com CPF %s? (S/N): ", cpf);
+    scanf(" %c", &opcao);
+
+    if (opcao == 'S' || opcao == 's') {
+        printf("\ncliente com CPF %s excluído.\n", cpf);
+    } else {
+        printf("\nExclusão cancelada.\n");
+    }
+
+    printf("Pressione ENTER para voltar ao menu...");
+    getchar(); getchar();
+}
+
+void alterar_cliente(void) {
+    char cpf[15];
+    char nome[50];
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|        ✦✧✦✧✦  Alterar Cliente  ✦✧✦✧✦           |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    input(cpf, 15, "informe o CPF");
+    input(nome, 50, "Informe o nome");
+    printf("\ncliente com CPF %s alterado.\n", cpf);
+    printf("Pressione ENTER para voltar ao menu...");
+    getchar(); getchar();
+}
+//////////// MODULO AGENDAMENTO //////////////
 void modulo_agendamentos(void)
 {
-    char op_agendamento = 11;
+    int op_agendamento = 11;
     char cpf[15];
     char nome[100];
     char data[11];
@@ -184,8 +327,6 @@ void modulo_agendamentos(void)
         else if (op_agendamento == 0)
         {
             printf("           Voltando ao menu principal...\n");
-            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
         }
         else
         {
@@ -196,25 +337,9 @@ void modulo_agendamentos(void)
     }
 }
 
-void cliente_cadastrar(void) {
-    char cpf[16] = " ";
-    char nome[50] = " ";
-    char data_nascimento[12] = " ";
-    system("clear||clr");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|         ✦✧✦✧  Cadastrar Cliente ✧✦✧✦         |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-
-    input(cpf,16,"insira seu cpf");
-    input(nome, 50, "Digite o seu nome: ");
-    input(data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
-    printf("cliente cadastrado com sucesso!\n");
-    printf("Nome: %s.\nCPF: %s.\nData nascimento: %s.", nome, cpf, data_nascimento);
-    printf("\nprecione ente pra continuar");
-    getchar();
 
 
-}
+
 void agendar_consulta(void)
 {
     char cpf[15], nome[100], data[11], horario[6], tipo_consulta[20];
@@ -537,7 +662,6 @@ int escolha(void)
     printf("           Escolha a opção desejada: ");
     scanf("%d", &opcao);
     printf("\n");
-    printf("      >>> Tecle <ENTER> para continuar... <<<         \n");
     getchar();
     return opcao;
 }
