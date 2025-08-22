@@ -164,10 +164,6 @@ int tela_menu_agendamento(void)
 void modulo_cliente(void)
 {
     int op_cliente = 11;
-    char cpf[15];
-    char nome[100];
-    char data[11];
-    char horario[6];
     while (op_cliente != 0)
     {
         op_cliente = tela_menu_cliente();
