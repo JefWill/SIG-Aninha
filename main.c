@@ -202,15 +202,15 @@ void modulo_cliente(void)
 
 void cadastrar_cliente(void)
 {
-    char cpf[16] = " ";
-    char nome[50] = " ";
-    char data_nascimento[12] = " ";
+    char cpf[15];
+    char nome[50];
+    char data_nascimento[12];
     system("clear||clr");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|         ✦✧✦✧  Cadastrar Cliente ✧✦✧✦         |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
 
-    input(cpf, 16, "insira seu cpf");
+    input(cpf, 15, "insira seu cpf");
     input(nome, 50, "Digite o seu nome: ");
     input(data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
     printf("cliente cadastrado com sucesso!\n");
@@ -260,8 +260,7 @@ void excluir_cliente(void)
     printf("|        ✦✧✦✧✦  Excluir Cliente  ✦✧✦✧✦           |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    printf("Informe o CPF do cliente que deseja excluir: ");
-    scanf("%14s", cpf);
+    input(cpf, 15, "Informe o CPF do cliente que deseja excluir: ");
 
     printf("\nConfirma exclusão do cliente com CPF %s? (S/N): ", cpf);
     scanf(" %c", &opcao);
