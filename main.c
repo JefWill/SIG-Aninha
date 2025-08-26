@@ -97,7 +97,7 @@ int tela_menu_principal(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
-    printf("|   ✦✧✦✧✦ SIG-Aninha - A sigana virtual ✦✧✦✧✦    |\n");
+    printf("| ✦✧✦✧✦ SIG-Aninha - A sigana virtual ✦✧✦✧✦ |\n");
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|           1. Módulo Cliente                    |\n");
@@ -121,7 +121,7 @@ int tela_menu_cliente(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
-    printf("|   ✦✧✦✧✦ SIG-Aninha - Módulo Cliente   ✦✧✦✧✦    |\n");
+    printf("| ✦✧✦✧✦ SIG-Aninha - Módulo Cliente   ✦✧✦✧✦ |\n");
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|           1. Cadastrar Cliente                 |\n");
@@ -225,7 +225,7 @@ void buscar_cliente(void)
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|         ✦✧✦✧✦  Buscar Cliente  ✦✧✦✧✦            |\n");
+    printf("|       ✦✧✦✧✦  Buscar Cliente  ✦✧✦✧✦          |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     printf("Digite o CPF do cliente para buscar: ");
@@ -243,7 +243,7 @@ void listar_clientes(void)
 {
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|        ✦✧✦✧✦     Listar Clientes     ✦✧✦✧✦     |\n");
+    printf("|     ✦✧✦✧✦     Listar Clientes     ✦✧✦✧✦    |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     printf("[ Lista de clientes exibida.\n");
@@ -257,7 +257,7 @@ void excluir_cliente(void)
     char opcao;
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|        ✦✧✦✧✦  Excluir Cliente  ✦✧✦✧✦           |\n");
+    printf("|        ✦✧✦✧✦  Excluir Cliente  ✦✧✦✧✦       |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     input(cpf, 15, "Informe o CPF do cliente que deseja excluir: ");
@@ -285,7 +285,7 @@ void alterar_cliente(void)
     char nome[50];
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|        ✦✧✦✧✦  Alterar Cliente  ✦✧✦✧✦           |\n");
+    printf("|        ✦✧✦✧✦  Alterar Cliente  ✦✧✦✧✦       |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     input(cpf, 15, "informe o CPF");
@@ -364,7 +364,7 @@ void atualizar_agendamento(void)
     system("clear||cls");
 
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|         ✦✧✦✧ Atualizar Agendamento ✧✦✧✦        |\n");
+    printf("|       ✦✧✦✧ Atualizar Agendamento ✧✦✧✦       |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
 
     input(cpf, 15, "Digite o CPF do cliente: ");
@@ -383,7 +383,7 @@ void listar_agendamentos(void)
     char data[11];
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|           ✦✧✦✧ Listar Agendamentos ✧✦✧✦          |\n");
+    printf("|         ✦✧✦✧ Listar Agendamentos ✧✦✧✦       |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
 
     printf("Digite a data desejada (dd/mm/aaaa): ");
@@ -401,7 +401,7 @@ void buscar_agendamento_por_cpf(void)
     char cpf[15];
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|          ✦✧✦✧ Buscar Agendamento ✧✦✧✦          |\n");
+    printf("|        ✦✧✦✧ Buscar Agendamento ✧✦✧✦         |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
 
     printf("Digite o CPF do cliente: ");
@@ -421,7 +421,7 @@ void excluir_agendamento(void)
     system("clear||cls");
 
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|          ✦✧✦✧ Excluir Agendamento ✧✦✧✦          |\n");
+    printf("|        ✦✧✦✧ Excluir Agendamento ✧✦✧✦        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
 
     input(cpf, 15, "Digite o CPF do cliente:");
@@ -449,7 +449,7 @@ void tela_menu_signos(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
-    printf("|    ✦✧✦✧✦   SIG-Aninha - Módulo signos  ✦✧✦✧✦   |\n");
+    printf("| ✦✧✦✧✦   SIG-Aninha - Módulo signos  ✦✧✦✧✦ |\n");
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|           1. Listar Signos                     |\n");
@@ -469,7 +469,7 @@ void tela_menu_tarot(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
-    printf("| ✦✧✦✧✦   SIG-Aninha - Módulo tarot   ✦✧✦✧✦      |\n");
+    printf("| ✦✧✦✧✦   SIG-Aninha - Módulo tarot   ✦✧✦✧✦ |\n");
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|           1. Menu Cartas                       |\n");
@@ -488,7 +488,7 @@ void tela_menu_numerologia(void)
     printf("\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                    |\n");
-    printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Numerologia  ✦✧✦✧✦      |\n");
+    printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Numerologia  ✦✧✦✧✦ |\n");
     printf("|                                                    |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                    |\n");
@@ -508,7 +508,7 @@ void tela_menu_relatorio(void)
     printf("\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                    |\n");
-    printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Relatórios  ✦✧✦✧✦       |\n");
+    printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Relatórios  ✦✧✦✧✦  |\n");
     printf("|                                                    |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                    |\n");
@@ -534,7 +534,7 @@ void tela_menu_informacoes(void)
         printf("\n");
         printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
         printf("|                                                    |\n");
-        printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Informações  ✦✧✦✧✦      |\n");
+        printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Informações  ✦✧✦✧✦ |\n");
         printf("|                                                    |\n");
         printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
         printf("|                                                    |\n");
@@ -575,7 +575,7 @@ void tela_sobre(void)
     printf("\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                     |\n");
-    printf("|           ✦✧✦✧✦  SIG-Aninha - Cigana Vitual  ✦✧✦✧✦                  |\n");
+    printf("|           ✦✧✦✧✦  SIG-Aninha - Cigana Vitual  ✦✧✦✧✦             |\n");
     printf("|                                                                     |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                     |\n");
@@ -615,7 +615,7 @@ void tela_equipe(void)
     printf("\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                     |\n");
-    printf("|           ✦✧✦✧✦  SIG-Aninha - Cigana Vitual  ✦✧✦✧✦                  |\n");
+    printf("|           ✦✧✦✧✦  SIG-Aninha - Cigana Vitual  ✦✧✦✧✦             |\n");
     printf("|                                                                     |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                     |\n");
@@ -630,7 +630,7 @@ void tela_equipe(void)
     printf("|                                                                     |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                     |\n");
-    printf("|                    ✦✧✦✧✦  EQUIPE  ✦✧✦✧✦                             |\n");
+    printf("|                    ✦✧✦✧✦  EQUIPE  ✦✧✦✧✦                        |\n");
     printf("|                                                                     |\n");
     printf("|             Este projeto foi desenvolvido por:                      |\n");
     printf("|                                                                     |\n");
