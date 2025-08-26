@@ -13,6 +13,7 @@
 int tela_menu_principal(void);
 int escolha(void);
 void input(char *nome, int tamanho, char *mensagem);
+void perguntas(void);
 
 void modulo_cliente(void);
 void cadastrar_cliente(void);
@@ -74,6 +75,10 @@ int main(void)
         {
             tela_menu_informacoes();
         }
+        else if (op == 8)
+        {
+            perguntas();
+        }
         else if (op == 0)
         {
             printf("Encerrando o sistema... Até logo!\n");
@@ -107,6 +112,7 @@ int tela_menu_principal(void)
     printf("|           5. Módulo Numerologia                |\n");
     printf("|           6. Módulo Relatorio                  |\n");
     printf("|           7. Informações                       |\n");
+    printf("|           8. Pergunte á sigana                 |\n");
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
@@ -114,7 +120,20 @@ int tela_menu_principal(void)
 
     return op;
 }
-
+void perguntas(void)
+{   
+    int continuar = 1;
+    while(continuar != 0)
+    {
+        char *respostas[7] = {"sim", "nao", "talvez"};
+        char pergunta[255];
+        input(pergunta, 255, "Faça uma pergunta para a sigana (sim ou não)");
+        printf("\nsua pergunta foi %s", pergunta);
+        printf("\na resposta é: %s", respostas[rand() %3]);
+        printf("\ncontinuar? 1 para sim, 0 para não");
+        continuar = escolha();
+    }
+}
 int tela_menu_cliente(void)
 {
     int op_cliente; // aqui cria uma variável de opção só pro modulo de cliente
@@ -653,7 +672,7 @@ void tela_equipe(void)
 int escolha(void)
 {
     int opcao;
-    printf("           Escolha a opção desejada: ");
+    printf("\n           Escolha a opção desejada: ");
     scanf("%d", &opcao);
     printf("\n");
     getchar();
