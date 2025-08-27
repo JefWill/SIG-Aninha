@@ -8,13 +8,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 // Assinatura das funções
 int tela_menu_principal(void);
 int escolha(void);
 void input(char *nome, int tamanho, char *mensagem);
 void perguntas(void);
-int time();
 
 /////  SERVIÇOS  //////
 int tela_menu_servicos(void);
@@ -108,7 +108,7 @@ int main(void)
 
 int tela_menu_principal(void)
 {
-    int op; 
+    int op;
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
@@ -130,7 +130,7 @@ int tela_menu_principal(void)
 
 int tela_menu_servicos(void)
 {
-    int op_servicos; 
+    int op_servicos;
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
@@ -140,7 +140,7 @@ int tela_menu_servicos(void)
     printf("|           1. Módulo Signos                     |\n");
     printf("|           2. Módulo Tarot                      |\n");
     printf("|           3. Módulo Numerologia                |\n");
-    printf("|           4. Pergunte à Sigana                 |\n");    
+    printf("|           4. Pergunte à Sigana                 |\n");
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
@@ -184,7 +184,6 @@ void modulo_servicos(void)
         }
     }
 }
-
 
 void perguntas(void)
 {
@@ -735,9 +734,9 @@ void modulo_tarot(void)
     }
 }
 
-char *cartas[22] = { "O Louco", "O Mago", "A Sacerdotisa", "A Imperatriz", "O Imperador", "O Hierofante",
-    "Os Enamorados", "O Carro", "A Força", "O Eremita", "A Roda da Fortuna", "A Justiça", "O Enforcado",
-    "A Morte", "A Temperança", "O Diabo", "A Torre", "A Estrela", "A Lua", "O Sol", "O Julgamento", "O Mundo" };
+char *cartas[22] = {"O Louco", "O Mago", "A Sacerdotisa", "A Imperatriz", "O Imperador", "O Hierofante",
+                    "Os Enamorados", "O Carro", "A Força", "O Eremita", "A Roda da Fortuna", "A Justiça", "O Enforcado",
+                    "A Morte", "A Temperança", "O Diabo", "A Torre", "A Estrela", "A Lua", "O Sol", "O Julgamento", "O Mundo"};
 
 void exibir_lista_cartas(void)
 {
@@ -750,8 +749,7 @@ void exibir_lista_cartas(void)
     printf("\n☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("      >>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
-}    
-
+}
 
 void consultar_cartas(void)
 {
@@ -765,7 +763,6 @@ void consultar_cartas(void)
 
     input(cpf, 15, "Digite o CPF do cliente:");
     input(data, 11, "Digite a data atual (DD/MM/AAAA):");
-
 
     printf("\n Resultado da consulta:\n");
     printf(" Passado : %s\n", cartas[rand() % 22]);
@@ -794,7 +791,6 @@ int tela_menu_tarot(void)
     op_tarot = escolha();
     return op_tarot;
 }
-
 
 //////////////////////////////////////////////
 ///////////// MODULO NUMEROLOGIA /////////////
