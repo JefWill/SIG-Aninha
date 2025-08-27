@@ -55,7 +55,7 @@ void consultar_cartas(void);
 int tela_menu_tarot(void);
 
 /////  NUMEROLOGIA  //////
-void tela_menu_numerologia(void);
+int tela_menu_numerologia(void);
 void tela_menu_relatorio(void);
 void tela_menu_informacoes(void);
 void tela_sobre(void);
@@ -796,7 +796,7 @@ int tela_menu_tarot(void)
 ///////////// MODULO NUMEROLOGIA /////////////
 //////////////////////////////////////////////
 
-void tela_menu_numerologia(void)
+int tela_menu_numerologia(void)
 {
     system("clear||cls");
 
@@ -814,6 +814,8 @@ void tela_menu_numerologia(void)
     printf("|                                                    |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     op_num = escolha();
+
+    return op_num;
 }
 
 //////////////////////////////////////////////
