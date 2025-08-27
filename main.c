@@ -36,6 +36,7 @@ void modulo_signos(void);
 void listar_signos(void);
 void exibir_lista_signos(void);
 void consultar_signo(void);
+void compatibilidade(void);
 
 void tela_menu_tarot(void);
 void tela_menu_numerologia(void);
@@ -503,6 +504,10 @@ void modulo_signos(void)
         {
             consultar_signo();
         }
+        else if (op_signos == 3)
+        {
+            compatibilidade();
+        }
         else if (op_signos == 0)
         {
             printf("           Voltando ao menu principal...\n");
@@ -544,13 +549,11 @@ void listar_signos(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
     printf("\n      >>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
-    getchar();
 }
 
 void consultar_signo(void)
 {
-    int opcao;
-
+    int opcao = 11;
     system("clear||cls");
 
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -571,9 +574,19 @@ void consultar_signo(void)
         printf("\nO signo escolhido foi: %s\n", signos[opcao - 1]);
         printf("Exibe as características detalhadas do signo...\n");
     }
-
     printf("\nPressione ENTER para voltar ao menu...");
     getchar();
+}
+
+void compatibilidade(void)
+{
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|     ✦✧✦✧✦     Compatibilidade     ✦✧✦✧✦    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    printf("Calcular compatibilidade dos signos...\n");
+    printf("\nPressione ENTER para voltar ao menu...");
     getchar();
 }
 
