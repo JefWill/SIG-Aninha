@@ -38,6 +38,7 @@ void exibir_lista_signos(void);
 void consultar_signo(void);
 void compatibilidade(void);
 void horoscopo_signo(void);
+void calcular_signo(void);
 
 void tela_menu_tarot(void);
 void tela_menu_numerologia(void);
@@ -469,7 +470,7 @@ void excluir_agendamento(void)
 
 int tela_menu_signos(void)
 {
-    int op_signos = 11;
+    int op_signos = 1;
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
@@ -512,6 +513,10 @@ void modulo_signos(void)
         else if (op_signos == 4)
         {
             horoscopo_signo();
+        }
+        else if (op_signos == 5)
+        {
+            calcular_signo();
         }
         else if (op_signos == 0)
         {
@@ -604,6 +609,21 @@ void horoscopo_signo(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     printf("Calcular horoscopo do signo...\n");
+    printf("\nPressione ENTER para voltar ao menu...");
+    getchar();
+}
+
+void calcular_signo(void)
+{
+    char data_nascimento[11];
+
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|     ✦✧✦✧✦     Calcular Signo     ✦✧✦✧✦    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    input(data_nascimento, 11, "Digite a data de nascimento (DD/MM/AAAA): ");
+    printf("Calcular signo...\n");
     printf("\nPressione ENTER para voltar ao menu...");
     getchar();
 }
