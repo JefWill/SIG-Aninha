@@ -37,6 +37,7 @@ void listar_signos(void);
 void exibir_lista_signos(void);
 void consultar_signo(void);
 void compatibilidade(void);
+void horoscopo_signo(void);
 
 void tela_menu_tarot(void);
 void tela_menu_numerologia(void);
@@ -508,6 +509,10 @@ void modulo_signos(void)
         {
             compatibilidade();
         }
+        else if (op_signos == 4)
+        {
+            horoscopo_signo();
+        }
         else if (op_signos == 0)
         {
             printf("           Voltando ao menu principal...\n");
@@ -576,6 +581,7 @@ void consultar_signo(void)
     }
     printf("\nPressione ENTER para voltar ao menu...");
     getchar();
+    getchar();
 }
 
 void compatibilidade(void)
@@ -586,6 +592,18 @@ void compatibilidade(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     printf("Calcular compatibilidade dos signos...\n");
+    printf("\nPressione ENTER para voltar ao menu...");
+    getchar();
+}
+
+void horoscopo_signo(void)
+{
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|     ✦✧✦✧✦     Horoscopo Signo     ✦✧✦✧✦    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    printf("Calcular horoscopo do signo...\n");
     printf("\nPressione ENTER para voltar ao menu...");
     getchar();
 }
