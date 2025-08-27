@@ -32,8 +32,10 @@ void buscar_agendamento_por_cpf(void);
 void excluir_agendamento(void);
 
 int tela_menu_signos(void);
+void modulo_signos(void);
 void listar_signos(void);
 void exibir_lista_signos(void);
+void consultar_signo(void);
 
 void tela_menu_tarot(void);
 void tela_menu_numerologia(void);
@@ -60,7 +62,7 @@ int main(void)
         }
         else if (op == 3)
         {
-            tela_menu_signos();
+            modulo_signos();
         }
         else if (op == 4)
         {
@@ -465,7 +467,7 @@ void excluir_agendamento(void)
 
 int tela_menu_signos(void)
 {
-    int op_signos;
+    int op_signos = 11;
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
@@ -483,6 +485,36 @@ int tela_menu_signos(void)
     op_signos = escolha();
 
     return op_signos;
+}
+
+void modulo_signos(void)
+{
+    int op_signos = tela_menu_signos();
+
+    while (op_signos != 0)
+    {
+        op_signos = tela_menu_signos();
+
+        if (op_signos == 1)
+        {
+            listar_signos();
+        }
+        else if (op_signos == 2)
+        {
+            consultar_signo();
+        }
+        else if (op_signos == 0)
+        {
+            printf("           Voltando ao menu principal...\n");
+            getchar();
+        }
+        else
+        {
+            printf("                Opção inválida!\n");
+            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+        }
+    }
 }
 
 char *signos[12] = {
@@ -511,6 +543,36 @@ void listar_signos(void)
 
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
     printf("\n      >>> Tecle <ENTER> para continuar... <<<\n");
+    getchar();
+    getchar();
+}
+
+void consultar_signo(void)
+{
+    int opcao;
+
+    system("clear||cls");
+
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|     ✦✧✦✧✦     Consultar Signo     ✦✧✦✧✦    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    exibir_lista_signos();
+
+    printf("\nEscolha o signo que deseja consultar: ");
+    scanf("%d", &opcao);
+
+    if (opcao < 1 || opcao > 12)
+    {
+        printf("\n Opção inválida! Tente novamente.\n");
+    }
+    else
+    {
+        printf("\nO signo escolhido foi: %s\n", signos[opcao - 1]);
+        printf("Exibe as características detalhadas do signo...\n");
+    }
+
+    printf("\nPressione ENTER para voltar ao menu...");
     getchar();
     getchar();
 }
