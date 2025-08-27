@@ -480,6 +480,18 @@ void tela_menu_signos(void)
     op_signos = escolha();
 }
 
+char *signos[12] = {
+    "Áries", "Touro", "Gêmeos", "Câncer", "Leão", "Virgem",
+    "Libra", "Escorpião", "Sagitário", "Capricórnio", "Aquário", "Peixes"};
+
+void exibir_lista_signos(void)
+{
+    for (int i = 0; i < 12; i++)
+    {
+        printf("%2d - %s\n", i + 1, signos[i]);
+    }
+}
+
 void listar_signos(void)
 {
     system("clear||cls");
@@ -489,6 +501,8 @@ void listar_signos(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     printf("Existem 12 signos:\n\n");
+
+    exibir_lista_signos();
 
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
     printf("\n      >>> Tecle <ENTER> para continuar... <<<\n");
