@@ -31,7 +31,10 @@ void listar_agendamentos(void);
 void buscar_agendamento_por_cpf(void);
 void excluir_agendamento(void);
 
-void tela_menu_signos(void);
+int tela_menu_signos(void);
+void listar_signos(void);
+void exibir_lista_signos(void);
+
 void tela_menu_tarot(void);
 void tela_menu_numerologia(void);
 void tela_menu_relatorio(void);
@@ -460,7 +463,7 @@ void excluir_agendamento(void)
     getchar();
 }
 
-void tela_menu_signos(void)
+int tela_menu_signos(void)
 {
     int op_signos;
     system("clear||cls");
@@ -478,6 +481,8 @@ void tela_menu_signos(void)
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     op_signos = escolha();
+
+    return op_signos;
 }
 
 char *signos[12] = {
