@@ -140,7 +140,7 @@ int tela_menu_servicos(void)
     printf("|           1. Módulo Signos                     |\n");
     printf("|           2. Módulo Tarot                      |\n");
     printf("|           3. Módulo Numerologia                |\n");
-    printf("|           4. Pergunte a Sigana                 |\n");    
+    printf("|           4. Pergunte à Sigana                 |\n");    
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
@@ -191,12 +191,19 @@ void perguntas(void)
     int continuar = 1;
     while (continuar != 0)
     {
-        char *respostas[7] = {"sim", "nao", "talvez"};
+        srand(time(NULL)); // inicializa a SEED que faz gerar o numero aleatorio para sortear a resposta
+        char *respostas[3] = {"sim", "nao", "talvez"};
         char pergunta[255];
+        system("clear||cls");
+        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+        printf("|        ✦✧✦✧✦  Pergunte à Sigana ✦✧✦✧✦       |\n");
+        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
         input(pergunta, 255, "Faça uma pergunta para a sigana (sim ou não)");
-        printf("\nsua pergunta foi %s", pergunta);
-        printf("\na resposta é: %s", respostas[rand() % 3]);
-        printf("\ncontinuar? 1 para sim, 0 para não");
+        printf("\nSua pergunta foi %s", pergunta);
+        printf("\nResposta: %s", respostas[rand() % 3]);
+        printf("\n\nDigite 0 para sair");
+        printf("\nDigite qualquer numero para continuar perguntando");
         continuar = escolha();
     }
 }
