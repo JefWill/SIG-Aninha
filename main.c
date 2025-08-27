@@ -14,9 +14,13 @@ int tela_menu_principal(void);
 int escolha(void);
 void input(char *nome, int tamanho, char *mensagem);
 void perguntas(void);
+int time();
 
+/////  SERVIÇOS  //////
 int tela_menu_servicos(void);
 void modulo_servicos(void);
+
+/////  CLIENTE  //////
 void modulo_cliente(void);
 void cadastrar_cliente(void);
 int tela_menu_cliente(void);
@@ -25,6 +29,7 @@ void listar_clientes(void);
 void excluir_cliente(void);
 void alterar_cliente(void);
 
+/////  AGENDAMENTO  //////
 int tela_menu_agendamento(void);
 void modulo_agendamentos(void);
 void agendar_consulta(void);
@@ -33,6 +38,7 @@ void listar_agendamentos(void);
 void buscar_agendamento_por_cpf(void);
 void excluir_agendamento(void);
 
+/////  SIGNOS  //////
 int tela_menu_signos(void);
 void modulo_signos(void);
 void listar_signos(void);
@@ -42,7 +48,13 @@ void compatibilidade(void);
 void horoscopo_signo(void);
 void calcular_signo(void);
 
-void tela_menu_tarot(void);
+/////  TAROT  //////
+void modulo_tarot(void);
+void exibir_lista_cartas(void);
+void consultar_cartas(void);
+int tela_menu_tarot(void);
+
+/////  NUMEROLOGIA  //////
 void tela_menu_numerologia(void);
 void tela_menu_relatorio(void);
 void tela_menu_informacoes(void);
@@ -105,7 +117,7 @@ int tela_menu_principal(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|           1. Módulo Cliente                    |\n");
     printf("|           2. Módulo Agendamento                |\n");
-    printf("|           3. Serviços                          |\n");
+    printf("|           3. Módulo Serviços                   |\n");
     printf("|           4. Módulo Relatorio                  |\n");
     printf("|           5. Informações                       |\n");
     printf("|           0. Sair                              |\n");
@@ -150,7 +162,7 @@ void modulo_servicos(void)
         }
         else if (op_servicos == 2)
         {
-            tela_menu_tarot();
+            modulo_tarot();
         }
         else if (op_servicos == 3)
         {
@@ -231,7 +243,10 @@ int tela_menu_agendamento(void)
 
     return op_agendamento;
 }
-//////// MODULO CLIENTE ////////
+
+//////////////////////////////////////////////
+///////////// MODULO CLIENTE /////////////////
+//////////////////////////////////////////////
 
 void modulo_cliente(void)
 {
@@ -369,7 +384,10 @@ void alterar_cliente(void)
     getchar();
 }
 
-//////////// MODULO AGENDAMENTO //////////////
+//////////////////////////////////////////////
+///////////// MODULO AGENDAMENTO /////////////
+//////////////////////////////////////////////
+
 void modulo_agendamentos(void)
 {
     int op_agendamento = 11;
@@ -513,6 +531,10 @@ void excluir_agendamento(void)
     getchar();
     getchar();
 }
+
+//////////////////////////////////////////////
+///////////// MODULO SIGNOS //////////////////
+//////////////////////////////////////////////
 
 int tela_menu_signos(void)
 {
@@ -674,7 +696,81 @@ void calcular_signo(void)
     getchar();
 }
 
-void tela_menu_tarot(void)
+//////////////////////////////////////////////
+///////////// MODULO TAROT ///////////////////
+//////////////////////////////////////////////
+
+void modulo_tarot(void)
+{
+    int op_tarot = 11;
+    while (op_tarot != 0)
+    {
+        op_tarot = tela_menu_tarot();
+
+        if (op_tarot == 1)
+        {
+            exibir_lista_cartas();
+        }
+        else if (op_tarot == 2)
+        {
+            consultar_cartas();
+        }
+        else if (op_tarot == 0)
+        {
+            printf("           Voltando ao menu principal...\n");
+            getchar();
+        }
+        else
+        {
+            printf("                Opção inválida!\n");
+            getchar();
+        }
+    }
+}
+
+char *cartas[22] = { "O Louco", "O Mago", "A Sacerdotisa", "A Imperatriz", "O Imperador", "O Hierofante",
+    "Os Enamorados", "O Carro", "A Força", "O Eremita", "A Roda da Fortuna", "A Justiça", "O Enforcado",
+    "A Morte", "A Temperança", "O Diabo", "A Torre", "A Estrela", "A Lua", "O Sol", "O Julgamento", "O Mundo" };
+
+void exibir_lista_cartas(void)
+{
+    system("clear|| cls");
+    printf("\nLista de cartas (Arcanos): \n");
+    for (int i = 0; i < 22; i++)
+    {
+        printf("%2d - %s\n", i + 1, cartas[i]);
+    }
+    printf("\n☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("      >>> Tecle <ENTER> para continuar... <<<\n");
+    getchar();
+}    
+
+
+void consultar_cartas(void)
+{
+    srand(time(NULL)); // inicializa a SEED que faz gerar o numero aleatorio para sortear a carta
+    char cpf[15], data[11];
+    system("clear||cls");
+
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|          ✦✧✦✧ Consultar Cartas ✧✦✧✦          |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+
+    input(cpf, 15, "Digite o CPF do cliente:");
+    input(data, 11, "Digite a data atual (DD/MM/AAAA):");
+
+
+    printf("\n Resultado da consulta:\n");
+    printf(" Passado : %s\n", cartas[rand() % 22]);
+    printf(" Presente: %s\n", cartas[rand() % 22]);
+    printf(" Futuro  : %s\n", cartas[rand() % 22]);
+
+    printf("\n☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("      >>> Tecle <ENTER> para continuar... <<<\n");
+    getchar();
+}
+
+int tela_menu_tarot(void)
 {
     int op_tarot;
     system("clear||cls");
@@ -683,13 +779,19 @@ void tela_menu_tarot(void)
     printf("| ✦✧✦✧✦   SIG-Aninha - Módulo tarot   ✦✧✦✧✦      |\n");
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|           1. Menu Cartas                       |\n");
-    printf("|           2. Menu Consultas tarot              |\n");
+    printf("|           1. Exibir Cartas                     |\n");
+    printf("|           2. Realizar Consulta Tarot           |\n");
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     op_tarot = escolha();
+    return op_tarot;
 }
+
+
+//////////////////////////////////////////////
+///////////// MODULO NUMEROLOGIA /////////////
+//////////////////////////////////////////////
 
 void tela_menu_numerologia(void)
 {
@@ -710,6 +812,10 @@ void tela_menu_numerologia(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     op_num = escolha();
 }
+
+//////////////////////////////////////////////
+///////////// MODULO RELATORIO ///////////////
+//////////////////////////////////////////////
 
 void tela_menu_relatorio(void)
 {
