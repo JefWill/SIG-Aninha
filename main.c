@@ -15,6 +15,8 @@ int escolha(void);
 void input(char *nome, int tamanho, char *mensagem);
 void perguntas(void);
 
+int tela_menu_servicos(void);
+void modulo_servicos(void);
 void modulo_cliente(void);
 void cadastrar_cliente(void);
 int tela_menu_cliente(void);
@@ -65,27 +67,15 @@ int main(void)
         }
         else if (op == 3)
         {
-            modulo_signos();
+            modulo_servicos();
         }
         else if (op == 4)
         {
-            tela_menu_tarot();
+            tela_menu_relatorio();
         }
         else if (op == 5)
         {
-            tela_menu_numerologia();
-        }
-        else if (op == 6)
-        {
-            tela_menu_relatorio();
-        }
-        else if (op == 7)
-        {
             tela_menu_informacoes();
-        }
-        else if (op == 8)
-        {
-            perguntas();
         }
         else if (op == 0)
         {
@@ -106,7 +96,7 @@ int main(void)
 
 int tela_menu_principal(void)
 {
-    int op; // isso é a variável de opção principal
+    int op; 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
@@ -115,12 +105,9 @@ int tela_menu_principal(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|           1. Módulo Cliente                    |\n");
     printf("|           2. Módulo Agendamento                |\n");
-    printf("|           3. Módulo Signos                     |\n");
-    printf("|           4. Módulo Tarot                      |\n");
-    printf("|           5. Módulo Numerologia                |\n");
-    printf("|           6. Módulo Relatorio                  |\n");
-    printf("|           7. Informações                       |\n");
-    printf("|           8. Pergunte á sigana                 |\n");
+    printf("|           3. Serviços                          |\n");
+    printf("|           4. Módulo Relatorio                  |\n");
+    printf("|           5. Informações                       |\n");
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
@@ -128,6 +115,65 @@ int tela_menu_principal(void)
 
     return op;
 }
+
+int tela_menu_servicos(void)
+{
+    int op_servicos; 
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                |\n");
+    printf("| ✦✧✦✧✦ SIG-Aninha - A sigana virtual ✦✧✦✧✦ |\n");
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|           1. Módulo Signos                     |\n");
+    printf("|           2. Módulo Tarot                      |\n");
+    printf("|           3. Módulo Numerologia                |\n");
+    printf("|           4. Pergunte a Sigana                 |\n");    
+    printf("|           0. Sair                              |\n");
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
+    op_servicos = escolha();
+
+    return op_servicos;
+}
+
+void modulo_servicos(void)
+{
+    int op_servicos = 11;
+    while (op_servicos != 0)
+    {
+        op_servicos = tela_menu_servicos();
+
+        if (op_servicos == 1)
+        {
+            modulo_signos();
+        }
+        else if (op_servicos == 2)
+        {
+            tela_menu_tarot();
+        }
+        else if (op_servicos == 3)
+        {
+            tela_menu_numerologia();
+        }
+        else if (op_servicos == 4)
+        {
+            perguntas();
+        }
+        else if (op_servicos == 0)
+        {
+            printf("           Voltando ao menu principal...\n");
+            getchar();
+        }
+        else
+        {
+            printf("                Opção inválida!\n");
+            getchar();
+        }
+    }
+}
+
+
 void perguntas(void)
 {
     int continuar = 1;
@@ -144,7 +190,7 @@ void perguntas(void)
 }
 int tela_menu_cliente(void)
 {
-    int op_cliente; // aqui cria uma variável de opção só pro modulo de cliente
+    int op_cliente;
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
