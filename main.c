@@ -492,7 +492,7 @@ int tela_menu_signos(void)
 
 void modulo_signos(void)
 {
-    int op_signos = tela_menu_signos();
+    int op_signos = 11;
 
     while (op_signos != 0)
     {
