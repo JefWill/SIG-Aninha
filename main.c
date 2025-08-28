@@ -29,6 +29,15 @@ void listar_clientes(void);
 void excluir_cliente(void);
 void alterar_cliente(void);
 
+/////  FUNCIONARIO  //////
+int tela_menu_funcionario(void);
+void modulo_funcionario(void);
+void cadastrar_funcionario(void);
+void buscar_funcionario(void);
+void listar_funcionarios(void);
+void alterar_funcionario(void);
+void excluir_funcionario(void);
+
 /////  AGENDAMENTO  //////
 int tela_menu_agendamento(void);
 void modulo_agendamentos(void);
@@ -80,17 +89,21 @@ int main(void)
         }
         else if (op == 2)
         {
-            modulo_agendamentos();
+            modulo_funcionario();
         }
         else if (op == 3)
         {
-            modulo_servicos();
+            modulo_agendamentos();
         }
         else if (op == 4)
         {
-            tela_menu_relatorio();
+            modulo_servicos();
         }
         else if (op == 5)
+        {
+            tela_menu_relatorio();
+        }
+        else if (op == 6)
         {
             tela_menu_informacoes();
         }
@@ -121,10 +134,11 @@ int tela_menu_principal(void)
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|           1. Módulo Cliente                    |\n");
-    printf("|           2. Módulo Agendamento                |\n");
-    printf("|           3. Módulo Serviços                   |\n");
-    printf("|           4. Módulo Relatorio                  |\n");
-    printf("|           5. Informações                       |\n");
+    printf("|           2. Módulo Funcionário                |\n");
+    printf("|           3. Módulo Agendamento                |\n");
+    printf("|           4. Módulo Serviços                   |\n");
+    printf("|           5. Módulo Relatorio                  |\n");
+    printf("|           6. Informações                       |\n");
     printf("|           0. Sair                              |\n");
     printf("|                                                |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
@@ -211,6 +225,176 @@ void perguntas(void)
         continuar = escolha();
     }
 }
+
+
+//// FUNCIONARIO /////
+int tela_menu_funcionario(void)
+{
+    int op_funcionario;
+
+    system("clear||cls");
+    
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                 |\n");
+    printf("|✦✧✦✧✦ SIG-Aninha - Módulo Funcionário ✦✧✦✧✦ |\n");
+    printf("|                                                 |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|           1. Cadastrar Funcionário              |\n");
+    printf("|           2. Buscar Funcionário                 |\n");
+    printf("|           3. Listar Funcionários                |\n");
+    printf("|           4. Atualizar Funcionário              |\n");
+    printf("|           5. Excluir Funcionário                |\n");
+    printf("|           0. Sair                               |\n");
+    printf("|                                                 |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    op_funcionario = escolha();
+
+    return op_funcionario;
+}
+
+
+
+
+void modulo_funcionario(void)
+{
+    int op_funcionario = 11;
+    while (op_funcionario != 0)
+    {
+        op_funcionario = tela_menu_funcionario();
+
+        if (op_funcionario == 1)
+        {
+            cadastrar_funcionario();
+        }
+        else if (op_funcionario == 2)
+        {
+            buscar_funcionario();
+        }
+        else if (op_funcionario == 3)
+        {
+            listar_funcionarios();
+        }
+        else if (op_funcionario == 4)
+        {
+            alterar_funcionario();
+        }
+        else if (op_funcionario == 5)
+        {
+            excluir_funcionario();
+        }
+        else if (op_funcionario == 0)
+        {
+            printf("           Voltando ao menu principal...\n");
+            getchar();
+        }
+        else
+        {
+            printf("                Opção inválida!\n");
+            getchar();
+        }
+    }
+}
+
+void cadastrar_funcionario(void)
+{
+    char cpf[15];
+    char nome[50];
+    char cargo[50];
+    system("clear||clr");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|       ✦✧✦✧  Cadastrar funcionaário ✧✦✧✦      |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+
+    input(cpf, 15, "informe o CPF do funcionário");
+    input(nome, 50, "Digite o nome do funcionário: ");
+    input(cargo, 50, "Digite o cargo do funcionário");
+    printf("funcionário cadastrado com sucesso!\n");
+    printf("Nome: %s.\nCPF: %s.\nCargo: %s.", nome, cpf, cargo);
+    printf("\nPressione Enter para continuar");
+    getchar();
+}
+
+void buscar_funcionario(void)
+{
+    char ID[10];
+
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|     ✦✧✦✧✦  Buscar Funcionário  ✦✧✦✧✦       |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    printf("Digite o ID do funcionario para buscar: ");
+    scanf("%s", ID);
+
+    printf("\nfuncionario com ID %s encontrado!\n", ID);
+    printf("(aqui seriam exibidos os dados detalhados)\n\n");
+
+    printf("Pressione ENTER para voltar ao menu...");
+    getchar();
+    getchar();
+}
+
+void listar_funcionarios(void)
+{
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|   ✦✧✦✧✦     Listar Funcionários     ✦✧✦✧✦  |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    printf("| ID |      NOME      |    CARGO     |\n\n");
+    printf("Pressione ENTER para continuar...");
+    getchar();
+}
+
+void excluir_funcionario(void)
+{
+    char ID[10];
+    char opcao;
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|      ✦✧✦✧✦  Excluir Funcionário  ✦✧✦✧✦     |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    input(ID, 10, "Informe o ID do Funcionário que deseja excluir: ");
+
+    printf("\nConfirma exclusão do Funcionário com ID %s? (S/N): ", ID);
+    scanf(" %c", &opcao);
+
+    if (opcao == 'S' || opcao == 's')
+    {
+        printf("\nFuncionário com ID %s excluído.\n", ID);
+    }
+    else
+    {
+        printf("\nExclusão cancelada.\n");
+    }
+
+    printf("Pressione ENTER para voltar ao menu...");
+    getchar();
+    getchar();
+}
+
+void alterar_funcionario(void)
+{
+    char ID[10];
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|        ✦✧✦✧✦  Alterar funcionario  ✦✧✦✧✦   |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    input(ID, 10, "informe o ID\n");
+    printf("\nfuncionario com ID %s alterado.\n", ID);
+    printf("Pressione ENTER para voltar ao menu...");
+    getchar();
+    getchar();
+}
+
+
+
+
+//////////////////////////////////////////////
+///////////// MODULO CLIENTE /////////////////
+//////////////////////////////////////////////
 int tela_menu_cliente(void)
 {
     int op_cliente;
@@ -232,32 +416,6 @@ int tela_menu_cliente(void)
 
     return op_cliente;
 }
-
-int tela_menu_agendamento(void)
-{
-    int op_agendamento = 11;
-    system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                |\n");
-    printf("| ✦✧✦✧ SIG-Aninha - Módulo agendamento ✧✦✧✦      |\n");
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|           1. Agendar consulta                  |\n");
-    printf("|           2. Atualizar agendamento             |\n");
-    printf("|           3. Listar agendamentos (no dia)      |\n");
-    printf("|           4. Buscar agendamento por cliente    |\n");
-    printf("|           5. Cancelar agendamento              |\n");
-    printf("|           0. Sair                              |\n");
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
-    op_agendamento = escolha();
-
-    return op_agendamento;
-}
-
-//////////////////////////////////////////////
-///////////// MODULO CLIENTE /////////////////
-//////////////////////////////////////////////
 
 void modulo_cliente(void)
 {
@@ -399,6 +557,28 @@ void alterar_cliente(void)
 ///////////// MODULO AGENDAMENTO /////////////
 //////////////////////////////////////////////
 
+int tela_menu_agendamento(void)
+{
+    int op_agendamento = 11;
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                |\n");
+    printf("| ✦✧✦✧ SIG-Aninha - Módulo agendamento ✧✦✧✦      |\n");
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|           1. Agendar consulta                  |\n");
+    printf("|           2. Atualizar agendamento             |\n");
+    printf("|           3. Listar agendamentos (no dia)      |\n");
+    printf("|           4. Buscar agendamento por cliente    |\n");
+    printf("|           5. Cancelar agendamento              |\n");
+    printf("|           0. Sair                              |\n");
+    printf("|                                                |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
+    op_agendamento = escolha();
+
+    return op_agendamento;
+}
+
 void modulo_agendamentos(void)
 {
     int op_agendamento = 11;
@@ -462,6 +642,7 @@ void agendar_consulta(void)
 
 void atualizar_agendamento(void)
 {
+    char id_funcionario[10];
     char cpf[15], nome[100], data[11], horario[6], tipo_consulta[20];
     system("clear||cls");
 
@@ -472,6 +653,7 @@ void atualizar_agendamento(void)
     input(cpf, 15, "Digite o CPF do cliente: ");
     input(nome, 100, "Digite o nome do cliente: ");
     input(tipo_consulta, 20, "Digite qual tipo de consulta deseja (Tarot, Signos, Numerologia): ");
+    input(id_funcionario, 10, "informe o id do funcionáio");
     input(data, 11, "Digite a data da consulta (DD/MM/AAAA): ");
     input(horario, 6, "Digite o horário da consulta: ");
 
