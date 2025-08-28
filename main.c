@@ -56,6 +56,8 @@ int tela_menu_tarot(void);
 
 /////  NUMEROLOGIA  //////
 int tela_menu_numerologia(void);
+void descobrir_numero(void);
+
 void tela_menu_relatorio(void);
 void tela_menu_informacoes(void);
 void tela_sobre(void);
@@ -816,6 +818,22 @@ int tela_menu_numerologia(void)
     op_num = escolha();
 
     return op_num;
+}
+
+void descobrir_numero(void)
+{
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|     ✦✧✦✧✦   Descobra seu Numero    ✦✧✦✧✦   |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    char data_nascimento[11];
+    input(data_nascimento, 11, "Digite a data de nascimento (DD/MM/AAAA): ");
+
+    printf("Descobrindo...\n");
+
+    printf("\nPressione ENTER para voltar ao menu...");
+    getchar();
 }
 
 //////////////////////////////////////////////
