@@ -58,7 +58,7 @@ int tela_menu_tarot(void);
 int tela_menu_numerologia(void);
 void modulo_numerologia(void);
 void descobrir_numero(void);
-void exibir_significados(void);
+void exibir_significados(int n);
 void significado_numeros(void);
 
 void tela_menu_relatorio(void);
@@ -871,62 +871,73 @@ void descobrir_numero(void)
 
 void significado_numeros(void)
 {
+    int n;
     system("clear||cls");
 
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|     ✦✧✦✧✦   Significado dos Números    ✦✧✦✧✦   |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    printf("Significado dos Numeros: \n");
+    printf("Digite o número que deseja saber o significado: \n");
+    scanf("%d", &n);
 
-    exibir_significados();
+    exibir_significados(n);
 
     printf("\nPressione ENTER para voltar ao menu...");
     getchar();
 }
 
-const char *significados[9] = {
-    "Liderança, independência e iniciativa.\n"
-    "Pessoas com esse número tendem a ser criativas,\n"
-    "determinadas e com espírito pioneiro.",
-
-    "Cooperação, sensibilidade e diplomacia.\n"
-    "Representa pessoas empáticas, compreensivas\n"
-    "e que prezam pela harmonia nos relacionamentos.",
-
-    "Comunicação, expressão e criatividade.\n"
-    "Indica pessoas alegres, otimistas e sociáveis,\n"
-    "com facilidade para expressar ideias.",
-
-    "Organização, estabilidade e disciplina.\n"
-    "Pessoas com esse número são práticas, leais\n"
-    "e possuem forte senso de responsabilidade.",
-
-    "Liberdade, aventura e versatilidade.\n"
-    "Simboliza pessoas curiosas, dinâmicas e abertas\n"
-    "a mudanças e novas experiências.",
-
-    "Amor, família e responsabilidade.\n"
-    "Representa pessoas protetoras, afetuosas e com\n"
-    "grande preocupação com o bem-estar dos outros.",
-
-    "Espiritualidade, introspecção e sabedoria.\n"
-    "Indica pessoas analíticas, reflexivas e que buscam\n"
-    "sempre o autoconhecimento e a verdade.",
-
-    "Sucesso, poder e realização material.\n"
-    "Pessoas com esse número são determinadas,\n"
-    "ambiciosas e com grande capacidade de liderança.",
-
-    "Compaixão, humanitarismo e generosidade.\n"
-    "Representa pessoas altruístas, compreensivas e\n"
-    "voltadas para ajudar o próximo."};
-
-void exibir_significados(void)
+void exibir_significados(int n)
 {
-    for (int i = 0; i < 9; i++)
+    if (n == 1)
     {
-        printf(" ✦ %d ✦ → %s\n\n", i + 1, significados[i]);
+        printf("Liderança, independência e iniciativa.\n");
+        getchar();
+    }
+    else if (n == 2)
+    {
+        printf("Cooperação, sensibilidade e diplomacia.\n");
+        getchar();
+    }
+    else if (n == 3)
+    {
+        printf("Comunicação, expressão e criatividade.\n");
+        getchar();
+    }
+    else if (n == 4)
+    {
+        printf("Organização, estabilidade e disciplina.\n");
+        getchar();
+    }
+    else if (n == 5)
+    {
+        printf("Liberdade, aventura e versatilidade.\n");
+        getchar();
+    }
+    else if (n == 6)
+    {
+        printf("Amor, família e responsabilidade.\n");
+        getchar();
+    }
+    else if (n == 7)
+    {
+        printf("Espiritualidade, introspecção e sabedoria.\n");
+        getchar();
+    }
+    else if (n == 8)
+    {
+        printf("Sucesso, poder e realização material.\n");
+        getchar();
+    }
+    else if (n == 9)
+    {
+        printf("Compaixão, humanitarismo e generosidade.\n");
+        getchar();
+    }
+    else
+    {
+        printf("Número inválido!\n");
+        getchar();
     }
 }
 
