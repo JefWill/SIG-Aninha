@@ -58,6 +58,7 @@ int tela_menu_tarot(void);
 int tela_menu_numerologia(void);
 void descobrir_numero(void);
 void exibir_significados(void);
+void significado_numeros(void);
 
 void tela_menu_relatorio(void);
 void tela_menu_informacoes(void);
@@ -832,6 +833,22 @@ void descobrir_numero(void)
     input(data_nascimento, 11, "Digite a data de nascimento (DD/MM/AAAA): ");
 
     printf("Descobrindo...\n");
+
+    printf("\nPressione ENTER para voltar ao menu...");
+    getchar();
+}
+
+void significado_numeros(void)
+{
+    system("clear||cls");
+
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|     ✦✧✦✧✦   Significado dos Números    ✦✧✦✧✦   |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    printf("Significado dos Numeros: \n");
+
+    exibir_significados();
 
     printf("\nPressione ENTER para voltar ao menu...");
     getchar();
