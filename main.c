@@ -56,6 +56,7 @@ int tela_menu_tarot(void);
 
 /////  NUMEROLOGIA  //////
 int tela_menu_numerologia(void);
+void modulo_numerologia(void);
 void descobrir_numero(void);
 void exibir_significados(void);
 void significado_numeros(void);
@@ -170,7 +171,7 @@ void modulo_servicos(void)
         }
         else if (op_servicos == 3)
         {
-            tela_menu_numerologia();
+            modulo_numerologia();
         }
         else if (op_servicos == 4)
         {
@@ -822,6 +823,36 @@ int tela_menu_numerologia(void)
     return op_num;
 }
 
+void modulo_numerologia(void)
+{
+    int op_num = 11;
+
+    while (op_num != 0)
+    {
+        op_num = tela_menu_numerologia();
+
+        if (op_num == 1)
+        {
+            descobrir_numero();
+        }
+        else if (op_num == 2)
+        {
+            significado_numeros();
+        }
+        else if (op_num == 0)
+        {
+            printf("           Voltando ao menu principal...\n");
+            getchar();
+        }
+        else
+        {
+            printf("                Opção inválida!\n");
+            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+        }
+    }
+}
+
 void descobrir_numero(void)
 {
     system("clear||cls");
@@ -854,46 +885,45 @@ void significado_numeros(void)
     getchar();
 }
 
+const char *significados[9] = {
+    "Liderança, independência e iniciativa.\n"
+    "Pessoas com esse número tendem a ser criativas,\n"
+    "determinadas e com espírito pioneiro.",
+
+    "Cooperação, sensibilidade e diplomacia.\n"
+    "Representa pessoas empáticas, compreensivas\n"
+    "e que prezam pela harmonia nos relacionamentos.",
+
+    "Comunicação, expressão e criatividade.\n"
+    "Indica pessoas alegres, otimistas e sociáveis,\n"
+    "com facilidade para expressar ideias.",
+
+    "Organização, estabilidade e disciplina.\n"
+    "Pessoas com esse número são práticas, leais\n"
+    "e possuem forte senso de responsabilidade.",
+
+    "Liberdade, aventura e versatilidade.\n"
+    "Simboliza pessoas curiosas, dinâmicas e abertas\n"
+    "a mudanças e novas experiências.",
+
+    "Amor, família e responsabilidade.\n"
+    "Representa pessoas protetoras, afetuosas e com\n"
+    "grande preocupação com o bem-estar dos outros.",
+
+    "Espiritualidade, introspecção e sabedoria.\n"
+    "Indica pessoas analíticas, reflexivas e que buscam\n"
+    "sempre o autoconhecimento e a verdade.",
+
+    "Sucesso, poder e realização material.\n"
+    "Pessoas com esse número são determinadas,\n"
+    "ambiciosas e com grande capacidade de liderança.",
+
+    "Compaixão, humanitarismo e generosidade.\n"
+    "Representa pessoas altruístas, compreensivas e\n"
+    "voltadas para ajudar o próximo."};
+
 void exibir_significados(void)
 {
-    // Matriz com os significados dos números de 1 a 9
-    const char *significados[9] = {
-        "Liderança, independência e iniciativa.\n"
-        "Pessoas com esse número tendem a ser criativas,\n"
-        "determinadas e com espírito pioneiro.",
-
-        "Cooperação, sensibilidade e diplomacia.\n"
-        "Representa pessoas empáticas, compreensivas\n"
-        "e que prezam pela harmonia nos relacionamentos.",
-
-        "Comunicação, expressão e criatividade.\n"
-        "Indica pessoas alegres, otimistas e sociáveis,\n"
-        "com facilidade para expressar ideias.",
-
-        "Organização, estabilidade e disciplina.\n"
-        "Pessoas com esse número são práticas, leais\n"
-        "e possuem forte senso de responsabilidade.",
-
-        "Liberdade, aventura e versatilidade.\n"
-        "Simboliza pessoas curiosas, dinâmicas e abertas\n"
-        "a mudanças e novas experiências.",
-
-        "Amor, família e responsabilidade.\n"
-        "Representa pessoas protetoras, afetuosas e com\n"
-        "grande preocupação com o bem-estar dos outros.",
-
-        "Espiritualidade, introspecção e sabedoria.\n"
-        "Indica pessoas analíticas, reflexivas e que buscam\n"
-        "sempre o autoconhecimento e a verdade.",
-
-        "Sucesso, poder e realização material.\n"
-        "Pessoas com esse número são determinadas,\n"
-        "ambiciosas e com grande capacidade de liderança.",
-
-        "Compaixão, humanitarismo e generosidade.\n"
-        "Representa pessoas altruístas, compreensivas e\n"
-        "voltadas para ajudar o próximo."};
-
     for (int i = 0; i < 9; i++)
     {
         printf(" ✦ %d ✦ → %s\n\n", i + 1, significados[i]);
