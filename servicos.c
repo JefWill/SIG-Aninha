@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include "servicos.h"
+#include "utilitarios.h"
 
 int tela_menu_servicos(void)
 {
@@ -82,7 +83,6 @@ void perguntas(void)
         continuar = escolha();
     }
 }
-
 
 //////////////////////////////////////////////
 ///////////// MODULO SIGNOS //////////////////

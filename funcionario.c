@@ -3,8 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include "funcionario.h"
-
-
+#include "utilitarios.h"
 
 //// FUNCIONARIO /////
 int tela_menu_funcionario(void)
@@ -12,7 +11,7 @@ int tela_menu_funcionario(void)
     int op_funcionario;
 
     system("clear||cls");
-    
+
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                 |\n");
     printf("|✦✧✦✧✦ SIG-Aninha - Módulo Funcionário ✦✧✦✧✦ |\n");
@@ -30,9 +29,6 @@ int tela_menu_funcionario(void)
 
     return op_funcionario;
 }
-
-
-
 
 void modulo_funcionario(void)
 {
@@ -167,6 +163,3 @@ void alterar_funcionario(void)
     getchar();
     getchar();
 }
-
-
-
