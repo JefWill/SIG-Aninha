@@ -10,7 +10,6 @@
 #include <string.h>
 #include <time.h>
 
-
 #include "informacoes.h"
 #include "relatorio.h"
 #include "servicos.h"
@@ -19,52 +18,47 @@
 #include "funcionario.h"
 #include "utilitarios.h"
 
-
 int main(void)
 {
     int op = 10;
 
-    while (op != 0)
+    do
     {
         op = tela_menu_principal();
 
-        if (op == 1)
+        switch (op)
         {
+
+        case 1:
             modulo_cliente();
-        }
-        else if (op == 2)
-        {
+            break;
+        case 2:
             modulo_funcionario();
-        }
-        else if (op == 3)
-        {
+            break;
+        case 3:
             modulo_agendamentos();
-        }
-        else if (op == 4)
-        {
+            break;
+        case 4:
             modulo_servicos();
-        }
-        else if (op == 5)
-        {
+            break;
+        case 5:
             tela_menu_relatorio();
-        }
-        else if (op == 6)
-        {
+            break;
+        case 6:
             tela_menu_informacoes();
-        }
-        else if (op == 0)
-        {
+            break;
+        case 0:
             printf("Encerrando o sistema... Até logo!\n");
-        }
-        else
-        {
+            break;
+
+        default:
             printf("\nOpção inválida! Tente novamente.\n");
             printf(">>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
+            break;
         }
-    }
+
+    } while (op != 0);
 
     return 0;
 }
-
-

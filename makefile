@@ -1,3 +1,4 @@
+#Tivemos ajuda de IA
 # Compilador
 CC = gcc
 
