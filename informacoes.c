@@ -13,17 +13,17 @@ void tela_menu_informacoes(void)
         system("clear||cls");
 
         printf("\n");
-        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
         printf("|                                                    |\n");
-        printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Informações  ✦✧✦✧✦      |\n");
+        printf("|   ✦✧✦✧✦  SIG-Aninha - Módulo Informações  ✦✧✦✧✦    |\n");
         printf("|                                                    |\n");
-        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
         printf("|                                                    |\n");
         printf("|          1. Informações sobre o Projeto            |\n");
         printf("|          2. Informações sobre a Equipe             |\n");
         printf("|          0. Voltar ao menu principal               |\n");
         printf("|                                                    |\n");
-        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
         op_info = escolha();
 
         if (op_info == 1)
@@ -56,7 +56,7 @@ void tela_sobre(void)
     printf("\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                     |\n");
-    printf("|           ✦✧✦✧✦  SIG-Aninha - Cigana Vitual  ✦✧✦✧✦                  |\n");
+    printf("|              ✦✧✦✧✦  SIG-Aninha - Cigana Vitual  ✦✧✦✧✦               |\n");
     printf("|                                                                     |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                     |\n");
@@ -69,7 +69,7 @@ void tela_sobre(void)
     printf("|           Developed by: Jaine Souza e Jefferson Willame             |\n");
     printf("|                        Since: Ago, 2025                             |\n");
     printf("|                                                                     |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                     |\n");
     printf("|       O SIG-Aninha é uma cigana virtual criada para auxiliar        |\n");
     printf("|       no atendimento holístico, unindo tecnologia e misticismo.     |\n");

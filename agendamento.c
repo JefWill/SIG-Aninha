@@ -78,7 +78,7 @@ void agendar_consulta(void)
     system("clear||cls");
 
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|          ✦✧✦✧ Agendar Consulta ✧✦✧✦          |\n");
+    printf("|           ✦✧✦✧ Agendar Consulta ✧✦✧✦           |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
 
     input(cpf, 15, "Digite o CPF do cliente:");
@@ -99,7 +99,7 @@ void atualizar_agendamento(void)
     system("clear||cls");
 
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|       ✦✧✦✧ Atualizar Agendamento ✧✦✧✦       |\n");
+    printf("|        ✦✧✦✧ Atualizar Agendamento ✧✦✧✦         |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
 
     input(cpf, 15, "Digite o CPF do cliente: ");
@@ -119,7 +119,7 @@ void listar_agendamentos(void)
     char data[11];
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|         ✦✧✦✧ Listar Agendamentos ✧✦✧✦       |\n");
+    printf("|          ✦✧✦✧ Listar Agendamentos ✧✦✧✦         |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
 
     printf("Digite a data desejada (dd/mm/aaaa): ");
@@ -137,7 +137,7 @@ void buscar_agendamento_por_cpf(void)
     char cpf[15];
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|        ✦✧✦✧ Buscar Agendamento ✧✦✧✦         |\n");
+    printf("|          ✦✧✦✧ Buscar Agendamento ✧✦✧✦          |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
 
     printf("Digite o CPF do cliente: ");
@@ -157,7 +157,7 @@ void excluir_agendamento(void)
     system("clear||cls");
 
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|        ✦✧✦✧ Excluir Agendamento ✧✦✧✦        |\n");
+    printf("|          ✦✧✦✧ Excluir Agendamento ✧✦✧✦         |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
 
     input(cpf, 15, "Digite o CPF do cliente:");

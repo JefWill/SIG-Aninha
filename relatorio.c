@@ -17,7 +17,7 @@ void tela_menu_relatorio(void)
     printf("\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                    |\n");
-    printf("| ✦✧✦✧✦  SIG-Aninha - Módulo Relatórios  ✦✧✦✧✦       |\n");
+    printf("|   ✦✧✦✧✦  SIG-Aninha - Módulo Relatórios  ✦✧✦✧✦     |\n");
     printf("|                                                    |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                    |\n");

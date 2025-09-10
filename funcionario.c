@@ -12,11 +12,11 @@ int tela_menu_funcionario(void)
 
     system("clear||cls");
 
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                 |\n");
-    printf("|✦✧✦✧✦ SIG-Aninha - Módulo Funcionário ✦✧✦✧✦ |\n");
+    printf("|   ✦✧✦✧✦ SIG-Aninha - Módulo Funcionário ✦✧✦✧✦   |\n");
     printf("|                                                 |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|           1. Cadastrar Funcionário              |\n");
     printf("|           2. Buscar Funcionário                 |\n");
     printf("|           3. Listar Funcionários                |\n");
@@ -24,7 +24,7 @@ int tela_menu_funcionario(void)
     printf("|           5. Excluir Funcionário                |\n");
     printf("|           0. Sair                               |\n");
     printf("|                                                 |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     op_funcionario = escolha();
 
     return op_funcionario;
@@ -77,7 +77,7 @@ void cadastrar_funcionario(void)
     char cargo[50];
     system("clear||clr");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|       ✦✧✦✧  Cadastrar funcionaário ✧✦✧✦      |\n");
+    printf("|        ✦✧✦✧  Cadastrar funcionaário ✧✦✧✦       |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
 
     input(cpf, 15, "informe o CPF do funcionário");
@@ -95,7 +95,7 @@ void buscar_funcionario(void)
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|     ✦✧✦✧✦  Buscar Funcionário  ✦✧✦✧✦       |\n");
+    printf("|        ✦✧✦✧✦  Buscar Funcionário  ✦✧✦✧✦        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     printf("Digite o ID do funcionario para buscar: ");
@@ -113,7 +113,7 @@ void listar_funcionarios(void)
 {
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|   ✦✧✦✧✦     Listar Funcionários     ✦✧✦✧✦  |\n");
+    printf("|       ✦✧✦✧✦    Listar Funcionários    ✦✧✦✧✦    |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     printf("| ID |      NOME      |    CARGO     |\n\n");
@@ -127,7 +127,7 @@ void excluir_funcionario(void)
     char opcao;
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|      ✦✧✦✧✦  Excluir Funcionário  ✦✧✦✧✦     |\n");
+    printf("|        ✦✧✦✧✦  Excluir Funcionário  ✦✧✦✧✦       |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     input(ID, 10, "Informe o ID do Funcionário que deseja excluir: ");
@@ -154,7 +154,7 @@ void alterar_funcionario(void)
     char ID[10];
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|        ✦✧✦✧✦  Alterar funcionario  ✦✧✦✧✦   |\n");
+    printf("|         ✦✧✦✧✦  Alterar funcionario  ✦✧✦✧✦      |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     input(ID, 10, "informe o ID\n");

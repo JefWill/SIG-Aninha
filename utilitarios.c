@@ -10,9 +10,9 @@ int tela_menu_principal(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                |\n");
-    printf("| ✦✧✦✧✦ SIG-Aninha - A sigana virtual ✦✧✦✧✦ |\n");
+    printf("|   ✦✧✦✧✦ SIG-Aninha - A cigana virtual ✦✧✦✧✦    |\n");
     printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|           1. Módulo Cliente                    |\n");
     printf("|           2. Módulo Funcionário                |\n");
     printf("|           3. Módulo Agendamento                |\n");
