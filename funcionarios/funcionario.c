@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include "funcionario.h"
-#include "utilitarios.h"
+#include "../utilitarios.h"
 
 //// FUNCIONARIO /////
 int tela_menu_funcionario(void)

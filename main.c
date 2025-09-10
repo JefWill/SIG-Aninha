@@ -10,13 +10,13 @@
 #include <string.h>
 #include <time.h>
 
-#include "informacoes.h"
-#include "relatorio.h"
-#include "servicos.h"
-#include "agendamento.h"
-#include "cliente.h"
-#include "funcionario.h"
-#include "utilitarios.h"
+#include "./informacoes/informacoes.h"
+#include "./relatorios/relatorio.h"
+#include "./servicos/servicos.h"
+#include "./agendamentos/agendamento.h"
+#include "./clientes/cliente.h"
+#include "./funcionarios/funcionario.h"
+#include "./utilitarios/utilitarios.h"
 
 int main(void)
 {

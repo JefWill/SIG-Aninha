@@ -6,8 +6,14 @@ CC = gcc
 CFLAGS = -Wall -Wextra -g
 
 # Arquivos fontes
-SRC = main.c informacoes.c relatorio.c servicos.c agendamento.c cliente.c funcionario.c utilitarios.c
-
+SRC = main.c \
+      informacoes/informacoes.c \
+      relatorios/relatorio.c \
+      servicos/servicos.c \
+      agendamentos/agendamento.c \
+      clientes/cliente.c \
+      funcionarios/funcionario.c \
+      utilitarios/utilitarios.c
 # Objetos gerados
 OBJ = $(SRC:.c=.o)
 

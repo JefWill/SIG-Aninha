@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include "relatorio.h"
-#include "utilitarios.h"
+#include "../utilitarios.h"
 
 //////////////////////////////////////////////
 ///////////// MODULO RELATORIO ///////////////
