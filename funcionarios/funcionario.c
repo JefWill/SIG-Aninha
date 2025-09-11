@@ -35,6 +35,7 @@ void modulo_funcionario(void)
     int op_funcionario = 11;
     while (op_funcionario != 0)
     {
+        header();
         op_funcionario = tela_menu_funcionario();
 
         if (op_funcionario == 1)

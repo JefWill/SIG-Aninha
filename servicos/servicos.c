@@ -31,6 +31,7 @@ void modulo_servicos(void)
     int op_servicos = 11;
     while (op_servicos != 0)
     {
+        header();
         op_servicos = tela_menu_servicos();
 
         if (op_servicos == 1)

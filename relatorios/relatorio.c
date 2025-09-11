@@ -12,7 +12,7 @@
 void tela_menu_relatorio(void)
 {
     system("clear||cls");
-
+    header();
     int op_rel;
     printf("\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");

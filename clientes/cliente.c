@@ -35,6 +35,7 @@ void modulo_cliente(void)
     int op_cliente = 11;
     while (op_cliente != 0)
     {
+        header();
         op_cliente = tela_menu_cliente();
 
         if (op_cliente == 1)
