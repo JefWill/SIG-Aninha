@@ -45,7 +45,7 @@ int main(void)
             tela_menu_relatorio();
             break;
         case 6:
-            tela_menu_informacoes();
+            modulo_informacoes();
             break;
         case 0:
             printf("Encerrando o sistema... Até logo!\n");

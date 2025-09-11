@@ -5,26 +5,35 @@
 #include "informacoes.h"
 #include "../utilitarios/utilitarios.h"
 
-void tela_menu_informacoes(void)
+int tela_menu_informacoes(void)
+{
+    int op_info;
+    system("clear||cls");
+
+    printf("\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                    |\n");
+    printf("|   ✦✧✦✧✦  SIG-Aninha - Módulo Informações  ✦✧✦✧✦    |\n");
+    printf("|                                                    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                    |\n");
+    printf("|          1. Informações sobre o Projeto            |\n");
+    printf("|          2. Informações sobre a Equipe             |\n");
+    printf("|          0. Voltar ao menu principal               |\n");
+    printf("|                                                    |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    op_info = escolha();
+
+    return op_info;
+}
+
+void modulo_informacoes(void)
 {
     int op_info = 11;
+
     while (op_info != 0)
     {
-        system("clear||cls");
-
-        printf("\n");
-        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-        printf("|                                                    |\n");
-        printf("|   ✦✧✦✧✦  SIG-Aninha - Módulo Informações  ✦✧✦✧✦    |\n");
-        printf("|                                                    |\n");
-        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-        printf("|                                                    |\n");
-        printf("|          1. Informações sobre o Projeto            |\n");
-        printf("|          2. Informações sobre a Equipe             |\n");
-        printf("|          0. Voltar ao menu principal               |\n");
-        printf("|                                                    |\n");
-        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-        op_info = escolha();
+        op_info = tela_menu_informacoes();
 
         if (op_info == 1)
         {

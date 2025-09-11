@@ -29,7 +29,6 @@ int tela_menu_principal(void)
 
 void header(void)
 {
-    // Cabeçalho padrão
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                 |\n");
     printf("|   Universidade Federal do Rio Grande do Norte   |\n");
