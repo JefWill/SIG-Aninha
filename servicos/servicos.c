@@ -9,18 +9,20 @@ int tela_menu_servicos(void)
 {
     int op_servicos;
     system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                |\n");
-    printf("|    ✦✧✦✧✦ SIG-Aninha - Módulo Serviços ✦✧✦✧✦    |\n");
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|           1. Módulo Signos                     |\n");
-    printf("|           2. Módulo Tarot                      |\n");
-    printf("|           3. Módulo Numerologia                |\n");
-    printf("|           4. Pergunte à cigana                 |\n");
-    printf("|           0. Sair                              |\n");
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
+    header();
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|          ✦✧✦✧✦    SIG-Aninha - Módulo Serviços    ✦✧✦✧✦           |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                      1. Módulo Signos                                  |\n");
+    printf("|                      2. Módulo Tarot                                   |\n");
+    printf("|                      3. Módulo Numerologia                             |\n");
+    printf("|                      4. Pergunte à Cigana                              |\n");
+    printf("|                      0. Retornar ao Menu Principal                     |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     op_servicos = escolha();
 
     return op_servicos;
@@ -72,9 +74,11 @@ void perguntas(void)
         char *respostas[3] = {"sim", "nao", "talvez"};
         char pergunta[255];
         system("clear||cls");
-        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-        printf("|         ✦✧✦✧✦  Pergunte à Sigana ✦✧✦✧✦         |\n");
-        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+        printf("|                                                                        |\n");
+        printf("|              ✦✧✦✧✦   Pergunte à Cigana   ✦✧✦✧✦                   |\n");
+        printf("|                                                                        |\n");
+        printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
         input(pergunta, 255, "Faça uma pergunta para a sigana (sim ou não)");
         printf("\nSua pergunta foi %s", pergunta);
@@ -91,21 +95,22 @@ void perguntas(void)
 
 int tela_menu_signos(void)
 {
-    int op_signos = 1;
+    int op_signos;
     system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                |\n");
-    printf("|   ✦✧✦✧✦   SIG-Aninha - Módulo signos  ✦✧✦✧✦    |\n");
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|           1. Listar Signos                     |\n");
-    printf("|           2. Consultar Signo                   |\n");
-    printf("|           3. Consultar Compatibilidade         |\n");
-    printf("|           4. Horoscopo do meu Signo            |\n");
-    printf("|           5. Calcular Signo                    |\n");
-    printf("|           0. Sair                              |\n");
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|            ✦✧✦✧✦   SIG-Aninha - Módulo Signos   ✦✧✦✧✦              |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                      1. Listar Todos os Signos                         |\n");
+    printf("|                      2. Consultar Detalhes de um Signo                 |\n");
+    printf("|                      3. Verificar Compatibilidade Amorosa              |\n");
+    printf("|                      4. Ver Horóscopo do Dia                           |\n");
+    printf("|                      5. Calcular seu Signo                             |\n");
+    printf("|                      0. Retornar ao Menu de Serviços                   |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     op_signos = escolha();
 
     return op_signos;
@@ -168,16 +173,16 @@ void exibir_lista_signos(void)
 void listar_signos(void)
 {
     system("clear||cls");
-
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|        ✦✧✦✧✦     Listar Signos     ✦✧✦✧✦       |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
-
-    printf("Existem 12 signos:\n\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                  ✦✧✦✧✦   Lista de Signos   ✦✧✦✧✦                     |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+    printf("   Existem 12 signos no Zodíaco:\n\n");
 
     exibir_lista_signos();
 
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
     printf("\n      >>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
 }
@@ -186,10 +191,11 @@ void consultar_signo(void)
 {
     int opcao = 11;
     system("clear||cls");
-
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|       ✦✧✦✧✦     Consultar Signo     ✦✧✦✧✦      |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                 ✦✧✦✧✦   Consultar Signo   ✦✧✦✧✦                      |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     exibir_lista_signos();
 
@@ -213,9 +219,11 @@ void consultar_signo(void)
 void compatibilidade(void)
 {
     system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|       ✦✧✦✧✦     Compatibilidade     ✦✧✦✧✦      |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|             ✦✧✦✧✦   Compatibilidade Amorosa   ✦✧✦✧✦                  |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     printf("Calcular compatibilidade dos signos...\n");
     printf("\nPressione ENTER para voltar ao menu...");
@@ -225,9 +233,11 @@ void compatibilidade(void)
 void horoscopo_signo(void)
 {
     system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|       ✦✧✦✧✦     Horoscopo Signo     ✦✧✦✧✦      |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                ✦✧✦✧✦   Horóscopo do Dia   ✦✧✦✧✦                      |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     printf("Calcular horoscopo do signo...\n");
     printf("\nPressione ENTER para voltar ao menu...");
@@ -239,9 +249,11 @@ void calcular_signo(void)
     char data_nascimento[11];
 
     system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|        ✦✧✦✧✦     Calcular Signo     ✦✧✦✧✦      |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                 ✦✧✦✧✦   Calcular Signo   ✦✧✦✧✦                       |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     input(data_nascimento, 11, "Digite a data de nascimento (DD/MM/AAAA): ");
     printf("Calcular signo...\n");
@@ -288,25 +300,31 @@ char *cartas[22] = {"O Louco", "O Mago", "A Sacerdotisa", "A Imperatriz", "O Imp
 void exibir_lista_cartas(void)
 {
     system("clear|| cls");
-    printf("\nLista de cartas (Arcanos): \n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|           ✦✧✦✧✦   Lista de Cartas (Arcanos Maiores)   ✦✧✦✧✦          |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
     for (int i = 0; i < 22; i++)
     {
         printf("%2d - %s\n", i + 1, cartas[i]);
     }
-    printf("\n☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("      >>> Tecle <ENTER> para continuar... <<<\n");
+    printf("\n☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+    printf("           Pressione a tecla ENTER para continuar...");
     getchar();
 }
 
 void consultar_cartas(void)
 {
-    srand(time(NULL)); // inicializa a SEED que faz gerar o numero aleatorio para sortear a carta
+    srand(time(NULL));
     char cpf[15], data[11];
     system("clear||cls");
 
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|           ✦✧✦✧ Consultar Cartas ✧✦✧✦           |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                 ✦✧✦✧✦   Consulta de Tarot   ✦✧✦✧✦                    |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     input(cpf, 15, "Digite o CPF do cliente:");
     input(data, 11, "Digite a data atual (DD/MM/AAAA):");
@@ -316,8 +334,8 @@ void consultar_cartas(void)
     printf(" Presente: %s\n", cartas[rand() % 22]);
     printf(" Futuro  : %s\n", cartas[rand() % 22]);
 
-    printf("\n☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("      >>> Tecle <ENTER> para continuar... <<<\n");
+    printf("\n☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+    printf("           Pressione a tecla ENTER para continuar...");
     getchar();
 }
 
@@ -325,16 +343,17 @@ int tela_menu_tarot(void)
 {
     int op_tarot;
     system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                |\n");
-    printf("|   ✦✧✦✧✦   SIG-Aninha - Módulo tarot   ✦✧✦✧✦    |\n");
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|           1. Exibir Cartas                     |\n");
-    printf("|           2. Realizar Consulta Tarot           |\n");
-    printf("|           0. Sair                              |\n");
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|             ✦✧✦✧✦   SIG-Aninha - Módulo Tarot   ✦✧✦✧✦              |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                      1. Exibir Todas as Cartas                         |\n");
+    printf("|                      2. Realizar Consulta de Tarot                     |\n");
+    printf("|                      0. Retornar ao Menu de Serviços                   |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     op_tarot = escolha();
     return op_tarot;
 }
@@ -348,18 +367,17 @@ int tela_menu_numerologia(void)
     system("clear||cls");
 
     int op_num;
-    printf("\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                    |\n");
-    printf("|   ✦✧✦✧✦  SIG-Aninha - Módulo Numerologia  ✦✧✦✧✦    |\n");
-    printf("|                                                    |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                    |\n");
-    printf("|          1. Descobrir qual é o seu Número          |\n");
-    printf("|          2. Significado dos Números                |\n");
-    printf("|          0. Voltar para o menu Principal           |\n");
-    printf("|                                                    |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|          ✦✧✦✧✦   SIG-Aninha - Módulo Numerologia   ✦✧✦✧✦         |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                      1. Descobrir qual é o seu Número                  |\n");
+    printf("|                      2. Ver o Significado dos Números                  |\n");
+    printf("|                      0. Retornar ao Menu de Serviços                   |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     op_num = escolha();
 
     return op_num;
@@ -398,16 +416,18 @@ void modulo_numerologia(void)
 void descobrir_numero(void)
 {
     system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|       ✦✧✦✧✦   Descobra seu Numero    ✦✧✦✧✦     |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|               ✦✧✦✧✦   Descubra seu Número   ✦✧✦✧✦                    |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     char data_nascimento[11];
     input(data_nascimento, 11, "Digite a data de nascimento (DD/MM/AAAA): ");
 
     printf("Descobrindo...\n");
 
-    printf("\nPressione ENTER para voltar ao menu...");
+    printf("\n\n   Pressione ENTER para voltar ao menu...");
     getchar();
 }
 
@@ -416,69 +436,72 @@ void significado_numeros(void)
     int n;
     system("clear||cls");
 
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|     ✦✧✦✧✦   Significado dos Números    ✦✧✦✧✦   |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|             ✦✧✦✧✦   Significado dos Números   ✦✧✦✧✦                  |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     printf("Digite o número que deseja saber o significado: \n");
     scanf("%d", &n);
 
     exibir_significados(n);
 
-    printf("\nPressione ENTER para voltar ao menu...");
+    printf("\n\n   Pressione ENTER para voltar ao menu...");
     getchar();
 }
 
 void exibir_significados(int n)
 {
+    printf("\n   ");
     if (n == 1)
     {
-        printf("Liderança, independência e iniciativa.\n");
+        printf("Significado: Liderança, independência e iniciativa.\n");
         getchar();
     }
     else if (n == 2)
     {
-        printf("Cooperação, sensibilidade e diplomacia.\n");
+        printf("Significado: Cooperação, sensibilidade e diplomacia.\n");
         getchar();
     }
     else if (n == 3)
     {
-        printf("Comunicação, expressão e criatividade.\n");
+        printf("Significado: Comunicação, expressão e criatividade.\n");
         getchar();
     }
     else if (n == 4)
     {
-        printf("Organização, estabilidade e disciplina.\n");
+        printf("Significado: Organização, estabilidade e disciplina.\n");
         getchar();
     }
     else if (n == 5)
     {
-        printf("Liberdade, aventura e versatilidade.\n");
+        printf("Significado: Liberdade, aventura e versatilidade.\n");
         getchar();
     }
     else if (n == 6)
     {
-        printf("Amor, família e responsabilidade.\n");
+        printf("Significado: Amor, família e responsabilidade.\n");
         getchar();
     }
     else if (n == 7)
     {
-        printf("Espiritualidade, introspecção e sabedoria.\n");
+        printf("Significado: Espiritualidade, introspecção e sabedoria.\n");
         getchar();
     }
     else if (n == 8)
     {
-        printf("Sucesso, poder e realização material.\n");
+        printf("Significado: Sucesso, poder e realização material.\n");
         getchar();
     }
     else if (n == 9)
     {
-        printf("Compaixão, humanitarismo e generosidade.\n");
+        printf("Significado: Compaixão, humanitarismo e generosidade.\n");
         getchar();
     }
     else
     {
-        printf("Número inválido!\n");
+        printf("Número inválido! Digite um valor entre 1 e 9.\n");
         getchar();
     }
 }

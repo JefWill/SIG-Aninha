@@ -12,19 +12,23 @@ int tela_menu_cliente(void)
 {
     int op_cliente;
     system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                |\n");
-    printf("|   ✦✧✦✧✦ SIG-Aninha - Módulo Cliente   ✦✧✦✧✦    |\n");
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|           1. Cadastrar Cliente                 |\n");
-    printf("|           2. Buscar cliente                    |\n");
-    printf("|           3. Listar Clientes                   |\n");
-    printf("|           4. Atualizar Cliente                 |\n");
-    printf("|           5. Excluir Cliente                   |\n");
-    printf("|           0. Sair                              |\n");
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    header();
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                                                                        |\n");
+    printf("|         ✦✧✦✧✦       SIG-Aninha - Módulo Cliente       ✦✧✦✧✦       |\n");
+    printf("|                                                                        |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                      1. Cadastrar Novo Cliente                         |\n");
+    printf("|                      2. Buscar Cliente por CPF                         |\n");
+    printf("|                      3. Listar Todos os Clientes                       |\n");
+    printf("|                      4. Atualizar Dados de Cliente                     |\n");
+    printf("|                      5. Excluir Cliente do Sistema                     |\n");
+    printf("|                      0. Retornar ao Menu Principal                     |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     op_cliente = escolha();
 
     return op_cliente;
@@ -77,9 +81,11 @@ void cadastrar_cliente(void)
     char nome[50];
     char data_nascimento[12];
     system("clear||clr");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|          ✦✧✦✧  Cadastrar Cliente ✧✦✧✦          |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                  ✦✧✦✧   Cadastrar Novo Cliente   ✧✦✧✦                  |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     input(cpf, 15, "insira seu cpf");
     input(nome, 50, "Digite o seu nome: ");
@@ -95,9 +101,11 @@ void buscar_cliente(void)
     char cpf[15];
 
     system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|          ✦✧✦✧✦  Buscar Cliente  ✦✧✦✧✦          |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                    ✦✧✦✧✦   Buscar Cliente   ✦✧✦✧✦                     |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     printf("Digite o CPF do cliente para buscar: ");
     scanf("%s", cpf);
@@ -105,7 +113,7 @@ void buscar_cliente(void)
     printf("\nCliente com CPF %s encontrado!\n", cpf);
     printf("(aqui seriam exibidos os dados detalhados)\n\n");
 
-    printf("Pressione ENTER para voltar ao menu...");
+    printf("\n\n           Pressione a tecla ENTER para retornar ao menu...");
     getchar();
     getchar();
 }
@@ -113,9 +121,11 @@ void buscar_cliente(void)
 void listar_clientes(void)
 {
     system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|       ✦✧✦✧✦     Listar Clientes     ✦✧✦✧✦      |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                 ✦✧✦✧✦   Lista de Clientes   ✦✧✦✧✦                      |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     printf("[ Lista de clientes exibida.\n");
     printf("Pressione ENTER para continuar...");
@@ -127,9 +137,11 @@ void excluir_cliente(void)
     char cpf[15];
     char opcao;
     system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|          ✦✧✦✧✦  Excluir Cliente  ✦✧✦✧✦         |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                    ✦✧✦✧✦  Excluir Cliente  ✦✧✦✧✦                     |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     input(cpf, 15, "Informe o CPF do cliente que deseja excluir: ");
 
@@ -145,7 +157,7 @@ void excluir_cliente(void)
         printf("\nExclusão cancelada.\n");
     }
 
-    printf("Pressione ENTER para voltar ao menu...");
+    printf("\n\n           Pressione a tecla ENTER para retornar ao menu...");
     getchar();
     getchar();
 }
@@ -155,9 +167,11 @@ void alterar_cliente(void)
     char cpf[15];
     char nome[50];
     system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|          ✦✧✦✧✦  Alterar Cliente  ✦✧✦✧✦         |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                   ✦✧✦✧✦  Alterar Cliente  ✦✧✦✧✦                      |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     input(cpf, 15, "informe o CPF");
     input(nome, 50, "Informe o nome");

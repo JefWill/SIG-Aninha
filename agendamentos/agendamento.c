@@ -11,21 +11,23 @@
 
 int tela_menu_agendamento(void)
 {
-    int op_agendamento = 11;
+    int op_agendamento;
     system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                |\n");
-    printf("| ✦✧✦✧ SIG-Aninha - Módulo agendamento ✧✦✧✦      |\n");
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|           1. Agendar consulta                  |\n");
-    printf("|           2. Atualizar agendamento             |\n");
-    printf("|           3. Listar agendamentos (no dia)      |\n");
-    printf("|           4. Buscar agendamento por cliente    |\n");
-    printf("|           5. Cancelar agendamento              |\n");
-    printf("|           0. Sair                              |\n");
-    printf("|                                                |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n/\n");
+    header();
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|         ✦✧✦✧✦  SIG-Aninha - Módulo Agendamento  ✦✧✦✧✦          |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                      1. Agendar Consulta                               |\n");
+    printf("|                      2. Atualizar Agendamento                          |\n");
+    printf("|                      3. Listar Agendamentos (do dia)                   |\n");
+    printf("|                      4. Buscar Agendamento por Cliente                 |\n");
+    printf("|                      5. Cancelar Agendamento                           |\n");
+    printf("|                      0. Retornar ao Menu Principal                     |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     op_agendamento = escolha();
 
     return op_agendamento;
@@ -77,10 +79,12 @@ void agendar_consulta(void)
     char cpf[15], nome[100], data[11], horario[6], tipo_consulta[20];
     system("clear||cls");
 
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|           ✦✧✦✧ Agendar Consulta ✧✦✧✦           |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                 ✦✧✦✧✦   Agendar Consulta   ✦✧✦✧✦                    |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+    
     input(cpf, 15, "Digite o CPF do cliente:");
     input(nome, 100, "Digite o nome do cliente:");
     input(tipo_consulta, 20, "Digite qual tipo de consulta deseja (Tarot, Signos, Numerologia):");
@@ -98,9 +102,11 @@ void atualizar_agendamento(void)
     char cpf[15], nome[100], data[11], horario[6], tipo_consulta[20];
     system("clear||cls");
 
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|        ✦✧✦✧ Atualizar Agendamento ✧✦✧✦         |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|               ✦✧✦✧✦   Atualizar Agendamento   ✦✧✦✧✦                  |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     input(cpf, 15, "Digite o CPF do cliente: ");
     input(nome, 100, "Digite o nome do cliente: ");
@@ -118,9 +124,11 @@ void listar_agendamentos(void)
 {
     char data[11];
     system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|          ✦✧✦✧ Listar Agendamentos ✧✦✧✦         |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|               ✦✧✦✧✦   Listar Agendamentos   ✦✧✦✧✦                    |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     printf("Digite a data desejada (dd/mm/aaaa): ");
     scanf("%s", data);
@@ -136,9 +144,11 @@ void buscar_agendamento_por_cpf(void)
 {
     char cpf[15];
     system("clear||cls");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|          ✦✧✦✧ Buscar Agendamento ✧✦✧✦          |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|              ✦✧✦✧✦   Buscar Agendamento   ✦✧✦✧✦                     |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     printf("Digite o CPF do cliente: ");
     scanf("%s", cpf);
@@ -156,9 +166,11 @@ void excluir_agendamento(void)
     char resposta[3];
     system("clear||cls");
 
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|          ✦✧✦✧ Excluir Agendamento ✧✦✧✦         |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|              ✦✧✦✧✦   Excluir Agendamento   ✦✧✦✧✦                    |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     input(cpf, 15, "Digite o CPF do cliente:");
     input(resposta, 3, "\nDeseja excluir o agendamento do cliente? (S/N)");

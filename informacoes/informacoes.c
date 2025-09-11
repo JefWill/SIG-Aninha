@@ -11,17 +11,17 @@ int tela_menu_informacoes(void)
     system("clear||cls");
 
     printf("\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                    |\n");
-    printf("|   ✦✧✦✧✦  SIG-Aninha - Módulo Informações  ✦✧✦✧✦    |\n");
-    printf("|                                                    |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                    |\n");
-    printf("|          1. Informações sobre o Projeto            |\n");
-    printf("|          2. Informações sobre a Equipe             |\n");
-    printf("|          0. Voltar ao menu principal               |\n");
-    printf("|                                                    |\n");
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|         ✦✧✦✧✦  SIG-Aninha - Módulo Informações  ✦✧✦✧✦             |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                      1. Informações sobre o Projeto                    |\n");
+    printf("|                      2. Informações sobre a Equipe                     |\n");
+    printf("|                      0. Voltar ao menu principal                       |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     op_info = escolha();
 
     return op_info;
@@ -101,7 +101,7 @@ void tela_sobre(void)
 void tela_equipe(void)
 {
     system("clear||cls");
-
+    header();
     printf("\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                     |\n");
