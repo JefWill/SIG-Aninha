@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include "agendamento.h"
-#include "../utilitarios.h"
+#include "../utilitarios/utilitarios.h"
 
 //////////////////////////////////////////////
 ///////////// MODULO AGENDAMENTO /////////////

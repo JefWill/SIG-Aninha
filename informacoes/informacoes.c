@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include "informacoes.h"
-#include "../utilitarios.h"
+#include "../utilitarios/utilitarios.h"
 
 void tela_menu_informacoes(void)
 {

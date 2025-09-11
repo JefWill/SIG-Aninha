@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include "cliente.h"
-#include "../utilitarios.h"
+#include "../utilitarios/utilitarios.h"
 
 //////////////////////////////////////////////
 ///////////// MODULO CLIENTE /////////////////
