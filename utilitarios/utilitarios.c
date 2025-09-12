@@ -11,7 +11,7 @@ int tela_menu_principal(void)
     header();
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|        ✦✧✦✧✦    SIG-Aninha - A cigana virtual    ✦✧✦✧✦            |\n");
+    printf("|             ✦✧✦✧✦    SIG-Aninha - A cigana virtual    ✦✧✦✧✦            |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");

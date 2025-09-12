@@ -14,7 +14,7 @@ int tela_menu_funcionario(void)
     header();
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|          ✦✧✦✧✦  SIG-Aninha - Módulo Funcionário  ✦✧✦✧✦            |\n");
+    printf("|               ✦✧✦✧✦  SIG-Aninha - Módulo Funcionário  ✦✧✦✧✦            |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
@@ -80,7 +80,7 @@ void cadastrar_funcionario(void)
     system("clear||clr");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|               ✦✧✦✧   Cadastrar Funcionário   ✧✦✧✦                   |\n");
+    printf("|                  ✦✧✦✧   Cadastrar Funcionário   ✧✦✧✦                   |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
@@ -100,7 +100,7 @@ void buscar_funcionario(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                  ✦✧✦✧✦   Buscar Funcionário   ✦✧✦✧✦                  |\n");
+    printf("|                    ✦✧✦✧✦   Buscar Funcionário   ✦✧✦✧✦                  |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
@@ -120,7 +120,7 @@ void listar_funcionarios(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                ✦✧✦✧✦   Lista de Funcionários   ✦✧✦✧✦                 |\n");
+    printf("|                  ✦✧✦✧✦   Lista de Funcionários   ✦✧✦✧✦                 |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
     
@@ -136,7 +136,7 @@ void excluir_funcionario(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                 ✦✧✦✧✦  Excluir Funcionário  ✦✧✦✧✦                    |\n");
+    printf("|                   ✦✧✦✧✦  Excluir Funcionário  ✦✧✦✧✦                    |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
@@ -165,7 +165,7 @@ void alterar_funcionario(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                 ✦✧✦✧✦  Alterar Funcionário  ✦✧✦✧✦                     |\n");
+    printf("|                  ✦✧✦✧✦  Alterar Funcionário  ✦✧✦✧✦                     |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 

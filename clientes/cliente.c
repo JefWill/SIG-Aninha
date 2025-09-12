@@ -16,7 +16,7 @@ int tela_menu_cliente(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
     printf("|                                                                        |\n");
-    printf("|         ✦✧✦✧✦       SIG-Aninha - Módulo Cliente       ✦✧✦✧✦       |\n");
+    printf("|              ✦✧✦✧✦       SIG-Aninha - Módulo Cliente       ✦✧✦✧✦       |\n");
     printf("|                                                                        |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -103,7 +103,7 @@ void buscar_cliente(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                    ✦✧✦✧✦   Buscar Cliente   ✦✧✦✧✦                     |\n");
+    printf("|                     ✦✧✦✧✦   Buscar Cliente   ✦✧✦✧✦                     |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
@@ -139,7 +139,7 @@ void excluir_cliente(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                    ✦✧✦✧✦  Excluir Cliente  ✦✧✦✧✦                     |\n");
+    printf("|                      ✦✧✦✧✦  Excluir Cliente  ✦✧✦✧✦                     |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
@@ -169,7 +169,7 @@ void alterar_cliente(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                   ✦✧✦✧✦  Alterar Cliente  ✦✧✦✧✦                      |\n");
+    printf("|                     ✦✧✦✧✦  Alterar Cliente  ✦✧✦✧✦                      |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 

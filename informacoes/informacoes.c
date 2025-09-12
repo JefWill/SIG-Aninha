@@ -13,7 +13,7 @@ int tela_menu_informacoes(void)
     printf("\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|         ✦✧✦✧✦  SIG-Aninha - Módulo Informações  ✦✧✦✧✦             |\n");
+    printf("|              ✦✧✦✧✦  SIG-Aninha - Módulo Informações  ✦✧✦✧✦             |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");

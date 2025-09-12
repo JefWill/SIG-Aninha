@@ -16,7 +16,7 @@ int tela_menu_agendamento(void)
     header();
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|         ✦✧✦✧✦  SIG-Aninha - Módulo Agendamento  ✦✧✦✧✦          |\n");
+    printf("|               ✦✧✦✧✦  SIG-Aninha - Módulo Agendamento  ✦✧✦✧✦            |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
@@ -81,7 +81,7 @@ void agendar_consulta(void)
 
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                 ✦✧✦✧✦   Agendar Consulta   ✦✧✦✧✦                    |\n");
+    printf("|                    ✦✧✦✧✦   Agendar Consulta   ✦✧✦✧✦                    |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
     
@@ -104,7 +104,7 @@ void atualizar_agendamento(void)
 
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|               ✦✧✦✧✦   Atualizar Agendamento   ✦✧✦✧✦                  |\n");
+    printf("|                 ✦✧✦✧✦   Atualizar Agendamento   ✦✧✦✧✦                  |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
@@ -126,7 +126,7 @@ void listar_agendamentos(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|               ✦✧✦✧✦   Listar Agendamentos   ✦✧✦✧✦                    |\n");
+    printf("|                 ✦✧✦✧✦   Listar Agendamentos   ✦✧✦✧✦                    |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
@@ -146,7 +146,7 @@ void buscar_agendamento_por_cpf(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|              ✦✧✦✧✦   Buscar Agendamento   ✦✧✦✧✦                     |\n");
+    printf("|                 ✦✧✦✧✦   Buscar Agendamento   ✦✧✦✧✦                     |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
@@ -168,7 +168,7 @@ void excluir_agendamento(void)
 
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|              ✦✧✦✧✦   Excluir Agendamento   ✦✧✦✧✦                    |\n");
+    printf("|                 ✦✧✦✧✦   Excluir Agendamento   ✦✧✦✧✦                    |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 

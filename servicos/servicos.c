@@ -12,7 +12,7 @@ int tela_menu_servicos(void)
     header();
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|          ✦✧✦✧✦    SIG-Aninha - Módulo Serviços    ✦✧✦✧✦           |\n");
+    printf("|               ✦✧✦✧✦    SIG-Aninha - Módulo Serviços    ✦✧✦✧✦           |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
@@ -76,7 +76,7 @@ void perguntas(void)
         system("clear||cls");
         printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
         printf("|                                                                        |\n");
-        printf("|              ✦✧✦✧✦   Pergunte à Cigana   ✦✧✦✧✦                   |\n");
+        printf("|                    ✦✧✦✧✦   Pergunte à Cigana   ✦✧✦✧✦                   |\n");
         printf("|                                                                        |\n");
         printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
@@ -99,7 +99,7 @@ int tela_menu_signos(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|            ✦✧✦✧✦   SIG-Aninha - Módulo Signos   ✦✧✦✧✦              |\n");
+    printf("|                ✦✧✦✧✦   SIG-Aninha - Módulo Signos   ✦✧✦✧✦              |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
@@ -175,7 +175,7 @@ void listar_signos(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                  ✦✧✦✧✦   Lista de Signos   ✦✧✦✧✦                     |\n");
+    printf("|                    ✦✧✦✧✦   Lista de Signos   ✦✧✦✧✦                     |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
     printf("   Existem 12 signos no Zodíaco:\n\n");
@@ -193,7 +193,7 @@ void consultar_signo(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                 ✦✧✦✧✦   Consultar Signo   ✦✧✦✧✦                      |\n");
+    printf("|                   ✦✧✦✧✦   Consultar Signo   ✦✧✦✧✦                      |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
@@ -221,7 +221,7 @@ void compatibilidade(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|             ✦✧✦✧✦   Compatibilidade Amorosa   ✦✧✦✧✦                  |\n");
+    printf("|                     ✦✧✦✧✦   Compatibilidade   ✦✧✦✧✦                    |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
@@ -235,7 +235,7 @@ void horoscopo_signo(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                ✦✧✦✧✦   Horóscopo do Dia   ✦✧✦✧✦                      |\n");
+    printf("|                  ✦✧✦✧✦   Horóscopo do Dia   ✦✧✦✧✦                      |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
@@ -251,7 +251,7 @@ void calcular_signo(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                 ✦✧✦✧✦   Calcular Signo   ✦✧✦✧✦                       |\n");
+    printf("|                   ✦✧✦✧✦   Calcular Signo   ✦✧✦✧✦                       |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
@@ -302,7 +302,7 @@ void exibir_lista_cartas(void)
     system("clear|| cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|           ✦✧✦✧✦   Lista de Cartas (Arcanos Maiores)   ✦✧✦✧✦          |\n");
+    printf("|             ✦✧✦✧✦   Lista de Cartas (Arcanos Maiores)   ✦✧✦✧✦          |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
     for (int i = 0; i < 22; i++)
@@ -322,7 +322,7 @@ void consultar_cartas(void)
 
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                 ✦✧✦✧✦   Consulta de Tarot   ✦✧✦✧✦                    |\n");
+    printf("|                   ✦✧✦✧✦   Consulta de Tarot   ✦✧✦✧✦                    |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
@@ -345,7 +345,7 @@ int tela_menu_tarot(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|             ✦✧✦✧✦   SIG-Aninha - Módulo Tarot   ✦✧✦✧✦              |\n");
+    printf("|                 ✦✧✦✧✦   SIG-Aninha - Módulo Tarot   ✦✧✦✧✦              |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
@@ -369,7 +369,7 @@ int tela_menu_numerologia(void)
     int op_num;
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|          ✦✧✦✧✦   SIG-Aninha - Módulo Numerologia   ✦✧✦✧✦         |\n");
+    printf("|                ✦✧✦✧✦   SIG-Aninha - Módulo Numerologia   ✦✧✦✧✦         |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
@@ -418,7 +418,7 @@ void descobrir_numero(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|               ✦✧✦✧✦   Descubra seu Número   ✦✧✦✧✦                    |\n");
+    printf("|                 ✦✧✦✧✦   Descubra seu Número   ✦✧✦✧✦                    |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
@@ -438,7 +438,7 @@ void significado_numeros(void)
 
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|             ✦✧✦✧✦   Significado dos Números   ✦✧✦✧✦                  |\n");
+    printf("|               ✦✧✦✧✦   Significado dos Números   ✦✧✦✧✦                  |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
