@@ -33,43 +33,38 @@ int tela_menu_funcionario(void)
 
 void modulo_funcionario(void)
 {
-    int op_funcionario = 11;
-    while (op_funcionario != 0)
+    int op_funcionario;
+    do
     {
-        header();
         op_funcionario = tela_menu_funcionario();
 
-        if (op_funcionario == 1)
+        switch (op_funcionario)
         {
+        case 1:
             cadastrar_funcionario();
-        }
-        else if (op_funcionario == 2)
-        {
+            break;
+        case 2:
             buscar_funcionario();
-        }
-        else if (op_funcionario == 3)
-        {
+            break;
+        case 3:
             listar_funcionarios();
-        }
-        else if (op_funcionario == 4)
-        {
+            break;
+        case 4:
             alterar_funcionario();
-        }
-        else if (op_funcionario == 5)
-        {
+            break;
+        case 5:
             excluir_funcionario();
-        }
-        else if (op_funcionario == 0)
-        {
+            break;
+        case 0:
             printf("           Voltando ao menu principal...\n");
             getchar();
-        }
-        else
-        {
+            break;
+        default:
             printf("                Opção inválida!\n");
             getchar();
+            break;
         }
-    }
+    } while (op_funcionario != 0);
 }
 
 void cadastrar_funcionario(void)

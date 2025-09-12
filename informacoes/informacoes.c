@@ -29,33 +29,31 @@ int tela_menu_informacoes(void)
 
 void modulo_informacoes(void)
 {
-    int op_info = 11;
-
-    while (op_info != 0)
+    int op_info;
+    do
     {
         op_info = tela_menu_informacoes();
 
-        if (op_info == 1)
+        switch (op_info)
         {
+        case 1:
             tela_sobre();
-        }
-        else if (op_info == 2)
-        {
+            break;
+        case 2:
             tela_equipe();
-        }
-        else if (op_info == 0)
-        {
+            break;
+        case 0:
             printf("Voltando ao menu principal...\n");
             printf(">>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
-        }
-        else
-        {
+            break;
+        default:
             printf("\nOpção inválida! Tente novamente.\n");
             printf(">>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
+            break;
         }
-    }
+    } while (op_info != 0);
 }
 
 void tela_sobre(void)

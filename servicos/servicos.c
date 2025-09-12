@@ -30,39 +30,36 @@ int tela_menu_servicos(void)
 
 void modulo_servicos(void)
 {
-    int op_servicos = 11;
-    while (op_servicos != 0)
+    int op_servicos;
+    do
     {
-        header();
         op_servicos = tela_menu_servicos();
 
-        if (op_servicos == 1)
+        switch (op_servicos)
         {
+        case 1:
             modulo_signos();
-        }
-        else if (op_servicos == 2)
-        {
+            break;
+        case 2:
             modulo_tarot();
-        }
-        else if (op_servicos == 3)
-        {
+            break;
+        case 3:
             modulo_numerologia();
-        }
-        else if (op_servicos == 4)
-        {
+            break;
+        case 4:
             perguntas();
-        }
-        else if (op_servicos == 0)
-        {
+            break;
+        case 0:
             printf("           Voltando ao menu principal...\n");
             getchar();
-        }
-        else
-        {
+            break;
+        default:
             printf("                Opção inválida!\n");
+            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
+            break;
         }
-    }
+    } while (op_servicos != 0);
 }
 
 void perguntas(void)

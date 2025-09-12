@@ -1,4 +1,5 @@
 #Tivemos ajuda de IA
+#Criado por Chagpt 5.0 - OpenAI 2025
 # Compilador
 CC = gcc
 

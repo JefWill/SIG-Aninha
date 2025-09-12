@@ -35,43 +35,39 @@ int tela_menu_agendamento(void)
 
 void modulo_agendamentos(void)
 {
-    int op_agendamento = 11;
-    while (op_agendamento != 0)
+    int op_agendamento;
+    do
     {
         op_agendamento = tela_menu_agendamento();
 
-        if (op_agendamento == 1)
+        switch (op_agendamento)
         {
+        case 1:
             agendar_consulta();
-        }
-        else if (op_agendamento == 2)
-        {
+            break;
+        case 2:
             atualizar_agendamento();
-        }
-        else if (op_agendamento == 3)
-        {
+            break;
+        case 3:
             listar_agendamentos();
-        }
-        else if (op_agendamento == 4)
-        {
+            break;
+        case 4:
             buscar_agendamento_por_cpf();
-        }
-        else if (op_agendamento == 5)
-        {
+            break;
+        case 5:
             excluir_agendamento();
-        }
-        else if (op_agendamento == 0)
-        {
+            break;
+        case 0:
             printf("           Voltando ao menu principal...\n");
             getchar();
-        }
-        else
-        {
+            break;
+        default:
             printf("                Opção inválida!\n");
             printf("      >>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
+            break;
         }
-    }
+    } while (op_agendamento != 0);
 }
 
 void agendar_consulta(void)

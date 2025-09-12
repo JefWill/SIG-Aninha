@@ -36,43 +36,38 @@ int tela_menu_cliente(void)
 
 void modulo_cliente(void)
 {
-    int op_cliente = 11;
-    while (op_cliente != 0)
+    int op_cliente;
+    do
     {
-        header();
         op_cliente = tela_menu_cliente();
 
-        if (op_cliente == 1)
+        switch (op_cliente)
         {
+        case 1:
             cadastrar_cliente();
-        }
-        else if (op_cliente == 2)
-        {
+            break;
+        case 2:
             buscar_cliente();
-        }
-        else if (op_cliente == 3)
-        {
+            break;
+        case 3:
             listar_clientes();
-        }
-        else if (op_cliente == 4)
-        {
+            break;
+        case 4:
             alterar_cliente();
-        }
-        else if (op_cliente == 5)
-        {
+            break;
+        case 5:
             excluir_cliente();
-        }
-        else if (op_cliente == 0)
-        {
+            break;
+        case 0:
             printf("           Voltando ao menu principal...\n");
             getchar();
-        }
-        else
-        {
+            break;
+        default:
             printf("                Opção inválida!\n");
             getchar();
+            break;
         }
-    }
+    } while (op_cliente != 0);
 }
 
 void cadastrar_cliente(void)
