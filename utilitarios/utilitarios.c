@@ -22,3 +22,20 @@ void input(char *nome, int tamanho, char *mensagem)
     tam = strlen(nome);
     nome[tam - 1] = '\0';
 }
+
+void header(void)
+{
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|             Universidade Federal do Rio Grande do Norte                |\n");
+    printf("|                   Centro de Ensino Superior do Seridó                  |\n");
+    printf("|                 Departamento de Computação e Tecnologia                |\n");
+    printf("|                   Disciplina DCT1106 -- Programação                    |\n");
+    printf("|                       Prof.: Flavius Gorgônio                          |\n");
+    printf("|                                                                        |\n");
+    printf("|                 Projeto: SIG-Aninha - Cigana Virtual                   |\n");
+    printf("|                                                                        |\n");
+    printf("|                 Devs: Jaine Souza & Jefferson Willame                  |\n");
+    printf("|                         Since: Ago, 2025                               |\n");
+    printf("|                                                                        |\n");
+}

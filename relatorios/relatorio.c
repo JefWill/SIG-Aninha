@@ -11,7 +11,7 @@
 
 void tela_menu_relatorio(void)
 {
-    int op_rel;
+    // int op_rel;
     system("clear||cls");
     header();
     printf("\n");
@@ -30,5 +30,5 @@ void tela_menu_relatorio(void)
     printf("|                 0. Voltar ao Menu Principal                            |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    op_rel = escolha();
+    // op_rel = escolha();
 }

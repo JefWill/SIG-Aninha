@@ -18,11 +18,8 @@
 #include "./funcionarios/funcionario.h"
 #include "./utilitarios/utilitarios.h"
 
-
-// Assinatura das Funções
+// Assinatura da Função
 int tela_menu_principal(void);
-void header(void);
-
 
 int main(void)
 {
@@ -69,8 +66,6 @@ int main(void)
     return 0;
 }
 
-
-
 // Funções da Tela do Menu Principal e Cabeçalho
 
 int tela_menu_principal(void)
@@ -96,20 +91,4 @@ int tela_menu_principal(void)
     op = escolha();
 
     return op;
-}
-void header(void)
-{
-    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                                        |\n");
-    printf("|             Universidade Federal do Rio Grande do Norte                |\n");
-    printf("|                   Centro de Ensino Superior do Seridó                  |\n");
-    printf("|                 Departamento de Computação e Tecnologia                |\n");
-    printf("|                   Disciplina DCT1106 -- Programação                    |\n");
-    printf("|                       Prof.: Flavius Gorgônio                          |\n");
-    printf("|                                                                        |\n");
-    printf("|                 Projeto: SIG-Aninha - Cigana Virtual                   |\n");
-    printf("|                                                                        |\n");
-    printf("|                 Devs: Jaine Souza & Jefferson Willame                  |\n");
-    printf("|                         Since: Ago, 2025                               |\n");
-    printf("|                                                                        |\n");
 }
