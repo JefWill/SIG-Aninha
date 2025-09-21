@@ -1,5 +1,5 @@
 # **SIG-Aninha: Uma Cigana Virtual**
-
+Desenvolvido por Jaine Souza e Jefferson Willame.
 ## **Descrição do Projeto**
 
 O **SIG-Aninha** é um sistema de gestão desenvolvido como uma **cigana virtual**. O projeto foi criado como parte da avaliação da disciplina de Programação na UFRN no 2° período de BSI.
