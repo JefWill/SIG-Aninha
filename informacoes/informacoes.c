@@ -47,9 +47,13 @@ void modulo_informacoes(void)
             printf(">>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
             break;
-        default:
-            printf("\nOpção inválida! Tente novamente.\n");
+        case -1:
             printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+            break;
+        default:
+            printf("\n              Opção Inexistente! Tente novamente.\n");
+            printf("             >>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
             break;
         }

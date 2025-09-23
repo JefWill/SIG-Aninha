@@ -61,8 +61,12 @@ void modulo_agendamentos(void)
             printf("           Voltando ao menu principal...\n");
             getchar();
             break;
+        case -1:
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+            break;
         default:
-            printf("                Opção inválida!\n");
+            printf("                Opção Inexistente!\n");
             printf("      >>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
             break;
@@ -80,7 +84,7 @@ void agendar_consulta(void)
     printf("|                    ✦✧✦✧✦   Agendar Consulta   ✦✧✦✧✦                    |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
-    
+
     input(cpf, 15, "Digite o CPF do cliente:");
     input(nome, 100, "Digite o nome do cliente:");
     input(tipo_consulta, 20, "Digite qual tipo de consulta deseja (Tarot, Signos, Numerologia):");

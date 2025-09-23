@@ -54,9 +54,14 @@ int main(void)
             printf("Encerrando o sistema... Até logo!\n");
             break;
 
-        default:
-            printf("\nOpção inválida! Tente novamente.\n");
+        case -1:
             printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+            break;
+
+        default:
+            printf("                Opção Inexistente!\n");
+            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
             break;
         }

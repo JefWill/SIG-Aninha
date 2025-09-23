@@ -59,8 +59,13 @@ void modulo_funcionario(void)
             printf("           Voltando ao menu principal...\n");
             getchar();
             break;
+        case -1:
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+            break;
         default:
-            printf("                Opção inválida!\n");
+            printf("                Opção Inexistente!\n");
+            printf("         >>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
             break;
         }
@@ -118,7 +123,7 @@ void listar_funcionarios(void)
     printf("|                  ✦✧✦✧✦   Lista de Funcionários   ✦✧✦✧✦                 |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
-    
+
     printf("| ID |      NOME      |    CARGO     |\n\n");
     printf("Pressione ENTER para continuar...");
     getchar();

@@ -53,8 +53,12 @@ void modulo_servicos(void)
             printf("           Voltando ao menu principal...\n");
             getchar();
             break;
+        case -1:
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+            break;
         default:
-            printf("                Opção inválida!\n");
+            printf("                Opção Inexistente!\n");
             printf("      >>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
             break;
@@ -146,9 +150,14 @@ void modulo_signos(void)
             printf("           Voltando ao menu principal...\n");
             getchar();
         }
+        else if (op_signos == -1)
+        {
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+        }
         else
         {
-            printf("                Opção inválida!\n");
+            printf("                Opção Inexistente!\n");
             printf("      >>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
         }
@@ -282,9 +291,15 @@ void modulo_tarot(void)
             printf("           Voltando ao menu principal...\n");
             getchar();
         }
+        else if (op_tarot == -1)
+        {
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+        }
         else
         {
-            printf("                Opção inválida!\n");
+            printf("                Opção Inexistente!\n");
+            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
         }
     }
@@ -401,9 +416,14 @@ void modulo_numerologia(void)
             printf("           Voltando ao menu principal...\n");
             getchar();
         }
+        else if (op_num == -1)
+        {
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+        }
         else
         {
-            printf("                Opção inválida!\n");
+            printf("                Opção Inexistente!\n");
             printf("      >>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
         }

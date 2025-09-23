@@ -7,9 +7,19 @@
 int escolha(void)
 {
     int opcao;
+    int resultado;
+
     printf("\n           Escolha a opção desejada: ");
-    scanf("%d", &opcao);
-    printf("\n");
+    resultado = scanf("%d", &opcao);
+
+    if (resultado != 1)
+    {
+        printf("\nOpção inválida! Digite apenas números.\n");
+        while (getchar() != '\n')
+            ;
+        return -1;
+    }
+
     getchar();
     return opcao;
 }

@@ -62,8 +62,13 @@ void modulo_cliente(void)
             printf("           Voltando ao menu principal...\n");
             getchar();
             break;
+        case -1:
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+            break;
         default:
-            printf("                Opção inválida!\n");
+            printf("                Opção Inexistente!\n");
+            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
             break;
         }
