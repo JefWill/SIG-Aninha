@@ -173,6 +173,12 @@ void buscar_cliente(void)
 
 void listar_clientes(void)
 {
+    FILE *arq_clientes;
+    char cpf[15];
+    char nome[50];
+    char data_nascimento[12];
+    char telefone[20];
+
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
@@ -180,8 +186,20 @@ void listar_clientes(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    printf("[ Lista de clientes exibida.\n");
-    printf("Pressione ENTER para continuar...");
+    printf("Lista de clientes: \n");
+    arq_clientes = fopen("clientes.csv", "rt");
+
+    while (fscanf(arq_clientes, "%[^;];%[^;];%[^;];%[^\n]\n", cpf, nome, data_nascimento, telefone) == 4)
+    {
+        printf("CPF: %s\n", cpf);
+        printf("Nome: %s\n", nome);
+        printf("Data de Nascimento: %s\n", data_nascimento);
+        printf("Telefone: %s\n", telefone);
+        printf("------------------------\n");
+    }
+
+    fclose(arq_clientes);
+    printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
 }
 
