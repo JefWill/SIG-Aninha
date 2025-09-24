@@ -109,7 +109,11 @@ void cadastrar_funcionario(void)
 
 void buscar_funcionario(void)
 {
-    char ID[10];
+    FILE *arq_funcionarios;
+    char cpf_lido[15];
+    char cpf[15];
+    char nome[50];
+    char cargo[50];
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -118,11 +122,37 @@ void buscar_funcionario(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    printf("   Para realizar a busca, por favor, digite o ID do funcionário: ");
-    scanf("%s", ID);
+    input(cpf_lido, 15, "Digite o CPF do funcionário para buscar: ");
 
-    printf("\nfuncionario com ID %s encontrado!\n", ID);
-    printf("(aqui seriam exibidos os dados detalhados)\n\n");
+    arq_funcionarios = fopen("funcionarios.csv", "rt");
+    if (arq_funcionarios == NULL)
+    {
+        printf("Erro na criacao do arquivo\n!");
+        return;
+    }
+
+    while (!feof(arq_funcionarios)) {
+        fscanf(arq_funcionarios, "%[^;]", cpf);
+        fgetc(arq_funcionarios);
+        fscanf(arq_funcionarios, "%[^;]", nome);
+        fgetc(arq_funcionarios);
+        fscanf(arq_funcionarios, "%[^\n]", cargo);
+        fgetc(arq_funcionarios);
+
+        if (strcmp(cpf, cpf_lido) == 0) {
+            printf("\nFuncionário com CPF %s encontrado!\n", cpf);
+            printf("CPF: %s\n", cpf);
+            printf("Nome: %s\n", nome);
+            printf("Cargo: %s\n", cargo);
+            printf("Pressione enter para continuar...");
+            getchar();
+            fclose(arq_funcionarios);
+
+            return;
+        }
+    }
+    fclose(arq_funcionarios);
+    printf("Funcionário não encontrado!");
 
     printf("\n\n           Pressione a tecla ENTER para retornar ao menu...");
     getchar();
