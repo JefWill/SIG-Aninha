@@ -77,9 +77,12 @@ void modulo_cliente(void)
 
 void cadastrar_cliente(void)
 {
+    FILE *arq_clientes;
     char cpf[15];
     char nome[50];
     char data_nascimento[12];
+    char telefone[20];
+
     system("clear||clr");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
@@ -87,12 +90,26 @@ void cadastrar_cliente(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(cpf, 15, "insira seu cpf");
+    input(cpf, 15, "Insira seu cpf: ");
     input(nome, 50, "Digite o seu nome: ");
     input(data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
-    printf("cliente cadastrado com sucesso!\n");
-    printf("Nome: %s.\nCPF: %s.\nData nascimento: %s.", nome, cpf, data_nascimento);
-    printf("\nPressione Enter para continuar");
+    input(telefone, 20, "Digite seu telefone: ");
+
+    arq_clientes = fopen("clientes.csv", "at");
+    if (arq_clientes == NULL)
+    {
+        printf("Erro na criacao do arquivo\n!");
+        return;
+    }
+
+    fprintf(arq_clientes, "%s;", cpf);
+    fprintf(arq_clientes, "%s;", nome);
+    fprintf(arq_clientes, "%s;", data_nascimento);
+    fprintf(arq_clientes, "%s\n", telefone);
+    fclose(arq_clientes);
+
+    printf("\nCliente cadastrado com sucesso!\n");
+    printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
 }
 
