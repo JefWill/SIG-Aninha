@@ -115,7 +115,12 @@ void cadastrar_cliente(void)
 
 void buscar_cliente(void)
 {
+    FILE *arq_clientes;
     char cpf[15];
+    char cpf_lido[15];
+    char nome[50];
+    char data_nascimento[12];
+    char telefone[20];
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -124,13 +129,44 @@ void buscar_cliente(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    printf("Digite o CPF do cliente para buscar: ");
-    scanf("%s", cpf);
+    input(cpf_lido, 15, "Digite o CPF do cliente para buscar: ");
 
-    printf("\nCliente com CPF %s encontrado!\n", cpf);
-    printf("(aqui seriam exibidos os dados detalhados)\n\n");
+    arq_clientes = fopen("clientes.csv", "rt");
+    if (arq_clientes == NULL)
+    {
+        printf("Erro na criacao do arquivo\n!");
+        return;
+    }
 
-    printf("\n\n           Pressione a tecla ENTER para retornar ao menu...");
+    while (!feof(arq_clientes))
+    {
+        fscanf(arq_clientes, "%[^;]", cpf);
+        fgetc(arq_clientes);
+        fscanf(arq_clientes, "%[^;]", nome);
+        fgetc(arq_clientes);
+        fscanf(arq_clientes, "%[^;]", data_nascimento);
+        fgetc(arq_clientes);
+        fscanf(arq_clientes, "%[^\n]", telefone);
+        fgetc(arq_clientes);
+
+        if (strcmp(cpf, cpf_lido) == 0)
+        {
+            printf("\nCliente com CPF %s encontrado!\n", cpf);
+            printf("CPF: %s\n", cpf);
+            printf("Nome: %s\n", nome);
+            printf("Data de Nascimento: %s\n", data_nascimento);
+            printf("Telefone: %s\n", telefone);
+            printf("Pressione enter para continuar...");
+            getchar();
+            fclose(arq_clientes);
+
+            return;
+        }
+    }
+    fclose(arq_clientes);
+    printf("Cliente não encontrado!");
+
+    printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
     getchar();
 }
