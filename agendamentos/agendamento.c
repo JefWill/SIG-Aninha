@@ -76,7 +76,8 @@ void modulo_agendamentos(void)
 
 void agendar_consulta(void)
 {
-    char cpf[15], nome[100], data[11], horario[6], tipo_consulta[20];
+    FILE *arq_agendamentos;
+    char cpf[15], nome[100], data[20], horario[10], tipo_consulta[20];
     system("clear||cls");
 
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -88,8 +89,21 @@ void agendar_consulta(void)
     input(cpf, 15, "Digite o CPF do cliente:");
     input(nome, 100, "Digite o nome do cliente:");
     input(tipo_consulta, 20, "Digite qual tipo de consulta deseja (Tarot, Signos, Numerologia):");
-    input(data, 11, "Digite a data da consulta (DD/MM/AAAA):");
-    input(horario, 6, "Digite o horário da consulta (HH:MM):");
+    input(data, 20, "Digite a data da consulta (DD/MM/AAAA):");
+    input(horario, 10, "Digite o horário da consulta (HH:MM):");
+
+    arq_agendamentos = fopen("agendamentos.csv", "at");
+    if (arq_agendamentos == NULL){
+        printf("Erro na criacao do arquivo\n!");
+        return;
+    }
+
+    fprintf(arq_agendamentos, "%s;", cpf);
+    fprintf(arq_agendamentos, "%s;", nome);
+    fprintf(arq_agendamentos, "%s;", tipo_consulta);
+    fprintf(arq_agendamentos, "%s;", data);
+    fprintf(arq_agendamentos, "%s\n", horario);
+    fclose(arq_agendamentos);
 
     printf("\n         Consulta agendada com sucesso!\n");
     printf("      >>> Tecle <ENTER> para continuar... <<<\n");
