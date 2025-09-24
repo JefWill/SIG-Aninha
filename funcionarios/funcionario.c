@@ -74,9 +74,11 @@ void modulo_funcionario(void)
 
 void cadastrar_funcionario(void)
 {
+    FILE *arq_funcionarios;
     char cpf[15];
     char nome[50];
     char cargo[50];
+
     system("clear||clr");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
@@ -84,9 +86,21 @@ void cadastrar_funcionario(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(cpf, 15, "informe o CPF do funcionário");
+    input(cpf, 15, "Informe o CPF do funcionário: ");
     input(nome, 50, "Digite o nome do funcionário: ");
-    input(cargo, 50, "Digite o cargo do funcionário");
+    input(cargo, 50, "Digite o cargo do funcionário: ");
+    
+    arq_funcionarios = fopen("funcionarios.csv", "at");
+    if (arq_funcionarios == NULL){
+        printf("Erro na criacao do arquivo\n!");
+        return;
+    }
+
+    fprintf(arq_funcionarios, "%s;", cpf);
+    fprintf(arq_funcionarios, "%s;", nome);
+    fprintf(arq_funcionarios, "%s;", cargo);
+    fclose(arq_funcionarios);
+
     printf("funcionário cadastrado com sucesso!\n");
     printf("Nome: %s.\nCPF: %s.\nCargo: %s.", nome, cpf, cargo);
     printf("\nPressione Enter para continuar");
