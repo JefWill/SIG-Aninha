@@ -98,7 +98,7 @@ void cadastrar_funcionario(void)
 
     fprintf(arq_funcionarios, "%s;", cpf);
     fprintf(arq_funcionarios, "%s;", nome);
-    fprintf(arq_funcionarios, "%s;", cargo);
+    fprintf(arq_funcionarios, "%s\n", cargo);
     fclose(arq_funcionarios);
 
     printf("funcionário cadastrado com sucesso!\n");
@@ -161,6 +161,11 @@ void buscar_funcionario(void)
 
 void listar_funcionarios(void)
 {
+    FILE *arq_funcionarios;
+    char cpf[15];
+    char nome[50];
+    char cargo[50];
+
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
@@ -168,14 +173,24 @@ void listar_funcionarios(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    printf("| ID |      NOME      |    CARGO     |\n\n");
-    printf("Pressione ENTER para continuar...");
+    printf("Lista de funcionários: \n");
+    arq_funcionarios = fopen("funcionarios.csv", "rt");
+
+    while (fscanf(arq_funcionarios, "%[^;];%[^;];%[^\n]\n", cpf, nome, cargo) == 3) {
+        printf("CPF: %s\n", cpf);
+        printf("Nome: %s\n", nome);
+        printf("Cargo: %s\n", cargo);
+        printf("------------------------\n");
+    }
+
+    fclose(arq_funcionarios);
+    printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
 }
 
 void excluir_funcionario(void)
 {
-    char ID[10];
+    char cpf[15];
     char opcao;
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -184,14 +199,14 @@ void excluir_funcionario(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(ID, 10, "Informe o ID do Funcionário que deseja excluir: ");
+    input(cpf, 15, "Informe o CPF do Funcionário que deseja excluir: ");
 
-    printf("\nConfirma exclusão do Funcionário com ID %s? (S/N): ", ID);
+    printf("\nConfirma exclusão do Funcionário com CPF %s? (S/N): ", cpf);
     scanf(" %c", &opcao);
 
     if (opcao == 'S' || opcao == 's')
     {
-        printf("\nFuncionário com ID %s excluído.\n", ID);
+        printf("\nFuncionário com CPF %s excluído.\n", cpf);
     }
     else
     {
@@ -205,7 +220,7 @@ void excluir_funcionario(void)
 
 void alterar_funcionario(void)
 {
-    char ID[10];
+    char cpf[15];
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
@@ -213,8 +228,8 @@ void alterar_funcionario(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(ID, 10, "informe o ID\n");
-    printf("\nfuncionario com ID %s alterado.\n", ID);
+    input(cpf, 15, "Informe o CPF do Funcionário que deseja alterar: ");
+    printf("\nFuncionário com CPF %s alterado.\n", cpf);
     printf("Pressione ENTER para voltar ao menu...");
     getchar();
     getchar();
