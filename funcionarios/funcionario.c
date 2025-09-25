@@ -89,9 +89,10 @@ void cadastrar_funcionario(void)
     input(cpf, 15, "Informe o CPF do funcionário: ");
     input(nome, 50, "Digite o nome do funcionário: ");
     input(cargo, 50, "Digite o cargo do funcionário: ");
-    
-    arq_funcionarios = fopen("funcionarios.csv", "at");
-    if (arq_funcionarios == NULL){
+
+    arq_funcionarios = fopen("funcionarios/funcionarios.csv", "at");
+    if (arq_funcionarios == NULL)
+    {
         printf("Erro na criacao do arquivo\n!");
         return;
     }
@@ -124,14 +125,15 @@ void buscar_funcionario(void)
 
     input(cpf_lido, 15, "Digite o CPF do funcionário para buscar: ");
 
-    arq_funcionarios = fopen("funcionarios.csv", "rt");
+    arq_funcionarios = fopen("funcionarios/funcionarios.csv", "rt");
     if (arq_funcionarios == NULL)
     {
         printf("Erro na criacao do arquivo\n!");
         return;
     }
 
-    while (!feof(arq_funcionarios)) {
+    while (!feof(arq_funcionarios))
+    {
         fscanf(arq_funcionarios, "%[^;]", cpf);
         fgetc(arq_funcionarios);
         fscanf(arq_funcionarios, "%[^;]", nome);
@@ -139,7 +141,8 @@ void buscar_funcionario(void)
         fscanf(arq_funcionarios, "%[^\n]", cargo);
         fgetc(arq_funcionarios);
 
-        if (strcmp(cpf, cpf_lido) == 0) {
+        if (strcmp(cpf, cpf_lido) == 0)
+        {
             printf("\nFuncionário com CPF %s encontrado!\n", cpf);
             printf("CPF: %s\n", cpf);
             printf("Nome: %s\n", nome);
@@ -174,9 +177,10 @@ void listar_funcionarios(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     printf("Lista de funcionários: \n");
-    arq_funcionarios = fopen("funcionarios.csv", "rt");
+    arq_funcionarios = fopen("funcionarios/funcionarios.csv", "rt");
 
-    while (fscanf(arq_funcionarios, "%[^;];%[^;];%[^\n]\n", cpf, nome, cargo) == 3) {
+    while (fscanf(arq_funcionarios, "%[^;];%[^;];%[^\n]\n", cpf, nome, cargo) == 3)
+    {
         printf("CPF: %s\n", cpf);
         printf("Nome: %s\n", nome);
         printf("Cargo: %s\n", cargo);

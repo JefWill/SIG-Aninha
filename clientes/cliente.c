@@ -95,7 +95,7 @@ void cadastrar_cliente(void)
     input(data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
     input(telefone, 20, "Digite seu telefone: ");
 
-    arq_clientes = fopen("clientes.csv", "at");
+    arq_clientes = fopen("clientes/clientes.csv", "at");
     if (arq_clientes == NULL)
     {
         printf("Erro na criacao do arquivo\n!");
@@ -131,10 +131,11 @@ void buscar_cliente(void)
 
     input(cpf_lido, 15, "Digite o CPF do cliente para buscar: ");
 
-    arq_clientes = fopen("clientes.csv", "rt");
+    arq_clientes = fopen("clientes/clientes.csv", "rt");
     if (arq_clientes == NULL)
     {
         printf("Erro na criacao do arquivo\n!");
+        getchar();
         return;
     }
 
@@ -187,7 +188,7 @@ void listar_clientes(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     printf("Lista de clientes: \n");
-    arq_clientes = fopen("clientes.csv", "rt");
+    arq_clientes = fopen("clientes/clientes.csv", "rt");
 
     while (fscanf(arq_clientes, "%[^;];%[^;];%[^;];%[^\n]\n", cpf, nome, data_nascimento, telefone) == 4)
     {

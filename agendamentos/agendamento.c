@@ -92,7 +92,7 @@ void agendar_consulta(void)
     input(data, 15, "Digite a data da consulta (DD/MM/AAAA):");
     input(horario, 10, "Digite o horário da consulta (HH:MM):");
 
-    arq_agendamentos = fopen("agendamentos.csv", "at");
+    arq_agendamentos = fopen("agendamentos/agendamentos.csv", "at");
     if (arq_agendamentos == NULL)
     {
         printf("Erro na criacao do arquivo\n!");
@@ -113,7 +113,7 @@ void agendar_consulta(void)
 
 void atualizar_agendamento(void)
 {
-    char id_funcionario[10];
+    // char id_funcionario[10];
     char cpf[15], nome[100], data[15], horario[10], tipo_consulta[20];
     system("clear||cls");
 
@@ -153,7 +153,7 @@ void listar_agendamentos(void)
 
     input(data_agendamento, 15, "Digite a data desejada (dd/mm/aaaa): ");
 
-    arq_agendamentos = fopen("agendamentos.csv", "rt");
+    arq_agendamentos = fopen("agendamentos/agendamentos.csv", "rt");
     if (arq_agendamentos == NULL)
     {
         printf("Erro na abertura do arquivo\n!");
@@ -211,7 +211,7 @@ void buscar_agendamento_por_cpf(void)
 
     input(cpf_lido, 15, "Digite o CPF do cliente para buscar: ");
 
-    arq_agendamentos = fopen("agendamentos.csv", "rt");
+    arq_agendamentos = fopen("agendamentos/agendamentos.csv", "rt");
     if (arq_agendamentos == NULL)
     {
         printf("Erro na criacao do arquivo\n!");
