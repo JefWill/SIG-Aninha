@@ -93,7 +93,8 @@ void agendar_consulta(void)
     input(horario, 10, "Digite o horário da consulta (HH:MM):");
 
     arq_agendamentos = fopen("agendamentos.csv", "at");
-    if (arq_agendamentos == NULL){
+    if (arq_agendamentos == NULL)
+    {
         printf("Erro na criacao do arquivo\n!");
         return;
     }
@@ -135,7 +136,14 @@ void atualizar_agendamento(void)
 
 void listar_agendamentos(void)
 {
+    FILE *arq_agendamentos;
     char data[15];
+    char cpf[15];
+    char nome[100];
+    char tipo_consulta[20];
+    char data_agendamento[15];
+    char horario[10];
+
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
@@ -143,11 +151,47 @@ void listar_agendamentos(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    printf("Digite a data desejada (dd/mm/aaaa): ");
-    scanf("%s", data);
-    printf("\nAgendamentos para a data %s:\n", data);
-    printf("Exibe os agendamentos da data...\n");
+    input(data_agendamento, 15, "Digite a data desejada (dd/mm/aaaa): ");
 
+    arq_agendamentos = fopen("agendamentos.csv", "rt");
+    if (arq_agendamentos == NULL)
+    {
+        printf("Erro na abertura do arquivo\n!");
+        return;
+    }
+
+    while (!feof(arq_agendamentos))
+    {
+        fscanf(arq_agendamentos, "%[^;]", cpf);
+        fgetc(arq_agendamentos);
+        fscanf(arq_agendamentos, "%[^;]", nome);
+        fgetc(arq_agendamentos);
+        fscanf(arq_agendamentos, "%[^;]", tipo_consulta);
+        fgetc(arq_agendamentos);
+        fscanf(arq_agendamentos, "%[^;]", data);
+        fgetc(arq_agendamentos);
+        fscanf(arq_agendamentos, "%[^\n]", horario);
+        fgetc(arq_agendamentos);
+
+        if (strcmp(data, data_agendamento) == 0)
+        {
+            printf("\nAgendamentos para a data %s:\n", data);
+            printf("------------------------------------------------\n");
+            printf("CPF: %s\n", cpf);
+            printf("Nome: %s\n", nome);
+            printf("Tipo de consulta: %s\n", tipo_consulta);
+            printf("Data: %s\n", data);
+            printf("Horário: %s\n\n", horario);
+            printf("------------------------------------------------\n");
+            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+            fclose(arq_agendamentos);
+            return;
+        }
+    }
+
+    fclose(arq_agendamentos);
+    printf("\n         Nenhum agendamento encontrado!\n");
     printf("      >>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
     getchar();
@@ -156,7 +200,7 @@ void listar_agendamentos(void)
 void buscar_agendamento_por_cpf(void)
 {
     FILE *arq_agendamentos;
-    char cpf[15],cpf_lido[15], nome[100], data[15], horario[10], tipo_consulta[20];
+    char cpf[15], cpf_lido[15], nome[100], data[15], horario[10], tipo_consulta[20];
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -174,7 +218,8 @@ void buscar_agendamento_por_cpf(void)
         return;
     }
 
-    while (!feof(arq_agendamentos)) {
+    while (!feof(arq_agendamentos))
+    {
         fscanf(arq_agendamentos, "%[^;]", cpf);
         fgetc(arq_agendamentos);
         fscanf(arq_agendamentos, "%[^;]", nome);
@@ -186,7 +231,8 @@ void buscar_agendamento_por_cpf(void)
         fscanf(arq_agendamentos, "%[^\n]", horario);
         fgetc(arq_agendamentos);
 
-        if (strcmp(cpf, cpf_lido) == 0) {
+        if (strcmp(cpf, cpf_lido) == 0)
+        {
             printf("\nAgendamento do CPF %s encontrado!\n", cpf);
             printf("CPF: %s\n", cpf);
             printf("Nome: %s\n", nome);
