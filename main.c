@@ -20,6 +20,7 @@
 
 // Assinatura da Função
 int tela_menu_principal(void);
+void tela_encerramento(void);
 
 int main(void)
 {
@@ -51,7 +52,7 @@ int main(void)
             modulo_informacoes();
             break;
         case 0:
-            printf("Encerrando o sistema... Até logo!\n");
+            tela_encerramento();
             break;
 
         case -1:
@@ -71,7 +72,7 @@ int main(void)
     return 0;
 }
 
-// Funções da Tela do Menu Principal e Cabeçalho
+// Funções da Tela do Menu Principal e Tela de Encerramento.
 
 int tela_menu_principal(void)
 {
@@ -96,4 +97,16 @@ int tela_menu_principal(void)
     op = escolha();
 
     return op;
+}
+
+void tela_encerramento(void)
+{
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                          |\n");
+    printf("|                   ✦✧✦✧ ENCERRANDO O SISTEMA ✧✦✧✦                        |\n");
+    printf("|                                                                          |\n");
+    printf("|                      Até logo! Obrigado por usar!                        |\n");
+    printf("|                                                                          |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
 }
