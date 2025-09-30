@@ -104,7 +104,7 @@ void tela_encerramento(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                          |\n");
-    printf("|                   ✦✧✦✧ ENCERRANDO O SISTEMA ✧✦✧✦                        |\n");
+    printf("|                   ✦✧✦✧ ENCERRANDO O SISTEMA ✧✦✧✦                     |\n");
     printf("|                                                                          |\n");
     printf("|                      Até logo! Obrigado por usar!                        |\n");
     printf("|                                                                          |\n");

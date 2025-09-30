@@ -143,6 +143,7 @@ void listar_agendamentos(void)
     char tipo_consulta[20];
     char data_agendamento[15];
     char horario[10];
+    int encontrado = 0;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -160,38 +161,33 @@ void listar_agendamentos(void)
         return;
     }
 
-    while (!feof(arq_agendamentos))
+    while (fscanf(arq_agendamentos, "%[^;];%[^;];%[^;];%[^;];%[^\n]\n",
+                  cpf, nome, tipo_consulta, data, horario) == 5)
     {
-        fscanf(arq_agendamentos, "%[^;]", cpf);
-        fgetc(arq_agendamentos);
-        fscanf(arq_agendamentos, "%[^;]", nome);
-        fgetc(arq_agendamentos);
-        fscanf(arq_agendamentos, "%[^;]", tipo_consulta);
-        fgetc(arq_agendamentos);
-        fscanf(arq_agendamentos, "%[^;]", data);
-        fgetc(arq_agendamentos);
-        fscanf(arq_agendamentos, "%[^\n]", horario);
-        fgetc(arq_agendamentos);
 
         if (strcmp(data, data_agendamento) == 0)
         {
-            printf("\nAgendamentos para a data %s:\n", data);
-            printf("------------------------------------------------\n");
+            if (!encontrado)
+            {
+                printf("\nAgendamentos para a data %s:\n", data);
+                printf("------------------------------------------------\n");
+            }
+            encontrado = 1;
+
             printf("CPF: %s\n", cpf);
             printf("Nome: %s\n", nome);
             printf("Tipo de consulta: %s\n", tipo_consulta);
             printf("Data: %s\n", data);
             printf("Horário: %s\n\n", horario);
             printf("------------------------------------------------\n");
-            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
-            fclose(arq_agendamentos);
-            return;
         }
     }
-
     fclose(arq_agendamentos);
-    printf("\n         Nenhum agendamento encontrado!\n");
+    if (!encontrado)
+    {
+        printf("\nNenhum agendamento encontrado!\n");
+    }
+
     printf("      >>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
     getchar();
