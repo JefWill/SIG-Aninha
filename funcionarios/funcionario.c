@@ -177,6 +177,7 @@ void listar_funcionarios(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     printf("Lista de funcionários: \n");
+    printf("------------------------------------\n");
     arq_funcionarios = fopen("funcionarios/funcionarios.csv", "rt");
 
     while (fscanf(arq_funcionarios, "%[^;];%[^;];%[^\n]\n", cpf, nome, cargo) == 3)
@@ -184,7 +185,7 @@ void listar_funcionarios(void)
         printf("CPF: %s\n", cpf);
         printf("Nome: %s\n", nome);
         printf("Cargo: %s\n", cargo);
-        printf("------------------------\n");
+        printf("------------------------------------\n");
     }
 
     fclose(arq_funcionarios);

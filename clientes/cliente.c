@@ -188,6 +188,7 @@ void listar_clientes(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     printf("Lista de clientes: \n");
+    printf("---------------------------------------\n");
     arq_clientes = fopen("clientes/clientes.csv", "rt");
 
     while (fscanf(arq_clientes, "%[^;];%[^;];%[^;];%[^\n]\n", cpf, nome, data_nascimento, telefone) == 4)
@@ -196,7 +197,7 @@ void listar_clientes(void)
         printf("Nome: %s\n", nome);
         printf("Data de Nascimento: %s\n", data_nascimento);
         printf("Telefone: %s\n", telefone);
-        printf("------------------------\n");
+        prinft("---------------------------------------\n");
     }
 
     fclose(arq_clientes);
