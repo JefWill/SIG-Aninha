@@ -197,7 +197,7 @@ void listar_clientes(void)
         printf("Nome: %s\n", nome);
         printf("Data de Nascimento: %s\n", data_nascimento);
         printf("Telefone: %s\n", telefone);
-        prinft("---------------------------------------\n");
+        printf("---------------------------------------\n");
     }
 
     fclose(arq_clientes);
