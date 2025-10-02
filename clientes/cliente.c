@@ -321,3 +321,38 @@ int menu_alteracao(void)
     opcao = escolha();
     return opcao;
 }
+
+void modulo_alteracao(char *nome, char *data_nascimento, char *telefone)
+{
+    int opcao;
+    do
+    {
+        opcao = menu_alteracao();
+
+        switch (opcao)
+        {
+        case 1:
+            input(nome, 50, "Digite o nome: ");
+            break;
+        case 2:
+            input(data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
+            break;
+        case 3:
+            input(telefone, 20, "Digite o telefone: ");
+            break;
+        case 0:
+            printf("           Voltando ao menu principal...\n");
+            getchar();
+            break;
+        case -1:
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+            break;
+        default:
+            printf("                Opção Inexistente!\n");
+            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+            break;
+        }
+    } while (opcao != 0);
+}
