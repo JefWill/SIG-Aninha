@@ -1,4 +1,14 @@
 /////  CLIENTE  //////
+typedef struct cliente Cliente;
+
+struct cliente
+{
+    char cpf[15];
+    char nome[50];
+    char data_nascimento[12];
+    char telefone[20];
+};
+
 void modulo_cliente(void);
 void cadastrar_cliente(void);
 int tela_menu_cliente(void);
