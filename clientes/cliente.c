@@ -121,6 +121,7 @@ void buscar_cliente(void)
     char nome[50];
     char data_nascimento[12];
     char telefone[20];
+    int encontrado = 0;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -134,42 +135,38 @@ void buscar_cliente(void)
     arq_clientes = fopen("clientes/clientes.csv", "rt");
     if (arq_clientes == NULL)
     {
-        printf("Erro na criacao do arquivo\n!");
+        printf("Erro na abertura do arquivo!\n");
         getchar();
         return;
     }
 
-    while (!feof(arq_clientes))
+    while (fscanf(arq_clientes, "%[^;];%[^;];%[^;];%[^\n]\n",
+                  cpf, nome, data_nascimento, telefone) == 4)
     {
-        fscanf(arq_clientes, "%[^;]", cpf);
-        fgetc(arq_clientes);
-        fscanf(arq_clientes, "%[^;]", nome);
-        fgetc(arq_clientes);
-        fscanf(arq_clientes, "%[^;]", data_nascimento);
-        fgetc(arq_clientes);
-        fscanf(arq_clientes, "%[^\n]", telefone);
-        fgetc(arq_clientes);
-
         if (strcmp(cpf, cpf_lido) == 0)
         {
+            encontrado = 1;
             printf("\nCliente com CPF %s encontrado!\n", cpf);
             printf("CPF: %s\n", cpf);
             printf("Nome: %s\n", nome);
             printf("Data de Nascimento: %s\n", data_nascimento);
             printf("Telefone: %s\n", telefone);
-            printf("Pressione enter para continuar...");
-            getchar();
+            printf("\nPressione enter para continuar...");
             fclose(arq_clientes);
+            getchar();
 
             return;
         }
     }
-    fclose(arq_clientes);
-    printf("Cliente não encontrado!");
 
-    printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
-    getchar();
-    getchar();
+    fclose(arq_clientes);
+
+    if (!encontrado)
+    {
+        printf("\nCliente nao encontrado!\n");
+        printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
+        getchar();
+    }
 }
 
 void listar_clientes(void)
