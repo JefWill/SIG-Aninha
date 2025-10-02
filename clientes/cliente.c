@@ -289,8 +289,16 @@ void excluir_cliente(void)
 
 void alterar_cliente(void)
 {
+    FILE *arq_clientes;
+    FILE *arq_clientes2;
     char cpf[15];
+    char cpf_lido[15];
     char nome[50];
+    char data_nascimento[12];
+    char telefone[20];
+    char opcao;
+    int encontrado = 0;
+
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
@@ -298,11 +306,68 @@ void alterar_cliente(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(cpf, 15, "informe o CPF");
-    input(nome, 50, "Informe o nome");
-    printf("\ncliente com CPF %s alterado.\n", cpf);
+    input(cpf_lido, 15, "Informe o CPF:");
+
+    arq_clientes = fopen("clientes/clientes.csv", "rt");
+    arq_clientes2 = fopen("clientes/clientes2.csv", "wt");
+
+    if (arq_clientes == NULL || arq_clientes2 == NULL)
+    {
+        printf("Erro na abertura do arquivo!\n");
+        getchar();
+        return;
+    }
+
+    while (fscanf(arq_clientes, "%14[^;];%49[^;];%11[^;];%19[^\n]\n",
+                  cpf, nome, data_nascimento, telefone) == 4)
+    {
+        if (strcmp(cpf, cpf_lido) == 0)
+        {
+            encontrado = 1;
+            printf("\nCliente com CPF %s encontrado!\n", cpf);
+            printf("CPF: %s\n", cpf);
+            printf("Nome: %s\n", nome);
+            printf("Data de Nascimento: %s\n", data_nascimento);
+            printf("Telefone: %s\n", telefone);
+
+            printf("\nConfirma alteração do cliente com CPF %s? (S/N): ", cpf);
+            scanf(" %c", &opcao);
+            getchar();
+
+            if (opcao == 'S' || opcao == 's')
+            {
+                modulo_alteracao(nome, data_nascimento, telefone);
+
+                fprintf(arq_clientes2, "%s;%s;%s;%s\n", cpf, nome, data_nascimento, telefone);
+                printf("\nCliente com CPF %s alterado com sucesso!\n", cpf);
+            }
+            else
+            {
+                printf("\nAlteração Cancelada!\n");
+                fprintf(arq_clientes2, "%s;%s;%s;%s\n", cpf, nome, data_nascimento, telefone);
+            }
+        }
+        else
+        {
+            fprintf(arq_clientes2, "%s;%s;%s;%s\n", cpf, nome, data_nascimento, telefone);
+        }
+    }
+
+    fclose(arq_clientes);
+    fclose(arq_clientes2);
+
+    if (encontrado)
+    {
+        remove("clientes/clientes.csv");
+        rename("clientes/clientes2.csv", "clientes/clientes.csv");
+    }
+    else
+    {
+        remove("clientes/clientes2.csv");
+        printf("CPF não encontrado!\n");
+    }
+
     printf("Pressione ENTER para voltar ao menu...");
-    getchar();
     getchar();
 }
 
