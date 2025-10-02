@@ -6,3 +6,4 @@ void buscar_cliente(void);
 void listar_clientes(void);
 void excluir_cliente(void);
 void alterar_cliente(void);
+int menu_alteracao(void);
