@@ -277,11 +277,7 @@ void alterar_cliente(void)
 {
     FILE *arq_clientes;
     FILE *arq_clientes2;
-    char cpf[15];
-    char cpf_lido[15];
-    char nome[50];
-    char data_nascimento[12];
-    char telefone[20];
+    Cliente clt;
     char opcao;
     int encontrado = 0;
 
@@ -292,7 +288,7 @@ void alterar_cliente(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(cpf_lido, 15, "Informe o CPF:");
+    input(clt.cpf_lido, 15, "Informe o CPF:");
 
     arq_clientes = fopen("clientes/clientes.csv", "rt");
     arq_clientes2 = fopen("clientes/clientes2.csv", "wt");
@@ -305,37 +301,37 @@ void alterar_cliente(void)
     }
 
     while (fscanf(arq_clientes, "%14[^;];%49[^;];%11[^;];%19[^\n]\n",
-                  cpf, nome, data_nascimento, telefone) == 4)
+                  clt.cpf, clt.nome, clt.data_nascimento, clt.telefone) == 4)
     {
-        if (strcmp(cpf, cpf_lido) == 0)
+        if (strcmp(clt.cpf, clt.cpf_lido) == 0)
         {
             encontrado = 1;
-            printf("\nCliente com CPF %s encontrado!\n", cpf);
-            printf("CPF: %s\n", cpf);
-            printf("Nome: %s\n", nome);
-            printf("Data de Nascimento: %s\n", data_nascimento);
-            printf("Telefone: %s\n", telefone);
+            printf("\nCliente com CPF %s encontrado!\n", clt.cpf);
+            printf("CPF: %s\n", clt.cpf);
+            printf("Nome: %s\n", clt.nome);
+            printf("Data de Nascimento: %s\n", clt.data_nascimento);
+            printf("Telefone: %s\n", clt.telefone);
 
-            printf("\nConfirma alteração do cliente com CPF %s? (S/N): ", cpf);
+            printf("\nConfirma alteração do cliente com CPF %s? (S/N): ", clt.cpf);
             scanf(" %c", &opcao);
             getchar();
 
             if (opcao == 'S' || opcao == 's')
             {
-                modulo_alteracao(nome, data_nascimento, telefone);
+                modulo_alteracao(clt.nome, clt.data_nascimento, clt.telefone);
 
-                fprintf(arq_clientes2, "%s;%s;%s;%s\n", cpf, nome, data_nascimento, telefone);
-                printf("\nCliente com CPF %s alterado com sucesso!\n", cpf);
+                fprintf(arq_clientes2, "%s;%s;%s;%s\n", clt.cpf, clt.nome, clt.data_nascimento, clt.telefone);
+                printf("\nInformações do Cliente com CPF %s alteradas com sucesso!\n", clt.cpf);
             }
             else
             {
                 printf("\nAlteração Cancelada!\n");
-                fprintf(arq_clientes2, "%s;%s;%s;%s\n", cpf, nome, data_nascimento, telefone);
+                fprintf(arq_clientes2, "%s;%s;%s;%s\n", clt.cpf, clt.nome, clt.data_nascimento, clt.telefone);
             }
         }
         else
         {
-            fprintf(arq_clientes2, "%s;%s;%s;%s\n", cpf, nome, data_nascimento, telefone);
+            fprintf(arq_clientes2, "%s;%s;%s;%s\n", clt.cpf, clt.nome, clt.data_nascimento, clt.telefone);
         }
     }
 
@@ -366,7 +362,7 @@ int menu_alteracao(void)
     printf("|                      1. Alterar Nome                                   |\n");
     printf("|                      2. Alterar Data de Nascimento                     |\n");
     printf("|                      3. Alterar Telefone                               |\n");
-    printf("|                      0. Sair                                           |\n");
+    printf("|                      0. Salvar e Sair                                  |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     opcao = escolha();
@@ -384,12 +380,21 @@ void modulo_alteracao(char *nome, char *data_nascimento, char *telefone)
         {
         case 1:
             input(nome, 50, "Digite o nome: ");
+            printf("\nNome atualizado com sucesso!\n");
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
             break;
         case 2:
             input(data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
+            printf("\nData de nascimento atualizada com sucesso!\n");
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
             break;
         case 3:
             input(telefone, 20, "Digite o telefone: ");
+            printf("\nTelefone atualizado com sucesso!\n");
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
             break;
         case 0:
             printf("           Voltando ao menu principal...\n");
