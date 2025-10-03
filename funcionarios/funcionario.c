@@ -264,7 +264,14 @@ void excluir_funcionario(void)
 
 void alterar_funcionario(void)
 {
+    FILE *arq_funcionarios;
+    FILE *arq_funcionarios2;
     char cpf[15];
+    char cargo[50];
+    char nome[50];
+    char cpf_lido[15];
+    char opcao;
+    int encontrado = 0;
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
@@ -272,12 +279,71 @@ void alterar_funcionario(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(cpf, 15, "Informe o CPF do Funcionário que deseja alterar: ");
-    printf("\nFuncionário com CPF %s alterado.\n", cpf);
+    input(cpf_lido, 15, "Informe o CPF do Funcionário que deseja alterar: ");
+
+    arq_funcionarios = fopen("funcionarios/funcionarios.csv", "rt");
+    arq_funcionarios2 = fopen("funcionarios/funcionarios2.csv", "wt");
+
+    if (arq_funcionarios == NULL || arq_funcionarios2 == NULL)
+    {
+        printf("Erro na abertura do arquivo!\n");
+        getchar();
+        return;
+    }
+
+    while (fscanf(arq_funcionarios, "%14[^;];%49[^;];%49[^\n]\n",
+                  cpf, nome, cargo) == 3)
+    {
+        if (strcmp(cpf, cpf_lido) == 0)
+        {
+            encontrado = 1;
+            printf("\nCliente com CPF %s encontrado!\n", cpf);
+            printf("CPF: %s\n", cpf);
+            printf("Nome: %s\n", nome);
+            printf("Data de Nascimento: %s\n", cargo);
+
+            printf("\nConfirma alteração do funcionário com CPF %s? (S/N): ", cpf);
+            scanf(" %c", &opcao);
+            getchar();
+
+            if (opcao == 'S' || opcao == 's')
+            {
+                modulo_alteracao_func(nome, cargo);
+
+                fprintf(arq_funcionarios2, "%s;%s;%s\n", cpf, nome, cargo);
+                printf("\nInformações do Funcionário com CPF %s alteradas com sucesso!\n", cpf);
+            }
+            else
+            {
+                printf("\nAlteração Cancelada!\n");
+                fprintf(arq_funcionarios2, "%s;%s;%s\n", cpf, nome, cargo);
+            }
+        }
+        else
+        {
+            fprintf(arq_funcionarios2, "%s;%s;%s\n", cpf, nome, cargo);
+        }
+    }
+
+    fclose(arq_funcionarios);
+    fclose(arq_funcionarios2);
+
+    if (encontrado)
+    {
+        remove("funcionarios/funcionarios.csv");
+        rename("funcionarios/funcionarios2.csv", "funcionarios/funcionarios.csv");
+    }
+    else
+    {
+        remove("funcionarios/funcionarios2.csv");
+        printf("CPF não encontrado!\n");
+    }
+
     printf("Pressione ENTER para voltar ao menu...");
     getchar();
-    getchar();
 }
+ 
+
     
 int menu_alteracao_func(void)
 {
