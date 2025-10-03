@@ -293,3 +293,41 @@ int menu_alteracao_func(void)
     opcao = escolha();
     return opcao;
 }
+
+void modulo_alteracao_func(char *nome, char *cargo)
+{
+    int opcao;
+    do
+    {
+        opcao = menu_alteracao_func();
+
+        switch (opcao)
+        {
+        case 1:
+            input(nome, 50, "Digite o nome: ");
+            printf("\nNome atualizado com sucesso!\n");
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+            break;
+        case 2:
+            input(cargo, 50, "Digite o cargo: ");
+            printf("\nCargo atualizado com sucesso!\n");
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+            break;
+        case 0:
+            printf("           Voltando ao menu principal...\n");
+            getchar();
+            break;
+        case -1:
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+            break;
+        default:
+            printf("                Opção Inexistente!\n");
+            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+            break;
+        }
+    } while (opcao != 0);
+}
