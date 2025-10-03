@@ -7,6 +7,7 @@ struct cliente
     char nome[50];
     char data_nascimento[12];
     char telefone[20];
+    char cpf_lido[15];
 };
 
 void modulo_cliente(void);

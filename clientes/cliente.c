@@ -113,11 +113,7 @@ void cadastrar_cliente(void)
 void buscar_cliente(void)
 {
     FILE *arq_clientes;
-    char cpf[15];
-    char cpf_lido[15];
-    char nome[50];
-    char data_nascimento[12];
-    char telefone[20];
+    Cliente clt;
     int encontrado = 0;
 
     system("clear||cls");
@@ -127,7 +123,7 @@ void buscar_cliente(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(cpf_lido, 15, "Digite o CPF do cliente para buscar: ");
+    input(clt.cpf_lido, 15, "Digite o CPF do cliente para buscar: ");
 
     arq_clientes = fopen("clientes/clientes.csv", "rt");
     if (arq_clientes == NULL)
@@ -138,16 +134,16 @@ void buscar_cliente(void)
     }
 
     while (fscanf(arq_clientes, "%[^;];%[^;];%[^;];%[^\n]\n",
-                  cpf, nome, data_nascimento, telefone) == 4)
+                  clt.cpf, clt.nome, clt.data_nascimento, clt.telefone) == 4)
     {
-        if (strcmp(cpf, cpf_lido) == 0)
+        if (strcmp(clt.cpf, clt.cpf_lido) == 0)
         {
             encontrado = 1;
-            printf("\nCliente com CPF %s encontrado!\n", cpf);
-            printf("CPF: %s\n", cpf);
-            printf("Nome: %s\n", nome);
-            printf("Data de Nascimento: %s\n", data_nascimento);
-            printf("Telefone: %s\n", telefone);
+            printf("\nCliente com CPF %s encontrado!\n", clt.cpf);
+            printf("CPF: %s\n", clt.cpf);
+            printf("Nome: %s\n", clt.nome);
+            printf("Data de Nascimento: %s\n", clt.data_nascimento);
+            printf("Telefone: %s\n", clt.telefone);
             printf("\nPressione enter para continuar...");
             fclose(arq_clientes);
             getchar();
