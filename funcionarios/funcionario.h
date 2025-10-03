@@ -16,3 +16,5 @@ void buscar_funcionario(void);
 void listar_funcionarios(void);
 void alterar_funcionario(void);
 void excluir_funcionario(void);
+int menu_alteracao_func(void);
+void modulo_alteracao_func(char *nome, char *cargo);
