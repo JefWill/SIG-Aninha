@@ -278,3 +278,18 @@ void alterar_funcionario(void)
     getchar();
     getchar();
 }
+    
+int menu_alteracao_func(void)
+{
+    int opcao;
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                      1. Alterar Nome                                   |\n");
+    printf("|                      2. Alterar Cargo                                  |\n");
+    printf("|                      0. Salvar e Sair                                  |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    opcao = escolha();
+    return opcao;
+}
