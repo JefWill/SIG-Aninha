@@ -157,9 +157,7 @@ void buscar_funcionario(void)
 void listar_funcionarios(void)
 {
     FILE *arq_funcionarios;
-    char cpf[15];
-    char nome[50];
-    char cargo[50];
+    Funcionario fnc;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -172,11 +170,11 @@ void listar_funcionarios(void)
     printf("------------------------------------\n");
     arq_funcionarios = fopen("funcionarios/funcionarios.csv", "rt");
 
-    while (fscanf(arq_funcionarios, "%[^;];%[^;];%[^\n]\n", cpf, nome, cargo) == 3)
+    while (fscanf(arq_funcionarios, "%[^;];%[^;];%[^\n]\n", fnc.cpf, fnc.nome, fnc.cargo) == 3)
     {
-        printf("CPF: %s\n", cpf);
-        printf("Nome: %s\n", nome);
-        printf("Cargo: %s\n", cargo);
+        printf("CPF: %s\n", fnc.cpf);
+        printf("Nome: %s\n", fnc.nome);
+        printf("Cargo: %s\n", fnc.cargo);
         printf("------------------------------------\n");
     }
 
