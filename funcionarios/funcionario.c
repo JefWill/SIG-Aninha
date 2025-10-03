@@ -109,10 +109,8 @@ void cadastrar_funcionario(void)
 void buscar_funcionario(void)
 {
     FILE *arq_funcionarios;
-    char cpf_lido[15];
-    char cpf[15];
-    char nome[50];
-    char cargo[50];
+    Funcionario fnc;
+    int encontrado = 0;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -121,7 +119,7 @@ void buscar_funcionario(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(cpf_lido, 15, "Digite o CPF do funcionário para buscar: ");
+    input(fnc.cpf_lido,15, "Digite o CPF do funcionário para buscar: ");
 
     arq_funcionarios = fopen("funcionarios/funcionarios.csv", "rt");
     if (arq_funcionarios == NULL)
@@ -130,21 +128,16 @@ void buscar_funcionario(void)
         return;
     }
 
-    while (!feof(arq_funcionarios))
+    while (fscanf(arq_funcionarios, "%[^;];%[^;];%[^\n]\n",
+                  fnc.cpf, fnc.nome, fnc.cargo) == 3)
     {
-        fscanf(arq_funcionarios, "%[^;]", cpf);
-        fgetc(arq_funcionarios);
-        fscanf(arq_funcionarios, "%[^;]", nome);
-        fgetc(arq_funcionarios);
-        fscanf(arq_funcionarios, "%[^\n]", cargo);
-        fgetc(arq_funcionarios);
-
-        if (strcmp(cpf, cpf_lido) == 0)
+        if (strcmp(fnc.cpf, fnc.cpf_lido) == 0)
         {
-            printf("\nFuncionário com CPF %s encontrado!\n", cpf);
-            printf("CPF: %s\n", cpf);
-            printf("Nome: %s\n", nome);
-            printf("Cargo: %s\n", cargo);
+            encontrado = 1;
+            printf("\nFuncionário com CPF %s encontrado!\n", fnc.cpf);
+            printf("CPF: %s\n", fnc.cpf);
+            printf("Nome: %s\n", fnc.nome);
+            printf("Cargo: %s\n", fnc.cargo);
             printf("Pressione enter para continuar...");
             getchar();
             fclose(arq_funcionarios);
@@ -153,11 +146,12 @@ void buscar_funcionario(void)
         }
     }
     fclose(arq_funcionarios);
-    printf("Funcionário não encontrado!");
 
-    printf("\n\n           Pressione a tecla ENTER para retornar ao menu...");
-    getchar();
-    getchar();
+    if (!encontrado){
+        printf("Funcionário não encontrado!");
+        printf("\n\n           Pressione a tecla ENTER para retornar ao menu...");
+        getchar();
+    }
 }
 
 void listar_funcionarios(void)
