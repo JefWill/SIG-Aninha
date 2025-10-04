@@ -7,3 +7,4 @@ void listar_agendamentos(void);
 void buscar_agendamento_por_cpf(void);
 void excluir_agendamento(void);
 int gerar_novo_id();
+int menu_alterar_agendamento(void);

@@ -361,3 +361,22 @@ int gerar_novo_id()
     }
     return ultimo_id + 1;
 }
+
+int menu_alterar_agendamento(void)
+{
+    int opcao;
+    system("clear||cls");
+
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                      1. Alterar Nome                                   |\n");
+    printf("|                      2. Alterar Tipo de Consulta                       |\n");
+    printf("|                      3. Alterar Data                                   |\n");
+    printf("|                      4. Alterar Horário                                |\n");
+    printf("|                      0. Salvar e Sair                                  |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    opcao = escolha();
+
+    return opcao;
+}
