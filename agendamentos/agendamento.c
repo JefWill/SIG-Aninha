@@ -78,6 +78,7 @@ void agendar_consulta(void)
 {
     FILE *arq_agendamentos;
     char cpf[15], nome[100], data[15], horario[10], tipo_consulta[20];
+    int id;
     system("clear||cls");
 
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -98,7 +99,8 @@ void agendar_consulta(void)
         printf("Erro na criacao do arquivo\n!");
         return;
     }
-
+    id = gerar_novo_id();
+    fprintf(arq_agendamentos, "%d;", id);
     fprintf(arq_agendamentos, "%s;", cpf);
     fprintf(arq_agendamentos, "%s;", nome);
     fprintf(arq_agendamentos, "%s;", tipo_consulta);
@@ -137,6 +139,7 @@ void atualizar_agendamento(void)
 void listar_agendamentos(void)
 {
     FILE *arq_agendamentos;
+    int id;
     char data[15];
     char cpf[15];
     char nome[100];
@@ -161,8 +164,8 @@ void listar_agendamentos(void)
         return;
     }
 
-    while (fscanf(arq_agendamentos, "%[^;];%[^;];%[^;];%[^;];%[^\n]\n",
-                  cpf, nome, tipo_consulta, data, horario) == 5)
+    while (fscanf(arq_agendamentos, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%9[^\n]\n",
+                  &id, cpf, nome, tipo_consulta, data, horario) == 6)
     {
 
         if (strcmp(data, data_agendamento) == 0)
@@ -173,7 +176,7 @@ void listar_agendamentos(void)
                 printf("------------------------------------------------\n");
             }
             encontrado = 1;
-
+            printf("ID: %d\n", id);
             printf("CPF: %s\n", cpf);
             printf("Nome: %s\n", nome);
             printf("Tipo de consulta: %s\n", tipo_consulta);
@@ -198,6 +201,7 @@ void buscar_agendamento_por_cpf(void)
     FILE *arq_agendamentos;
     char cpf[15], cpf_lido[15], nome[100], data[15], horario[10], tipo_consulta[20];
     int encontrado = 0;
+    int id;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -216,18 +220,21 @@ void buscar_agendamento_por_cpf(void)
         return;
     }
 
-    while (fscanf(arq_agendamentos, "%[^;];%[^;];%[^;];%[^;];%[^\n]\n",
-                  cpf, nome, tipo_consulta, data, horario) == 5)
+    while (fscanf(arq_agendamentos, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%9[^\n]\n",
+                  &id, cpf, nome, tipo_consulta, data, horario) == 6)
+
     {
-        if (!encontrado)
-        {
-            printf("\nAgendamentos do CPF %s encontrado!\n", cpf_lido);
-            printf("------------------------------------------------\n");
-        }
 
         if (strcmp(cpf, cpf_lido) == 0)
         {
+            if (!encontrado)
+            {
+                printf("\nAgendamentos do CPF %s encontrado!\n", cpf_lido);
+                printf("------------------------------------------------\n");
+            }
+
             encontrado = 1;
+            printf("ID: %d\n", id);
             printf("CPF: %s\n", cpf);
             printf("Nome: %s\n", nome);
             printf("Tipo de Consulta: %s\n", tipo_consulta);
@@ -245,7 +252,6 @@ void buscar_agendamento_por_cpf(void)
     }
 
     printf("      >>> Tecle <ENTER> para continuar... <<<\n");
-    getchar();
     getchar();
 }
 
@@ -276,4 +282,25 @@ void excluir_agendamento(void)
     printf("      >>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
     getchar();
+}
+
+int gerar_novo_id()
+{
+    FILE *arq = fopen("agendamentos/agendamentos.csv", "rt");
+    int id = 0, ultimo_id = 0;
+    char cpf[15], nome[100], tipo_consulta[20], data[15], horario[10];
+
+    if (arq != NULL)
+    {
+        while (fscanf(arq, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%9[^\n]\n",
+                      &id, cpf, nome, tipo_consulta, data, horario) == 6)
+        {
+            if (id > ultimo_id)
+            {
+                ultimo_id = id;
+            }
+        }
+        fclose(arq);
+    }
+    return ultimo_id + 1;
 }

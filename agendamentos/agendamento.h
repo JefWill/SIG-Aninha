@@ -6,3 +6,4 @@ void atualizar_agendamento(void);
 void listar_agendamentos(void);
 void buscar_agendamento_por_cpf(void);
 void excluir_agendamento(void);
+int gerar_novo_id();
