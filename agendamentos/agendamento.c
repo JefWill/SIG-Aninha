@@ -257,30 +257,87 @@ void buscar_agendamento_por_cpf(void)
 
 void excluir_agendamento(void)
 {
-    char cpf[15];
-    char resposta[3];
-    system("clear||cls");
+    FILE *arq_agendamentos;
+    FILE *arq_agendamentos2;
+    char cpf_lido[15];
+    char cpf[15], nome[100], tipo_consulta[20], data[15], horario[10];
+    int id, id_escolhido, encontrado = 0;
 
+    system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
     printf("|                 ✦✧✦✧✦   Excluir Agendamento   ✦✧✦✧✦                    |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(cpf, 15, "Digite o CPF do cliente:");
-    input(resposta, 3, "\nDeseja excluir o agendamento do cliente? (S/N)");
+    input(cpf_lido, 15, "Digite o CPF do cliente:");
 
-    if (resposta[0] == 'S' || resposta[0] == 's')
+    arq_agendamentos = fopen("agendamentos/agendamentos.csv", "rt");
+    if (arq_agendamentos == NULL)
     {
-        printf("\n       Agendamento excluído com sucesso!\n");
-    }
-    else
-    {
-        printf("\n              Exclusão cancelada!\n");
+        printf("Erro ao abrir arquivo de agendamentos!\n");
+        return;
     }
 
-    printf("      >>> Tecle <ENTER> para continuar... <<<\n");
+    printf("\nAgendamentos encontrados:\n");
+    printf("------------------------------------------------\n");
+
+    while (fscanf(arq_agendamentos, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%9[^\n]\n",
+                  &id, cpf, nome, tipo_consulta, data, horario) == 6)
+    {
+        if (strcmp(cpf, cpf_lido) == 0)
+        {
+            encontrado = 1;
+            printf("ID: %d\n", id);
+            printf("CPF: %s\n", cpf);
+            printf("Nome: %s\n", nome);
+            printf("Tipo de Consulta: %s\n", tipo_consulta);
+            printf("Data: %s\n", data);
+            printf("Horário: %s\n", horario);
+            printf("------------------------------------------------\n");
+        }
+    }
+    fclose(arq_agendamentos);
+
+    if (!encontrado)
+    {
+        printf("\nNenhum agendamento encontrado para este CPF!\n");
+        printf(">>> Tecle <ENTER> para continuar... <<<\n");
+        getchar();
+        return;
+    }
+
+    printf("Digite o ID do agendamento que deseja excluir: ");
+    scanf("%d", &id_escolhido);
     getchar();
+
+    arq_agendamentos = fopen("agendamentos/agendamentos.csv", "rt");
+    arq_agendamentos2 = fopen("agendamentos/agendamentos2.csv", "wt");
+
+    if (arq_agendamentos == NULL || arq_agendamentos2 == NULL)
+    {
+        printf("Erro ao manipular arquivos!\n");
+        return;
+    }
+
+    while (fscanf(arq_agendamentos, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%9[^\n]\n",
+                  &id, cpf, nome, tipo_consulta, data, horario) == 6)
+    {
+        if (id != id_escolhido)
+        {
+            fprintf(arq_agendamentos2, "%d;%s;%s;%s;%s;%s\n",
+                    id, cpf, nome, tipo_consulta, data, horario);
+        }
+    }
+
+    fclose(arq_agendamentos);
+    fclose(arq_agendamentos2);
+
+    remove("agendamentos/agendamentos.csv");
+    rename("agendamentos/agendamentos2.csv", "agendamentos/agendamentos.csv");
+
+    printf("\nAgendamento excluído com sucesso!\n");
+    printf(">>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
 }
 
