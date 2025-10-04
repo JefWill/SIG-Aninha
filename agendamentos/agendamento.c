@@ -165,6 +165,8 @@ void atualizar_agendamento(void)
     scanf("%d", &id_escolhido);
     getchar();
 
+    modulo_agendamentos();
+
     arq_agendamentos = fopen("agendamentos/agendamentos.csv", "rt");
     arq_agendamentos2 = fopen("agendamentos/agendamentos2.csv", "wt");
     if (arq_agendamentos == NULL || arq_agendamentos2 == NULL)
@@ -441,4 +443,53 @@ int menu_alterar_agendamento(void)
     opcao = escolha();
 
     return opcao;
+}
+void modulo_alteracao_agend(char *nome, char *tipo_consulta, char *data, char *horario)
+{
+    int opcao;
+    do
+    {
+        opcao = menu_alteracao_agendamento(); // Função que mostra o menu de alteração do agendamento
+
+        switch (opcao)
+        {
+        case 1:
+            input(nome, 100, "Digite o novo nome do cliente: ");
+            printf("\nNome atualizado com sucesso!\n");
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+            break;
+        case 2:
+            input(tipo_consulta, 20, "Digite o novo tipo de consulta (Tarot, Signos, Numerologia): ");
+            printf("\nTipo de consulta atualizado com sucesso!\n");
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+            break;
+        case 3:
+            input(data, 15, "Digite a nova data da consulta (DD/MM/AAAA): ");
+            printf("\nData atualizada com sucesso!\n");
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+            break;
+        case 4:
+            input(horario, 10, "Digite o novo horário da consulta (HH:MM): ");
+            printf("\nHorário atualizado com sucesso!\n");
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+            break;
+        case 0:
+            printf("           Voltando ao menu principal...\n");
+            getchar();
+            break;
+        case -1:
+            printf(">>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+            break;
+        default:
+            printf("                Opção Inexistente!\n");
+            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
+            getchar();
+            break;
+        }
+    } while (opcao != 0);
 }
