@@ -234,6 +234,8 @@ void listar_agendamentos(void)
     char cpf[15];
     char nome[100];
     char tipo_consulta[20];
+    char cpf_funcionario[15];
+    char nome_funcionario[100];
     char data_agendamento[15];
     char horario[10];
     int encontrado = 0;
@@ -254,8 +256,8 @@ void listar_agendamentos(void)
         return;
     }
 
-    while (fscanf(arq_agendamentos, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%9[^\n]\n",
-                  &id, cpf, nome, tipo_consulta, data, horario) == 6)
+    while (fscanf(arq_agendamentos, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%99[^;];%14[^;];%9[^\n]\n",
+                  &id, cpf, nome, tipo_consulta, cpf_funcionario, nome_funcionario, data, horario) == 8)
     {
 
         if (strcmp(data, data_agendamento) == 0)
@@ -270,6 +272,7 @@ void listar_agendamentos(void)
             printf("CPF: %s\n", cpf);
             printf("Nome: %s\n", nome);
             printf("Tipo de consulta: %s\n", tipo_consulta);
+            printf("Funcionário: %s (%s)\n", nome_funcionario, cpf_funcionario);
             printf("Data: %s\n", data);
             printf("Horário: %s\n\n", horario);
             printf("------------------------------------------------\n");
@@ -282,7 +285,6 @@ void listar_agendamentos(void)
     }
 
     printf("      >>> Tecle <ENTER> para continuar... <<<\n");
-    getchar();
     getchar();
 }
 
