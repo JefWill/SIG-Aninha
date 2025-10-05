@@ -415,12 +415,21 @@ int gerar_novo_id()
 {
     FILE *arq = fopen("agendamentos/agendamentos.csv", "rt");
     int id = 0, ultimo_id = 0;
-    char cpf[15], nome[100], tipo_consulta[20], data[15], horario[10];
+    char cpf_cliente[15], nome_cliente[100];
+    char tipo_consulta[20], cpf_funcionario[15], nome_funcionario[100];
+    char data[15], horario[10];
 
     if (arq != NULL)
     {
-        while (fscanf(arq, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%9[^\n]\n",
-                      &id, cpf, nome, tipo_consulta, data, horario) == 6)
+        while (fscanf(arq, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%99[^;];%14[^;];%9[^\n]\n",
+                      &id,
+                      cpf_cliente,
+                      nome_cliente,
+                      tipo_consulta,
+                      cpf_funcionario,
+                      nome_funcionario,
+                      data,
+                      horario) == 8)
         {
             if (id > ultimo_id)
             {
@@ -429,6 +438,7 @@ int gerar_novo_id()
         }
         fclose(arq);
     }
+
     return ultimo_id + 1;
 }
 
