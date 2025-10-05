@@ -1,4 +1,15 @@
 /////  AGENDAMENTO  //////
+typedef struct agendamento Agendamento;
+
+struct agendamento
+{
+    char cpf[15];
+    char nome[50];
+    char tipo_consulta[20];
+    char data[15];
+    char horario[10];
+};
+
 int tela_menu_agendamento(void);
 void modulo_agendamentos(void);
 void agendar_consulta(void);
