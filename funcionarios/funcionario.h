@@ -19,3 +19,4 @@ void excluir_funcionario(void);
 int menu_alteracao_func(void);
 void modulo_alteracao_func(char *nome, char *cargo);
 int validar_funcionario_por_cargo(const char *cpf, const char *tipo_consulta);
+void listar_funcionarios_por_cargo(const char *tipo_consulta, char *cpf_escolhido, char *nome_escolhido);

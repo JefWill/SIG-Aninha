@@ -414,3 +414,65 @@ int validar_funcionario_por_cargo(const char *cpf, const char *tipo_consulta)
     fclose(arq);
     return valido;
 }
+
+void listar_funcionarios_por_cargo(const char *tipo_consulta, char *cpf_escolhido, char *nome_escolhido)
+{
+    FILE *arq = fopen("funcionarios/funcionarios.csv", "rt");
+    if (!arq)
+    {
+        printf("Erro ao abrir arquivo de funcionários!\n");
+        return;
+    }
+
+    char cpf[15], nome[100], cargo[50];
+    int encontrado = 0;
+
+    printf("\nFuncionários disponíveis para %s:\n", tipo_consulta);
+    printf("--------------------------------------------\n");
+
+    while (fscanf(arq, "%14[^;];%99[^;];%49[^\n]\n", cpf, nome, cargo) == 3)
+    {
+        if (strcasecmp(cargo, tipo_consulta) == 0)
+        {
+            encontrado = 1;
+            printf("CPF: %s | Nome: %s\n", cpf, nome);
+        }
+    }
+    fclose(arq);
+
+    if (!encontrado)
+    {
+        printf("\nNenhum funcionário disponível para esse tipo de consulta.\n");
+        printf(">>> Tecle <ENTER> para continuar... <<<\n");
+        getchar();
+        strcpy(cpf_escolhido, "");
+        strcpy(nome_escolhido, "");
+        return;
+    }
+
+    input(cpf_escolhido, 15, "\nDigite o CPF do funcionário escolhido: ");
+
+    if (!validar_funcionario_por_cargo(cpf_escolhido, tipo_consulta))
+    {
+        printf("\nFuncionário inválido para este tipo de consulta!\n");
+        printf(">>> Tecle <ENTER> para continuar... <<<\n");
+        getchar();
+        strcpy(cpf_escolhido, "");
+        strcpy(nome_escolhido, "");
+        return;
+    }
+
+    arq = fopen("funcionarios/funcionarios.csv", "rt");
+    if (!arq)
+        return;
+
+    while (fscanf(arq, "%14[^;];%99[^;];%49[^\n]\n", cpf, nome, cargo) == 3)
+    {
+        if (strcmp(cpf, cpf_escolhido) == 0)
+        {
+            strcpy(nome_escolhido, nome);
+            break;
+        }
+    }
+    fclose(arq);
+}
