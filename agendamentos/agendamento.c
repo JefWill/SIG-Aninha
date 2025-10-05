@@ -292,6 +292,7 @@ void buscar_agendamento_por_cpf(void)
 {
     FILE *arq_agendamentos;
     char cpf[15], cpf_lido[15], nome[100], data[15], horario[10], tipo_consulta[20];
+    char cpf_funcionario[15], nome_funcionario[100];
     int encontrado = 0;
     int id;
 
@@ -312,8 +313,9 @@ void buscar_agendamento_por_cpf(void)
         return;
     }
 
-    while (fscanf(arq_agendamentos, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%9[^\n]\n",
-                  &id, cpf, nome, tipo_consulta, data, horario) == 6)
+    while (fscanf(arq_agendamentos,
+                  "%d;%14[^;];%99[^;];%19[^;];%14[^;];%99[^;];%14[^;];%9[^\n]\n",
+                  &id, cpf, nome, tipo_consulta, cpf_funcionario, nome_funcionario, data, horario) == 8)
 
     {
 
@@ -330,6 +332,7 @@ void buscar_agendamento_por_cpf(void)
             printf("CPF: %s\n", cpf);
             printf("Nome: %s\n", nome);
             printf("Tipo de Consulta: %s\n", tipo_consulta);
+            printf("Funcionário: %s (%s)\n", nome_funcionario, cpf_funcionario);
             printf("Data: %s\n", data);
             printf("Horário: %s\n", horario);
             printf("------------------------------------------------\n");
