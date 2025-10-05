@@ -116,17 +116,16 @@ void agendar_consulta(void)
 void atualizar_agendamento(void)
 {
     FILE *arq_agendamentos, *arq_agendamentos2;
+    char cpf_lido[15];
     char cpf[15], nome[100], tipo_consulta[20], data[15], horario[10];
-    int id, id_escolhido, encontrado = 0;
+    int id, id_escolhido, encontrado = 0, id_encontrado = 0;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                                                                        |\n");
     printf("|                 ✦✧✦✧✦   Atualizar Agendamento   ✦✧✦✧✦                  |\n");
-    printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(cpf, 15, "Digite o CPF do cliente para listar os agendamentos: ");
+    input(cpf_lido, 15, "Digite o CPF do cliente para listar os agendamentos: ");
 
     arq_agendamentos = fopen("agendamentos/agendamentos.csv", "rt");
     if (arq_agendamentos == NULL)
@@ -139,7 +138,7 @@ void atualizar_agendamento(void)
     while (fscanf(arq_agendamentos, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%9[^\n]\n",
                   &id, cpf, nome, tipo_consulta, data, horario) == 6)
     {
-        if (strcmp(cpf, cpf) == 0)
+        if (strcmp(cpf, cpf_lido) == 0)
         {
             encontrado = 1;
             printf("ID: %d\n", id);
@@ -165,10 +164,8 @@ void atualizar_agendamento(void)
     scanf("%d", &id_escolhido);
     getchar();
 
-    modulo_agendamentos();
-
     arq_agendamentos = fopen("agendamentos/agendamentos.csv", "rt");
-    arq_agendamentos2 = fopen("agendamentos/agendamentos2.csv", "wt");
+    arq_agendamentos2 = fopen("agendamentos/temp.csv", "wt");
     if (arq_agendamentos == NULL || arq_agendamentos2 == NULL)
     {
         printf("Erro ao abrir arquivos!\n");
@@ -180,22 +177,31 @@ void atualizar_agendamento(void)
     {
         if (id == id_escolhido)
         {
-            printf("\nDigite os novos dados do agendamento:\n");
-            input(nome, 100, "Nome do cliente: ");
-            input(tipo_consulta, 20, "Tipo de consulta: ");
-            input(data, 15, "Data (DD/MM/AAAA): ");
-            input(horario, 10, "Horário (HH:MM): ");
+            id_encontrado = 1;
+            modulo_alteracao_agend(nome, tipo_consulta, data, horario);
         }
-        fprintf(arq_agendamentos2, "%d;%s;%s;%s;%s;%s\n", id, cpf, nome, tipo_consulta, data, horario);
+
+        fprintf(arq_agendamentos2, "%d;%s;%s;%s;%s;%s\n",
+                id, cpf, nome, tipo_consulta, data, horario);
     }
 
     fclose(arq_agendamentos);
     fclose(arq_agendamentos2);
 
-    remove("agendamentos/agendamentos.csv");
-    rename("agendamentos/agendamentos2.csv", "agendamentos/agendamentos.csv");
+    if (!id_encontrado)
+    {
+        remove("agendamentos/temp.csv");
+        printf("\nNenhum agendamento encontrado com o ID informado!\n");
+        printf(">>> Nenhuma alteração foi feita. <<<\n");
+    }
+    else
+    {
+        remove("agendamentos/agendamentos.csv");
+        rename("agendamentos/temp.csv", "agendamentos/agendamentos.csv");
 
-    printf("\nAgendamento atualizado com sucesso!\n");
+        printf("\nAgendamento atualizado com sucesso!\n");
+    }
+
     printf(">>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
 }
@@ -449,7 +455,7 @@ void modulo_alteracao_agend(char *nome, char *tipo_consulta, char *data, char *h
     int opcao;
     do
     {
-        opcao = menu_alteracao_agendamento(); // Função que mostra o menu de alteração do agendamento
+        opcao = menu_alterar_agendamento();
 
         switch (opcao)
         {
