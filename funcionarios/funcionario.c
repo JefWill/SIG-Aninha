@@ -86,7 +86,7 @@ void cadastrar_funcionario(void)
 
     input(fnc.cpf, 15, "Informe o CPF do funcionário: ");
     input(fnc.nome, 50, "Digite o nome do funcionário: ");
-    input(fnc.cargo, 50, "Digite o cargo do funcionário: ");
+    input(fnc.cargo, 50, "Digite o cargo do funcionário: (Numerologia, Tarot, Signos)");
 
     arq_funcionarios = fopen("funcionarios/funcionarios.csv", "at");
     if (arq_funcionarios == NULL)
@@ -119,7 +119,7 @@ void buscar_funcionario(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(fnc.cpf_lido,15, "Digite o CPF do funcionário para buscar: ");
+    input(fnc.cpf_lido, 15, "Digite o CPF do funcionário para buscar: ");
 
     arq_funcionarios = fopen("funcionarios/funcionarios.csv", "rt");
     if (arq_funcionarios == NULL)
@@ -147,7 +147,8 @@ void buscar_funcionario(void)
     }
     fclose(arq_funcionarios);
 
-    if (!encontrado){
+    if (!encontrado)
+    {
         printf("Funcionário não encontrado!");
         printf("\n\n           Pressione a tecla ENTER para retornar ao menu...");
         getchar();
@@ -198,7 +199,7 @@ void excluir_funcionario(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(fnc.cpf_lido,15, "Informe o CPF do Funcionário que deseja excluir: ");
+    input(fnc.cpf_lido, 15, "Informe o CPF do Funcionário que deseja excluir: ");
     arq_funcionarios = fopen("funcionarios/funcionarios.csv", "rt");
     arq_funcionarios2 = fopen("funcionarios/funcionarios2.csv", "wt");
 
@@ -339,9 +340,7 @@ void alterar_funcionario(void)
     printf("Pressione ENTER para voltar ao menu...");
     getchar();
 }
- 
 
-    
 int menu_alteracao_func(void)
 {
     int opcao;
@@ -393,4 +392,25 @@ void modulo_alteracao_func(char *nome, char *cargo)
             break;
         }
     } while (opcao != 0);
+}
+
+int validar_funcionario_por_cargo(const char *cpf, const char *tipo_consulta)
+{
+    FILE *arq = fopen("funcionarios/funcionarios.csv", "rt");
+    if (!arq)
+        return 0;
+
+    char cpf_arq[15], nome[100], cargo[50];
+    int valido = 0;
+
+    while (fscanf(arq, "%14[^;];%99[^;];%49[^\n]\n", cpf_arq, nome, cargo) == 3)
+    {
+        if (strcasecmp(cargo, tipo_consulta) == 0 && strcmp(cpf_arq, cpf) == 0)
+        {
+            valido = 1;
+            break;
+        }
+    }
+    fclose(arq);
+    return valido;
 }

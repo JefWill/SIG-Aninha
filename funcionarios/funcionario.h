@@ -18,3 +18,4 @@ void alterar_funcionario(void);
 void excluir_funcionario(void);
 int menu_alteracao_func(void);
 void modulo_alteracao_func(char *nome, char *cargo);
+int validar_funcionario_por_cargo(const char *cpf, const char *tipo_consulta);
