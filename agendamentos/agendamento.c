@@ -135,7 +135,8 @@ void atualizar_agendamento(void)
 {
     FILE *arq_agendamentos, *arq_agendamentos2;
     char cpf_lido[15];
-    char cpf[15], nome[100], tipo_consulta[20], data[15], horario[10];
+    char cpf[15], nome[100], tipo_consulta[20], cpf_funcionario[15], nome_funcionario[100];
+    char data[15], horario[10];
     int id, id_escolhido, encontrado = 0, id_encontrado = 0;
 
     system("clear||cls");
@@ -153,8 +154,8 @@ void atualizar_agendamento(void)
     }
 
     printf("\nAgendamentos encontrados:\n------------------------------------------------\n");
-    while (fscanf(arq_agendamentos, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%9[^\n]\n",
-                  &id, cpf, nome, tipo_consulta, data, horario) == 6)
+    while (fscanf(arq_agendamentos, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%99[^;];%14[^;];%9[^\n]\n",
+                  &id, cpf, nome, tipo_consulta, cpf_funcionario, nome_funcionario, data, horario) == 8)
     {
         if (strcmp(cpf, cpf_lido) == 0)
         {
@@ -163,6 +164,7 @@ void atualizar_agendamento(void)
             printf("CPF: %s\n", cpf);
             printf("Nome: %s\n", nome);
             printf("Tipo de consulta: %s\n", tipo_consulta);
+            printf("Funcionário: %s (%s)\n", nome_funcionario, cpf_funcionario);
             printf("Data: %s\n", data);
             printf("Horário: %s\n", horario);
             printf("------------------------------------------------\n");
@@ -190,8 +192,8 @@ void atualizar_agendamento(void)
         return;
     }
 
-    while (fscanf(arq_agendamentos, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%9[^\n]\n",
-                  &id, cpf, nome, tipo_consulta, data, horario) == 6)
+    while (fscanf(arq_agendamentos, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%99[^;];%14[^;];%9[^\n]\n",
+                  &id, cpf, nome, tipo_consulta, cpf_funcionario, nome_funcionario, data, horario) == 8)
     {
         if (id == id_escolhido)
         {
@@ -199,8 +201,8 @@ void atualizar_agendamento(void)
             modulo_alteracao_agend(nome, tipo_consulta, data, horario);
         }
 
-        fprintf(arq_agendamentos2, "%d;%s;%s;%s;%s;%s\n",
-                id, cpf, nome, tipo_consulta, data, horario);
+        fprintf(arq_agendamentos2, "%d;%s;%s;%s;%s;%s;%s;%s\n",
+                id, cpf, nome, tipo_consulta, cpf_funcionario, nome_funcionario, data, horario);
     }
 
     fclose(arq_agendamentos);
