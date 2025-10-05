@@ -6,6 +6,8 @@ struct agendamento
     char cpf[15];
     char nome[50];
     char tipo_consulta[20];
+    char cpf_funcionario[15];
+    char nome_funcionario[50];
     char data[15];
     char horario[10];
 };

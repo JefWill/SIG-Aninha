@@ -4,6 +4,7 @@
 #include <time.h>
 #include "agendamento.h"
 #include "../utilitarios/utilitarios.h"
+#include "../funcionarios/funcionario.h"
 
 //////////////////////////////////////////////
 ///////////// MODULO AGENDAMENTO /////////////
@@ -77,8 +78,11 @@ void modulo_agendamentos(void)
 void agendar_consulta(void)
 {
     FILE *arq_agendamentos;
-    char cpf[15], nome[100], data[15], horario[10], tipo_consulta[20];
+    char cpf[15], nome[100], tipo_consulta[20];
+    char cpf_funcionario[15], nome_funcionario[100];
+    char data[15], horario[10];
     int id;
+
     system("clear||cls");
 
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -90,6 +94,17 @@ void agendar_consulta(void)
     input(cpf, 15, "Digite o CPF do cliente:");
     input(nome, 100, "Digite o nome do cliente:");
     input(tipo_consulta, 20, "Digite qual tipo de consulta deseja (Tarot, Signos, Numerologia):");
+
+    listar_funcionarios_por_cargo(tipo_consulta, cpf_funcionario, nome_funcionario);
+
+    if (strlen(cpf_funcionario) == 0 || strlen(nome_funcionario) == 0)
+    {
+        printf("\nAgendamento cancelado.\n");
+        printf(">>> Tecle <ENTER> para continuar... <<<\n");
+        getchar();
+        return;
+    }
+
     input(data, 15, "Digite a data da consulta (DD/MM/AAAA):");
     input(horario, 10, "Digite o horário da consulta (HH:MM):");
 
@@ -99,11 +114,14 @@ void agendar_consulta(void)
         printf("Erro na criacao do arquivo\n!");
         return;
     }
+
     id = gerar_novo_id();
     fprintf(arq_agendamentos, "%d;", id);
     fprintf(arq_agendamentos, "%s;", cpf);
     fprintf(arq_agendamentos, "%s;", nome);
     fprintf(arq_agendamentos, "%s;", tipo_consulta);
+    fprintf(arq_agendamentos, "%s;", cpf_funcionario);
+    fprintf(arq_agendamentos, "%s;", nome_funcionario);
     fprintf(arq_agendamentos, "%s;", data);
     fprintf(arq_agendamentos, "%s\n", horario);
     fclose(arq_agendamentos);
