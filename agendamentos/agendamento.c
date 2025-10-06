@@ -228,16 +228,11 @@ void atualizar_agendamento(void)
 void listar_agendamentos(void)
 {
     FILE *arq_agendamentos;
+    Agendamento agd;
+    Funcionario fnc;
     int id;
-    char data[15];
-    char cpf[15];
-    char nome[100];
-    char tipo_consulta[20];
-    char cpf_funcionario[15];
-    char nome_funcionario[100];
-    char data_agendamento[15];
-    char horario[10];
     int encontrado = 0;
+    char data_agendamento[15];
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -256,24 +251,24 @@ void listar_agendamentos(void)
     }
 
     while (fscanf(arq_agendamentos, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%99[^;];%14[^;];%9[^\n]\n",
-                  &id, cpf, nome, tipo_consulta, cpf_funcionario, nome_funcionario, data, horario) == 8)
+                  &id, agd.cpf, agd.nome, agd.tipo_consulta, fnc.cpf, fnc.nome, agd.data, agd.horario) == 8)
     {
 
-        if (strcmp(data, data_agendamento) == 0)
+        if (strcmp(agd.data, data_agendamento) == 0)
         {
             if (!encontrado)
             {
-                printf("\nAgendamentos para a data %s:\n", data);
+                printf("\nAgendamentos para a data %s:\n", agd.data);
                 printf("------------------------------------------------\n");
             }
             encontrado = 1;
             printf("ID: %d\n", id);
-            printf("CPF: %s\n", cpf);
-            printf("Nome: %s\n", nome);
-            printf("Tipo de consulta: %s\n", tipo_consulta);
-            printf("Funcionário: %s (%s)\n", nome_funcionario, cpf_funcionario);
-            printf("Data: %s\n", data);
-            printf("Horário: %s\n\n", horario);
+            printf("CPF: %s\n", agd.cpf);
+            printf("Nome: %s\n", agd.nome);
+            printf("Tipo de consulta: %s\n", agd.tipo_consulta);
+            printf("Funcionário: %s (%s)\n", fnc.nome, fnc.cpf);
+            printf("Data: %s\n", agd.data);
+            printf("Horário: %s\n\n", agd.horario);
             printf("------------------------------------------------\n");
         }
     }
