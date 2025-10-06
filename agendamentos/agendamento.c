@@ -348,9 +348,8 @@ void excluir_agendamento(void)
 {
     FILE *arq_agendamentos;
     FILE *arq_agendamentos2;
-    char cpf_lido[15];
-    char cpf[15], nome[100], tipo_consulta[20], data[15], horario[10];
-    char cpf_funcionario[15], nome_funcionario[100];
+    Agendamento agd;
+    Funcionario fnc;
     int id, id_escolhido, encontrado = 0;
 
     system("clear||cls");
@@ -360,7 +359,7 @@ void excluir_agendamento(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(cpf_lido, 15, "Digite o CPF do cliente:");
+    input(agd.cpf_lido, 15, "Digite o CPF do cliente:");
 
     arq_agendamentos = fopen("agendamentos/agendamentos.csv", "rt");
     if (arq_agendamentos == NULL)
@@ -374,18 +373,18 @@ void excluir_agendamento(void)
 
     while (fscanf(arq_agendamentos,
                   "%d;%14[^;];%99[^;];%19[^;];%14[^;];%99[^;];%14[^;];%9[^\n]\n",
-                  &id, cpf, nome, tipo_consulta, cpf_funcionario, nome_funcionario, data, horario) == 8)
+                  &id, agd.cpf, agd.nome, agd.tipo_consulta, fnc.cpf, fnc.nome, agd.data, agd.horario) == 8)
     {
-        if (strcmp(cpf, cpf_lido) == 0)
+        if (strcmp(agd.cpf, agd.cpf_lido) == 0)
         {
             encontrado = 1;
             printf("ID: %d\n", id);
-            printf("CPF: %s\n", cpf);
-            printf("Nome: %s\n", nome);
-            printf("Tipo de Consulta: %s\n", tipo_consulta);
-            printf("Funcionário: %s (%s)\n", nome_funcionario, cpf_funcionario);
-            printf("Data: %s\n", data);
-            printf("Horário: %s\n", horario);
+            printf("CPF: %s\n", agd.cpf);
+            printf("Nome: %s\n", agd.nome);
+            printf("Tipo de Consulta: %s\n", agd.tipo_consulta);
+            printf("Funcionário: %s (%s)\n", fnc.nome, fnc.cpf);
+            printf("Data: %s\n", agd.data);
+            printf("Horário: %s\n", agd.horario);
             printf("------------------------------------------------\n");
         }
     }
@@ -414,12 +413,12 @@ void excluir_agendamento(void)
 
     while (fscanf(arq_agendamentos,
                   "%d;%14[^;];%99[^;];%19[^;];%14[^;];%99[^;];%14[^;];%9[^\n]\n",
-                  &id, cpf, nome, tipo_consulta, cpf_funcionario, nome_funcionario, data, horario) == 8)
+                  &id, agd.cpf, agd.nome, agd.tipo_consulta, fnc.cpf, fnc.nome, agd.data, agd.horario) == 8)
     {
         if (id != id_escolhido)
         {
             fprintf(arq_agendamentos2, "%d;%s;%s;%s;%s;%s;%s;%s\n",
-                    id, cpf, nome, tipo_consulta, cpf_funcionario, nome_funcionario, data, horario);
+                    id, agd.cpf, agd.nome, agd.tipo_consulta, fnc.cpf, fnc.nome, agd.data, agd.horario);
         }
     }
 
