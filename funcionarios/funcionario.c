@@ -4,7 +4,6 @@
 #include <time.h>
 #include "funcionario.h"
 #include "../utilitarios/utilitarios.h"
-#include "../agendamentos/agendamento.h"
 
 //// FUNCIONARIO /////
 int tela_menu_funcionario(void)
@@ -190,6 +189,7 @@ void excluir_funcionario(void)
     FILE *arq_funcionarios;
     FILE *arq_funcionarios2;
     Funcionario fnc;
+
     char opcao;
     int encontrado = 0;
 
@@ -425,19 +425,18 @@ void listar_funcionarios_por_cargo(const char *tipo_consulta, char *cpf_escolhid
         return;
     }
 
-    Funcionario fnc;
-    Agendamento agd;
+    char cpf[15], nome[100], cargo[50];
     int encontrado = 0;
 
-    printf("\nFuncionários disponíveis para %s:\n", agd.tipo_consulta);
+    printf("\nFuncionários disponíveis para %s:\n", tipo_consulta);
     printf("--------------------------------------------\n");
 
-    while (fscanf(arq, "%14[^;];%99[^;];%49[^\n]\n", fnc.cpf, fnc.nome, fnc.cargo) == 3)
+    while (fscanf(arq, "%14[^;];%99[^;];%49[^\n]\n", cpf, nome, cargo) == 3)
     {
-        if (strcasecmp(fnc.cargo, agd.tipo_consulta) == 0)
+        if (strcasecmp(cargo, tipo_consulta) == 0)
         {
             encontrado = 1;
-            printf("CPF: %s | Nome: %s\n", fnc.cpf, fnc.nome);
+            printf("CPF: %s | Nome: %s\n", cpf, nome);
         }
     }
     fclose(arq);
@@ -468,11 +467,11 @@ void listar_funcionarios_por_cargo(const char *tipo_consulta, char *cpf_escolhid
     if (!arq)
         return;
 
-    while (fscanf(arq, "%14[^;];%99[^;];%49[^\n]\n", fnc.cpf, fnc.nome, fnc.cargo) == 3)
+    while (fscanf(arq, "%14[^;];%99[^;];%49[^\n]\n", cpf, nome, cargo) == 3)
     {
-        if (strcmp(fnc.cpf, cpf_escolhido) == 0)
+        if (strcmp(cpf, cpf_escolhido) == 0)
         {
-            strcpy(nome_escolhido, fnc.nome);
+            strcpy(nome_escolhido, nome);
             break;
         }
     }
