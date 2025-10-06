@@ -10,6 +10,7 @@ struct agendamento
     char nome_funcionario[50];
     char data[15];
     char horario[10];
+    char cpf_lido[15];
 };
 
 int tela_menu_agendamento(void);

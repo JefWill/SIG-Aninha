@@ -78,9 +78,8 @@ void modulo_agendamentos(void)
 void agendar_consulta(void)
 {
     FILE *arq_agendamentos;
-    char cpf[15], nome[100], tipo_consulta[20];
-    char cpf_funcionario[15], nome_funcionario[100];
-    char data[15], horario[10];
+    Agendamento agd;
+    Funcionario fnc;
     int id;
 
     system("clear||cls");
@@ -91,13 +90,13 @@ void agendar_consulta(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(cpf, 15, "Digite o CPF do cliente:");
-    input(nome, 100, "Digite o nome do cliente:");
-    input(tipo_consulta, 20, "Digite qual tipo de consulta deseja (Tarot, Signos, Numerologia):");
+    input(agd.cpf, 15, "Digite o CPF do cliente:");
+    input(agd.nome, 100, "Digite o nome do cliente:");
+    input(agd.tipo_consulta, 20, "Digite qual tipo de consulta deseja (Tarot, Signos, Numerologia):");
 
-    listar_funcionarios_por_cargo(tipo_consulta, cpf_funcionario, nome_funcionario);
+    listar_funcionarios_por_cargo(agd.tipo_consulta, fnc.cpf, fnc.nome);
 
-    if (strlen(cpf_funcionario) == 0 || strlen(nome_funcionario) == 0)
+    if (strlen(fnc.cpf) == 0 || strlen(fnc.nome) == 0)
     {
         printf("\nAgendamento cancelado.\n");
         printf(">>> Tecle <ENTER> para continuar... <<<\n");
@@ -105,8 +104,8 @@ void agendar_consulta(void)
         return;
     }
 
-    input(data, 15, "Digite a data da consulta (DD/MM/AAAA):");
-    input(horario, 10, "Digite o horário da consulta (HH:MM):");
+    input(agd.data, 15, "Digite a data da consulta (DD/MM/AAAA):");
+    input(agd.horario, 10, "Digite o horário da consulta (HH:MM):");
 
     arq_agendamentos = fopen("agendamentos/agendamentos.csv", "at");
     if (arq_agendamentos == NULL)
@@ -117,13 +116,13 @@ void agendar_consulta(void)
 
     id = gerar_novo_id();
     fprintf(arq_agendamentos, "%d;", id);
-    fprintf(arq_agendamentos, "%s;", cpf);
-    fprintf(arq_agendamentos, "%s;", nome);
-    fprintf(arq_agendamentos, "%s;", tipo_consulta);
-    fprintf(arq_agendamentos, "%s;", cpf_funcionario);
-    fprintf(arq_agendamentos, "%s;", nome_funcionario);
-    fprintf(arq_agendamentos, "%s;", data);
-    fprintf(arq_agendamentos, "%s\n", horario);
+    fprintf(arq_agendamentos, "%s;", agd.cpf);
+    fprintf(arq_agendamentos, "%s;", agd.nome);
+    fprintf(arq_agendamentos, "%s;", agd.tipo_consulta);
+    fprintf(arq_agendamentos, "%s;", fnc.cpf);
+    fprintf(arq_agendamentos, "%s;", fnc.nome);
+    fprintf(arq_agendamentos, "%s;", agd.data);
+    fprintf(arq_agendamentos, "%s\n", agd.horario);
     fclose(arq_agendamentos);
 
     printf("\n         Consulta agendada com sucesso!\n");
