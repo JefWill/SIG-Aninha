@@ -285,8 +285,8 @@ void listar_agendamentos(void)
 void buscar_agendamento_por_cpf(void)
 {
     FILE *arq_agendamentos;
-    char cpf[15], cpf_lido[15], nome[100], data[15], horario[10], tipo_consulta[20];
-    char cpf_funcionario[15], nome_funcionario[100];
+    Agendamento agd;
+    Funcionario fnc;
     int encontrado = 0;
     int id;
 
@@ -297,7 +297,7 @@ void buscar_agendamento_por_cpf(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(cpf_lido, 15, "Digite o CPF do cliente para buscar: ");
+    input(agd.cpf_lido, 15, "Digite o CPF do cliente para buscar: ");
 
     arq_agendamentos = fopen("agendamentos/agendamentos.csv", "rt");
 
@@ -309,26 +309,26 @@ void buscar_agendamento_por_cpf(void)
 
     while (fscanf(arq_agendamentos,
                   "%d;%14[^;];%99[^;];%19[^;];%14[^;];%99[^;];%14[^;];%9[^\n]\n",
-                  &id, cpf, nome, tipo_consulta, cpf_funcionario, nome_funcionario, data, horario) == 8)
+                  &id, agd.cpf, agd.nome, agd.tipo_consulta, fnc.cpf, fnc.nome, agd.data, agd.horario) == 8)
 
     {
 
-        if (strcmp(cpf, cpf_lido) == 0)
+        if (strcmp(agd.cpf, agd.cpf_lido) == 0)
         {
             if (!encontrado)
             {
-                printf("\nAgendamentos do CPF %s encontrado!\n", cpf_lido);
+                printf("\nAgendamentos do CPF %s encontrado!\n", agd.cpf_lido);
                 printf("------------------------------------------------\n");
             }
 
             encontrado = 1;
             printf("ID: %d\n", id);
-            printf("CPF: %s\n", cpf);
-            printf("Nome: %s\n", nome);
-            printf("Tipo de Consulta: %s\n", tipo_consulta);
-            printf("Funcionário: %s (%s)\n", nome_funcionario, cpf_funcionario);
-            printf("Data: %s\n", data);
-            printf("Horário: %s\n", horario);
+            printf("CPF: %s\n", agd.cpf);
+            printf("Nome: %s\n", agd.nome);
+            printf("Tipo de Consulta: %s\n", agd.tipo_consulta);
+            printf("Funcionário: %s (%s)\n", fnc.nome, fnc.cpf);
+            printf("Data: %s\n", agd.data);
+            printf("Horário: %s\n", agd.horario);
             printf("------------------------------------------------\n");
         }
     }
