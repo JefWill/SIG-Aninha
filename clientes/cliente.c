@@ -160,7 +160,7 @@ void buscar_cliente(void)
 void listar_clientes(void)
 {
     FILE *arq_clientes;
-    Cliente clt;
+    Cliente *clt;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -169,20 +169,25 @@ void listar_clientes(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
+    clt = (Cliente *)malloc(sizeof(Cliente));
+
     printf("Lista de clientes: \n");
     printf("---------------------------------------\n");
-    arq_clientes = fopen("clientes/clientes.csv", "rt");
+    arq_clientes = fopen("clientes/clientes.dat", "rb");
 
-    while (fscanf(arq_clientes, "%[^;];%[^;];%[^;];%[^\n]\n", clt.cpf, clt.nome, clt.data_nascimento, clt.telefone) == 4)
+    while (fread(clt, sizeof(Cliente), 1, arq_clientes))
     {
-        printf("CPF: %s\n", clt.cpf);
-        printf("Nome: %s\n", clt.nome);
-        printf("Data de Nascimento: %s\n", clt.data_nascimento);
-        printf("Telefone: %s\n", clt.telefone);
+        printf("CPF: %s\n", clt->cpf);
+        printf("Nome: %s\n", clt->nome);
+        printf("Data de Nascimento: %s\n", clt->data_nascimento);
+        printf("Telefone: %s\n", clt->telefone);
+        printf("Status: %d\n", clt->status);
         printf("---------------------------------------\n");
     }
 
     fclose(arq_clientes);
+    free(clt);
+
     printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
 }
