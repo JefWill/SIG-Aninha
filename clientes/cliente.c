@@ -115,6 +115,7 @@ void buscar_cliente(void)
     FILE *arq_clientes;
     Cliente clt;
     int encontrado = 0;
+    char cpf_lido[15];
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -123,7 +124,7 @@ void buscar_cliente(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(clt.cpf_lido, 15, "Digite o CPF do cliente para buscar: ");
+    input(cpf_lido, 15, "Digite o CPF do cliente para buscar: ");
 
     arq_clientes = fopen("clientes/clientes.csv", "rt");
     if (arq_clientes == NULL)
@@ -136,7 +137,7 @@ void buscar_cliente(void)
     while (fscanf(arq_clientes, "%[^;];%[^;];%[^;];%[^\n]\n",
                   clt.cpf, clt.nome, clt.data_nascimento, clt.telefone) == 4)
     {
-        if (strcmp(clt.cpf, clt.cpf_lido) == 0)
+        if (strcmp(clt.cpf, cpf_lido) == 0)
         {
             encontrado = 1;
             printf("\nCliente com CPF %s encontrado!\n", clt.cpf);
@@ -199,6 +200,7 @@ void excluir_cliente(void)
     Cliente clt;
     char opcao;
     int encontrado = 0;
+    char cpf_lido[15];
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -207,7 +209,7 @@ void excluir_cliente(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(clt.cpf_lido, 15, "Informe o CPF do cliente que deseja excluir: ");
+    input(cpf_lido, 15, "Informe o CPF do cliente que deseja excluir: ");
     arq_clientes = fopen("clientes/clientes.csv", "rt");
     arq_clientes2 = fopen("clientes/clientes2.csv", "wt");
 
@@ -221,7 +223,7 @@ void excluir_cliente(void)
     while (fscanf(arq_clientes, "%14[^;];%49[^;];%11[^;];%19[^\n]\n",
                   clt.cpf, clt.nome, clt.data_nascimento, clt.telefone) == 4)
     {
-        if (strcmp(clt.cpf, clt.cpf_lido) == 0)
+        if (strcmp(clt.cpf, cpf_lido) == 0)
         {
             encontrado = 1;
             printf("\nCliente com CPF %s encontrado!\n", clt.cpf);
@@ -280,6 +282,7 @@ void alterar_cliente(void)
     Cliente clt;
     char opcao;
     int encontrado = 0;
+    char cpf_lido[15];
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -288,7 +291,7 @@ void alterar_cliente(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(clt.cpf_lido, 15, "Informe o CPF:");
+    input(cpf_lido, 15, "Informe o CPF:");
 
     arq_clientes = fopen("clientes/clientes.csv", "rt");
     arq_clientes2 = fopen("clientes/clientes2.csv", "wt");
@@ -303,7 +306,7 @@ void alterar_cliente(void)
     while (fscanf(arq_clientes, "%14[^;];%49[^;];%11[^;];%19[^\n]\n",
                   clt.cpf, clt.nome, clt.data_nascimento, clt.telefone) == 4)
     {
-        if (strcmp(clt.cpf, clt.cpf_lido) == 0)
+        if (strcmp(clt.cpf, cpf_lido) == 0)
         {
             encontrado = 1;
             printf("\nCliente com CPF %s encontrado!\n", clt.cpf);
@@ -411,4 +414,19 @@ void modulo_alteracao(char *nome, char *data_nascimento, char *telefone)
             break;
         }
     } while (opcao != 0);
+}
+
+Cliente *preenche_cliente(void)
+{
+    Cliente *clt;
+    clt = (Cliente *)malloc(sizeof(Cliente));
+    input(clt->cpf, 15, "Digite o CPF: ");
+
+    input(clt->nome, 50, "Digite o nome: ");
+
+    input(clt->data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
+
+    input(clt->telefone, 20, "Digite o telefone: ");
+    clt->status = 1;
+    return clt;
 }
