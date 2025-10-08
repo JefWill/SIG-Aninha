@@ -140,6 +140,7 @@ void buscar_cliente(void)
             printf("Nome: %s\n", clt->nome);
             printf("Data de Nascimento: %s\n", clt->data_nascimento);
             printf("Telefone: %s\n", clt->telefone);
+            printf("Status: %d\n", clt->status);
             printf("\nPressione enter para continuar...");
             fclose(arq_clientes);
             free(clt);
@@ -198,9 +199,9 @@ void excluir_cliente(void)
 {
     FILE *arq_clientes;
     FILE *arq_clientes2;
-    Cliente clt;
+    Cliente *clt;
     char opcao;
-    int encontrado = 0;
+    int encontrado;
     char cpf_lido[15];
 
     system("clear||cls");
@@ -210,64 +211,53 @@ void excluir_cliente(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
+    clt = (Cliente *)malloc(sizeof(Cliente));
     input(cpf_lido, 15, "Informe o CPF do cliente que deseja excluir: ");
-    arq_clientes = fopen("clientes/clientes.csv", "rt");
-    arq_clientes2 = fopen("clientes/clientes2.csv", "wt");
 
-    if (arq_clientes == NULL || arq_clientes2 == NULL)
+    encontrado = 0;
+    arq_clientes = fopen("clientes/clientes.dat", "r+b");
+
+    if (arq_clientes == NULL)
     {
         printf("Erro na criacao do arquivo\n!");
         getchar();
         return;
     }
 
-    while (fscanf(arq_clientes, "%14[^;];%49[^;];%11[^;];%19[^\n]\n",
-                  clt.cpf, clt.nome, clt.data_nascimento, clt.telefone) == 4)
+    while (fread(clt, sizeof(Cliente), 1, arq_clientes) && (!encontrado))
     {
-        if (strcmp(clt.cpf, cpf_lido) == 0)
+        if (strcmp(clt->cpf, cpf_lido) == 0)
         {
             encontrado = 1;
-            printf("\nCliente com CPF %s encontrado!\n", clt.cpf);
-            printf("CPF: %s\n", clt.cpf);
-            printf("Nome: %s\n", clt.nome);
-            printf("Data de Nascimento: %s\n", clt.data_nascimento);
-            printf("Telefone: %s\n", clt.telefone);
+            printf("\nCliente com CPF %s encontrado!\n", clt->cpf);
+            printf("CPF: %s\n", clt->cpf);
+            printf("Nome: %s\n", clt->nome);
+            printf("Data de Nascimento: %s\n", clt->data_nascimento);
+            printf("Telefone: %s\n", clt->telefone);
 
-            printf("\nConfirma exclusão do cliente com CPF %s? (S/N): ", clt.cpf);
+            printf("\nConfirma exclusão do cliente com CPF %s? (S/N): ", clt->cpf);
             scanf(" %c", &opcao);
             getchar();
 
             if (opcao == 'S' || opcao == 's')
             {
-                printf("\ncliente com CPF %s excluído com sucesso!\n", clt.cpf);
+                clt->status = 0;
+                fseek(arq_clientes, (-1) * sizeof(Cliente), SEEK_CUR);
+                fwrite(clt, sizeof(Cliente), 1, arq_clientes);
+                printf("\nCliente com CPF %s excluído com sucesso!\n", clt->cpf);
             }
             else
             {
                 printf("Exclusão Cancelada!");
-                fprintf(arq_clientes2, "%s;", clt.cpf);
-                fprintf(arq_clientes2, "%s;", clt.nome);
-                fprintf(arq_clientes2, "%s;", clt.data_nascimento);
-                fprintf(arq_clientes2, "%s\n", clt.telefone);
+                fseek(arq_clientes, (-1) * sizeof(Cliente), SEEK_CUR);
+                fwrite(clt, sizeof(Cliente), 1, arq_clientes);
             }
-        }
-        else
-        {
-            fprintf(arq_clientes2, "%s;", clt.cpf);
-            fprintf(arq_clientes2, "%s;", clt.nome);
-            fprintf(arq_clientes2, "%s;", clt.data_nascimento);
-            fprintf(arq_clientes2, "%s\n", clt.telefone);
         }
     }
 
     fclose(arq_clientes);
-    fclose(arq_clientes2);
-
-    if (encontrado)
-    {
-        remove("clientes/clientes.csv");
-        rename("clientes/clientes2.csv", "clientes/clientes.csv");
-    }
-    else
+    free(clt);
+    if (!encontrado)
     {
         printf("CPF não encontrado!");
     }
