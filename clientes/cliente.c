@@ -107,7 +107,7 @@ void cadastrar_cliente(void)
 void buscar_cliente(void)
 {
     FILE *arq_clientes;
-    Cliente clt;
+    Cliente *clt;
     int encontrado = 0;
     char cpf_lido[15];
 
@@ -118,9 +118,11 @@ void buscar_cliente(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
+    clt = (Cliente *)malloc(sizeof(Cliente));
+
     input(cpf_lido, 15, "Digite o CPF do cliente para buscar: ");
 
-    arq_clientes = fopen("clientes/clientes.csv", "rt");
+    arq_clientes = fopen("clientes/clientes.dat", "rb");
     if (arq_clientes == NULL)
     {
         printf("Erro na abertura do arquivo!\n");
@@ -128,19 +130,19 @@ void buscar_cliente(void)
         return;
     }
 
-    while (fscanf(arq_clientes, "%[^;];%[^;];%[^;];%[^\n]\n",
-                  clt.cpf, clt.nome, clt.data_nascimento, clt.telefone) == 4)
+    while (fread(clt, sizeof(Cliente), 1, arq_clientes))
     {
-        if (strcmp(clt.cpf, cpf_lido) == 0)
+        if ((strcmp(cpf_lido, clt->cpf) == 0))
         {
             encontrado = 1;
-            printf("\nCliente com CPF %s encontrado!\n", clt.cpf);
-            printf("CPF: %s\n", clt.cpf);
-            printf("Nome: %s\n", clt.nome);
-            printf("Data de Nascimento: %s\n", clt.data_nascimento);
-            printf("Telefone: %s\n", clt.telefone);
+            printf("\nCliente com CPF %s encontrado!\n", clt->cpf);
+            printf("CPF: %s\n", clt->cpf);
+            printf("Nome: %s\n", clt->nome);
+            printf("Data de Nascimento: %s\n", clt->data_nascimento);
+            printf("Telefone: %s\n", clt->telefone);
             printf("\nPressione enter para continuar...");
             fclose(arq_clientes);
+            free(clt);
             getchar();
 
             return;
@@ -151,7 +153,7 @@ void buscar_cliente(void)
 
     if (!encontrado)
     {
-        printf("\nCliente nao encontrado!\n");
+        printf("\nCliente não encontrado!\n");
         printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
         getchar();
     }
