@@ -87,6 +87,8 @@ void cadastrar_cliente(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
+    clt = (Cliente *)malloc(sizeof(Cliente));
+
     arq_clientes = fopen("clientes/clientes.dat", "a+b");
     if (arq_clientes == NULL)
     {
