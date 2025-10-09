@@ -96,12 +96,13 @@ void cadastrar_funcionario(void)
     input(fnc->cpf, 15, "Informe o CPF do funcionário: ");
     input(fnc->nome, 50, "Digite o nome do funcionário: ");
     input(fnc->cargo, 50, "Digite o cargo do funcionário: (Numerologia, Tarot, Signos)");
+    fnc->status = 1;
 
     fwrite(fnc, sizeof(Funcionario), 1, arq_funcionarios);
     fclose(arq_funcionarios);
 
     printf("funcionário cadastrado com sucesso!\n");
-    printf("Nome: %s.\nCPF: %s.\nCargo: %s.", fnc->nome, fnc->cpf, fnc->cargo);
+    printf("Nome: %s.\nCPF: %s.\nCargo: %s. \nStatus: %d.", fnc->nome, fnc->cpf, fnc->cargo, fnc->status);
 
     free(fnc);
 
@@ -143,7 +144,8 @@ void buscar_funcionario(void)
             printf("\nFuncionário com CPF %s encontrado!\n", fnc->cpf);
             printf("CPF: %s\n", fnc->cpf);
             printf("Nome: %s\n", fnc->nome);
-            printf("Cargo: %s\n", fnc->cargo);
+            printf("Status: %d\n", fnc->status);
+
             fclose(arq_funcionarios);
             free(fnc);
             printf("Pressione enter para continuar...");
@@ -185,6 +187,7 @@ void listar_funcionarios(void)
         printf("CPF: %s\n", fnc->cpf);
         printf("Nome: %s\n", fnc->nome);
         printf("Cargo: %s\n", fnc->cargo);
+        printf("Status: %d\n", fnc->status);
         printf("------------------------------------\n");
     }
 
@@ -198,8 +201,7 @@ void listar_funcionarios(void)
 void excluir_funcionario(void)
 {
     FILE *arq_funcionarios;
-    FILE *arq_funcionarios2;
-    Funcionario fnc;
+    Funcionario* fnc;
     char cpf_lido[15];
     char opcao;
     int encontrado = 0;
@@ -211,66 +213,56 @@ void excluir_funcionario(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(cpf_lido, 15, "Informe o CPF do Funcionário que deseja excluir: ");
-    arq_funcionarios = fopen("funcionarios/funcionarios.csv", "rt");
-    arq_funcionarios2 = fopen("funcionarios/funcionarios2.csv", "wt");
+    fnc = (Funcionario*) malloc(sizeof(Funcionario));
 
-    if (arq_funcionarios == NULL || arq_funcionarios2 == NULL)
+    input(cpf_lido, 15, "Informe o CPF do Funcionário que deseja excluir: ");
+    encontrado = 0;
+    arq_funcionarios = fopen("funcionarios/funcionarios.dat", "r+b");
+
+    if (arq_funcionarios == NULL)
     {
         printf("Erro na abertura do arquivo!\n");
         getchar();
         return;
     }
 
-    while (fscanf(arq_funcionarios, "%14[^;];%49[^;];%49[^\n]\n",
-                  fnc.cpf, fnc.nome, fnc.cargo) == 3)
+    while (fread(fnc, sizeof(Funcionario), 1, arq_funcionarios) && (!encontrado))
     {
-        if (strcmp(fnc.cpf, cpf_lido) == 0)
+        if ((strcmp(fnc->cpf, cpf_lido) == 0) && (fnc->status == 1))
         {
             encontrado = 1;
-            printf("\nFuncionário com CPF %s encontrado!\n", fnc.cpf);
-            printf("CPF: %s\n", fnc.cpf);
-            printf("Nome: %s\n", fnc.nome);
-            printf("Cargo: %s\n", fnc.cargo);
+            printf("\nFuncionário com CPF %s encontrado!\n", fnc->cpf);
+            printf("CPF: %s\n", fnc->cpf);
+            printf("Nome: %s\n", fnc->nome);
+            printf("Cargo: %s\n", fnc->cargo);
 
-            printf("\nConfirma exclusão do Funcionário com CPF %s? (S/N): ", fnc.cpf);
+            printf("\nConfirma exclusão do Funcionário com CPF %s? (S/N): ", fnc->cpf);
             scanf(" %c", &opcao);
             getchar();
 
             if (opcao == 'S' || opcao == 's')
             {
-                printf("\nFuncionário com CPF %s excluído com sucesso!\n", fnc.cpf);
+                fnc->status = 0;
+                fseek(arq_funcionarios, (-1) *sizeof(Funcionario), SEEK_CUR);
+                fwrite(fnc, sizeof(Funcionario), 1, arq_funcionarios);
+                printf("\nFuncionário com CPF %s excluído com sucesso!\n", fnc->cpf);
             }
             else
             {
                 printf("Exclusão Cancelada!\n");
-                fprintf(arq_funcionarios2, "%s;", fnc.cpf);
-                fprintf(arq_funcionarios2, "%s;", fnc.nome);
-                fprintf(arq_funcionarios2, "%s\n", fnc.cargo);
             }
-        }
-        else
-        {
-            fprintf(arq_funcionarios2, "%s;", fnc.cpf);
-            fprintf(arq_funcionarios2, "%s;", fnc.nome);
-            fprintf(arq_funcionarios2, "%s\n", fnc.cargo);
+            break;
         }
     }
 
     fclose(arq_funcionarios);
-    fclose(arq_funcionarios2);
+    free(fnc);
 
-    if (encontrado)
+    if (!encontrado)
     {
-        remove("funcionarios/funcionarios.csv");
-        rename("funcionarios/funcionarios2.csv", "funcionarios/funcionarios.csv");
+        printf("CPF não encontrado!");
     }
-    else
-    {
-        remove("funcionarios/funcionarios2.csv");
-        printf("CPF não encontrado!\n");
-    }
-
+    
     printf("\n\n           Pressione a tecla ENTER para retornar ao menu...");
     getchar();
 }
