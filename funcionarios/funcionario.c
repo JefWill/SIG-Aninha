@@ -93,10 +93,7 @@ void cadastrar_funcionario(void)
         return;
     }
 
-    input(fnc->cpf, 15, "Informe o CPF do funcionário: ");
-    input(fnc->nome, 50, "Digite o nome do funcionário: ");
-    input(fnc->cargo, 50, "Digite o cargo do funcionário: (Numerologia, Tarot, Signos)");
-    fnc->status = 1;
+    fnc = preenche_funcionario();
 
     fwrite(fnc, sizeof(Funcionario), 1, arq_funcionarios);
     fclose(arq_funcionarios);
@@ -470,4 +467,18 @@ void listar_funcionarios_por_cargo(const char *tipo_consulta, char *cpf_escolhid
         }
     }
     fclose(arq);
+}
+
+Funcionario *preenche_funcionario(void)
+{
+    Funcionario *fnc;
+    fnc = (Funcionario *)malloc(sizeof(Funcionario));
+    input(fnc->cpf, 15, "Digite o CPF: ");
+
+    input(fnc->nome, 50, "Digite o nome: ");
+
+    input(fnc->cargo, 50, "Digite o cargo do funcionário: (Numerologia, Tarot, Signos)");
+
+    fnc->status = 1;
+    return fnc;
 }
