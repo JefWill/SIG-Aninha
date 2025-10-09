@@ -112,7 +112,7 @@ void cadastrar_funcionario(void)
 void buscar_funcionario(void)
 {
     FILE *arq_funcionarios;
-    Funcionario fnc;
+    Funcionario* fnc;
     char cpf_lido[15];
     int encontrado = 0;
 
@@ -123,28 +123,31 @@ void buscar_funcionario(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
+    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+
     input(cpf_lido, 15, "Digite o CPF do funcionário para buscar: ");
 
-    arq_funcionarios = fopen("funcionarios/funcionarios.csv", "rt");
+    arq_funcionarios = fopen("funcionarios/funcionarios.dat", "rb");
+
     if (arq_funcionarios == NULL)
     {
         printf("Erro na criacao do arquivo\n!");
         return;
     }
 
-    while (fscanf(arq_funcionarios, "%[^;];%[^;];%[^\n]\n",
-                  fnc.cpf, fnc.nome, fnc.cargo) == 3)
+    while (fread(fnc, sizeof(Funcionario), 1, arq_funcionarios))
     {
-        if (strcmp(fnc.cpf, cpf_lido) == 0)
+        if (strcmp(fnc->cpf, cpf_lido) == 0)
         {
             encontrado = 1;
-            printf("\nFuncionário com CPF %s encontrado!\n", fnc.cpf);
-            printf("CPF: %s\n", fnc.cpf);
-            printf("Nome: %s\n", fnc.nome);
-            printf("Cargo: %s\n", fnc.cargo);
+            printf("\nFuncionário com CPF %s encontrado!\n", fnc->cpf);
+            printf("CPF: %s\n", fnc->cpf);
+            printf("Nome: %s\n", fnc->nome);
+            printf("Cargo: %s\n", fnc->cargo);
+            fclose(arq_funcionarios);
+            free(fnc);
             printf("Pressione enter para continuar...");
             getchar();
-            fclose(arq_funcionarios);
 
             return;
         }
@@ -187,7 +190,7 @@ void listar_funcionarios(void)
 
     fclose(arq_funcionarios);
     free(fnc);
-    
+
     printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
 }
