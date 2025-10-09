@@ -138,7 +138,7 @@ void buscar_funcionario(void)
 
     while (fread(fnc, sizeof(Funcionario), 1, arq_funcionarios))
     {
-        if (strcmp(fnc->cpf, cpf_lido) == 0)
+        if (strcmp(cpf_lido, fnc->cpf) == 0)
         {
             encontrado = 1;
             printf("\nFuncionário com CPF %s encontrado!\n", fnc->cpf);
@@ -262,7 +262,7 @@ void excluir_funcionario(void)
     {
         printf("CPF não encontrado!");
     }
-    
+
     printf("\n\n           Pressione a tecla ENTER para retornar ao menu...");
     getchar();
 }
@@ -270,8 +270,7 @@ void excluir_funcionario(void)
 void alterar_funcionario(void)
 {
     FILE *arq_funcionarios;
-    FILE *arq_funcionarios2;
-    Funcionario fnc;
+    Funcionario* fnc;
     char cpf_lido[15];
     char opcao;
     int encontrado = 0;
@@ -282,66 +281,57 @@ void alterar_funcionario(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
+    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+
     input(cpf_lido, 15, "Informe o CPF do Funcionário que deseja alterar: ");
 
-    arq_funcionarios = fopen("funcionarios/funcionarios.csv", "rt");
-    arq_funcionarios2 = fopen("funcionarios/funcionarios2.csv", "wt");
+    arq_funcionarios = fopen("funcionarios/funcionarios.dat", "r+b");
 
-    if (arq_funcionarios == NULL || arq_funcionarios2 == NULL)
+    if (arq_funcionarios == NULL)
     {
         printf("Erro na abertura do arquivo!\n");
         getchar();
         return;
     }
 
-    while (fscanf(arq_funcionarios, "%14[^;];%49[^;];%49[^\n]\n",
-                  fnc.cpf, fnc.nome, fnc.cargo) == 3)
+    while (fread(fnc, sizeof(Funcionario), 1, arq_funcionarios) && (!encontrado))
     {
-        if (strcmp(fnc.cpf, cpf_lido) == 0)
+        if (strcmp(fnc->cpf, cpf_lido) == 0)
         {
             encontrado = 1;
-            printf("\nFuncionário com CPF %s encontrado!\n", fnc.cpf);
-            printf("CPF: %s\n", fnc.cpf);
-            printf("Nome: %s\n", fnc.nome);
-            printf("Cargo: %s\n", fnc.cargo);
+            printf("\nFuncionário com CPF %s encontrado!\n", fnc->cpf);
+            printf("CPF: %s\n", fnc->cpf);
+            printf("Nome: %s\n", fnc->nome);
+            printf("Cargo: %s\n", fnc->cargo);
+            printf("Status: %d\n", fnc->status);
 
-            printf("\nConfirma alteração do funcionário com CPF %s? (S/N): ", fnc.cpf);
+            printf("\nConfirma alteração do funcionário com CPF %s? (S/N): ", fnc->cpf);
             scanf(" %c", &opcao);
             getchar();
 
             if (opcao == 'S' || opcao == 's')
             {
-                modulo_alteracao_func(fnc.nome, fnc.cargo);
-
-                fprintf(arq_funcionarios2, "%s;%s;%s\n", fnc.cpf, fnc.nome, fnc.cargo);
-                printf("\nInformações do Funcionário com CPF %s alteradas com sucesso!\n", fnc.cpf);
+                modulo_alteracao_func(fnc->nome, fnc->cargo);
+                fseek(arq_funcionarios, (-1) *sizeof(Funcionario), SEEK_CUR);
+                fwrite(fnc, sizeof(Funcionario), 1, arq_funcionarios);
+                printf("\nInformações do Funcionário com CPF %s alteradas com sucesso!\n", fnc->cpf);
             }
             else
             {
                 printf("\nAlteração Cancelada!\n");
-                fprintf(arq_funcionarios2, "%s;%s;%s\n", fnc.cpf, fnc.nome, fnc.cargo);
             }
-        }
-        else
-        {
-            fprintf(arq_funcionarios2, "%s;%s;%s\n", fnc.cpf, fnc.nome, fnc.cargo);
+            break;
         }
     }
 
     fclose(arq_funcionarios);
-    fclose(arq_funcionarios2);
+    free(fnc);
 
-    if (encontrado)
+    if (!encontrado)
     {
-        remove("funcionarios/funcionarios.csv");
-        rename("funcionarios/funcionarios2.csv", "funcionarios/funcionarios.csv");
-    }
-    else
-    {
-        remove("funcionarios/funcionarios2.csv");
         printf("CPF não encontrado!\n");
     }
-
+    
     printf("Pressione ENTER para voltar ao menu...");
     getchar();
 }
@@ -377,7 +367,7 @@ void modulo_alteracao_func(char *nome, char *cargo)
             getchar();
             break;
         case 2:
-            input(cargo, 50, "Digite o cargo: ");
+            input(cargo, 50, "Digite o cargo do funcionário: (Numerologia, Tarot, Signos)");
             printf("\nCargo atualizado com sucesso!\n");
             printf(">>> Tecle <ENTER> para continuar... <<<\n");
             getchar();
