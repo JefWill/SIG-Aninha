@@ -198,7 +198,6 @@ void listar_clientes(void)
 void excluir_cliente(void)
 {
     FILE *arq_clientes;
-    FILE *arq_clientes2;
     Cliente *clt;
     char opcao;
     int encontrado;
@@ -269,8 +268,7 @@ void excluir_cliente(void)
 void alterar_cliente(void)
 {
     FILE *arq_clientes;
-    FILE *arq_clientes2;
-    Cliente clt;
+    Cliente *clt;
     char opcao;
     int encontrado = 0;
     char cpf_lido[15];
@@ -282,64 +280,54 @@ void alterar_cliente(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
+    clt = (Cliente *)malloc(sizeof(Cliente));
     input(cpf_lido, 15, "Informe o CPF:");
 
-    arq_clientes = fopen("clientes/clientes.csv", "rt");
-    arq_clientes2 = fopen("clientes/clientes2.csv", "wt");
+    arq_clientes = fopen("clientes/clientes.dat", "r+b");
 
-    if (arq_clientes == NULL || arq_clientes2 == NULL)
+    if (arq_clientes == NULL)
     {
         printf("Erro na abertura do arquivo!\n");
         getchar();
         return;
     }
 
-    while (fscanf(arq_clientes, "%14[^;];%49[^;];%11[^;];%19[^\n]\n",
-                  clt.cpf, clt.nome, clt.data_nascimento, clt.telefone) == 4)
+    while (fread(clt, sizeof(Cliente), 1, arq_clientes) && (!encontrado))
     {
-        if (strcmp(clt.cpf, cpf_lido) == 0)
+        if (strcmp(clt->cpf, cpf_lido) == 0)
         {
             encontrado = 1;
-            printf("\nCliente com CPF %s encontrado!\n", clt.cpf);
-            printf("CPF: %s\n", clt.cpf);
-            printf("Nome: %s\n", clt.nome);
-            printf("Data de Nascimento: %s\n", clt.data_nascimento);
-            printf("Telefone: %s\n", clt.telefone);
+            printf("\nCliente com CPF %s encontrado!\n", clt->cpf);
+            printf("CPF: %s\n", clt->cpf);
+            printf("Nome: %s\n", clt->nome);
+            printf("Data de Nascimento: %s\n", clt->data_nascimento);
+            printf("Telefone: %s\n", clt->telefone);
+            printf("Status: %d\n", clt->status);
 
-            printf("\nConfirma alteração do cliente com CPF %s? (S/N): ", clt.cpf);
+            printf("\nConfirma alteração do cliente com CPF %s? (S/N): ", clt->cpf);
             scanf(" %c", &opcao);
             getchar();
 
             if (opcao == 'S' || opcao == 's')
             {
-                modulo_alteracao(clt.nome, clt.data_nascimento, clt.telefone);
-
-                fprintf(arq_clientes2, "%s;%s;%s;%s\n", clt.cpf, clt.nome, clt.data_nascimento, clt.telefone);
-                printf("\nInformações do Cliente com CPF %s alteradas com sucesso!\n", clt.cpf);
+                modulo_alteracao(clt->nome, clt->data_nascimento, clt->telefone);
+                fseek(arq_clientes, (-1) * sizeof(Cliente), SEEK_CUR);
+                fwrite(clt, sizeof(Cliente), 1, arq_clientes);
+                printf("\nInformações do Cliente com CPF %s alteradas com sucesso!\n", clt->cpf);
             }
             else
             {
                 printf("\nAlteração Cancelada!\n");
-                fprintf(arq_clientes2, "%s;%s;%s;%s\n", clt.cpf, clt.nome, clt.data_nascimento, clt.telefone);
             }
-        }
-        else
-        {
-            fprintf(arq_clientes2, "%s;%s;%s;%s\n", clt.cpf, clt.nome, clt.data_nascimento, clt.telefone);
+            break;
         }
     }
 
     fclose(arq_clientes);
-    fclose(arq_clientes2);
+    free(clt);
 
-    if (encontrado)
+    if (!encontrado)
     {
-        remove("clientes/clientes.csv");
-        rename("clientes/clientes2.csv", "clientes/clientes.csv");
-    }
-    else
-    {
-        remove("clientes/clientes2.csv");
         printf("CPF não encontrado!\n");
     }
 
