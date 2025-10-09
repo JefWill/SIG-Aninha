@@ -99,10 +99,12 @@ void cadastrar_funcionario(void)
 
     fwrite(fnc, sizeof(Funcionario), 1, arq_funcionarios);
     fclose(arq_funcionarios);
-    free(fnc);
 
     printf("funcionário cadastrado com sucesso!\n");
     printf("Nome: %s.\nCPF: %s.\nCargo: %s.", fnc->nome, fnc->cpf, fnc->cargo);
+
+    free(fnc);
+
     printf("\nPressione Enter para continuar");
     getchar();
 }
@@ -160,7 +162,7 @@ void buscar_funcionario(void)
 void listar_funcionarios(void)
 {
     FILE *arq_funcionarios;
-    Funcionario fnc;
+    Funcionario* fnc;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -169,19 +171,23 @@ void listar_funcionarios(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
+    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+
     printf("Lista de funcionários: \n");
     printf("------------------------------------\n");
-    arq_funcionarios = fopen("funcionarios/funcionarios.csv", "rt");
+    arq_funcionarios = fopen("funcionarios/funcionarios.dat", "rb");
 
-    while (fscanf(arq_funcionarios, "%[^;];%[^;];%[^\n]\n", fnc.cpf, fnc.nome, fnc.cargo) == 3)
+    while (fread(fnc, sizeof(Funcionario), 1, arq_funcionarios))
     {
-        printf("CPF: %s\n", fnc.cpf);
-        printf("Nome: %s\n", fnc.nome);
-        printf("Cargo: %s\n", fnc.cargo);
+        printf("CPF: %s\n", fnc->cpf);
+        printf("Nome: %s\n", fnc->nome);
+        printf("Cargo: %s\n", fnc->cargo);
         printf("------------------------------------\n");
     }
 
     fclose(arq_funcionarios);
+    free(fnc);
+    
     printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
 }
