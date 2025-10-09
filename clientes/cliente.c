@@ -227,7 +227,7 @@ void excluir_cliente(void)
 
     while (fread(clt, sizeof(Cliente), 1, arq_clientes) && (!encontrado))
     {
-        if (strcmp(clt->cpf, cpf_lido) == 0)
+        if ((strcmp(clt->cpf, cpf_lido) == 0) && (clt->status == 1))
         {
             encontrado = 1;
             printf("\nCliente com CPF %s encontrado!\n", clt->cpf);
@@ -250,9 +250,8 @@ void excluir_cliente(void)
             else
             {
                 printf("Exclusão Cancelada!");
-                fseek(arq_clientes, (-1) * sizeof(Cliente), SEEK_CUR);
-                fwrite(clt, sizeof(Cliente), 1, arq_clientes);
             }
+            break;
         }
     }
 
@@ -296,7 +295,7 @@ void alterar_cliente(void)
 
     while (fread(clt, sizeof(Cliente), 1, arq_clientes) && (!encontrado))
     {
-        if (strcmp(clt->cpf, cpf_lido) == 0)
+        if ((strcmp(clt->cpf, cpf_lido) == 0) && (clt->status == 1))
         {
             encontrado = 1;
             printf("\nCliente com CPF %s encontrado!\n", clt->cpf);
