@@ -75,7 +75,7 @@ void modulo_funcionario(void)
 void cadastrar_funcionario(void)
 {
     FILE *arq_funcionarios;
-    Funcionario fnc;
+    Funcionario* fnc;
 
     system("clear||clr");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -84,24 +84,25 @@ void cadastrar_funcionario(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(fnc.cpf, 15, "Informe o CPF do funcionário: ");
-    input(fnc.nome, 50, "Digite o nome do funcionário: ");
-    input(fnc.cargo, 50, "Digite o cargo do funcionário: (Numerologia, Tarot, Signos)");
+    fnc = (Funcionario*) malloc(sizeof(Funcionario));
 
-    arq_funcionarios = fopen("funcionarios/funcionarios.csv", "at");
+    arq_funcionarios = fopen("funcionarios/funcionarios.dat", "a+b");
     if (arq_funcionarios == NULL)
     {
         printf("Erro na criacao do arquivo\n!");
         return;
     }
 
-    fprintf(arq_funcionarios, "%s;", fnc.cpf);
-    fprintf(arq_funcionarios, "%s;", fnc.nome);
-    fprintf(arq_funcionarios, "%s\n", fnc.cargo);
+    input(fnc->cpf, 15, "Informe o CPF do funcionário: ");
+    input(fnc->nome, 50, "Digite o nome do funcionário: ");
+    input(fnc->cargo, 50, "Digite o cargo do funcionário: (Numerologia, Tarot, Signos)");
+
+    fwrite(fnc, sizeof(Funcionario), 1, arq_funcionarios);
     fclose(arq_funcionarios);
+    free(fnc);
 
     printf("funcionário cadastrado com sucesso!\n");
-    printf("Nome: %s.\nCPF: %s.\nCargo: %s.", fnc.nome, fnc.cpf, fnc.cargo);
+    printf("Nome: %s.\nCPF: %s.\nCargo: %s.", fnc->nome, fnc->cpf, fnc->cargo);
     printf("\nPressione Enter para continuar");
     getchar();
 }
@@ -110,6 +111,7 @@ void buscar_funcionario(void)
 {
     FILE *arq_funcionarios;
     Funcionario fnc;
+    char cpf_lido[15];
     int encontrado = 0;
 
     system("clear||cls");
@@ -119,7 +121,7 @@ void buscar_funcionario(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(fnc.cpf_lido, 15, "Digite o CPF do funcionário para buscar: ");
+    input(cpf_lido, 15, "Digite o CPF do funcionário para buscar: ");
 
     arq_funcionarios = fopen("funcionarios/funcionarios.csv", "rt");
     if (arq_funcionarios == NULL)
@@ -131,7 +133,7 @@ void buscar_funcionario(void)
     while (fscanf(arq_funcionarios, "%[^;];%[^;];%[^\n]\n",
                   fnc.cpf, fnc.nome, fnc.cargo) == 3)
     {
-        if (strcmp(fnc.cpf, fnc.cpf_lido) == 0)
+        if (strcmp(fnc.cpf, cpf_lido) == 0)
         {
             encontrado = 1;
             printf("\nFuncionário com CPF %s encontrado!\n", fnc.cpf);
@@ -189,7 +191,7 @@ void excluir_funcionario(void)
     FILE *arq_funcionarios;
     FILE *arq_funcionarios2;
     Funcionario fnc;
-
+    char cpf_lido[15];
     char opcao;
     int encontrado = 0;
 
@@ -200,7 +202,7 @@ void excluir_funcionario(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(fnc.cpf_lido, 15, "Informe o CPF do Funcionário que deseja excluir: ");
+    input(cpf_lido, 15, "Informe o CPF do Funcionário que deseja excluir: ");
     arq_funcionarios = fopen("funcionarios/funcionarios.csv", "rt");
     arq_funcionarios2 = fopen("funcionarios/funcionarios2.csv", "wt");
 
@@ -214,7 +216,7 @@ void excluir_funcionario(void)
     while (fscanf(arq_funcionarios, "%14[^;];%49[^;];%49[^\n]\n",
                   fnc.cpf, fnc.nome, fnc.cargo) == 3)
     {
-        if (strcmp(fnc.cpf, fnc.cpf_lido) == 0)
+        if (strcmp(fnc.cpf, cpf_lido) == 0)
         {
             encontrado = 1;
             printf("\nFuncionário com CPF %s encontrado!\n", fnc.cpf);
@@ -269,6 +271,7 @@ void alterar_funcionario(void)
     FILE *arq_funcionarios;
     FILE *arq_funcionarios2;
     Funcionario fnc;
+    char cpf_lido[15];
     char opcao;
     int encontrado = 0;
     system("clear||cls");
@@ -278,7 +281,7 @@ void alterar_funcionario(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(fnc.cpf_lido, 15, "Informe o CPF do Funcionário que deseja alterar: ");
+    input(cpf_lido, 15, "Informe o CPF do Funcionário que deseja alterar: ");
 
     arq_funcionarios = fopen("funcionarios/funcionarios.csv", "rt");
     arq_funcionarios2 = fopen("funcionarios/funcionarios2.csv", "wt");
@@ -293,7 +296,7 @@ void alterar_funcionario(void)
     while (fscanf(arq_funcionarios, "%14[^;];%49[^;];%49[^\n]\n",
                   fnc.cpf, fnc.nome, fnc.cargo) == 3)
     {
-        if (strcmp(fnc.cpf, fnc.cpf_lido) == 0)
+        if (strcmp(fnc.cpf, cpf_lido) == 0)
         {
             encontrado = 1;
             printf("\nFuncionário com CPF %s encontrado!\n", fnc.cpf);

@@ -1,12 +1,15 @@
 /////  FUNCIONARIO  //////
 typedef struct funcionario Funcionario;
 
+#define TRUE 1
+#define FALSE 0
+
 struct funcionario
 {
     char cpf[15];
     char nome[50];
     char cargo[50];
-    char cpf_lido[15];
+    int status;
 };
 
 int tela_menu_funcionario(void);
