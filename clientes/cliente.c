@@ -87,7 +87,7 @@ void cadastrar_cliente(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    arq_clientes = fopen("clientes/clientes.dat", "ab");
+    arq_clientes = fopen("clientes/clientes.dat", "a+b");
     if (arq_clientes == NULL)
     {
         printf("Erro na criacao do arquivo\n!");
