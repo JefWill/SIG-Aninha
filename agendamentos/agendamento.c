@@ -119,7 +119,6 @@ void agendar_consulta(void)
     fprintf(arq_agendamentos, "%s;", agd.cpf);
     fprintf(arq_agendamentos, "%s;", agd.nome);
     fprintf(arq_agendamentos, "%s;", agd.tipo_consulta);
-    fprintf(arq_agendamentos, "%s;", fnc.cpf);
     fprintf(arq_agendamentos, "%s;", fnc.nome);
     fprintf(arq_agendamentos, "%s;", agd.data);
     fprintf(arq_agendamentos, "%s\n", agd.horario);

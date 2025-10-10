@@ -418,6 +418,12 @@ void listar_funcionarios_por_cargo(const char *tipo_consulta, char *cpf_escolhid
 
     char cpf[15], nome[100], cargo[50];
     int encontrado = 0;
+    int contador = 0;
+    int escolha = 0;
+
+    // Vetores temporários para armazenar os funcionários listados
+    char cpfs[100][15];
+    char nomes[100][100];
 
     printf("\nFuncionários disponíveis para %s:\n", tipo_consulta);
     printf("--------------------------------------------\n");
@@ -427,7 +433,9 @@ void listar_funcionarios_por_cargo(const char *tipo_consulta, char *cpf_escolhid
         if (strcasecmp(cargo, tipo_consulta) == 0)
         {
             encontrado = 1;
-            printf("CPF: %s | Nome: %s\n", cpf, nome);
+            printf("%d) %s (CPF: %s)\n", ++contador, nome, cpf);
+            strcpy(cpfs[contador - 1], cpf);
+            strcpy(nomes[contador - 1], nome);
         }
     }
     fclose(arq);
@@ -442,11 +450,13 @@ void listar_funcionarios_por_cargo(const char *tipo_consulta, char *cpf_escolhid
         return;
     }
 
-    input(cpf_escolhido, 15, "\nDigite o CPF do funcionário escolhido: ");
+    printf("\nDigite o número do funcionário escolhido: ");
+    scanf("%d", &escolha);
+    getchar(); // limpa buffer
 
-    if (!validar_funcionario_por_cargo(cpf_escolhido, tipo_consulta))
+    if (escolha < 1 || escolha > contador)
     {
-        printf("\nFuncionário inválido para este tipo de consulta!\n");
+        printf("\nOpção inválida!\n");
         printf(">>> Tecle <ENTER> para continuar... <<<\n");
         getchar();
         strcpy(cpf_escolhido, "");
@@ -454,19 +464,9 @@ void listar_funcionarios_por_cargo(const char *tipo_consulta, char *cpf_escolhid
         return;
     }
 
-    arq = fopen("funcionarios/funcionarios.csv", "rt");
-    if (!arq)
-        return;
-
-    while (fscanf(arq, "%14[^;];%99[^;];%49[^\n]\n", cpf, nome, cargo) == 3)
-    {
-        if (strcmp(cpf, cpf_escolhido) == 0)
-        {
-            strcpy(nome_escolhido, nome);
-            break;
-        }
-    }
-    fclose(arq);
+    // Copia os dados do funcionário escolhido
+    strcpy(cpf_escolhido, cpfs[escolha - 1]);
+    strcpy(nome_escolhido, nomes[escolha - 1]);
 }
 
 Funcionario *preenche_funcionario(void)
