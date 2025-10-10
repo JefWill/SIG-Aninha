@@ -1,8 +1,12 @@
 /////  AGENDAMENTO  //////
 typedef struct agendamento Agendamento;
 
+#define TRUE 1
+#define FALSE 0
+
 struct agendamento
 {
+    int id;
     char cpf[15];
     char nome[50];
     char tipo_consulta[20];
@@ -10,7 +14,7 @@ struct agendamento
     char nome_funcionario[50];
     char data[15];
     char horario[10];
-    char cpf_lido[15];
+    int status;
 };
 
 int tela_menu_agendamento(void);

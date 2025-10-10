@@ -78,9 +78,8 @@ void modulo_agendamentos(void)
 void agendar_consulta(void)
 {
     FILE *arq_agendamentos;
-    Agendamento agd;
-    Funcionario fnc;
-    int id;
+    Agendamento* agd;
+    Funcionario* fnc;
 
     system("clear||cls");
 
@@ -90,13 +89,16 @@ void agendar_consulta(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(agd.cpf, 15, "Digite o CPF do cliente:");
-    input(agd.nome, 100, "Digite o nome do cliente:");
-    input(agd.tipo_consulta, 20, "Digite qual tipo de consulta deseja (Tarot, Signos, Numerologia):");
+    agd = (Agendamento*) malloc(sizeof(Agendamento));
+    fnc = (Funcionario*) malloc(sizeof(Funcionario));
 
-    listar_funcionarios_por_cargo(agd.tipo_consulta, fnc.cpf, fnc.nome);
+    input(agd->cpf, 15, "Digite o CPF do cliente:");
+    input(agd->nome, 100, "Digite o nome do cliente:");
+    input(agd->tipo_consulta, 20, "Digite qual tipo de consulta deseja (Tarot, Signos, Numerologia):");
 
-    if (strlen(fnc.cpf) == 0 || strlen(fnc.nome) == 0)
+    listar_funcionarios_por_cargo(agd->tipo_consulta, fnc->cpf, fnc->nome);
+
+    if (strlen(fnc->cpf) == 0 || strlen(fnc->nome) == 0)
     {
         printf("\nAgendamento cancelado.\n");
         printf(">>> Tecle <ENTER> para continuar... <<<\n");
@@ -104,25 +106,22 @@ void agendar_consulta(void)
         return;
     }
 
-    input(agd.data, 15, "Digite a data da consulta (DD/MM/AAAA):");
-    input(agd.horario, 10, "Digite o horário da consulta (HH:MM):");
+    input(agd->data, 15, "Digite a data da consulta (DD/MM/AAAA):");
+    input(agd->horario, 10, "Digite o horário da consulta (HH:MM):");
 
-    arq_agendamentos = fopen("agendamentos/agendamentos.csv", "at");
+    arq_agendamentos = fopen("agendamentos/agendamentos.dat", "a+b");
     if (arq_agendamentos == NULL)
     {
         printf("Erro na criacao do arquivo\n!");
         return;
     }
 
-    id = gerar_novo_id();
-    fprintf(arq_agendamentos, "%d;", id);
-    fprintf(arq_agendamentos, "%s;", agd.cpf);
-    fprintf(arq_agendamentos, "%s;", agd.nome);
-    fprintf(arq_agendamentos, "%s;", agd.tipo_consulta);
-    fprintf(arq_agendamentos, "%s;", fnc.nome);
-    fprintf(arq_agendamentos, "%s;", agd.data);
-    fprintf(arq_agendamentos, "%s\n", agd.horario);
+    agd->id = gerar_novo_id();
+    fwrite(agd, sizeof(Agendamento), 1, arq_agendamentos);
+    fwrite(fnc, sizeof(Funcionario), 1, arq_agendamentos);
     fclose(arq_agendamentos);
+    free(agd);
+    free(fnc);
 
     printf("\n         Consulta agendada com sucesso!\n");
     printf("      >>> Tecle <ENTER> para continuar... <<<\n");
@@ -134,6 +133,7 @@ void atualizar_agendamento(void)
     FILE *arq_agendamentos, *arq_agendamentos2;
     Agendamento agd;
     Funcionario fnc;
+    char cpf_lido[15];
 
     int id, id_escolhido, encontrado = 0, id_encontrado = 0;
 
@@ -142,7 +142,7 @@ void atualizar_agendamento(void)
     printf("|                 ✦✧✦✧✦   Atualizar Agendamento   ✦✧✦✧✦                  |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(agd.cpf_lido, 15, "Digite o CPF do cliente para listar os agendamentos: ");
+    input(cpf_lido, 15, "Digite o CPF do cliente para listar os agendamentos: ");
 
     arq_agendamentos = fopen("agendamentos/agendamentos.csv", "rt");
     if (arq_agendamentos == NULL)
@@ -155,7 +155,7 @@ void atualizar_agendamento(void)
     while (fscanf(arq_agendamentos, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%99[^;];%14[^;];%9[^\n]\n",
                   &id, agd.cpf, agd.nome, agd.tipo_consulta, fnc.cpf, fnc.nome, agd.data, agd.horario) == 8)
     {
-        if (strcmp(agd.cpf, agd.cpf_lido) == 0)
+        if (strcmp(agd.cpf, cpf_lido) == 0)
         {
             encontrado = 1;
             printf("ID: %d\n", id);
@@ -286,6 +286,7 @@ void buscar_agendamento_por_cpf(void)
     FILE *arq_agendamentos;
     Agendamento agd;
     Funcionario fnc;
+    char cpf_lido[15];
     int encontrado = 0;
     int id;
 
@@ -296,7 +297,7 @@ void buscar_agendamento_por_cpf(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(agd.cpf_lido, 15, "Digite o CPF do cliente para buscar: ");
+    input(cpf_lido, 15, "Digite o CPF do cliente para buscar: ");
 
     arq_agendamentos = fopen("agendamentos/agendamentos.csv", "rt");
 
@@ -312,11 +313,11 @@ void buscar_agendamento_por_cpf(void)
 
     {
 
-        if (strcmp(agd.cpf, agd.cpf_lido) == 0)
+        if (strcmp(agd.cpf, cpf_lido) == 0)
         {
             if (!encontrado)
             {
-                printf("\nAgendamentos do CPF %s encontrado!\n", agd.cpf_lido);
+                printf("\nAgendamentos do CPF %s encontrado!\n", cpf_lido);
                 printf("------------------------------------------------\n");
             }
 
@@ -349,6 +350,7 @@ void excluir_agendamento(void)
     FILE *arq_agendamentos2;
     Agendamento agd;
     Funcionario fnc;
+    char cpf_lido[15];
     int id, id_escolhido, encontrado = 0;
 
     system("clear||cls");
@@ -358,7 +360,7 @@ void excluir_agendamento(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(agd.cpf_lido, 15, "Digite o CPF do cliente:");
+    input(cpf_lido, 15, "Digite o CPF do cliente:");
 
     arq_agendamentos = fopen("agendamentos/agendamentos.csv", "rt");
     if (arq_agendamentos == NULL)
@@ -374,7 +376,7 @@ void excluir_agendamento(void)
                   "%d;%14[^;];%99[^;];%19[^;];%14[^;];%99[^;];%14[^;];%9[^\n]\n",
                   &id, agd.cpf, agd.nome, agd.tipo_consulta, fnc.cpf, fnc.nome, agd.data, agd.horario) == 8)
     {
-        if (strcmp(agd.cpf, agd.cpf_lido) == 0)
+        if (strcmp(agd.cpf, cpf_lido) == 0)
         {
             encontrado = 1;
             printf("ID: %d\n", id);
