@@ -388,22 +388,31 @@ void modulo_alteracao_func(char *nome, char *cargo)
 
 int validar_funcionario_por_cargo(const char *cpf, const char *tipo_consulta)
 {
-    FILE *arq = fopen("funcionarios/funcionarios.csv", "rt");
+    FILE *arq = fopen("funcionarios/funcionarios.dat", "rb");
     if (!arq)
         return 0;
 
-    char cpf_arq[15], nome[100], cargo[50];
+    Funcionario *fnc = malloc(sizeof(Funcionario));
+    if (!fnc)
+    {
+        fclose(arq);
+        return 0;
+    }
+
     int valido = 0;
 
-    while (fscanf(arq, "%14[^;];%99[^;];%49[^\n]\n", cpf_arq, nome, cargo) == 3)
+    while (fread(fnc, sizeof(Funcionario), 1, arq) == 1)
     {
-        if (strcasecmp(cargo, tipo_consulta) == 0 && strcmp(cpf_arq, cpf) == 0)
+        if (strcasecmp(fnc->cargo, tipo_consulta) == 0 && strcmp(fnc->cpf, cpf) == 0)
         {
             valido = 1;
             break;
         }
     }
+
+    free(fnc);
     fclose(arq);
+
     return valido;
 }
 
