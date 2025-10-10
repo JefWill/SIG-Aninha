@@ -468,22 +468,20 @@ int gerar_novo_id()
     FILE *arq = fopen("agendamentos/agendamentos.dat", "rb");
     int ultimo_id = 0;
     Agendamento *agd;
-    Funcionario *fnc;
+
     agd = (Agendamento *)malloc(sizeof(Agendamento));
-    fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
     if (arq != NULL)
     {
-        while (fread(agd, sizeof(Agendamento), 1, arq) &&
-               fread(fnc, sizeof(Funcionario), 1, arq))
+        while (fread(agd, sizeof(Agendamento), 1, arq))
         {
             if (agd->id > ultimo_id)
                 ultimo_id = agd->id;
         }
         fclose(arq);
     }
+
     free(agd);
-    free(fnc);
     return ultimo_id + 1;
 }
 
