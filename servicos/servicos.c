@@ -4,6 +4,7 @@
 #include <time.h>
 #include "servicos.h"
 #include "../utilitarios/utilitarios.h"
+#include "../clientes/cliente.h"
 
 int tela_menu_servicos(void)
 {
@@ -252,19 +253,56 @@ void horoscopo_signo(void)
 
 void calcular_signo(void)
 {
-    char data_nascimento[11];
+    FILE *arq_clientes;
+    Cliente *clt;
+    char cpf[15];
     int dia, mes, ano;
+    int encontrado = 0;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                   ✦✧✦✧✦   Calcular Signo   ✦✧✦✧✦                       |\n");
+    printf("|                   ✦✧✦✧✦   Calcular Signo   ✦✧✦✧✦                        |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(data_nascimento, 11, "Digite a data de nascimento (DD/MM/AAAA): ");
-    printf("Calcular signo...\n");
-    printf("\nPressione ENTER para voltar ao menu...");
+    input(cpf, 15, "Digite o CPF: ");
+
+    arq_clientes = fopen("clientes/clientes.dat", "rb");
+    if (arq_clientes == NULL)
+    {
+        printf("\n Erro ao abrir o arquivo de clientes.\n");
+        printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
+        getchar();
+        return;
+    }
+
+    clt = (Cliente *)malloc(sizeof(Cliente));
+
+    while (fread(clt, sizeof(Cliente), 1, arq_clientes))
+    {
+        if (strcmp(clt->cpf, cpf) == 0 && clt->status == 1)
+        {
+            sscanf(clt->data_nascimento, "%d/%d/%d", &dia, &mes, &ano);
+
+            printf("\nNome: %s\n", clt->nome);
+            printf("Data de nascimento: %s\n", clt->data_nascimento);
+            printf("Seu signo é: %s\n", obter_signo(dia, mes));
+
+            encontrado = 1;
+            break;
+        }
+    }
+
+    if (!encontrado)
+    {
+        printf("\nCPF não encontrado ou cliente inativo.\n");
+    }
+
+    fclose(arq_clientes);
+    free(clt);
+
+    printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
 }
 

@@ -2,7 +2,6 @@ int tela_menu_servicos(void);
 void modulo_servicos(void);
 void perguntas(void);
 
-
 /////  SIGNOS  //////
 int tela_menu_signos(void);
 void modulo_signos(void);
@@ -12,6 +11,7 @@ void consultar_signo(void);
 void compatibilidade(void);
 void horoscopo_signo(void);
 void calcular_signo(void);
+char *obter_signo(int dia, int mes);
 
 /////  TAROT  //////
 void modulo_tarot(void);
