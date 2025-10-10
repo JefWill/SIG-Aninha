@@ -355,15 +355,52 @@ void exibir_caracteristicas_signo(int numero)
 
 void compatibilidade(void)
 {
+    // Tive ajuda de IA - GPT-5 mini.
+    int signo1, signo2;
+
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                     ✦✧✦✧✦   Compatibilidade   ✦✧✦✧✦                    |\n");
+    printf("|                  ✦✧✦✧✦   Compatibilidade Amorosa   ✦✧✦✧✦              |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    printf("Calcular compatibilidade dos signos...\n");
+    exibir_lista_signos();
+
+    printf("Escolha o número do seu signo: ");
+    scanf("%d", &signo1);
+    printf("Escolha o número do signo da outra pessoa: ");
+    scanf("%d", &signo2);
+
+    if (signo1 < 1 || signo1 > 12 || signo2 < 1 || signo2 > 12)
+    {
+        printf("\nNúmero inválido! Digite um valor entre 1 e 12.\n");
+        getchar();
+        getchar();
+        return;
+    }
+
+    // Matriz de compatibilidade em percentual (12x12)
+    int matriz[12][12] = {
+        {80, 60, 70, 50, 85, 65, 55, 60, 75, 50, 70, 55}, // Áries
+        {60, 80, 55, 70, 60, 85, 65, 50, 60, 75, 55, 70}, // Touro
+        {70, 55, 80, 65, 75, 60, 85, 50, 70, 55, 60, 75}, // Gêmeos
+        {50, 70, 65, 80, 55, 75, 60, 85, 50, 70, 55, 60}, // Câncer
+        {85, 60, 75, 55, 80, 65, 70, 60, 85, 50, 70, 55}, // Leão
+        {65, 85, 60, 75, 65, 80, 55, 70, 60, 85, 50, 70}, // Virgem
+        {55, 65, 85, 60, 70, 55, 80, 65, 70, 60, 85, 50}, // Libra
+        {60, 50, 50, 85, 60, 70, 65, 80, 55, 70, 60, 85}, // Escorpião
+        {75, 60, 70, 50, 85, 60, 70, 55, 80, 65, 70, 60}, // Sagitário
+        {50, 75, 55, 70, 50, 85, 60, 70, 65, 80, 55, 70}, // Capricórnio
+        {70, 55, 60, 55, 70, 50, 85, 60, 70, 55, 80, 65}, // Aquário
+        {55, 70, 75, 60, 55, 70, 50, 85, 60, 70, 65, 80}  // Peixes
+    };
+
+    printf("\nA compatibilidade entre %s e %s é de %d%%\n",
+           signos[signo1 - 1], signos[signo2 - 1], matriz[signo1 - 1][signo2 - 1]);
+
     printf("\nPressione ENTER para voltar ao menu...");
+    getchar();
     getchar();
 }
 
