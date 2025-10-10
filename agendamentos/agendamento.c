@@ -357,6 +357,7 @@ void excluir_agendamento(void)
 {
     FILE *arq_agendamentos;
     Agendamento *agd;
+    char cpf_lido[15];
     int encontrado = 0, id_escolhido = 0;
     char opcao;
 
@@ -369,37 +370,37 @@ void excluir_agendamento(void)
 
     agd = (Agendamento *)malloc(sizeof(Agendamento));
 
-    arq_agendamentos = fopen("agendamentos/agendamentos.dat", "rb");
+    input(cpf_lido, 15, "Digite o CPF do cliente para listar os agendamentos: ");
+
+    arq_agendamentos = fopen("agendamentos/agendamentos.dat", "r+b");
     if (!arq_agendamentos)
     {
         printf("Erro ao abrir arquivo de agendamentos!\n");
         free(agd);
+        getchar();
         return;
     }
 
-    printf("Lista de Agendamentos:\n");
-    printf("------------------------------------------------\n");
+    printf("\nAgendamentos encontrados para o CPF %s:\n------------------------------------------------\n", cpf_lido);
     while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos))
     {
-        if (agd->status == 1)
+        if ((strcmp(agd->cpf, cpf_lido) == 0) && (agd->status == 1))
         {
             encontrado = 1;
             printf("ID: %d\n", agd->id);
-            printf("CPF do Cliente: %s\n", agd->cpf);
             printf("Nome do Cliente: %s\n", agd->nome);
             printf("Tipo de Consulta: %s\n", agd->tipo_consulta);
-            printf("Nome do Funcionário: %s\n", agd->nome_funcionario);
-            printf("CPF do Funcionário: %s\n", agd->cpf_funcionario);
+            printf("Funcionário: %s (%s)\n", agd->nome_funcionario, agd->cpf_funcionario);
             printf("Data: %s\n", agd->data);
             printf("Horário: %s\n", agd->horario);
             printf("------------------------------------------------\n");
         }
     }
-    fclose(arq_agendamentos);
 
     if (!encontrado)
     {
-        printf("Nenhum agendamento ativo encontrado!\n");
+        printf("Nenhum agendamento ativo encontrado para este CPF!\n");
+        fclose(arq_agendamentos);
         free(agd);
         printf(">>> Tecle <ENTER> para continuar... <<<\n");
         getchar();
@@ -410,15 +411,10 @@ void excluir_agendamento(void)
     scanf("%d", &id_escolhido);
     getchar();
 
-    arq_agendamentos = fopen("agendamentos/agendamentos.dat", "r+b");
-    if (!arq_agendamentos)
-    {
-        printf("Erro ao abrir arquivo para atualizar!\n");
-        free(agd);
-        return;
-    }
-
+    // Volta para o início do arquivo para procurar o ID
+    fseek(arq_agendamentos, 0, SEEK_SET);
     encontrado = 0;
+
     while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos))
     {
         if (agd->id == id_escolhido && agd->status == 1)
@@ -432,7 +428,7 @@ void excluir_agendamento(void)
             if (opcao == 'S' || opcao == 's')
             {
                 agd->status = 0;
-                fseek(arq_agendamentos, -sizeof(Agendamento), SEEK_CUR);
+                fseek(arq_agendamentos, -((long)sizeof(Agendamento)), SEEK_CUR);
                 fwrite(agd, sizeof(Agendamento), 1, arq_agendamentos);
                 printf("\nAgendamento excluído com sucesso!\n");
             }
@@ -445,10 +441,13 @@ void excluir_agendamento(void)
     }
 
     if (!encontrado)
+    {
         printf("\nAgendamento com o ID informado não encontrado!\n");
+    }
 
     fclose(arq_agendamentos);
     free(agd);
+
     printf(">>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
 }
