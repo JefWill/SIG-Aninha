@@ -10,6 +10,7 @@ void exibir_lista_signos(void);
 void consultar_signo(void);
 void compatibilidade(void);
 void horoscopo_signo(void);
+void exibir_mensagem_signo(const char *signo);
 void calcular_signo(void);
 char *obter_signo(int dia, int mes);
 

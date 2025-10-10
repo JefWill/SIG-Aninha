@@ -251,6 +251,36 @@ void horoscopo_signo(void)
     getchar();
 }
 
+void exibir_mensagem_signo(const char *signo)
+{
+    if (strcasecmp(signo, "aries") == 0)
+        printf("♈ Áries: Energia e coragem em alta. Evite agir por impulso.\n");
+    else if (strcasecmp(signo, "touro") == 0)
+        printf("♉ Touro: Um bom dia para cuidar de si e valorizar o conforto.\n");
+    else if (strcasecmp(signo, "gemeos") == 0 || strcasecmp(signo, "gêmeos") == 0)
+        printf("♊ Gêmeos: Comunicação será sua aliada. Converse e troque ideias.\n");
+    else if (strcasecmp(signo, "cancer") == 0 || strcasecmp(signo, "câncer") == 0)
+        printf("♋ Câncer: Emoções afloradas. Escute seu coração, mas mantenha o equilíbrio.\n");
+    else if (strcasecmp(signo, "leao") == 0 || strcasecmp(signo, "leão") == 0)
+        printf("♌ Leão: Mostre seu brilho, mas sem exageros. O dia pede autoconfiança.\n");
+    else if (strcasecmp(signo, "virgem") == 0)
+        printf("♍ Virgem: Organização será essencial. Foque no que é prático.\n");
+    else if (strcasecmp(signo, "libra") == 0)
+        printf("♎ Libra: Harmonia nas relações. Evite se sobrecarregar tentando agradar.\n");
+    else if (strcasecmp(signo, "escorpiao") == 0 || strcasecmp(signo, "escorpião") == 0)
+        printf("♏ Escorpião: Intuição aguçada. Aproveite para resolver pendências emocionais.\n");
+    else if (strcasecmp(signo, "sagitario") == 0 || strcasecmp(signo, "sagitário") == 0)
+        printf("♐ Sagitário: Liberdade em foco. Planeje aventuras, mas com responsabilidade.\n");
+    else if (strcasecmp(signo, "capricornio") == 0 || strcasecmp(signo, "capricórnio") == 0)
+        printf("♑ Capricórnio: Persistência trará resultados. Não desista dos seus planos.\n");
+    else if (strcasecmp(signo, "aquario") == 0 || strcasecmp(signo, "aquário") == 0)
+        printf("♒ Aquário: Criatividade em alta. Aposte em ideias fora do comum.\n");
+    else if (strcasecmp(signo, "peixes") == 0)
+        printf("♓ Peixes: Sensibilidade à flor da pele. Confie nos seus sonhos e na intuição.\n");
+    else
+        printf("❌ Signo não reconhecido.\n");
+}
+
 void calcular_signo(void)
 {
     FILE *arq_clientes;
