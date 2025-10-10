@@ -103,6 +103,8 @@ void agendar_consulta(void)
         printf("\nAgendamento cancelado.\n");
         printf(">>> Tecle <ENTER> para continuar... <<<\n");
         getchar();
+        free(agd);
+        free(fnc);
         return;
     }
 
@@ -113,13 +115,18 @@ void agendar_consulta(void)
     if (arq_agendamentos == NULL)
     {
         printf("Erro na criacao do arquivo\n!");
+        free(agd);
+        free(fnc);
         return;
     }
 
     agd->id = gerar_novo_id();
     agd->status = 1;
+    strcpy(agd->cpf_funcionario, fnc->cpf);
+    strcpy(agd->nome_funcionario, fnc->nome);
+
     fwrite(agd, sizeof(Agendamento), 1, arq_agendamentos);
-    fwrite(fnc, sizeof(Funcionario), 1, arq_agendamentos);
+
     fclose(arq_agendamentos);
     free(agd);
     free(fnc);
