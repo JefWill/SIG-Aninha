@@ -290,11 +290,10 @@ void listar_agendamentos(void)
 void buscar_agendamento_por_cpf(void)
 {
     FILE *arq_agendamentos;
-    Agendamento agd;
-    Funcionario fnc;
+    Agendamento* agd;
+    Funcionario* fnc;
     char cpf_lido[15];
     int encontrado = 0;
-    int id;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -303,9 +302,12 @@ void buscar_agendamento_por_cpf(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
+    agd = (Agendamento*) malloc(sizeof(Agendamento));
+    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+
     input(cpf_lido, 15, "Digite o CPF do cliente para buscar: ");
 
-    arq_agendamentos = fopen("agendamentos/agendamentos.csv", "rt");
+    arq_agendamentos = fopen("agendamentos/agendamentos.dat", "rb");
 
     if (arq_agendamentos == NULL)
     {
@@ -313,13 +315,12 @@ void buscar_agendamento_por_cpf(void)
         return;
     }
 
-    while (fscanf(arq_agendamentos,
-                  "%d;%14[^;];%99[^;];%19[^;];%14[^;];%99[^;];%14[^;];%9[^\n]\n",
-                  &id, agd.cpf, agd.nome, agd.tipo_consulta, fnc.cpf, fnc.nome, agd.data, agd.horario) == 8)
+    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos) &&
+           fread(fnc, sizeof(Funcionario), 1, arq_agendamentos))
 
     {
 
-        if (strcmp(agd.cpf, cpf_lido) == 0)
+        if (strcmp(agd->cpf, cpf_lido) == 0)
         {
             if (!encontrado)
             {
@@ -328,18 +329,21 @@ void buscar_agendamento_por_cpf(void)
             }
 
             encontrado = 1;
-            printf("ID: %d\n", id);
-            printf("CPF: %s\n", agd.cpf);
-            printf("Nome: %s\n", agd.nome);
-            printf("Tipo de Consulta: %s\n", agd.tipo_consulta);
-            printf("Funcionário: %s (%s)\n", fnc.nome, fnc.cpf);
-            printf("Data: %s\n", agd.data);
-            printf("Horário: %s\n", agd.horario);
+            printf("ID: %d\n", agd->id);
+            printf("CPF: %s\n", agd->cpf);
+            printf("Nome: %s\n", agd->nome);
+            printf("Tipo de Consulta: %s\n", agd->tipo_consulta);
+            printf("Funcionário: %s\n", fnc->nome);
+            printf("Data: %s\n", agd->data);
+            printf("Horário: %s\n", agd->horario);
+            printf("Status: %d\n", agd->status);
             printf("------------------------------------------------\n");
         }
     }
 
     fclose(arq_agendamentos);
+    free(agd);
+    free(fnc);
 
     if (!encontrado)
     {
