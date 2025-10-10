@@ -436,32 +436,25 @@ void excluir_agendamento(void)
 
 int gerar_novo_id()
 {
-    FILE *arq = fopen("agendamentos/agendamentos.csv", "rt");
-    int id = 0, ultimo_id = 0;
-    char cpf_cliente[15], nome_cliente[100];
-    char tipo_consulta[20], cpf_funcionario[15], nome_funcionario[100];
-    char data[15], horario[10];
+    FILE *arq = fopen("agendamentos/agendamentos.dat", "rb");
+    int ultimo_id = 0;
+    Agendamento* agd;
+    Funcionario* fnc;
+    agd = (Agendamento*) malloc(sizeof(Agendamento));
+    fnc = (Funcionario*) malloc(sizeof(Funcionario));
 
     if (arq != NULL)
     {
-        while (fscanf(arq, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%99[^;];%14[^;];%9[^\n]\n",
-                      &id,
-                      cpf_cliente,
-                      nome_cliente,
-                      tipo_consulta,
-                      cpf_funcionario,
-                      nome_funcionario,
-                      data,
-                      horario) == 8)
+        while (fread(agd, sizeof(Agendamento), 1, arq) &&
+               fread(fnc, sizeof(Funcionario), 1, arq))
         {
-            if (id > ultimo_id)
-            {
-                ultimo_id = id;
-            }
+            if (agd->id > ultimo_id)
+                ultimo_id = agd->id;
         }
         fclose(arq);
     }
-
+    free(agd);
+    free(fnc);
     return ultimo_id + 1;
 }
 
