@@ -140,9 +140,8 @@ void atualizar_agendamento(void)
 {
     FILE *arq_agendamentos;
     Agendamento *agd;
-    Funcionario *fnc;
     char cpf_lido[15];
-    int id, id_escolhido, encontrado = 0, id_encontrado = 0;
+    int id_escolhido, encontrado = 0;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -154,29 +153,25 @@ void atualizar_agendamento(void)
     input(cpf_lido, 15, "Digite o CPF do cliente para listar os agendamentos: ");
 
     agd = (Agendamento *)malloc(sizeof(Agendamento));
-    fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
-    arq_agendamentos = fopen("agendamentos/agendamentos.dat", "rb+");
-    if (arq_agendamentos == NULL)
+    arq_agendamentos = fopen("agendamentos/agendamentos.dat", "r+b");
+    if (!arq_agendamentos)
     {
         printf("Erro ao abrir arquivo de agendamentos!\n");
-        free(agd);
-        free(fnc);
+        getchar();
         return;
     }
 
     printf("\nAgendamentos encontrados:\n------------------------------------------------\n");
-    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos) == 1)
+    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos) && (!encontrado))
     {
-
-        if (strcmp(agd->cpf, cpf_lido) == 0)
+        if ((strcmp(agd->cpf, cpf_lido) == 0) && (agd->status == 1))
         {
             encontrado = 1;
             printf("ID: %d\n", agd->id);
-            printf("CPF: %s\n", agd->cpf);
             printf("Nome: %s\n", agd->nome);
             printf("Tipo de consulta: %s\n", agd->tipo_consulta);
-            printf("Funcionário: %s (%s)\n", agd->nome_funcionario, agd->cpf_funcionario);
+            printf("Funcionário: %s\n", agd->nome_funcionario);
             printf("Data: %s\n", agd->data);
             printf("Horário: %s\n", agd->horario);
             printf("------------------------------------------------\n");
@@ -186,11 +181,10 @@ void atualizar_agendamento(void)
     if (!encontrado)
     {
         printf("\nNenhum agendamento encontrado para este CPF!\n");
+        fclose(arq_agendamentos);
+        free(agd);
         printf(">>> Tecle <ENTER> para continuar... <<<\n");
         getchar();
-        free(agd);
-        free(fnc);
-        fclose(arq_agendamentos);
         return;
     }
 
@@ -198,40 +192,28 @@ void atualizar_agendamento(void)
     scanf("%d", &id_escolhido);
     getchar();
 
-    // Rewind para reescrever o registro
-    rewind(arq_agendamentos);
+    // Volta para o início do arquivo para procurar o ID escolhido
+    fseek(arq_agendamentos, 0, SEEK_SET);
 
-    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos) == 1)
+    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos))
     {
-        if (agd->id == id_escolhido)
+        if (agd->id == id_escolhido && agd->status == 1)
         {
-            id_encontrado = 1;
+            fseek(arq_agendamentos, (-1) * ((long)sizeof(Agendamento)), SEEK_CUR);
 
             modulo_alteracao_agend(agd->nome, agd->tipo_consulta, agd->data, agd->horario);
 
-            fseek(arq_agendamentos, -((long)sizeof(Agendamento)), SEEK_CUR);
             fwrite(agd, sizeof(Agendamento), 1, arq_agendamentos);
+            printf("\nAgendamento atualizado com sucesso!\n");
             break;
         }
     }
 
     fclose(arq_agendamentos);
-
-    if (!id_encontrado)
-    {
-        printf("\nNenhum agendamento encontrado com o ID informado!\n");
-        printf(">>> Nenhuma alteração foi feita. <<<\n");
-    }
-    else
-    {
-        printf("\nAgendamento atualizado com sucesso!\n");
-    }
+    free(agd);
 
     printf(">>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
-
-    free(agd);
-    free(fnc);
 }
 
 void listar_agendamentos(void)
