@@ -238,19 +238,17 @@ void listar_agendamentos(void)
 {
     FILE *arq_agendamentos;
     Agendamento *agd;
-    Funcionario *fnc;
     int encontrado = 0;
     char data_agendamento[15];
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                 ✦✧✦✧✦   Listar Agendamentos   ✦✧✦✧✦                    |\n");
+    printf("|                 ✦✧✦✧✦   Listar Agendamentos   ✦✧✦✧✦               |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     agd = (Agendamento *)malloc(sizeof(Agendamento));
-    fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
     input(data_agendamento, 15, "Digite a data desejada (dd/mm/aaaa): ");
 
@@ -258,13 +256,12 @@ void listar_agendamentos(void)
     if (arq_agendamentos == NULL)
     {
         printf("Erro na abertura do arquivo\n!");
+        free(agd);
         return;
     }
 
-    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos) &&
-           fread(fnc, sizeof(Funcionario), 1, arq_agendamentos))
+    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos))
     {
-
         if (strcmp(agd->data, data_agendamento) == 0)
         {
             if (!encontrado)
@@ -277,16 +274,17 @@ void listar_agendamentos(void)
             printf("CPF: %s\n", agd->cpf);
             printf("Nome: %s\n", agd->nome);
             printf("Tipo de consulta: %s\n", agd->tipo_consulta);
-            printf("Funcionário: %s (%s)\n", fnc->nome, fnc->cpf);
+            printf("Funcionário: %s \n", agd->nome_funcionario);
             printf("Data: %s\n", agd->data);
             printf("Horário: %s\n", agd->horario);
             printf("Status: %d\n", agd->status);
             printf("------------------------------------------------\n");
         }
     }
+
     fclose(arq_agendamentos);
     free(agd);
-    free(fnc);
+
     if (!encontrado)
     {
         printf("\nNenhum agendamento encontrado!\n");
