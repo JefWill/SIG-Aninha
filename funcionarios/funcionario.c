@@ -75,7 +75,7 @@ void modulo_funcionario(void)
 void cadastrar_funcionario(void)
 {
     FILE *arq_funcionarios;
-    Funcionario* fnc;
+    Funcionario *fnc;
 
     system("clear||clr");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -84,7 +84,7 @@ void cadastrar_funcionario(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+    fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
     arq_funcionarios = fopen("funcionarios/funcionarios.dat", "a+b");
     if (arq_funcionarios == NULL)
@@ -110,7 +110,7 @@ void cadastrar_funcionario(void)
 void buscar_funcionario(void)
 {
     FILE *arq_funcionarios;
-    Funcionario* fnc;
+    Funcionario *fnc;
     char cpf_lido[15];
     int encontrado = 0;
 
@@ -121,7 +121,7 @@ void buscar_funcionario(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+    fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
     input(cpf_lido, 15, "Digite o CPF do funcionário para buscar: ");
 
@@ -164,7 +164,7 @@ void buscar_funcionario(void)
 void listar_funcionarios(void)
 {
     FILE *arq_funcionarios;
-    Funcionario* fnc;
+    Funcionario *fnc;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -173,7 +173,7 @@ void listar_funcionarios(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+    fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
     printf("Lista de funcionários: \n");
     printf("------------------------------------\n");
@@ -198,7 +198,7 @@ void listar_funcionarios(void)
 void excluir_funcionario(void)
 {
     FILE *arq_funcionarios;
-    Funcionario* fnc;
+    Funcionario *fnc;
     char cpf_lido[15];
     char opcao;
     int encontrado = 0;
@@ -210,7 +210,7 @@ void excluir_funcionario(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+    fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
     input(cpf_lido, 15, "Informe o CPF do Funcionário que deseja excluir: ");
     encontrado = 0;
@@ -240,7 +240,7 @@ void excluir_funcionario(void)
             if (opcao == 'S' || opcao == 's')
             {
                 fnc->status = 0;
-                fseek(arq_funcionarios, (-1) *sizeof(Funcionario), SEEK_CUR);
+                fseek(arq_funcionarios, (-1) * sizeof(Funcionario), SEEK_CUR);
                 fwrite(fnc, sizeof(Funcionario), 1, arq_funcionarios);
                 printf("\nFuncionário com CPF %s excluído com sucesso!\n", fnc->cpf);
             }
@@ -267,7 +267,7 @@ void excluir_funcionario(void)
 void alterar_funcionario(void)
 {
     FILE *arq_funcionarios;
-    Funcionario* fnc;
+    Funcionario *fnc;
     char cpf_lido[15];
     char opcao;
     int encontrado = 0;
@@ -278,7 +278,7 @@ void alterar_funcionario(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+    fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
     input(cpf_lido, 15, "Informe o CPF do Funcionário que deseja alterar: ");
 
@@ -309,7 +309,7 @@ void alterar_funcionario(void)
             if (opcao == 'S' || opcao == 's')
             {
                 modulo_alteracao_func(fnc->nome, fnc->cargo);
-                fseek(arq_funcionarios, (-1) *sizeof(Funcionario), SEEK_CUR);
+                fseek(arq_funcionarios, (-1) * sizeof(Funcionario), SEEK_CUR);
                 fwrite(fnc, sizeof(Funcionario), 1, arq_funcionarios);
                 printf("\nInformações do Funcionário com CPF %s alteradas com sucesso!\n", fnc->cpf);
             }
@@ -328,7 +328,7 @@ void alterar_funcionario(void)
     {
         printf("CPF não encontrado!\n");
     }
-    
+
     printf("Pressione ENTER para voltar ao menu...");
     getchar();
 }
@@ -409,35 +409,41 @@ int validar_funcionario_por_cargo(const char *cpf, const char *tipo_consulta)
 
 void listar_funcionarios_por_cargo(const char *tipo_consulta, char *cpf_escolhido, char *nome_escolhido)
 {
-    FILE *arq = fopen("funcionarios/funcionarios.csv", "rt");
+    FILE *arq = fopen("funcionarios/funcionarios.dat", "rb");
     if (!arq)
     {
         printf("Erro ao abrir arquivo de funcionários!\n");
         return;
     }
 
-    char cpf[15], nome[100], cargo[50];
-    int encontrado = 0;
-    int contador = 0;
-    int escolha = 0;
+    Funcionario *fnc = malloc(sizeof(Funcionario));
+    if (!fnc)
+    {
+        printf("Erro de alocação de memória!\n");
+        fclose(arq);
+        return;
+    }
 
-    // Vetores temporários para armazenar os funcionários listados
     char cpfs[100][15];
     char nomes[100][100];
+    int contador = 0;
+    int escolha = 0;
+    int encontrado = 0;
 
     printf("\nFuncionários disponíveis para %s:\n", tipo_consulta);
     printf("--------------------------------------------\n");
 
-    while (fscanf(arq, "%14[^;];%99[^;];%49[^\n]\n", cpf, nome, cargo) == 3)
+    while (fread(fnc, sizeof(Funcionario), 1, arq) == 1)
     {
-        if (strcasecmp(cargo, tipo_consulta) == 0)
+        if (strcasecmp(fnc->cargo, tipo_consulta) == 0)
         {
             encontrado = 1;
-            printf("%d) %s (CPF: %s)\n", ++contador, nome, cpf);
-            strcpy(cpfs[contador - 1], cpf);
-            strcpy(nomes[contador - 1], nome);
+            printf("%d) %s (CPF: %s)\n", ++contador, fnc->nome, fnc->cpf);
+            strcpy(cpfs[contador - 1], fnc->cpf);
+            strcpy(nomes[contador - 1], fnc->nome);
         }
     }
+
     fclose(arq);
 
     if (!encontrado)
@@ -447,6 +453,7 @@ void listar_funcionarios_por_cargo(const char *tipo_consulta, char *cpf_escolhid
         getchar();
         strcpy(cpf_escolhido, "");
         strcpy(nome_escolhido, "");
+        free(fnc);
         return;
     }
 
@@ -461,12 +468,15 @@ void listar_funcionarios_por_cargo(const char *tipo_consulta, char *cpf_escolhid
         getchar();
         strcpy(cpf_escolhido, "");
         strcpy(nome_escolhido, "");
+        free(fnc);
         return;
     }
 
     // Copia os dados do funcionário escolhido
     strcpy(cpf_escolhido, cpfs[escolha - 1]);
     strcpy(nome_escolhido, nomes[escolha - 1]);
+
+    free(fnc);
 }
 
 Funcionario *preenche_funcionario(void)
