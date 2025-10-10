@@ -8,6 +8,7 @@ void modulo_signos(void);
 void listar_signos(void);
 void exibir_lista_signos(void);
 void consultar_signo(void);
+void exibir_caracteristicas_signo(int numero);
 void compatibilidade(void);
 void horoscopo_signo(void);
 void exibir_mensagem_signo(int signo);

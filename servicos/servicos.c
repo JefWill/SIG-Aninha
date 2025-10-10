@@ -223,6 +223,124 @@ void consultar_signo(void)
     getchar();
 }
 
+void exibir_caracteristicas_signo(int numero)
+{
+    switch (numero)
+    {
+    case 1: // Áries
+        printf("♈ Áries\n");
+        printf("Elemento: Fogo.\n");
+        printf("Planeta regente: Marte\n");
+        printf("Cores: Vermelho\n");
+        printf("Pedras: Diamante, Cornalina\n");
+        printf("Qualidades: Energia, coragem, iniciativa, impulsividade\n");
+        printf("Frase chave: 'Eu sou'\n");
+        break;
+    case 2: // Touro
+        printf("♉ Touro\n");
+        printf("Elemento: Terra.\n");
+        printf("Planeta regente: Vênus\n");
+        printf("Cores: Verde, Rosa\n");
+        printf("Pedras: Esmeralda, Quartzo rosa\n");
+        printf("Qualidades: Persistência, estabilidade, paciência, sensualidade\n");
+        printf("Frase chave: 'Eu tenho'\n");
+        break;
+    case 3: // Gêmeos
+        printf("♊ Gêmeos\n");
+        printf("Elemento: Ar.\n");
+        printf("Planeta regente: Mercúrio\n");
+        printf("Cores: Amarelo, Azul claro\n");
+        printf("Pedras: Ágata, Citrino\n");
+        printf("Qualidades: Comunicação, versatilidade, curiosidade, dualidade\n");
+        printf("Frase chave: 'Eu penso'\n");
+        break;
+    case 4: // Câncer
+        printf("♋ Câncer\n");
+        printf("Elemento: Água.\n");
+        printf("Planeta regente: Lua\n");
+        printf("Cores: Prata, Branco\n");
+        printf("Pedras: Pérola, Água-marinha\n");
+        printf("Qualidades: Sensibilidade, intuição, proteção, emocional\n");
+        printf("Frase chave: 'Eu sinto'\n");
+        break;
+    case 5: // Leão
+        printf("♌ Leão\n");
+        printf("Elemento: Fogo.\n");
+        printf("Planeta regente: Sol\n");
+        printf("Cores: Dourado, Laranja\n");
+        printf("Pedras: Rubi, Olho de Tigre\n");
+        printf("Qualidades: Liderança, confiança, criatividade, generosidade\n");
+        printf("Frase chave: 'Eu quero'\n");
+        break;
+    case 6: // Virgem
+        printf("♍ Virgem\n");
+        printf("Elemento: Terra.\n");
+        printf("Planeta regente: Mercúrio\n");
+        printf("Cores: Verde, Marrom\n");
+        printf("Pedras: Safira, Quartzo\n");
+        printf("Qualidades: Organização, precisão, análise, prudência\n");
+        printf("Frase chave: 'Eu analiso'\n");
+        break;
+    case 7: // Libra
+        printf("♎ Libra\n");
+        printf("Elemento: Ar.\n");
+        printf("Planeta regente: Vênus\n");
+        printf("Cores: Azul, Rosa\n");
+        printf("Pedras: Lápis-lazúli, Ametista\n");
+        printf("Qualidades: Harmonia, diplomacia, sociabilidade, justiça\n");
+        printf("Frase chave: 'Eu equilibro'\n");
+        break;
+    case 8: // Escorpião
+        printf("♏ Escorpião\n");
+        printf("Elemento: Água.\n");
+        printf("Planeta regente: Plutão / Marte\n");
+        printf("Cores: Vermelho, Preto\n");
+        printf("Pedras: Topázio, Granada\n");
+        printf("Qualidades: Intensidade, mistério, paixão, determinação\n");
+        printf("Frase chave: 'Eu desejo'\n");
+        break;
+    case 9: // Sagitário
+        printf("♐ Sagitário\n");
+        printf("Elemento: Fogo.\n");
+        printf("Planeta regente: Júpiter\n");
+        printf("Cores: Azul, Roxo\n");
+        printf("Pedras: Turquesa, Ametista\n");
+        printf("Qualidades: Otimismo, liberdade, aventura, sinceridade\n");
+        printf("Frase chave: 'Eu busco'\n");
+        break;
+    case 10: // Capricórnio
+        printf("♑ Capricórnio\n");
+        printf("Elemento: Terra.\n");
+        printf("Planeta regente: Saturno\n");
+        printf("Cores: Marrom, Cinza\n");
+        printf("Pedras: Ônix, Quartzo\n");
+        printf("Qualidades: Determinação, disciplina, responsabilidade, paciência\n");
+        printf("Frase chave: 'Eu construo'\n");
+        break;
+    case 11: // Aquário
+        printf("♒ Aquário\n");
+        printf("Elemento: Ar.\n");
+        printf("Planeta regente: Urano / Saturno\n");
+        printf("Cores: Azul, Turquesa\n");
+        printf("Pedras: Ametista, Água-marinha\n");
+        printf("Qualidades: Originalidade, inovação, humanitarismo, independência\n");
+        printf("Frase chave: 'Eu sei'\n");
+        break;
+    case 12: // Peixes
+        printf("♓ Peixes\n");
+        printf("Elemento: Água.\n");
+        printf("Planeta regente: Netuno / Júpiter\n");
+        printf("Cores: Verde, Lilás\n");
+        printf("Pedras: Água-marinha, Ametista\n");
+        printf("Qualidades: Sensibilidade, intuição, empatia, criatividade\n");
+        printf("Frase chave: 'Eu acredito'\n");
+        break;
+    default:
+        printf("Número inválido! Digite um valor entre 1 e 12.\n");
+        break;
+    }
+}
+
 void compatibilidade(void)
 {
     system("clear||cls");
