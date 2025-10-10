@@ -447,7 +447,7 @@ void listar_funcionarios_por_cargo(const char *tipo_consulta, char *cpf_escolhid
         if (strcasecmp(fnc->cargo, tipo_consulta) == 0)
         {
             encontrado = 1;
-            printf("%d) %s (CPF: %s)\n", ++contador, fnc->nome, fnc->cpf);
+            printf("%d) %s \n", ++contador, fnc->nome);
             strcpy(cpfs[contador - 1], fnc->cpf);
             strcpy(nomes[contador - 1], fnc->nome);
         }

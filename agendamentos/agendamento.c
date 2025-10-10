@@ -78,8 +78,8 @@ void modulo_agendamentos(void)
 void agendar_consulta(void)
 {
     FILE *arq_agendamentos;
-    Agendamento* agd;
-    Funcionario* fnc;
+    Agendamento *agd;
+    Funcionario *fnc;
 
     system("clear||cls");
 
@@ -89,8 +89,8 @@ void agendar_consulta(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    agd = (Agendamento*) malloc(sizeof(Agendamento));
-    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+    agd = (Agendamento *)malloc(sizeof(Agendamento));
+    fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
     input(agd->cpf, 15, "Digite o CPF do cliente:");
     input(agd->nome, 100, "Digite o nome do cliente:");
@@ -131,51 +131,57 @@ void agendar_consulta(void)
 
 void atualizar_agendamento(void)
 {
-    FILE *arq_agendamentos, *arq_agendamentos2;
-    Agendamento agd;
-    Funcionario fnc;
+    FILE *arq_agendamentos;
+    Agendamento *agd;
+    Funcionario *fnc;
     char cpf_lido[15];
-
     int id, id_escolhido, encontrado = 0, id_encontrado = 0;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
-    printf("|                 ✦✧✦✧✦   Atualizar Agendamento   ✦✧✦✧✦                  |\n");
+    printf("|                 ✦✧✦✧✦   Atualizar Agendamento   ✦✧✦✧✦               |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     input(cpf_lido, 15, "Digite o CPF do cliente para listar os agendamentos: ");
 
-    arq_agendamentos = fopen("agendamentos/agendamentos.csv", "rt");
+    agd = (Agendamento *)malloc(sizeof(Agendamento));
+    fnc = (Funcionario *)malloc(sizeof(Funcionario));
+
+    arq_agendamentos = fopen("agendamentos/agendamentos.dat", "rb+");
     if (arq_agendamentos == NULL)
     {
         printf("Erro ao abrir arquivo de agendamentos!\n");
+        free(agd);
+        free(fnc);
         return;
     }
 
     printf("\nAgendamentos encontrados:\n------------------------------------------------\n");
-    while (fscanf(arq_agendamentos, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%99[^;];%14[^;];%9[^\n]\n",
-                  &id, agd.cpf, agd.nome, agd.tipo_consulta, fnc.cpf, fnc.nome, agd.data, agd.horario) == 8)
+    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos) == 1)
     {
-        if (strcmp(agd.cpf, cpf_lido) == 0)
+
+        if (strcmp(agd->cpf, cpf_lido) == 0)
         {
             encontrado = 1;
-            printf("ID: %d\n", id);
-            printf("CPF: %s\n", agd.cpf);
-            printf("Nome: %s\n", agd.nome);
-            printf("Tipo de consulta: %s\n", agd.tipo_consulta);
-            printf("Funcionário: %s (%s)\n", fnc.nome, fnc.cpf);
-            printf("Data: %s\n", agd.data);
-            printf("Horário: %s\n", agd.horario);
+            printf("ID: %d\n", agd->id);
+            printf("CPF: %s\n", agd->cpf);
+            printf("Nome: %s\n", agd->nome);
+            printf("Tipo de consulta: %s\n", agd->tipo_consulta);
+            printf("Funcionário: %s (%s)\n", agd->nome_funcionario, agd->cpf_funcionario);
+            printf("Data: %s\n", agd->data);
+            printf("Horário: %s\n", agd->horario);
             printf("------------------------------------------------\n");
         }
     }
-    fclose(arq_agendamentos);
 
     if (!encontrado)
     {
         printf("\nNenhum agendamento encontrado para este CPF!\n");
         printf(">>> Tecle <ENTER> para continuar... <<<\n");
         getchar();
+        free(agd);
+        free(fnc);
+        fclose(arq_agendamentos);
         return;
     }
 
@@ -183,53 +189,49 @@ void atualizar_agendamento(void)
     scanf("%d", &id_escolhido);
     getchar();
 
-    arq_agendamentos = fopen("agendamentos/agendamentos.csv", "rt");
-    arq_agendamentos2 = fopen("agendamentos/temp.csv", "wt");
-    if (arq_agendamentos == NULL || arq_agendamentos2 == NULL)
-    {
-        printf("Erro ao abrir arquivos!\n");
-        return;
-    }
+    // Rewind para reescrever o registro
+    rewind(arq_agendamentos);
 
-    while (fscanf(arq_agendamentos, "%d;%14[^;];%99[^;];%19[^;];%14[^;];%99[^;];%14[^;];%9[^\n]\n",
-                  &id, agd.cpf, agd.nome, agd.tipo_consulta, fnc.cpf, fnc.nome, agd.data, agd.horario) == 8)
+    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos) == 1)
     {
-        if (id == id_escolhido)
+        if (agd->id == id_escolhido)
         {
             id_encontrado = 1;
-            modulo_alteracao_agend(agd.nome, agd.tipo_consulta, agd.data, agd.horario);
-        }
 
-        fprintf(arq_agendamentos2, "%d;%s;%s;%s;%s;%s;%s;%s\n",
-                id, agd.cpf, agd.nome, agd.tipo_consulta, fnc.cpf, fnc.nome, agd.data, agd.horario);
+            // Chama a função de alteração, passando ponteiros
+            modulo_alteracao_agend(agd->nome, agd->tipo_consulta, agd->data, agd->horario);
+
+            // Move o ponteiro do arquivo para sobrescrever o registro
+            fseek(arq_agendamentos, -((long)sizeof(Agendamento)), SEEK_CUR);
+            fwrite(agd, sizeof(Agendamento), 1, arq_agendamentos);
+            break;
+        }
     }
 
     fclose(arq_agendamentos);
-    fclose(arq_agendamentos2);
 
     if (!id_encontrado)
     {
-        remove("agendamentos/temp.csv");
         printf("\nNenhum agendamento encontrado com o ID informado!\n");
         printf(">>> Nenhuma alteração foi feita. <<<\n");
     }
     else
     {
-        remove("agendamentos/agendamentos.csv");
-        rename("agendamentos/temp.csv", "agendamentos/agendamentos.csv");
-
         printf("\nAgendamento atualizado com sucesso!\n");
     }
 
     printf(">>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
+
+    free(agd);
+    free(fnc);
 }
 
 void listar_agendamentos(void)
 {
     FILE *arq_agendamentos;
-    Agendamento* agd;
-    Funcionario* fnc;
+    Agendamento *agd;
+    Funcionario *fnc;
     int encontrado = 0;
     char data_agendamento[15];
 
@@ -240,8 +242,8 @@ void listar_agendamentos(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    agd = (Agendamento*) malloc(sizeof(Agendamento));
-    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+    agd = (Agendamento *)malloc(sizeof(Agendamento));
+    fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
     input(data_agendamento, 15, "Digite a data desejada (dd/mm/aaaa): ");
 
@@ -252,8 +254,8 @@ void listar_agendamentos(void)
         return;
     }
 
-    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos) && 
-          fread(fnc, sizeof(Funcionario), 1, arq_agendamentos))
+    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos) &&
+           fread(fnc, sizeof(Funcionario), 1, arq_agendamentos))
     {
 
         if (strcmp(agd->data, data_agendamento) == 0)
@@ -290,8 +292,8 @@ void listar_agendamentos(void)
 void buscar_agendamento_por_cpf(void)
 {
     FILE *arq_agendamentos;
-    Agendamento* agd;
-    Funcionario* fnc;
+    Agendamento *agd;
+    Funcionario *fnc;
     char cpf_lido[15];
     int encontrado = 0;
 
@@ -302,8 +304,8 @@ void buscar_agendamento_por_cpf(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    agd = (Agendamento*) malloc(sizeof(Agendamento));
-    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+    agd = (Agendamento *)malloc(sizeof(Agendamento));
+    fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
     input(cpf_lido, 15, "Digite o CPF do cliente para buscar: ");
 
@@ -448,10 +450,10 @@ int gerar_novo_id()
 {
     FILE *arq = fopen("agendamentos/agendamentos.dat", "rb");
     int ultimo_id = 0;
-    Agendamento* agd;
-    Funcionario* fnc;
-    agd = (Agendamento*) malloc(sizeof(Agendamento));
-    fnc = (Funcionario*) malloc(sizeof(Funcionario));
+    Agendamento *agd;
+    Funcionario *fnc;
+    agd = (Agendamento *)malloc(sizeof(Agendamento));
+    fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
     if (arq != NULL)
     {
