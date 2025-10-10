@@ -298,7 +298,6 @@ void buscar_agendamento_por_cpf(void)
 {
     FILE *arq_agendamentos;
     Agendamento *agd;
-    Funcionario *fnc;
     char cpf_lido[15];
     int encontrado = 0;
 
@@ -310,37 +309,31 @@ void buscar_agendamento_por_cpf(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     agd = (Agendamento *)malloc(sizeof(Agendamento));
-    fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
     input(cpf_lido, 15, "Digite o CPF do cliente para buscar: ");
 
     arq_agendamentos = fopen("agendamentos/agendamentos.dat", "rb");
-
     if (arq_agendamentos == NULL)
     {
-        printf("Erro na criacao do arquivo\n!");
+        printf("Erro na abertura do arquivo!\n");
+        free(agd);
         return;
     }
 
-    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos) &&
-           fread(fnc, sizeof(Funcionario), 1, arq_agendamentos))
-
+    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos))
     {
-
-        if (strcmp(agd->cpf, cpf_lido) == 0)
+        if ((strcmp(agd->cpf, cpf_lido) == 0) && (agd->status == 1))
         {
             if (!encontrado)
             {
-                printf("\nAgendamentos do CPF %s encontrado!\n", cpf_lido);
+                printf("\nAgendamentos do CPF %s encontrados:\n", cpf_lido);
                 printf("------------------------------------------------\n");
             }
-
             encontrado = 1;
             printf("ID: %d\n", agd->id);
-            printf("CPF: %s\n", agd->cpf);
             printf("Nome: %s\n", agd->nome);
             printf("Tipo de Consulta: %s\n", agd->tipo_consulta);
-            printf("Funcionário: %s\n", fnc->nome);
+            printf("Funcionário: %s \n", agd->nome_funcionario);
             printf("Data: %s\n", agd->data);
             printf("Horário: %s\n", agd->horario);
             printf("Status: %d\n", agd->status);
@@ -350,11 +343,10 @@ void buscar_agendamento_por_cpf(void)
 
     fclose(arq_agendamentos);
     free(agd);
-    free(fnc);
 
     if (!encontrado)
     {
-        printf("\nNenhum agendamento encontrado!\n");
+        printf("\nNenhum agendamento encontrado para este CPF!\n");
     }
 
     printf("      >>> Tecle <ENTER> para continuar... <<<\n");
