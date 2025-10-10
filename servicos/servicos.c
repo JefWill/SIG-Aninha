@@ -108,7 +108,7 @@ int tela_menu_signos(void)
     printf("|                      1. Listar Todos os Signos                         |\n");
     printf("|                      2. Consultar Detalhes de um Signo                 |\n");
     printf("|                      3. Verificar Compatibilidade Amorosa              |\n");
-    printf("|                      4. Ver Horóscopo do Dia                           |\n");
+    printf("|                      4. Ver Horóscopo do Signo                         |\n");
     printf("|                      5. Calcular seu Signo                             |\n");
     printf("|                      0. Retornar ao Menu de Serviços                   |\n");
     printf("|                                                                        |\n");
@@ -239,46 +239,82 @@ void compatibilidade(void)
 
 void horoscopo_signo(void)
 {
+    int signo;
+
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                  ✦✧✦✧✦   Horóscopo do Dia   ✦✧✦✧✦                      |\n");
+    printf("|                  ✦✧✦✧✦   Horóscopo do Signo   ✦✧✦✧✦                |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    printf("Calcular horoscopo do signo...\n");
+    exibir_lista_signos();
+    printf("Digite o número do signo: ");
+    scanf("%d", &signo);
+
+    exibir_mensagem_signo(signo);
+
     printf("\nPressione ENTER para voltar ao menu...");
     getchar();
 }
 
-void exibir_mensagem_signo(const char *signo)
+void exibir_mensagem_signo(int signo)
 {
-    if (strcasecmp(signo, "aries") == 0)
-        printf("♈ Áries: Energia e coragem em alta. Evite agir por impulso.\n");
-    else if (strcasecmp(signo, "touro") == 0)
-        printf("♉ Touro: Um bom dia para cuidar de si e valorizar o conforto.\n");
-    else if (strcasecmp(signo, "gemeos") == 0 || strcasecmp(signo, "gêmeos") == 0)
-        printf("♊ Gêmeos: Comunicação será sua aliada. Converse e troque ideias.\n");
-    else if (strcasecmp(signo, "cancer") == 0 || strcasecmp(signo, "câncer") == 0)
-        printf("♋ Câncer: Emoções afloradas. Escute seu coração, mas mantenha o equilíbrio.\n");
-    else if (strcasecmp(signo, "leao") == 0 || strcasecmp(signo, "leão") == 0)
-        printf("♌ Leão: Mostre seu brilho, mas sem exageros. O dia pede autoconfiança.\n");
-    else if (strcasecmp(signo, "virgem") == 0)
-        printf("♍ Virgem: Organização será essencial. Foque no que é prático.\n");
-    else if (strcasecmp(signo, "libra") == 0)
-        printf("♎ Libra: Harmonia nas relações. Evite se sobrecarregar tentando agradar.\n");
-    else if (strcasecmp(signo, "escorpiao") == 0 || strcasecmp(signo, "escorpião") == 0)
-        printf("♏ Escorpião: Intuição aguçada. Aproveite para resolver pendências emocionais.\n");
-    else if (strcasecmp(signo, "sagitario") == 0 || strcasecmp(signo, "sagitário") == 0)
-        printf("♐ Sagitário: Liberdade em foco. Planeje aventuras, mas com responsabilidade.\n");
-    else if (strcasecmp(signo, "capricornio") == 0 || strcasecmp(signo, "capricórnio") == 0)
-        printf("♑ Capricórnio: Persistência trará resultados. Não desista dos seus planos.\n");
-    else if (strcasecmp(signo, "aquario") == 0 || strcasecmp(signo, "aquário") == 0)
-        printf("♒ Aquário: Criatividade em alta. Aposte em ideias fora do comum.\n");
-    else if (strcasecmp(signo, "peixes") == 0)
-        printf("♓ Peixes: Sensibilidade à flor da pele. Confie nos seus sonhos e na intuição.\n");
-    else
-        printf("❌ Signo não reconhecido.\n");
+    switch (signo)
+    {
+    case 1:
+        printf("Áries: Energia e coragem em alta. Evite agir por impulso.\n");
+        getchar();
+        break;
+    case 2:
+        printf("Touro: Um bom dia para cuidar de si e valorizar o conforto.\n");
+        getchar();
+        break;
+    case 3:
+        printf("Gêmeos: Comunicação será sua aliada. Converse e troque ideias.\n");
+        getchar();
+        break;
+    case 4:
+        printf("Câncer: Emoções afloradas. Escute seu coração, mas mantenha o equilíbrio.\n");
+        getchar();
+        break;
+    case 5:
+        printf("Leão: Mostre seu brilho, mas sem exageros. O dia pede autoconfiança.\n");
+        getchar();
+        break;
+    case 6:
+        printf("Virgem: Organização será essencial. Foque no que é prático.\n");
+        getchar();
+        break;
+    case 7:
+        printf("Libra: Harmonia nas relações. Evite se sobrecarregar tentando agradar.\n");
+        getchar();
+        break;
+    case 8:
+        printf("Escorpião: Intuição aguçada. Aproveite para resolver pendências emocionais.\n");
+        getchar();
+        break;
+    case 9:
+        printf("Sagitário: Liberdade em foco. Planeje aventuras, mas com responsabilidade.\n");
+        getchar();
+        break;
+    case 10:
+        printf("Capricórnio: Persistência trará resultados. Não desista dos seus planos.\n");
+        getchar();
+        break;
+    case 11:
+        printf("Aquário: Criatividade em alta. Aposte em ideias fora do comum.\n");
+        getchar();
+        break;
+    case 12:
+        printf("Peixes: Sensibilidade à flor da pele. Confie nos seus sonhos e na intuição.\n");
+        getchar();
+        break;
+    default:
+        printf("Número inválido! Digite um valor entre 1 e 12.\n");
+        getchar();
+        break;
+    }
 }
 
 void calcular_signo(void)
