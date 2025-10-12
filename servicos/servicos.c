@@ -73,7 +73,7 @@ void perguntas(void)
     while (continuar != 0)
     {
         srand(time(NULL)); // inicializa a SEED que faz gerar o numero aleatorio para sortear a resposta
-        char *respostas[3] = {"sim", "nao", "talvez"};
+        char *respostas[3] = {"Sim", "Não", "Talvez"};
         char pergunta[255];
         system("clear||cls");
         printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -606,8 +606,8 @@ void modulo_tarot(void)
 }
 
 char *cartas[22] = {"O Louco", "O Mago", "A Sacerdotisa", "A Imperatriz", "O Imperador", "O Hierofante",
-                    "Os Enamorados", "O Carro", "A Força", "O Eremita", "A Roda da Fortuna", "A Justiça", "O Enforcado",
-                    "A Morte", "A Temperança", "O Diabo", "A Torre", "A Estrela", "A Lua", "O Sol", "O Julgamento", "O Mundo"};
+        "Os Enamorados", "O Carro", "A Força", "O Eremita", "A Roda da Fortuna", "A Justiça", "O Enforcado",
+        "A Morte", "A Temperança", "O Diabo", "A Torre", "A Estrela", "A Lua", "O Sol", "O Julgamento", "O Mundo"};
 
 void exibir_lista_cartas(void)
 {
@@ -628,8 +628,9 @@ void exibir_lista_cartas(void)
 
 void consultar_cartas(void)
 {
+    // Tive ajuda do Chat GPT 4.1 para montar a lógica de sorteio das cartas
     srand(time(NULL));
-    char cpf[15], data[11];
+    int sorteadas[3] = {-1, -1, -1};
     system("clear||cls");
 
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -638,13 +639,68 @@ void consultar_cartas(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(cpf, 15, "Digite o CPF do cliente:");
-    input(data, 11, "Digite a data atual (DD/MM/AAAA):");
 
-    printf("\n Resultado da consulta:\n");
-    printf(" Passado : %s\n", cartas[rand() % 22]);
-    printf(" Presente: %s\n", cartas[rand() % 22]);
-    printf(" Futuro  : %s\n", cartas[rand() % 22]);
+
+    for (int i = 0; i < 3; i++) {
+        int carta;
+        int repetida;
+        do {
+            carta = rand() % 22;
+            repetida = 0;
+            for (int j = 0; j < i; j++) {
+                if (sorteadas[j] == carta) {
+                    repetida = 1;
+                    break;
+                }
+            }
+        } while (repetida);
+        sorteadas[i] = carta;
+    }
+
+    
+    char *significados[22] = {
+        "Novos começos, espontaneidade, aventura.",
+        "Habilidade, iniciativa, poder pessoal.",
+        "Intuição, mistério, sabedoria interior.",
+        "Fertilidade, criatividade, cuidado.",
+        "Autoridade, estrutura, liderança.",
+        "Tradição, espiritualidade, ensino.",
+        "Escolhas, relacionamentos, harmonia.",
+        "Vitória, movimento, conquista.",
+        "Coragem, domínio, força interior.",
+        "Busca, introspecção, sabedoria.",
+        "Mudanças, sorte, ciclos.",
+        "Justiça, equilíbrio, verdade.",
+        "Sacrifício, pausa, nova perspectiva.",
+        "Transformação, fim de ciclo, renascimento.",
+        "Equilíbrio, paciência, moderação.",
+        "Tentação, vícios, materialismo.",
+        "Ruptura, mudanças inesperadas.",
+        "Esperança, inspiração, fé.",
+        "Ilusões, intuição, confusão.",
+        "Alegria, sucesso, vitalidade.",
+        "Renovação, julgamento, despertar.",
+        "Realização, conclusão, plenitude."
+    };
+
+
+    printf("Para sua consulta, você irá puxar 3 cartas representando o Passado, Presente e Futuro.\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("Pressione ENTER para começar...");
+    getchar();
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("Pressione ENTER para puxar a primeira carta (Passado)...");
+    getchar();
+    printf(" Passado : %s\n", cartas[sorteadas[0]]);
+    printf(" Significado: %s\n", significados[sorteadas[0]]);
+    printf("Pressione ENTER para puxar a segunda carta (Presente)...");
+    getchar();
+    printf(" Presente : %s\n", cartas[sorteadas[1]]);
+    printf(" Significado: %s\n", significados[sorteadas[1]]);
+    printf("Pressione ENTER para puxar a terceira carta (Futuro)...");
+    getchar();
+    printf(" Futuro  : %s\n", cartas[sorteadas[2]]);
+    printf(" Significado: %s\n", significados[sorteadas[2]]);
 
     printf("\n☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
     printf("           Pressione a tecla ENTER para continuar...");
