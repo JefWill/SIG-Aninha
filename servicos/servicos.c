@@ -788,6 +788,7 @@ void modulo_numerologia(void)
 
 void descobrir_numero(void)
 {
+    // Tive ajuda do Chat GPT 4.1 para montar a lógica de cálculo do número
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
@@ -795,10 +796,29 @@ void descobrir_numero(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    char data_nascimento[11];
-    input(data_nascimento, 11, "Digite a data de nascimento (DD/MM/AAAA): ");
+    char data_nascimento[12];
+    input(data_nascimento, 12, "Digite a data de nascimento (DD/MM/AAAA): ");
 
-    printf("Descobrindo...\n");
+
+    int soma = 0;
+    for (int i = 0; data_nascimento[i] != '\0'; i++) {
+        if (data_nascimento[i] >= '0' && data_nascimento[i] <= '9') {
+            soma += data_nascimento[i] - '0';     // Converte char para int já que os números em ASCII estão em sequência
+        }
+    }
+
+
+    while (soma > 9) {
+        int temp = 0;
+        while (soma > 0) {
+            temp += soma % 10; //Pega o último dígito
+            soma /= 10;       //Remove o último dígito
+        }
+        soma = temp;
+    }
+
+    printf("\nSeu número é: %d\n", soma);
+    exibir_significados(soma);
 
     printf("\n\n   Pressione ENTER para voltar ao menu...");
     getchar();
@@ -817,6 +837,7 @@ void significado_numeros(void)
 
     printf("Digite o número que deseja saber o significado: \n");
     scanf("%d", &n);
+    getchar();
 
     exibir_significados(n);
 
@@ -830,51 +851,51 @@ void exibir_significados(int n)
     if (n == 1)
     {
         printf("Significado: Liderança, independência e iniciativa.\n");
-        getchar();
+
     }
     else if (n == 2)
     {
         printf("Significado: Cooperação, sensibilidade e diplomacia.\n");
-        getchar();
+
     }
     else if (n == 3)
     {
         printf("Significado: Comunicação, expressão e criatividade.\n");
-        getchar();
+
     }
     else if (n == 4)
     {
         printf("Significado: Organização, estabilidade e disciplina.\n");
-        getchar();
+
     }
     else if (n == 5)
     {
         printf("Significado: Liberdade, aventura e versatilidade.\n");
-        getchar();
+
     }
     else if (n == 6)
     {
         printf("Significado: Amor, família e responsabilidade.\n");
-        getchar();
+
     }
     else if (n == 7)
     {
         printf("Significado: Espiritualidade, introspecção e sabedoria.\n");
-        getchar();
+
     }
     else if (n == 8)
     {
         printf("Significado: Sucesso, poder e realização material.\n");
-        getchar();
+
     }
     else if (n == 9)
     {
         printf("Significado: Compaixão, humanitarismo e generosidade.\n");
-        getchar();
+
     }
     else
     {
         printf("Número inválido! Digite um valor entre 1 e 9.\n");
-        getchar();
+
     }
 }
