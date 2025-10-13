@@ -134,7 +134,7 @@ void buscar_cliente(void)
 
     while (fread(clt, sizeof(Cliente), 1, arq_clientes))
     {
-        if ((strcmp(cpf_lido, clt->cpf) == 0))
+        if ((strcmp(cpf_lido, clt->cpf) == 0) && (clt->status == 1))
         {
             encontrado = 1;
             printf("\nCliente com CPF %s encontrado!\n", clt->cpf);

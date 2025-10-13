@@ -135,7 +135,7 @@ void buscar_funcionario(void)
 
     while (fread(fnc, sizeof(Funcionario), 1, arq_funcionarios))
     {
-        if (strcmp(cpf_lido, fnc->cpf) == 0)
+        if ((strcmp(cpf_lido, fnc->cpf) == 0) && (fnc->status == 1))
         {
             encontrado = 1;
             printf("\nFuncionário com CPF %s encontrado!\n", fnc->cpf);
@@ -293,7 +293,7 @@ void alterar_funcionario(void)
 
     while (fread(fnc, sizeof(Funcionario), 1, arq_funcionarios) && (!encontrado))
     {
-        if (strcmp(fnc->cpf, cpf_lido) == 0)
+        if ((strcmp(fnc->cpf, cpf_lido) == 0) && (fnc->status == 1))
         {
             encontrado = 1;
             printf("\nFuncionário com CPF %s encontrado!\n", fnc->cpf);
@@ -444,7 +444,7 @@ void listar_funcionarios_por_cargo(const char *tipo_consulta, char *cpf_escolhid
 
     while (fread(fnc, sizeof(Funcionario), 1, arq) == 1)
     {
-        if (strcasecmp(fnc->cargo, tipo_consulta) == 0)
+        if ((strcasecmp(fnc->cargo, tipo_consulta) == 0) && (fnc->status == 1))
         {
             encontrado = 1;
             printf("%d) %s \n", ++contador, fnc->nome);
