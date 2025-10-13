@@ -13,6 +13,7 @@ void compatibilidade(void);
 void horoscopo_signo(void);
 void exibir_mensagem_signo(int signo);
 void calcular_signo(void);
+void calcular_signo_pessoa(void);
 char *obter_signo(int dia, int mes);
 
 /////  TAROT  //////

@@ -110,6 +110,7 @@ int tela_menu_signos(void)
     printf("|                      3. Verificar Compatibilidade Amorosa              |\n");
     printf("|                      4. Ver Horóscopo do Signo                         |\n");
     printf("|                      5. Calcular seu Signo                             |\n");
+    printf("|                      6. Calcular Signo de Outra Pessoa                 |\n");
     printf("|                      0. Retornar ao Menu de Serviços                   |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -145,6 +146,10 @@ void modulo_signos(void)
         else if (op_signos == 5)
         {
             calcular_signo();
+        }
+        else if (op_signos == 6)
+        {
+            calcular_signo_pessoa();
         }
         else if (op_signos == 0)
         {
@@ -539,6 +544,44 @@ void calcular_signo(void)
     getchar();
 }
 
+void calcular_signo_pessoa(void)
+{
+
+    int dia, mes;
+    char data[11];
+
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                   ✦✧✦✧✦   Calcular Signo   ✦✧✦✧✦                        |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    input(data, 11, "Digite a data de nascimento (dd/mm): ");
+
+    if (sscanf(data, "%d/%d", &dia, &mes) != 2)
+    {
+        printf("\nFormato inválido! Use o formato dd/mm.\n");
+        printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
+        getchar();
+        return;
+    }
+
+    if (dia < 1 || dia > 31 || mes < 1 || mes > 12)
+    {
+        printf("\nData inválida! Verifique os valores digitados.\n");
+        printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
+        getchar();
+        return;
+    }
+
+    printf("\nSua data de nascimento: %s\n", data);
+    printf("Seu signo é: %s\n", obter_signo(dia, mes));
+
+    printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
+    getchar();
+}
+
 char *obter_signo(int dia, int mes)
 {
     if ((dia >= 21 && mes == 3) || (dia <= 19 && mes == 4))
@@ -606,8 +649,8 @@ void modulo_tarot(void)
 }
 
 char *cartas[22] = {"O Louco", "O Mago", "A Sacerdotisa", "A Imperatriz", "O Imperador", "O Hierofante",
-        "Os Enamorados", "O Carro", "A Força", "O Eremita", "A Roda da Fortuna", "A Justiça", "O Enforcado",
-        "A Morte", "A Temperança", "O Diabo", "A Torre", "A Estrela", "A Lua", "O Sol", "O Julgamento", "O Mundo"};
+                    "Os Enamorados", "O Carro", "A Força", "O Eremita", "A Roda da Fortuna", "A Justiça", "O Enforcado",
+                    "A Morte", "A Temperança", "O Diabo", "A Torre", "A Estrela", "A Lua", "O Sol", "O Julgamento", "O Mundo"};
 
 void exibir_lista_cartas(void)
 {
@@ -639,16 +682,18 @@ void consultar_cartas(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-
-
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++)
+    {
         int carta;
         int repetida;
-        do {
+        do
+        {
             carta = rand() % 22;
             repetida = 0;
-            for (int j = 0; j < i; j++) {
-                if (sorteadas[j] == carta) {
+            for (int j = 0; j < i; j++)
+            {
+                if (sorteadas[j] == carta)
+                {
                     repetida = 1;
                     break;
                 }
@@ -657,7 +702,6 @@ void consultar_cartas(void)
         sorteadas[i] = carta;
     }
 
-    
     char *significados[22] = {
         "Novos começos, espontaneidade, aventura.",
         "Habilidade, iniciativa, poder pessoal.",
@@ -680,9 +724,7 @@ void consultar_cartas(void)
         "Ilusões, intuição, confusão.",
         "Alegria, sucesso, vitalidade.",
         "Renovação, julgamento, despertar.",
-        "Realização, conclusão, plenitude."
-    };
-
+        "Realização, conclusão, plenitude."};
 
     printf("Para sua consulta, você irá puxar 3 cartas representando o Passado, Presente e Futuro.\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -799,20 +841,22 @@ void descobrir_numero(void)
     char data_nascimento[12];
     input(data_nascimento, 12, "Digite a data de nascimento (DD/MM/AAAA): ");
 
-
     int soma = 0;
-    for (int i = 0; data_nascimento[i] != '\0'; i++) {
-        if (data_nascimento[i] >= '0' && data_nascimento[i] <= '9') {
-            soma += data_nascimento[i] - '0';     // Converte char para int já que os números em ASCII estão em sequência
+    for (int i = 0; data_nascimento[i] != '\0'; i++)
+    {
+        if (data_nascimento[i] >= '0' && data_nascimento[i] <= '9')
+        {
+            soma += data_nascimento[i] - '0'; // Converte char para int já que os números em ASCII estão em sequência
         }
     }
 
-
-    while (soma > 9) {
+    while (soma > 9)
+    {
         int temp = 0;
-        while (soma > 0) {
-            temp += soma % 10; //Pega o último dígito
-            soma /= 10;       //Remove o último dígito
+        while (soma > 0)
+        {
+            temp += soma % 10; // Pega o último dígito
+            soma /= 10;        // Remove o último dígito
         }
         soma = temp;
     }
@@ -851,51 +895,41 @@ void exibir_significados(int n)
     if (n == 1)
     {
         printf("Significado: Liderança, independência e iniciativa.\n");
-
     }
     else if (n == 2)
     {
         printf("Significado: Cooperação, sensibilidade e diplomacia.\n");
-
     }
     else if (n == 3)
     {
         printf("Significado: Comunicação, expressão e criatividade.\n");
-
     }
     else if (n == 4)
     {
         printf("Significado: Organização, estabilidade e disciplina.\n");
-
     }
     else if (n == 5)
     {
         printf("Significado: Liberdade, aventura e versatilidade.\n");
-
     }
     else if (n == 6)
     {
         printf("Significado: Amor, família e responsabilidade.\n");
-
     }
     else if (n == 7)
     {
         printf("Significado: Espiritualidade, introspecção e sabedoria.\n");
-
     }
     else if (n == 8)
     {
         printf("Significado: Sucesso, poder e realização material.\n");
-
     }
     else if (n == 9)
     {
         printf("Significado: Compaixão, humanitarismo e generosidade.\n");
-
     }
     else
     {
         printf("Número inválido! Digite um valor entre 1 e 9.\n");
-
     }
 }
