@@ -21,6 +21,7 @@ int tela_menu_servicos(void)
     printf("|                      2. Módulo Tarot                                   |\n");
     printf("|                      3. Módulo Numerologia                             |\n");
     printf("|                      4. Pergunte à Cigana                              |\n");
+    printf("|                      5. Listar Serviços                                |\n");
     printf("|                      0. Retornar ao Menu Principal                     |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -32,6 +33,8 @@ int tela_menu_servicos(void)
 void modulo_servicos(void)
 {
     int op_servicos;
+    int id;
+    char cpf[15];
     do
     {
         op_servicos = tela_menu_servicos();
@@ -39,16 +42,27 @@ void modulo_servicos(void)
         switch (op_servicos)
         {
         case 1:
+            id = 1;
+            dados_usuario_servico(cpf);
             modulo_signos();
             break;
         case 2:
+            id = 2;
+            dados_usuario_servico(cpf);
             modulo_tarot();
             break;
         case 3:
+            id = 3;
+            dados_usuario_servico(cpf);
             modulo_numerologia();
             break;
         case 4:
+            id = 4;
+            dados_usuario_servico(cpf);
             perguntas();
+            break;
+        case 5:
+            listar_servicos();
             break;
         case 0:
             printf("           Voltando ao menu principal...\n");
@@ -932,4 +946,15 @@ void exibir_significados(int n)
     {
         printf("Número inválido! Digite um valor entre 1 e 9.\n");
     }
+}
+
+void dados_usuario_servico(char *cpf){
+    system("clear||cls");
+    printf("Antes de continuar, por favor, preencha o dado solicitado: \n\n");
+
+    input(cpf, 15, "Digite o CPF: ");
+
+
+    printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
+    getchar();
 }
