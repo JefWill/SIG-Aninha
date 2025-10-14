@@ -44,21 +44,25 @@ void modulo_servicos(void)
         case 1:
             id = 1;
             dados_usuario_servico(cpf);
+            cadastra_arquivo_servico(cpf, id);
             modulo_signos();
             break;
         case 2:
             id = 2;
             dados_usuario_servico(cpf);
+            cadastra_arquivo_servico(cpf, id);
             modulo_tarot();
             break;
         case 3:
             id = 3;
             dados_usuario_servico(cpf);
+            cadastra_arquivo_servico(cpf, id);
             modulo_numerologia();
             break;
         case 4:
             id = 4;
             dados_usuario_servico(cpf);
+            cadastra_arquivo_servico(cpf, id);
             perguntas();
             break;
         case 5:
@@ -957,4 +961,26 @@ void dados_usuario_servico(char *cpf){
 
     printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
+}
+
+void cadastra_arquivo_servico(char *cpf, int id){
+    FILE *arq_servicos;
+    Servicos srv;
+    time_t agora = time(NULL);
+    struct tm *tm_info = localtime(&agora);
+
+    arq_servicos = fopen("servicos/servicos.dat", "ab");
+    if (arq_servicos == NULL)
+    {
+        printf("\n Erro ao abrir o arquivo de serviços.\n");
+        return;
+    }
+
+    strncpy(srv.cpf, cpf, 15);
+    srv.id = id;
+    strftime(srv.data, sizeof(srv.data), "%d/%m/%Y", tm_info);
+    strftime(srv.hora, sizeof(srv.hora), "%H:%M:%S", tm_info);
+
+    fwrite(&srv, sizeof(Servicos), 1, arq_servicos);
+    fclose(arq_servicos);
 }
