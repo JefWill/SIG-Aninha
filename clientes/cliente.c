@@ -26,6 +26,7 @@ int tela_menu_cliente(void)
     printf("|                      3. Listar Todos os Clientes                       |\n");
     printf("|                      4. Atualizar Dados de Cliente                     |\n");
     printf("|                      5. Excluir Cliente do Sistema                     |\n");
+    printf("|                      6. Excluir Cliente Fisicamente                    |\n");
     printf("|                      0. Retornar ao Menu Principal                     |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -57,6 +58,9 @@ void modulo_cliente(void)
             break;
         case 5:
             excluir_cliente();
+            break;
+        case 6:
+            excluir_cliente_fisico();
             break;
         case 0:
             printf("           Voltando ao menu principal...\n");
@@ -263,6 +267,85 @@ void excluir_cliente(void)
     }
 
     printf("\n\n           Pressione a tecla ENTER para retornar ao menu...");
+    getchar();
+}
+
+void excluir_cliente_fisico(void)
+{
+    FILE *arq_clientes;
+    FILE *arq_clientes2;
+    Cliente *clt;
+    char opcao;
+    int encontrado = 0;
+    char cpf_lido[15];
+
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                      ✦✧✦✧✦  Excluir Cliente  ✦✧✦✧✦                     |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    clt = (Cliente *)malloc(sizeof(Cliente));
+    input(cpf_lido, 15, "Informe o CPF do cliente que deseja excluir: ");
+
+    arq_clientes = fopen("clientes/clientes.dat", "rb");
+    arq_clientes2 = fopen("clientes/clientes2.dat", "wb");
+
+    if ((arq_clientes == NULL) || (arq_clientes2 == NULL))
+    {
+        printf("Erro na criação do arquivo!\n");
+        free(clt);
+        getchar();
+        return;
+    }
+
+    while (fread(clt, sizeof(Cliente), 1, arq_clientes))
+    {
+        if ((strcmp(clt->cpf, cpf_lido) == 0) && (clt->status == 1))
+        {
+            encontrado = 1;
+            printf("\nCliente com CPF %s encontrado!\n", clt->cpf);
+            printf("Nome: %s\n", clt->nome);
+            printf("Data de Nascimento: %s\n", clt->data_nascimento);
+            printf("Telefone: %s\n", clt->telefone);
+
+            printf("\nConfirma exclusão do cliente? (S/N): ");
+            scanf(" %c", &opcao);
+            getchar();
+
+            if (opcao == 'S' || opcao == 's')
+            {
+                printf("\nCliente com CPF %s excluído com sucesso!\n", clt->cpf);
+            }
+            else
+            {
+                printf("Exclusão cancelada!\n");
+                fwrite(clt, sizeof(Cliente), 1, arq_clientes2);
+            }
+        }
+        else
+        {
+            fwrite(clt, sizeof(Cliente), 1, arq_clientes2);
+        }
+    }
+
+    fclose(arq_clientes);
+    fclose(arq_clientes2);
+    free(clt);
+
+    if (encontrado)
+    {
+        remove("clientes/clientes.dat");
+        rename("clientes/clientes2.dat", "clientes/clientes.dat");
+    }
+    else
+    {
+        remove("clientes/clientes2.dat");
+        printf("CPF não encontrado!\n");
+    }
+
+    printf("\n\nPressione ENTER para retornar ao menu...");
     getchar();
 }
 

@@ -19,6 +19,7 @@ int tela_menu_cliente(void);
 void buscar_cliente(void);
 void listar_clientes(void);
 void excluir_cliente(void);
+void excluir_cliente_fisico(void);
 void alterar_cliente(void);
 int menu_alteracao(void);
 void modulo_alteracao(char *nome, char *data_nascimento, char *telefone);
