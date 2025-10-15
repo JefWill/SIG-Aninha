@@ -49,3 +49,9 @@ void header(void)
     printf("|                         Since: Ago, 2025                               |\n");
     printf("|                                                                        |\n");
 }
+
+void confirmacao(void)
+{
+    printf("      >>> Tecle <ENTER> para continuar... <<<\n");
+    getchar();
+}

@@ -67,13 +67,11 @@ void modulo_cliente(void)
             getchar();
             break;
         case -1:
-            printf(">>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         default:
             printf("                Opção Inexistente!\n");
-            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         }
     } while (op_cliente != 0);
@@ -147,7 +145,7 @@ void buscar_cliente(void)
             printf("Data de Nascimento: %s\n", clt->data_nascimento);
             printf("Telefone: %s\n", clt->telefone);
             printf("Status: %d\n", clt->status);
-            printf("\nPressione enter para continuar...");
+            confirmacao();
             fclose(arq_clientes);
             free(clt);
             getchar();
@@ -160,9 +158,8 @@ void buscar_cliente(void)
 
     if (!encontrado)
     {
-        printf("\nCliente não encontrado!\n");
-        printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
-        getchar();
+        printf("\n      Cliente não encontrado!\n");
+        confirmacao();
     }
 }
 
@@ -197,8 +194,7 @@ void listar_clientes(void)
     fclose(arq_clientes);
     free(clt);
 
-    printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
-    getchar();
+    confirmacao();
 }
 
 void excluir_cliente(void)
@@ -266,8 +262,7 @@ void excluir_cliente(void)
         printf("CPF não encontrado!");
     }
 
-    printf("\n\n           Pressione a tecla ENTER para retornar ao menu...");
-    getchar();
+    confirmacao();
 }
 
 void excluir_cliente_fisico(void)
@@ -302,13 +297,14 @@ void excluir_cliente_fisico(void)
 
     while (fread(clt, sizeof(Cliente), 1, arq_clientes))
     {
-        if ((strcmp(clt->cpf, cpf_lido) == 0) && (clt->status == 1))
+        if ((strcmp(clt->cpf, cpf_lido) == 0))
         {
             encontrado = 1;
             printf("\nCliente com CPF %s encontrado!\n", clt->cpf);
             printf("Nome: %s\n", clt->nome);
             printf("Data de Nascimento: %s\n", clt->data_nascimento);
             printf("Telefone: %s\n", clt->telefone);
+            printf("Status: %d\n", clt->status);
 
             printf("\nConfirma exclusão do cliente? (S/N): ");
             scanf(" %c", &opcao);
@@ -320,7 +316,7 @@ void excluir_cliente_fisico(void)
             }
             else
             {
-                printf("Exclusão cancelada!\n");
+                printf("        Exclusão cancelada!\n");
                 fwrite(clt, sizeof(Cliente), 1, arq_clientes2);
             }
         }
@@ -345,8 +341,7 @@ void excluir_cliente_fisico(void)
         printf("CPF não encontrado!\n");
     }
 
-    printf("\n\nPressione ENTER para retornar ao menu...");
-    getchar();
+    confirmacao();
 }
 
 void alterar_cliente(void)
@@ -415,8 +410,7 @@ void alterar_cliente(void)
         printf("CPF não encontrado!\n");
     }
 
-    printf("Pressione ENTER para voltar ao menu...");
-    getchar();
+    confirmacao();
 }
 
 int menu_alteracao(void)
@@ -447,33 +441,28 @@ void modulo_alteracao(char *nome, char *data_nascimento, char *telefone)
         case 1:
             input(nome, 50, "Digite o nome: ");
             printf("\nNome atualizado com sucesso!\n");
-            printf(">>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         case 2:
             input(data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
             printf("\nData de nascimento atualizada com sucesso!\n");
-            printf(">>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         case 3:
             input(telefone, 20, "Digite o telefone: ");
             printf("\nTelefone atualizado com sucesso!\n");
-            printf(">>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         case 0:
             printf("           Voltando ao menu principal...\n");
             getchar();
             break;
         case -1:
-            printf(">>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         default:
             printf("                Opção Inexistente!\n");
-            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         }
     } while (opcao != 0);
