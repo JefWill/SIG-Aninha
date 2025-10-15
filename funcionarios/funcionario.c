@@ -23,6 +23,7 @@ int tela_menu_funcionario(void)
     printf("|                      3. Listar Funcionários                            |\n");
     printf("|                      4. Atualizar Funcionário                          |\n");
     printf("|                      5. Excluir Funcionário                            |\n");
+    printf("|                      6. Excluir Funcionário Fisicamente                |\n");
     printf("|                      0. Retornar ao Menu Principal                     |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -55,18 +56,19 @@ void modulo_funcionario(void)
         case 5:
             excluir_funcionario();
             break;
+        case 6:
+            excluir_funcionario_fisico();
+            break;
         case 0:
             printf("           Voltando ao menu principal...\n");
             getchar();
             break;
         case -1:
-            printf(">>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         default:
             printf("                Opção Inexistente!\n");
-            printf("         >>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         }
     } while (op_funcionario != 0);
@@ -103,8 +105,7 @@ void cadastrar_funcionario(void)
 
     free(fnc);
 
-    printf("\nPressione Enter para continuar");
-    getchar();
+    confirmacao();
 }
 
 void buscar_funcionario(void)
@@ -145,8 +146,7 @@ void buscar_funcionario(void)
 
             fclose(arq_funcionarios);
             free(fnc);
-            printf("Pressione enter para continuar...");
-            getchar();
+            confirmacao();
 
             return;
         }
@@ -155,9 +155,8 @@ void buscar_funcionario(void)
 
     if (!encontrado)
     {
-        printf("Funcionário não encontrado!");
-        printf("\n\n           Pressione a tecla ENTER para retornar ao menu...");
-        getchar();
+        printf("\nFuncionário não encontrado!\n");
+        confirmacao();
     }
 }
 
@@ -191,8 +190,7 @@ void listar_funcionarios(void)
     fclose(arq_funcionarios);
     free(fnc);
 
-    printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
-    getchar();
+    confirmacao();
 }
 
 void excluir_funcionario(void)
@@ -257,11 +255,89 @@ void excluir_funcionario(void)
 
     if (!encontrado)
     {
-        printf("CPF não encontrado!");
+        printf("\nCPF não encontrado!");
     }
 
-    printf("\n\n           Pressione a tecla ENTER para retornar ao menu...");
-    getchar();
+    confirmacao();
+}
+
+void excluir_funcionario_fisico(void)
+{
+    FILE *arq_funcionarios;
+    FILE *arq_funcionarios2;
+    Funcionario *fnc;
+    char cpf_lido[15];
+    char opcao;
+    int encontrado = 0;
+
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|            ✦✧✦✧✦  Excluir Funcionário Fisicamente  ✦✧✦✧✦          |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    fnc = (Funcionario *)malloc(sizeof(Funcionario));
+    input(cpf_lido, 15, "Informe o CPF do funcionário que deseja excluir: ");
+
+    arq_funcionarios = fopen("funcionarios/funcionarios.dat", "rb");
+    arq_funcionarios2 = fopen("funcionarios/funcionarios2.dat", "wb");
+
+    if ((arq_funcionarios == NULL) || (arq_funcionarios2 == NULL))
+    {
+        printf("Erro na abertura ou criação do arquivo!\n");
+        free(fnc);
+        getchar();
+        return;
+    }
+
+    while (fread(fnc, sizeof(Funcionario), 1, arq_funcionarios))
+    {
+        if (strcmp(fnc->cpf, cpf_lido) == 0)
+        {
+            encontrado = 1;
+            printf("\nFuncionário encontrado!\n");
+            printf("Nome: %s\n", fnc->nome);
+            printf("CPF: %s\n", fnc->cpf);
+            printf("Cargo: %s\n", fnc->cargo);
+            printf("Status: %d\n", fnc->status);
+
+            printf("\nConfirma exclusão definitiva deste funcionário? (S/N): ");
+            scanf(" %c", &opcao);
+            getchar();
+
+            if (opcao == 'S' || opcao == 's')
+            {
+                printf("\nFuncionário com CPF %s excluído com sucesso!\n", fnc->cpf);
+            }
+            else
+            {
+                printf("\nExclusão cancelada.\n");
+                fwrite(fnc, sizeof(Funcionario), 1, arq_funcionarios2);
+            }
+        }
+        else
+        {
+            fwrite(fnc, sizeof(Funcionario), 1, arq_funcionarios2);
+        }
+    }
+
+    fclose(arq_funcionarios);
+    fclose(arq_funcionarios2);
+    free(fnc);
+
+    if (encontrado)
+    {
+        remove("funcionarios/funcionarios.dat");
+        rename("funcionarios/funcionarios2.dat", "funcionarios/funcionarios.dat");
+    }
+    else
+    {
+        remove("funcionarios/funcionarios2.dat");
+        printf("\nCPF não encontrado!\n");
+    }
+
+    confirmacao();
 }
 
 void alterar_funcionario(void)
@@ -329,8 +405,7 @@ void alterar_funcionario(void)
         printf("CPF não encontrado!\n");
     }
 
-    printf("Pressione ENTER para voltar ao menu...");
-    getchar();
+    confirmacao();
 }
 
 int menu_alteracao_func(void)
@@ -360,27 +435,23 @@ void modulo_alteracao_func(char *nome, char *cargo)
         case 1:
             input(nome, 50, "Digite o nome: ");
             printf("\nNome atualizado com sucesso!\n");
-            printf(">>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         case 2:
             input(cargo, 50, "Digite o cargo do funcionário: (Numerologia, Tarot, Signos)");
             printf("\nCargo atualizado com sucesso!\n");
-            printf(">>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         case 0:
             printf("           Voltando ao menu principal...\n");
             getchar();
             break;
         case -1:
-            printf(">>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         default:
             printf("                Opção Inexistente!\n");
-            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         }
     } while (opcao != 0);
@@ -458,8 +529,7 @@ void listar_funcionarios_por_cargo(const char *tipo_consulta, char *cpf_escolhid
     if (!encontrado)
     {
         printf("\nNenhum funcionário disponível para esse tipo de consulta.\n");
-        printf(">>> Tecle <ENTER> para continuar... <<<\n");
-        getchar();
+        confirmacao();
         strcpy(cpf_escolhido, "");
         strcpy(nome_escolhido, "");
         free(fnc);
@@ -473,8 +543,7 @@ void listar_funcionarios_por_cargo(const char *tipo_consulta, char *cpf_escolhid
     if (escolha < 1 || escolha > contador)
     {
         printf("\nOpção inválida!\n");
-        printf(">>> Tecle <ENTER> para continuar... <<<\n");
-        getchar();
+        confirmacao();
         strcpy(cpf_escolhido, "");
         strcpy(nome_escolhido, "");
         free(fnc);

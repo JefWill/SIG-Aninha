@@ -277,7 +277,7 @@ void excluir_cliente_fisico(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                      ✦✧✦✧✦  Excluir Cliente  ✦✧✦✧✦                     |\n");
+    printf("|              ✦✧✦✧✦  Excluir Cliente Fisicamente  ✦✧✦✧✦            |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
@@ -306,7 +306,7 @@ void excluir_cliente_fisico(void)
             printf("Telefone: %s\n", clt->telefone);
             printf("Status: %d\n", clt->status);
 
-            printf("\nConfirma exclusão do cliente? (S/N): ");
+            printf("\nConfirma exclusão definitiva deste cliente? (S/N): ");
             scanf(" %c", &opcao);
             getchar();
 
