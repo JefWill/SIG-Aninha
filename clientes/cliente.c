@@ -104,8 +104,7 @@ void cadastrar_cliente(void)
     free(clt);
 
     printf("\nCliente cadastrado com sucesso!\n");
-    printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
-    getchar();
+    confirmacao();
 }
 
 void buscar_cliente(void)
@@ -481,4 +480,13 @@ Cliente *preenche_cliente(void)
     input(clt->telefone, 20, "Digite o telefone: ");
     clt->status = 1;
     return clt;
+}
+
+void exibir_cliente(const Cliente *clt)
+{
+    printf("CPF: %s\n", clt->cpf);
+    printf("Nome: %s\n", clt->nome);
+    printf("Data de Nascimento: %s\n", clt->data_nascimento);
+    printf("Telefone: %s\n", clt->telefone);
+    printf("Status: %d\n", clt->status);
 }

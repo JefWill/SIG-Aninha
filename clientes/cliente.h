@@ -15,6 +15,7 @@ struct cliente
 
 void modulo_cliente(void);
 void cadastrar_cliente(void);
+void exibir_cliente(const Cliente *clt);
 int tela_menu_cliente(void);
 void buscar_cliente(void);
 void listar_clientes(void);
