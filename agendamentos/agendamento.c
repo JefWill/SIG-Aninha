@@ -26,7 +26,7 @@ int tela_menu_agendamento(void)
     printf("|                      3. Listar Agendamentos (do dia)                   |\n");
     printf("|                      4. Buscar Agendamento por Cliente                 |\n");
     printf("|                      5. Cancelar Agendamento                           |\n");
-    //printf("|                      6. Cancelar Agendamento Fisicamente               |\n");
+    printf("|                      6. Cancelar Agendamento Fisicamente               |\n");
     printf("|                      0. Retornar ao Menu Principal                     |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -59,9 +59,9 @@ void modulo_agendamentos(void)
         case 5:
             excluir_agendamento();
             break;
-        //case 6:
-            //excluir_agendamento_fisico();
-            //break;
+        case 6:
+            excluir_agendamento_fisico();
+            break;
         case 0:
             printf("           Voltando ao menu principal...\n");
             getchar();
