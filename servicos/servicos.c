@@ -73,13 +73,11 @@ void modulo_servicos(void)
             getchar();
             break;
         case -1:
-            printf(">>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         default:
             printf("                Opção Inexistente!\n");
-            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         }
     } while (op_servicos != 0);
@@ -176,14 +174,12 @@ void modulo_signos(void)
         }
         else if (op_signos == -1)
         {
-            printf(">>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
         }
         else
         {
             printf("                Opção Inexistente!\n");
-            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
         }
     }
 }
@@ -241,8 +237,7 @@ void consultar_signo(void)
         printf("\nO signo escolhido foi: %s\n", signos[opcao - 1]);
         exibir_caracteristicas_signo(opcao);
     }
-    printf("\nPressione ENTER para voltar ao menu...");
-    getchar();
+    confirmacao();
 }
 
 void exibir_caracteristicas_signo(int numero)
@@ -399,7 +394,6 @@ void compatibilidade(void)
     {
         printf("\nNúmero inválido! Digite um valor entre 1 e 12.\n");
         getchar();
-        getchar();
         return;
     }
 
@@ -422,8 +416,7 @@ void compatibilidade(void)
     printf("\nA compatibilidade entre %s e %s é de %d%%\n",
            signos[signo1 - 1], signos[signo2 - 1], matriz[signo1 - 1][signo2 - 1]);
 
-    printf("\nPressione ENTER para voltar ao menu...");
-    getchar();
+    confirmacao();
     getchar();
 }
 
@@ -444,8 +437,7 @@ void horoscopo_signo(void)
 
     exibir_mensagem_signo(signo);
 
-    printf("\nPressione ENTER para voltar ao menu...");
-    getchar();
+    confirmacao();
 }
 
 void exibir_mensagem_signo(int signo)
@@ -528,8 +520,7 @@ void calcular_signo(void)
     if (arq_clientes == NULL)
     {
         printf("\n Erro ao abrir o arquivo de clientes.\n");
-        printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
-        getchar();
+        confirmacao();
         return;
     }
 
@@ -558,8 +549,7 @@ void calcular_signo(void)
     fclose(arq_clientes);
     free(clt);
 
-    printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
-    getchar();
+    confirmacao();
 }
 
 void calcular_signo_pessoa(void)
@@ -580,23 +570,21 @@ void calcular_signo_pessoa(void)
     if (sscanf(data, "%d/%d", &dia, &mes) != 2)
     {
         printf("\nFormato inválido! Use o formato dd/mm.\n");
-        printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
-        getchar();
+        confirmacao();
         return;
     }
 
     if (dia < 1 || dia > 31 || mes < 1 || mes > 12)
     {
         printf("\nData inválida! Verifique os valores digitados.\n");
-        printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
-        getchar();
+        confirmacao();
         return;
     }
 
     printf("\nSua data de nascimento: %s\n", data);
     printf("Seu signo é: %s\n", obter_signo(dia, mes));
 
-    printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
+    confirmacao();
     getchar();
 }
 
@@ -654,14 +642,12 @@ void modulo_tarot(void)
         }
         else if (op_tarot == -1)
         {
-            printf(">>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
         }
         else
         {
             printf("                Opção Inexistente!\n");
-            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
         }
     }
 }
@@ -683,8 +669,7 @@ void exibir_lista_cartas(void)
         printf("%2d - %s\n", i + 1, cartas[i]);
     }
     printf("\n☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
-    printf("           Pressione a tecla ENTER para continuar...");
-    getchar();
+    confirmacao();
 }
 
 void consultar_cartas(void)
@@ -834,14 +819,12 @@ void modulo_numerologia(void)
         }
         else if (op_num == -1)
         {
-            printf(">>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
         }
         else
         {
             printf("                Opção Inexistente!\n");
-            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
         }
     }
 }
@@ -882,8 +865,7 @@ void descobrir_numero(void)
     printf("\nSeu número é: %d\n", soma);
     exibir_significados(soma);
 
-    printf("\n\n   Pressione ENTER para voltar ao menu...");
-    getchar();
+    confirmacao();
 }
 
 void significado_numeros(void)
@@ -903,8 +885,7 @@ void significado_numeros(void)
 
     exibir_significados(n);
 
-    printf("\n\n   Pressione ENTER para voltar ao menu...");
-    getchar();
+    confirmacao();
 }
 
 void exibir_significados(int n)
@@ -952,18 +933,18 @@ void exibir_significados(int n)
     }
 }
 
-void dados_usuario_servico(char *cpf){
+void dados_usuario_servico(char *cpf)
+{
     system("clear||cls");
     printf("Antes de continuar, por favor, preencha o dado solicitado: \n\n");
 
     input(cpf, 15, "Digite o CPF: ");
 
-
-    printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
-    getchar();
+    confirmacao();
 }
 
-void cadastra_arquivo_servico(char *cpf, int id){
+void cadastra_arquivo_servico(char *cpf, int id)
+{
     FILE *arq_servicos;
     Servicos srv;
     time_t agora = time(NULL);
@@ -985,7 +966,8 @@ void cadastra_arquivo_servico(char *cpf, int id){
     fclose(arq_servicos);
 }
 
-void listar_servicos(void) {
+void listar_servicos(void)
+{
     FILE *arq_servicos;
     Servicos srv;
 
@@ -995,12 +977,14 @@ void listar_servicos(void) {
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     arq_servicos = fopen("servicos/servicos.dat", "rb");
-    if (arq_servicos == NULL) {
+    if (arq_servicos == NULL)
+    {
         printf("\n Erro ao abrir o arquivo de serviços.\n");
         return;
     }
 
-    while (fread(&srv, sizeof(Servicos), 1, arq_servicos)) {
+    while (fread(&srv, sizeof(Servicos), 1, arq_servicos))
+    {
         printf(" CPF : %s\n", srv.cpf);
         printf(" ID  : %d (1-Signo 2-Tarot 3-Numerologia 4-Pergunte)\n", srv.id);
         printf(" Data: %s\n", srv.data);
@@ -1010,6 +994,5 @@ void listar_servicos(void) {
 
     fclose(arq_servicos);
 
-    printf("\n>>> Tecle <ENTER> para continuar... <<<\n");
-    getchar();
+    confirmacao();
 }
