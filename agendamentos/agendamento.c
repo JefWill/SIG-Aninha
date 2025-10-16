@@ -507,3 +507,16 @@ void modulo_alteracao_agend(char *nome, char *tipo_consulta, char *data, char *h
         }
     } while (opcao != 0);
 }
+
+
+void exibir_agendamento(const Agendamento *agd)
+{
+    printf("ID: %d\n", agd->id);
+    printf("CPF: %s\n", agd->cpf);
+    printf("Nome: %s\n", agd->nome);
+    printf("Tipo de consulta: %s\n", agd->tipo_consulta);
+    printf("Funcionário: %s \n", agd->nome_funcionario);
+    printf("Data: %s\n", agd->data);
+    printf("Horário: %s\n", agd->horario);
+    printf("Status: %d\n", agd->status);
+}
