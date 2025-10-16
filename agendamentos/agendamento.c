@@ -164,12 +164,7 @@ void atualizar_agendamento(void)
         if ((strcmp(agd->cpf, cpf_lido) == 0) && (agd->status == 1))
         {
             encontrado = 1;
-            printf("ID: %d\n", agd->id);
-            printf("Nome: %s\n", agd->nome);
-            printf("Tipo de consulta: %s\n", agd->tipo_consulta);
-            printf("Funcionário: %s\n", agd->nome_funcionario);
-            printf("Data: %s\n", agd->data);
-            printf("Horário: %s\n", agd->horario);
+            exibir_agendamento(agd);
             printf("------------------------------------------------\n");
         }
     }
@@ -246,14 +241,7 @@ void listar_agendamentos(void)
                 printf("------------------------------------------------\n");
             }
             encontrado = 1;
-            printf("ID: %d\n", agd->id);
-            printf("CPF: %s\n", agd->cpf);
-            printf("Nome: %s\n", agd->nome);
-            printf("Tipo de consulta: %s\n", agd->tipo_consulta);
-            printf("Funcionário: %s \n", agd->nome_funcionario);
-            printf("Data: %s\n", agd->data);
-            printf("Horário: %s\n", agd->horario);
-            printf("Status: %d\n", agd->status);
+            exibir_agendamento(agd);
             printf("------------------------------------------------\n");
         }
     }
@@ -305,13 +293,7 @@ void buscar_agendamento_por_cpf(void)
                 printf("------------------------------------------------\n");
             }
             encontrado = 1;
-            printf("ID: %d\n", agd->id);
-            printf("Nome: %s\n", agd->nome);
-            printf("Tipo de Consulta: %s\n", agd->tipo_consulta);
-            printf("Funcionário: %s \n", agd->nome_funcionario);
-            printf("Data: %s\n", agd->data);
-            printf("Horário: %s\n", agd->horario);
-            printf("Status: %d\n", agd->status);
+            exibir_agendamento(agd);
             printf("------------------------------------------------\n");
         }
     }
@@ -361,12 +343,7 @@ void excluir_agendamento(void)
         if ((strcmp(agd->cpf, cpf_lido) == 0) && (agd->status == 1))
         {
             encontrado = 1;
-            printf("ID: %d\n", agd->id);
-            printf("Nome do Cliente: %s\n", agd->nome);
-            printf("Tipo de Consulta: %s\n", agd->tipo_consulta);
-            printf("Funcionário: %s (%s)\n", agd->nome_funcionario, agd->cpf_funcionario);
-            printf("Data: %s\n", agd->data);
-            printf("Horário: %s\n", agd->horario);
+            exibir_agendamento(agd);
             printf("------------------------------------------------\n");
         }
     }
