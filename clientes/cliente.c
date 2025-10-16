@@ -143,7 +143,6 @@ void buscar_cliente(void)
             confirmacao();
             fclose(arq_clientes);
             free(clt);
-            getchar();
 
             return;
         }
@@ -177,7 +176,6 @@ void listar_clientes(void)
 
     while (fread(clt, sizeof(Cliente), 1, arq_clientes))
     {
-        printf("CPF: %s\n", clt->cpf);
         exibir_cliente(clt);
         printf("---------------------------------------\n");
     }
