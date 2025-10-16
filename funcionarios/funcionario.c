@@ -138,10 +138,7 @@ void buscar_funcionario(void)
         {
             encontrado = 1;
             printf("\nFuncionário com CPF %s encontrado!\n", fnc->cpf);
-            printf("CPF: %s\n", fnc->cpf);
-            printf("Nome: %s\n", fnc->nome);
-            printf("Cargo: %s\n", fnc->cargo);
-            printf("Status: %d\n", fnc->status);
+            exibir_funcionario(fnc);
 
             fclose(arq_funcionarios);
             free(fnc);
@@ -179,10 +176,7 @@ void listar_funcionarios(void)
 
     while (fread(fnc, sizeof(Funcionario), 1, arq_funcionarios))
     {
-        printf("CPF: %s\n", fnc->cpf);
-        printf("Nome: %s\n", fnc->nome);
-        printf("Cargo: %s\n", fnc->cargo);
-        printf("Status: %d\n", fnc->status);
+        exibir_funcionario(fnc);
         printf("------------------------------------\n");
     }
 
@@ -210,7 +204,7 @@ void excluir_funcionario(void)
     fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
     input(cpf_lido, 15, "Informe o CPF do Funcionário que deseja excluir: ");
-    encontrado = 0;
+
     arq_funcionarios = fopen("funcionarios/funcionarios.dat", "r+b");
 
     if (arq_funcionarios == NULL)
@@ -226,9 +220,7 @@ void excluir_funcionario(void)
         {
             encontrado = 1;
             printf("\nFuncionário com CPF %s encontrado!\n", fnc->cpf);
-            printf("CPF: %s\n", fnc->cpf);
-            printf("Nome: %s\n", fnc->nome);
-            printf("Cargo: %s\n", fnc->cargo);
+            exibir_funcionario(fnc);
 
             printf("\nConfirma exclusão do Funcionário com CPF %s? (S/N): ", fnc->cpf);
             scanf(" %c", &opcao);
@@ -296,10 +288,7 @@ void excluir_funcionario_fisico(void)
         {
             encontrado = 1;
             printf("\nFuncionário encontrado!\n");
-            printf("Nome: %s\n", fnc->nome);
-            printf("CPF: %s\n", fnc->cpf);
-            printf("Cargo: %s\n", fnc->cargo);
-            printf("Status: %d\n", fnc->status);
+            exibir_funcionario(fnc);
 
             printf("\nConfirma exclusão definitiva deste funcionário? (S/N): ");
             scanf(" %c", &opcao);
@@ -372,10 +361,7 @@ void alterar_funcionario(void)
         {
             encontrado = 1;
             printf("\nFuncionário com CPF %s encontrado!\n", fnc->cpf);
-            printf("Nome: %s\n", fnc->nome);
-            printf("CPF: %s\n", fnc->cpf);
-            printf("Cargo: %s\n", fnc->cargo);
-            printf("Status: %d\n", fnc->status);
+            exibir_funcionario(fnc);
 
             printf("\nConfirma alteração do funcionário com CPF %s? (S/N): ", fnc->cpf);
             scanf(" %c", &opcao);
