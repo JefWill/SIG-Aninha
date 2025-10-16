@@ -28,3 +28,4 @@ int gerar_novo_id();
 int menu_alterar_agendamento(void);
 void modulo_alteracao_agend(char *nome, char *tipo_consulta, char *data, char *horario);
 void exibir_agendamento(const Agendamento *agd);
+void excluir_agendamento_fisico(void);

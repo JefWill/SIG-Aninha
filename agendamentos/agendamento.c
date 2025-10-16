@@ -26,6 +26,7 @@ int tela_menu_agendamento(void)
     printf("|                      3. Listar Agendamentos (do dia)                   |\n");
     printf("|                      4. Buscar Agendamento por Cliente                 |\n");
     printf("|                      5. Cancelar Agendamento                           |\n");
+    //printf("|                      6. Cancelar Agendamento Fisicamente               |\n");
     printf("|                      0. Retornar ao Menu Principal                     |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -58,6 +59,9 @@ void modulo_agendamentos(void)
         case 5:
             excluir_agendamento();
             break;
+        //case 6:
+            //excluir_agendamento_fisico();
+            //break;
         case 0:
             printf("           Voltando ao menu principal...\n");
             getchar();
@@ -496,4 +500,81 @@ void exibir_agendamento(const Agendamento *agd)
     printf("Data: %s\n", agd->data);
     printf("Horário: %s\n", agd->horario);
     printf("Status: %d\n", agd->status);
+}
+
+
+void excluir_agendamento_fisico(void)
+{
+    FILE *arq_agendamentos;
+    FILE *arq_agendamentos2;
+    Agendamento *agd;
+    char opcao;
+    int encontrado = 0;
+    char cpf_lido[15];
+
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|              ✦✧✦✧✦  Excluir Agendamento Fisicamente  ✦✧✦✧✦         |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    agd = (Agendamento *)malloc(sizeof(Agendamento));
+    input(cpf_lido, 15, "Informe o CPF do cliente que fez o agendamento que você deseja excluir: ");
+
+    arq_agendamentos = fopen("agendamentos/agendamentos.dat", "rb");
+    arq_agendamentos2 = fopen("agendamentos/agendamentos2.dat", "wb");
+
+    if ((arq_agendamentos == NULL) || (arq_agendamentos2 == NULL))
+    {
+        printf("Erro na criação do arquivo!\n");
+        free(agd);
+        getchar();
+        return;
+    }
+
+    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos))
+    {
+        if ((strcmp(agd->cpf, cpf_lido) == 0))
+        {
+            encontrado = 1;
+            printf("\nAgendamento do cliente com CPF %s encontrado!\n", agd->cpf);
+            exibir_agendamento(agd);
+
+            printf("\nConfirma exclusão definitiva deste agendamento? (S/N): ");
+            scanf(" %c", &opcao);
+            getchar();
+
+            if (opcao == 'S' || opcao == 's')
+            {
+                printf("\nAgendamento do cliente com CPF %s excluído com sucesso!\n", agd->cpf);
+            }
+            else
+            {
+                printf("        Exclusão cancelada!\n");
+                fwrite(agd, sizeof(Agendamento), 1, arq_agendamentos2);
+            }
+        }
+        else
+        {
+            fwrite(agd, sizeof(Agendamento), 1, arq_agendamentos2);
+        }
+    }
+
+    fclose(arq_agendamentos);
+    fclose(arq_agendamentos2);
+    free(agd);
+
+    if (encontrado)
+    {
+        remove("agendamentos/agendamentos.dat");
+        rename("agendamentos/agendamentos2.dat", "agendamentos/agendamentos.dat");
+    }
+    else
+    {
+        remove("agendamentos/agendamentos2.dat");
+        printf("CPF não encontrado!\n");
+    }
+
+    confirmacao();
 }
