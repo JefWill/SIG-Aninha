@@ -63,13 +63,11 @@ void modulo_agendamentos(void)
             getchar();
             break;
         case -1:
-            printf(">>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         default:
             printf("                Opção Inexistente!\n");
-            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         }
     } while (op_agendamento != 0);
@@ -101,8 +99,7 @@ void agendar_consulta(void)
     if (strlen(fnc->cpf) == 0 || strlen(fnc->nome) == 0)
     {
         printf("\nAgendamento cancelado.\n");
-        printf(">>> Tecle <ENTER> para continuar... <<<\n");
-        getchar();
+        confirmacao();
         free(agd);
         free(fnc);
         return;
@@ -132,8 +129,7 @@ void agendar_consulta(void)
     free(fnc);
 
     printf("\n         Consulta agendada com sucesso!\n");
-    printf("      >>> Tecle <ENTER> para continuar... <<<\n");
-    getchar();
+    confirmacao();
 }
 
 void atualizar_agendamento(void)
@@ -183,8 +179,7 @@ void atualizar_agendamento(void)
         printf("\nNenhum agendamento encontrado para este CPF!\n");
         fclose(arq_agendamentos);
         free(agd);
-        printf(">>> Tecle <ENTER> para continuar... <<<\n");
-        getchar();
+        confirmacao();
         return;
     }
 
@@ -212,8 +207,7 @@ void atualizar_agendamento(void)
     fclose(arq_agendamentos);
     free(agd);
 
-    printf(">>> Tecle <ENTER> para continuar... <<<\n");
-    getchar();
+    confirmacao();
 }
 
 void listar_agendamentos(void)
@@ -272,8 +266,7 @@ void listar_agendamentos(void)
         printf("\nNenhum agendamento encontrado!\n");
     }
 
-    printf("      >>> Tecle <ENTER> para continuar... <<<\n");
-    getchar();
+    confirmacao();
 }
 
 void buscar_agendamento_por_cpf(void)
@@ -331,8 +324,7 @@ void buscar_agendamento_por_cpf(void)
         printf("\nNenhum agendamento encontrado para este CPF!\n");
     }
 
-    printf("      >>> Tecle <ENTER> para continuar... <<<\n");
-    getchar();
+    confirmacao();
 }
 
 void excluir_agendamento(void)
@@ -384,8 +376,7 @@ void excluir_agendamento(void)
         printf("Nenhum agendamento ativo encontrado para este CPF!\n");
         fclose(arq_agendamentos);
         free(agd);
-        printf(">>> Tecle <ENTER> para continuar... <<<\n");
-        getchar();
+        confirmacao();
         return;
     }
 
@@ -430,8 +421,7 @@ void excluir_agendamento(void)
     fclose(arq_agendamentos);
     free(agd);
 
-    printf(">>> Tecle <ENTER> para continuar... <<<\n");
-    getchar();
+    confirmacao();
 }
 
 int gerar_novo_id()
@@ -486,39 +476,33 @@ void modulo_alteracao_agend(char *nome, char *tipo_consulta, char *data, char *h
         case 1:
             input(nome, 100, "Digite o novo nome do cliente: ");
             printf("\nNome atualizado com sucesso!\n");
-            printf(">>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         case 2:
             input(tipo_consulta, 20, "Digite o novo tipo de consulta (Tarot, Signos, Numerologia): ");
             printf("\nTipo de consulta atualizado com sucesso!\n");
-            printf(">>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         case 3:
             input(data, 15, "Digite a nova data da consulta (DD/MM/AAAA): ");
             printf("\nData atualizada com sucesso!\n");
-            printf(">>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         case 4:
             input(horario, 10, "Digite o novo horário da consulta (HH:MM): ");
             printf("\nHorário atualizado com sucesso!\n");
-            printf(">>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         case 0:
             printf("           Voltando ao menu principal...\n");
             getchar();
             break;
         case -1:
-            printf(">>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         default:
             printf("                Opção Inexistente!\n");
-            printf("      >>> Tecle <ENTER> para continuar... <<<\n");
-            getchar();
+            confirmacao();
             break;
         }
     } while (opcao != 0);
