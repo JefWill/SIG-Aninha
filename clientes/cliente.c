@@ -139,11 +139,7 @@ void buscar_cliente(void)
         {
             encontrado = 1;
             printf("\nCliente com CPF %s encontrado!\n", clt->cpf);
-            printf("CPF: %s\n", clt->cpf);
-            printf("Nome: %s\n", clt->nome);
-            printf("Data de Nascimento: %s\n", clt->data_nascimento);
-            printf("Telefone: %s\n", clt->telefone);
-            printf("Status: %d\n", clt->status);
+            exibir_cliente(clt);
             confirmacao();
             fclose(arq_clientes);
             free(clt);
@@ -152,7 +148,6 @@ void buscar_cliente(void)
             return;
         }
     }
-
     fclose(arq_clientes);
 
     if (!encontrado)
@@ -183,10 +178,7 @@ void listar_clientes(void)
     while (fread(clt, sizeof(Cliente), 1, arq_clientes))
     {
         printf("CPF: %s\n", clt->cpf);
-        printf("Nome: %s\n", clt->nome);
-        printf("Data de Nascimento: %s\n", clt->data_nascimento);
-        printf("Telefone: %s\n", clt->telefone);
-        printf("Status: %d\n", clt->status);
+        exibir_cliente(clt);
         printf("---------------------------------------\n");
     }
 
@@ -230,10 +222,7 @@ void excluir_cliente(void)
         {
             encontrado = 1;
             printf("\nCliente com CPF %s encontrado!\n", clt->cpf);
-            printf("CPF: %s\n", clt->cpf);
-            printf("Nome: %s\n", clt->nome);
-            printf("Data de Nascimento: %s\n", clt->data_nascimento);
-            printf("Telefone: %s\n", clt->telefone);
+            exibir_cliente(clt);
 
             printf("\nConfirma exclusão do cliente com CPF %s? (S/N): ", clt->cpf);
             scanf(" %c", &opcao);
@@ -253,9 +242,9 @@ void excluir_cliente(void)
             break;
         }
     }
-
     fclose(arq_clientes);
     free(clt);
+
     if (!encontrado)
     {
         printf("CPF não encontrado!");
@@ -300,10 +289,7 @@ void excluir_cliente_fisico(void)
         {
             encontrado = 1;
             printf("\nCliente com CPF %s encontrado!\n", clt->cpf);
-            printf("Nome: %s\n", clt->nome);
-            printf("Data de Nascimento: %s\n", clt->data_nascimento);
-            printf("Telefone: %s\n", clt->telefone);
-            printf("Status: %d\n", clt->status);
+            exibir_cliente(clt);
 
             printf("\nConfirma exclusão definitiva deste cliente? (S/N): ");
             scanf(" %c", &opcao);
@@ -376,11 +362,7 @@ void alterar_cliente(void)
         {
             encontrado = 1;
             printf("\nCliente com CPF %s encontrado!\n", clt->cpf);
-            printf("CPF: %s\n", clt->cpf);
-            printf("Nome: %s\n", clt->nome);
-            printf("Data de Nascimento: %s\n", clt->data_nascimento);
-            printf("Telefone: %s\n", clt->telefone);
-            printf("Status: %d\n", clt->status);
+            exibir_cliente(clt);
 
             printf("\nConfirma alteração do cliente com CPF %s? (S/N): ", clt->cpf);
             scanf(" %c", &opcao);
