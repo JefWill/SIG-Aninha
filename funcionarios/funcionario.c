@@ -100,11 +100,9 @@ void cadastrar_funcionario(void)
     fwrite(fnc, sizeof(Funcionario), 1, arq_funcionarios);
     fclose(arq_funcionarios);
 
-    printf("funcionário cadastrado com sucesso!\n");
-    printf("Nome: %s.\nCPF: %s.\nCargo: %s. \nStatus: %d.", fnc->nome, fnc->cpf, fnc->cargo, fnc->status);
-
     free(fnc);
 
+    printf("funcionário cadastrado com sucesso!\n");
     confirmacao();
 }
 
@@ -142,6 +140,7 @@ void buscar_funcionario(void)
             printf("\nFuncionário com CPF %s encontrado!\n", fnc->cpf);
             printf("CPF: %s\n", fnc->cpf);
             printf("Nome: %s\n", fnc->nome);
+            printf("Cargo: %s\n", fnc->cargo);
             printf("Status: %d\n", fnc->status);
 
             fclose(arq_funcionarios);
@@ -373,8 +372,8 @@ void alterar_funcionario(void)
         {
             encontrado = 1;
             printf("\nFuncionário com CPF %s encontrado!\n", fnc->cpf);
-            printf("CPF: %s\n", fnc->cpf);
             printf("Nome: %s\n", fnc->nome);
+            printf("CPF: %s\n", fnc->cpf);
             printf("Cargo: %s\n", fnc->cargo);
             printf("Status: %d\n", fnc->status);
 
@@ -569,4 +568,12 @@ Funcionario *preenche_funcionario(void)
 
     fnc->status = 1;
     return fnc;
+}
+
+void exibir_funcionario(const Funcionario *fnc)
+{
+    printf("CPF: %s\n", fnc->cpf);
+    printf("Nome: %s\n", fnc->nome);
+    printf("Cargo: %s\n", fnc->cargo);
+    printf("Status: %d\n", fnc->status);
 }
