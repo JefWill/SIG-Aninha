@@ -96,7 +96,14 @@ void agendar_consulta(void)
     fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
     input(agd->cpf, 15, "Digite o CPF do cliente:");
-    input(agd->nome, 100, "Digite o nome do cliente:");
+
+    do
+    {
+        input(agd->nome, 100, "Digite o nome do cliente:");
+        if (!validar_nome(agd->nome))
+            printf("Nome inválido! Use apenas letras.\n");
+    } while (!validar_nome(agd->nome));
+
     input(agd->tipo_consulta, 20, "Digite qual tipo de consulta deseja (Tarot, Signos, Numerologia):");
 
     listar_funcionarios_por_cargo(agd->tipo_consulta, fnc->cpf, fnc->nome);
@@ -462,7 +469,13 @@ void modulo_alteracao_agend(char *nome, char *tipo_consulta, char *data, char *h
         switch (opcao)
         {
         case 1:
-            input(nome, 100, "Digite o novo nome do cliente: ");
+            do
+            {
+                input(nome, 100, "Digite o novo nome do cliente: ");
+                if (!validar_nome(nome))
+                    printf("Nome inválido! Use apenas letras.\n");
+            } while (!validar_nome(nome));
+
             printf("\nNome atualizado com sucesso!\n");
             confirmacao();
             break;
