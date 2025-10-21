@@ -100,3 +100,23 @@ int validar_nome(const char *nome)
 
     return 1;
 }
+
+#include <stdio.h>
+
+int validar_horario_servico(const char *horario)
+{
+    int hora, minuto;
+
+    if (sscanf(horario, "%d:%d", &hora, &minuto) != 2)
+        return 0;
+
+    if (hora < 8 || hora > 20)
+        return 0;
+    if (minuto < 0 || minuto > 59)
+        return 0;
+
+    if (hora == 20 && minuto > 0)
+        return 0;
+
+    return 1;
+}
