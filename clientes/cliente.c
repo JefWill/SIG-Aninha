@@ -419,7 +419,13 @@ void modulo_alteracao(char *nome, char *data_nascimento, char *telefone)
         switch (opcao)
         {
         case 1:
-            input(nome, 50, "Digite o nome: ");
+            do
+            {
+                input(nome, 50, "Digite o nome: ");
+                if (!validar_nome(nome))
+                    printf("Nome inválido! Use apenas letras.\n");
+            } while (!validar_nome(nome));
+
             printf("\nNome atualizado com sucesso!\n");
             confirmacao();
             break;
@@ -460,7 +466,12 @@ Cliente *preenche_cliente(void)
     clt = (Cliente *)malloc(sizeof(Cliente));
     input(clt->cpf, 15, "Digite o CPF: ");
 
-    input(clt->nome, 50, "Digite o nome: ");
+    do
+    {
+        input(clt->nome, 50, "Digite o nome: ");
+        if (!validar_nome(clt->nome))
+            printf("Nome inválido! Use apenas letras.\n");
+    } while (!validar_nome(clt->nome));
 
     do
     {
