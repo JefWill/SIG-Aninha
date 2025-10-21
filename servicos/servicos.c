@@ -98,7 +98,7 @@ void perguntas(void)
         printf("|                                                                        |\n");
         printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-        input(pergunta, 255, "Faça uma pergunta para a sigana (sim ou não)");
+        input(pergunta, 255, "Faça uma pergunta para a cigana (sim ou não)");
         printf("\nSua pergunta foi %s", pergunta);
         printf("\nResposta: %s", respostas[rand() % 3]);
         printf("\n\nDigite 0 para sair");
@@ -495,6 +495,7 @@ void exibir_mensagem_signo(int signo)
     default:
         printf("Número inválido! Digite um valor entre 1 e 12.\n");
         getchar();
+        getchar();
         break;
     }
 }
@@ -556,7 +557,7 @@ void calcular_signo_pessoa(void)
 {
 
     int dia, mes;
-    char data[11];
+    char data[12];
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -565,18 +566,10 @@ void calcular_signo_pessoa(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(data, 11, "Digite a data de nascimento (dd/mm): ");
+    input(data, 12, "Digite a data de nascimento (dd/mm): ");
 
-    if (sscanf(data, "%d/%d", &dia, &mes) != 2)
+    if (!validar_data_signo(data, &dia, &mes))
     {
-        printf("\nFormato inválido! Use o formato dd/mm.\n");
-        confirmacao();
-        return;
-    }
-
-    if (dia < 1 || dia > 31 || mes < 1 || mes > 12)
-    {
-        printf("\nData inválida! Verifique os valores digitados.\n");
         confirmacao();
         return;
     }
@@ -995,4 +988,52 @@ void listar_servicos(void)
     fclose(arq_servicos);
 
     confirmacao();
+}
+
+int validar_data_signo(const char *data, int *dia, int *mes)
+{
+    if (sscanf(data, "%d/%d", dia, mes) != 2)
+    {
+        printf("\nFormato inválido! Use o formato dd/mm.\n");
+        return 0;
+    }
+
+    if (*mes < 1 || *mes > 12)
+    {
+        printf("\nData inválida! O mês deve estar entre 1 e 12.\n");
+        return 0;
+    }
+
+    int dias_no_mes;
+    switch (*mes)
+    {
+    case 1:
+    case 3:
+    case 5:
+    case 7:
+    case 8:
+    case 10:
+    case 12:
+        dias_no_mes = 31;
+        break;
+    case 4:
+    case 6:
+    case 9:
+    case 11:
+        dias_no_mes = 30;
+        break;
+    case 2:
+        dias_no_mes = 29;
+        break;
+    default:
+        dias_no_mes = 0;
+    }
+
+    if (*dia < 1 || *dia > dias_no_mes)
+    {
+        printf("\nData inválida! O mês %d não possui %d dias.\n", *mes, *dia);
+        return 0;
+    }
+
+    return 1;
 }
