@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include "funcionario.h"
+#include "../validacao/validacao.h"
 #include "../utilitarios/utilitarios.h"
 
 //// FUNCIONARIO /////
@@ -418,7 +419,13 @@ void modulo_alteracao_func(char *nome, char *cargo)
         switch (opcao)
         {
         case 1:
-            input(nome, 50, "Digite o nome: ");
+            do
+            {
+                input(nome, 50, "Digite o nome: ");
+                if (!validar_nome(nome))
+                    printf("Nome inválido! Use apenas letras.\n");
+            } while (!validar_nome(nome));
+
             printf("\nNome atualizado com sucesso!\n");
             confirmacao();
             break;
@@ -548,7 +555,12 @@ Funcionario *preenche_funcionario(void)
     fnc = (Funcionario *)malloc(sizeof(Funcionario));
     input(fnc->cpf, 15, "Digite o CPF: ");
 
-    input(fnc->nome, 50, "Digite o nome: ");
+    do
+    {
+        input(fnc->nome, 50, "Digite o nome: ");
+        if (!validar_nome(fnc->nome))
+            printf("Nome inválido! Use apenas letras.\n");
+    } while (!validar_nome(fnc->nome));
 
     input(fnc->cargo, 50, "Digite o cargo do funcionário: (Numerologia, Tarot, Signos)");
 
