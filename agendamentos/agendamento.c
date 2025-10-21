@@ -95,42 +95,6 @@ void agendar_consulta(void)
     agd = (Agendamento *)malloc(sizeof(Agendamento));
     fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
-    input(agd->cpf, 15, "Digite o CPF do cliente:");
-
-    do
-    {
-        input(agd->nome, 100, "Digite o nome do cliente:");
-        if (!validar_nome(agd->nome))
-            printf("Nome inválido! Use apenas letras.\n");
-    } while (!validar_nome(agd->nome));
-
-    input(agd->tipo_consulta, 20, "Digite qual tipo de consulta deseja (Tarot, Signos, Numerologia):");
-
-    listar_funcionarios_por_cargo(agd->tipo_consulta, fnc->cpf, fnc->nome);
-
-    if (strlen(fnc->cpf) == 0 || strlen(fnc->nome) == 0)
-    {
-        printf("\nAgendamento cancelado.\n");
-        confirmacao();
-        free(agd);
-        free(fnc);
-        return;
-    }
-
-    do
-    {
-        input(agd->data, 12, "Digite a data da consulta (DD/MM/AAAA): ");
-        if (!validar_data(agd->data))
-            printf("Data inválida! Use o formato DD/MM/AAAA e certifique-se de que não é maior que a atual.\n");
-    } while (!validar_data(agd->data));
-
-    do
-    {
-        input(agd->horario, 10, "Digite o horário da consulta (HH:MM): ");
-        if (!validar_horario_servico(agd->horario))
-            printf("Horário inválido! Só aceitamos entre 08:00 e 20:00.\n");
-    } while (!validar_horario_servico(agd->horario));
-
     arq_agendamentos = fopen("agendamentos/agendamentos.dat", "a+b");
     if (arq_agendamentos == NULL)
     {
@@ -140,10 +104,12 @@ void agendar_consulta(void)
         return;
     }
 
-    agd->id = gerar_novo_id();
-    agd->status = 1;
-    strcpy(agd->cpf_funcionario, fnc->cpf);
-    strcpy(agd->nome_funcionario, fnc->nome);
+    agd = preenche_agendamento();
+    if (agd == NULL)
+    {
+        printf("O agendamento não foi criado.\n");
+        return;
+    }
 
     fwrite(agd, sizeof(Agendamento), 1, arq_agendamentos);
 
@@ -612,4 +578,56 @@ void excluir_agendamento_fisico(void)
     }
 
     confirmacao();
+}
+
+Agendamento *preenche_agendamento(void)
+{
+    Agendamento *agd;
+    Funcionario *fnc;
+
+    agd = (Agendamento *)malloc(sizeof(Agendamento));
+    fnc = (Funcionario *)malloc(sizeof(Funcionario));
+
+    input(agd->cpf, 15, "Digite o CPF do cliente:");
+
+    do
+    {
+        input(agd->nome, 100, "Digite o nome do cliente:");
+        if (!validar_nome(agd->nome))
+            printf("Nome inválido! Use apenas letras.\n");
+    } while (!validar_nome(agd->nome));
+
+    input(agd->tipo_consulta, 20, "Digite qual tipo de consulta deseja (Tarot, Signos, Numerologia):");
+
+    listar_funcionarios_por_cargo(agd->tipo_consulta, fnc->cpf, fnc->nome);
+
+    if (strlen(fnc->cpf) == 0 || strlen(fnc->nome) == 0)
+    {
+        printf("\nAgendamento cancelado.\n");
+        confirmacao();
+        free(agd);
+        free(fnc);
+        return NULL;
+    }
+
+    do
+    {
+        input(agd->data, 12, "Digite a data da consulta (DD/MM/AAAA): ");
+        if (!validar_data(agd->data))
+            printf("Data inválida! Use o formato DD/MM/AAAA e certifique-se de que não é maior que a atual.\n");
+    } while (!validar_data(agd->data));
+
+    do
+    {
+        input(agd->horario, 10, "Digite o horário da consulta (HH:MM): ");
+        if (!validar_horario_servico(agd->horario))
+            printf("Horário inválido! Só aceitamos entre 08:00 e 20:00.\n");
+    } while (!validar_horario_servico(agd->horario));
+
+    agd->id = gerar_novo_id();
+    agd->status = 1;
+    strcpy(agd->cpf_funcionario, fnc->cpf);
+    strcpy(agd->nome_funcionario, fnc->nome);
+
+    return agd;
 }
