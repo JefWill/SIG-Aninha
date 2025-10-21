@@ -424,7 +424,13 @@ void modulo_alteracao(char *nome, char *data_nascimento, char *telefone)
             confirmacao();
             break;
         case 2:
-            input(data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
+            do
+            {
+                input(data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
+                if (!validar_data(data_nascimento))
+                    printf("Data inválida! Use o formato DD/MM/AAAA.\n");
+            } while (!validar_data(data_nascimento));
+
             printf("\nData de nascimento atualizada com sucesso!\n");
             confirmacao();
             break;
@@ -456,7 +462,12 @@ Cliente *preenche_cliente(void)
 
     input(clt->nome, 50, "Digite o nome: ");
 
-    input(clt->data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
+    do
+    {
+        input(clt->data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
+        if (!validar_data(clt->data_nascimento))
+            printf("Data inválida! Use o formato DD/MM/AAAA.\n");
+    } while (!validar_data(clt->data_nascimento));
 
     input(clt->telefone, 20, "Digite o telefone: ");
     clt->status = 1;
