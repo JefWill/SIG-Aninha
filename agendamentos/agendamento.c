@@ -5,6 +5,7 @@
 #include "agendamento.h"
 #include "../utilitarios/utilitarios.h"
 #include "../funcionarios/funcionario.h"
+#include "../validacao/validacao.h"
 
 //////////////////////////////////////////////
 ///////////// MODULO AGENDAMENTO /////////////
@@ -109,7 +110,13 @@ void agendar_consulta(void)
         return;
     }
 
-    input(agd->data, 15, "Digite a data da consulta (DD/MM/AAAA):");
+    do
+    {
+        input(agd->data, 12, "Digite a data da consulta (DD/MM/AAAA): ");
+        if (!validar_data(agd->data))
+            printf("Data inválida! Use o formato DD/MM/AAAA e certifique-se de que não é maior que a atual.\n");
+    } while (!validar_data(agd->data));
+
     input(agd->horario, 10, "Digite o horário da consulta (HH:MM):");
 
     arq_agendamentos = fopen("agendamentos/agendamentos.dat", "a+b");
@@ -465,7 +472,13 @@ void modulo_alteracao_agend(char *nome, char *tipo_consulta, char *data, char *h
             confirmacao();
             break;
         case 3:
-            input(data, 15, "Digite a nova data da consulta (DD/MM/AAAA): ");
+            do
+            {
+                input(data, 15, "Digite a nova data da consulta (DD/MM/AAAA): ");
+                if (!validar_data(data))
+                    printf("Data inválida! Use o formato DD/MM/AAAA e certifique-se de que não é maior que a atual.\n");
+            } while (!validar_data(data));
+
             printf("\nData atualizada com sucesso!\n");
             confirmacao();
             break;
@@ -489,7 +502,6 @@ void modulo_alteracao_agend(char *nome, char *tipo_consulta, char *data, char *h
     } while (opcao != 0);
 }
 
-
 void exibir_agendamento(const Agendamento *agd)
 {
     printf("ID: %d\n", agd->id);
@@ -501,7 +513,6 @@ void exibir_agendamento(const Agendamento *agd)
     printf("Horário: %s\n", agd->horario);
     printf("Status: %d\n", agd->status);
 }
-
 
 void excluir_agendamento_fisico(void)
 {
