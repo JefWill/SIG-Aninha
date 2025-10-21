@@ -124,7 +124,12 @@ void agendar_consulta(void)
             printf("Data inválida! Use o formato DD/MM/AAAA e certifique-se de que não é maior que a atual.\n");
     } while (!validar_data(agd->data));
 
-    input(agd->horario, 10, "Digite o horário da consulta (HH:MM):");
+    do
+    {
+        input(agd->horario, 10, "Digite o horário da consulta (HH:MM): ");
+        if (!validar_horario_servico(agd->horario))
+            printf("Horário inválido! Só aceitamos entre 08:00 e 20:00.\n");
+    } while (!validar_horario_servico(agd->horario));
 
     arq_agendamentos = fopen("agendamentos/agendamentos.dat", "a+b");
     if (arq_agendamentos == NULL)
@@ -496,7 +501,13 @@ void modulo_alteracao_agend(char *nome, char *tipo_consulta, char *data, char *h
             confirmacao();
             break;
         case 4:
-            input(horario, 10, "Digite o novo horário da consulta (HH:MM): ");
+            do
+            {
+                input(horario, 10, "Digite o novo horário da consulta (HH:MM): ");
+                if (!validar_horario_servico(horario))
+                    printf("Horário inválido! Só aceitamos entre 08:00 e 20:00.\n");
+            } while (!validar_horario_servico(horario));
+
             printf("\nHorário atualizado com sucesso!\n");
             confirmacao();
             break;
