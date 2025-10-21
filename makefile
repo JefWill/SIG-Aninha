@@ -14,7 +14,8 @@ SRC = main.c \
       agendamentos/agendamento.c \
       clientes/cliente.c \
       funcionarios/funcionario.c \
-      utilitarios/utilitarios.c
+      utilitarios/utilitarios.c \
+      validacao/validacao.c 
 # Objetos gerados
 OBJ = $(SRC:.c=.o)
 

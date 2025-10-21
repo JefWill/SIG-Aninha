@@ -4,6 +4,7 @@
 #include <time.h>
 #include "cliente.h"
 #include "../utilitarios/utilitarios.h"
+#include "../validacao/validacao.h"
 
 //////////////////////////////////////////////
 ///////////// MODULO CLIENTE /////////////////

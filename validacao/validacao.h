@@ -1,0 +1,1 @@
+int validar_data(const char *data);
