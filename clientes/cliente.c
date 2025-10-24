@@ -124,7 +124,7 @@ void buscar_cliente(void)
 
     clt = (Cliente *)malloc(sizeof(Cliente));
 
-    input(cpf_lido, 15, "Digite o CPF do cliente para buscar: ");
+    input(cpf_lido, 16, "Digite o CPF do cliente para buscar: ");
 
     arq_clientes = fopen("clientes/clientes.dat", "rb");
     if (arq_clientes == NULL)
@@ -193,7 +193,7 @@ void excluir_cliente(void)
     Cliente *clt;
     char opcao;
     int encontrado;
-    char cpf_lido[15];
+    char cpf_lido[16];
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -203,7 +203,7 @@ void excluir_cliente(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     clt = (Cliente *)malloc(sizeof(Cliente));
-    input(cpf_lido, 15, "Informe o CPF do cliente que deseja excluir: ");
+    input(cpf_lido, 16, "Informe o CPF do cliente que deseja excluir: ");
 
     encontrado = 0;
     arq_clientes = fopen("clientes/clientes.dat", "r+b");
@@ -259,7 +259,7 @@ void excluir_cliente_fisico(void)
     Cliente *clt;
     char opcao;
     int encontrado = 0;
-    char cpf_lido[15];
+    char cpf_lido[16];
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -269,7 +269,7 @@ void excluir_cliente_fisico(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     clt = (Cliente *)malloc(sizeof(Cliente));
-    input(cpf_lido, 15, "Informe o CPF do cliente que deseja excluir: ");
+    input(cpf_lido, 16, "Informe o CPF do cliente que deseja excluir: ");
 
     arq_clientes = fopen("clientes/clientes.dat", "rb");
     arq_clientes2 = fopen("clientes/clientes2.dat", "wb");
@@ -334,7 +334,7 @@ void alterar_cliente(void)
     Cliente *clt;
     char opcao;
     int encontrado = 0;
-    char cpf_lido[15];
+    char cpf_lido[16];
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -344,7 +344,7 @@ void alterar_cliente(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     clt = (Cliente *)malloc(sizeof(Cliente));
-    input(cpf_lido, 15, "Informe o CPF:");
+    input(cpf_lido, 16, "Informe o CPF:");
 
     arq_clientes = fopen("clientes/clientes.dat", "r+b");
 
@@ -464,7 +464,12 @@ Cliente *preenche_cliente(void)
 {
     Cliente *clt;
     clt = (Cliente *)malloc(sizeof(Cliente));
-    input(clt->cpf, 15, "Digite o CPF: ");
+    do
+    {
+        input(clt->cpf, 16, "Digite o CPF: ");
+        if (!validar_cpf(clt->cpf))
+            printf("CPF inválido! Digite um CPF válido.\n");
+    } while(!validar_cpf(clt->cpf));
 
     do
     {

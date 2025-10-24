@@ -6,7 +6,7 @@ typedef struct cliente Cliente;
 
 struct cliente
 {
-    char cpf[15];
+    char cpf[16];
     char nome[50];
     char data_nascimento[12];
     char telefone[20];
