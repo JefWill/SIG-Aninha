@@ -120,3 +120,52 @@ int validar_horario_servico(const char *horario)
 
     return 1;
 }
+
+int validar_cpf(const char *cpf) {
+    // Tive ajuda do Chat GPT 4.1 para montar a lógica de validação do CPF
+    int i, j, digito1 = 0, digito2 = 0;
+    int num[11];
+    int tamanho = 0;
+
+    // Remove caracteres não numéricos e verifica tamanho
+    for (i = 0, j = 0; cpf[i] != '\0'; i++) {
+        if (cpf[i] >= '0' && cpf[i] <= '9') {
+            if (j < 11)
+                num[j++] = cpf[i] - '0';
+        }
+    }
+    tamanho = j;
+    if (tamanho != 11)
+        return 0;
+
+    // Verifica se todos os dígitos são iguais (inválido)
+    int todos_iguais = 1;
+    for (i = 1; i < 11; i++) {
+        if (num[i] != num[0]) {
+            todos_iguais = 0;
+            break;
+        }
+    }
+    if (todos_iguais)
+        return 0;
+
+    // Calcula primeiro dígito verificador
+    for (i = 0; i < 9; i++)
+        digito1 += num[i] * (10 - i);
+    digito1 = 11 - (digito1 % 11);
+    if (digito1 >= 10)
+        digito1 = 0;
+
+    // Calcula segundo dígito verificador
+    for (i = 0; i < 10; i++)
+        digito2 += num[i] * (11 - i);
+    digito2 = 11 - (digito2 % 11);
+    if (digito2 >= 10)
+        digito2 = 0;
+
+    // Verifica dígitos
+    if (digito1 == num[9] && digito2 == num[10])
+        return 1;
+    else
+        return 0;
+}
