@@ -9,7 +9,7 @@ void listar_servicos(void);
 
 struct servicos
 {
-    char cpf[15];
+    char cpf[16];
     int id;
     char data[11];
     char hora[9];

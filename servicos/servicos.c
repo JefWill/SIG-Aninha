@@ -34,7 +34,7 @@ void modulo_servicos(void)
 {
     int op_servicos;
     int id;
-    char cpf[15];
+    char cpf[16];
     do
     {
         op_servicos = tela_menu_servicos();
@@ -504,7 +504,7 @@ void calcular_signo(void)
 {
     FILE *arq_clientes;
     Cliente *clt;
-    char cpf[15];
+    char cpf[16];
     int dia, mes, ano;
     int encontrado = 0;
 
@@ -515,7 +515,11 @@ void calcular_signo(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(cpf, 15, "Digite o CPF: ");
+    do {
+        input(cpf, 16, "Digite o CPF cadastrado: ");
+        if (!validar_cpf(cpf))
+            printf("CPF inválido! Tente novamente.\n");
+    } while (!validar_cpf(cpf));
 
     arq_clientes = fopen("clientes/clientes.dat", "rb");
     if (arq_clientes == NULL)
@@ -931,7 +935,11 @@ void dados_usuario_servico(char *cpf)
     system("clear||cls");
     printf("Antes de continuar, por favor, preencha o dado solicitado: \n\n");
 
-    input(cpf, 15, "Digite o CPF: ");
+    do {
+        input(cpf, 16, "Digite o CPF: ");
+        if (!validar_cpf(cpf))
+            printf("CPF inválido! Tente novamente.\n");
+    } while (!validar_cpf(cpf));
 
     confirmacao();
 }
@@ -950,7 +958,7 @@ void cadastra_arquivo_servico(char *cpf, int id)
         return;
     }
 
-    strncpy(srv.cpf, cpf, 15);
+    strncpy(srv.cpf, cpf, 16);
     srv.id = id;
     strftime(srv.data, sizeof(srv.data), "%d/%m/%Y", tm_info);
     strftime(srv.hora, sizeof(srv.hora), "%H:%M:%S", tm_info);
