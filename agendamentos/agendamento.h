@@ -7,10 +7,10 @@ typedef struct agendamento Agendamento;
 struct agendamento
 {
     int id;
-    char cpf[15];
+    char cpf[16];
     char nome[50];
     char tipo_consulta[20];
-    char cpf_funcionario[15];
+    char cpf_funcionario[16];
     char nome_funcionario[50];
     char data[15];
     char horario[10];

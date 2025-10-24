@@ -125,7 +125,7 @@ void atualizar_agendamento(void)
 {
     FILE *arq_agendamentos;
     Agendamento *agd;
-    char cpf_lido[15];
+    char cpf_lido[16];
     int id_escolhido, encontrado = 0;
 
     system("clear||cls");
@@ -135,7 +135,7 @@ void atualizar_agendamento(void)
     printf("|                                                                          |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(cpf_lido, 15, "Digite o CPF do cliente para listar os agendamentos: ");
+    input(cpf_lido, 16, "Digite o CPF do cliente para listar os agendamentos: ");
 
     agd = (Agendamento *)malloc(sizeof(Agendamento));
 
@@ -250,7 +250,7 @@ void buscar_agendamento_por_cpf(void)
 {
     FILE *arq_agendamentos;
     Agendamento *agd;
-    char cpf_lido[15];
+    char cpf_lido[16];
     int encontrado = 0;
 
     system("clear||cls");
@@ -262,7 +262,7 @@ void buscar_agendamento_por_cpf(void)
 
     agd = (Agendamento *)malloc(sizeof(Agendamento));
 
-    input(cpf_lido, 15, "Digite o CPF do cliente para buscar: ");
+    input(cpf_lido, 16, "Digite o CPF do cliente para buscar: ");
 
     arq_agendamentos = fopen("agendamentos/agendamentos.dat", "rb");
     if (arq_agendamentos == NULL)
@@ -302,7 +302,7 @@ void excluir_agendamento(void)
 {
     FILE *arq_agendamentos;
     Agendamento *agd;
-    char cpf_lido[15];
+    char cpf_lido[16];
     int encontrado = 0, id_escolhido = 0;
     char opcao;
 
@@ -315,7 +315,7 @@ void excluir_agendamento(void)
 
     agd = (Agendamento *)malloc(sizeof(Agendamento));
 
-    input(cpf_lido, 15, "Digite o CPF do cliente para listar os agendamentos: ");
+    input(cpf_lido, 16, "Digite o CPF do cliente para listar os agendamentos: ");
 
     arq_agendamentos = fopen("agendamentos/agendamentos.dat", "r+b");
     if (!arq_agendamentos)
@@ -511,7 +511,7 @@ void excluir_agendamento_fisico(void)
     Agendamento *agd;
     char opcao;
     int encontrado = 0;
-    char cpf_lido[15];
+    char cpf_lido[16];
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -521,7 +521,7 @@ void excluir_agendamento_fisico(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     agd = (Agendamento *)malloc(sizeof(Agendamento));
-    input(cpf_lido, 15, "Informe o CPF do cliente que fez o agendamento que você deseja excluir: ");
+    input(cpf_lido, 16, "Informe o CPF do cliente que fez o agendamento que você deseja excluir: ");
 
     arq_agendamentos = fopen("agendamentos/agendamentos.dat", "rb");
     arq_agendamentos2 = fopen("agendamentos/agendamentos2.dat", "wb");
@@ -588,7 +588,12 @@ Agendamento *preenche_agendamento(void)
     agd = (Agendamento *)malloc(sizeof(Agendamento));
     fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
-    input(agd->cpf, 15, "Digite o CPF do cliente:");
+    do
+    {
+        input(agd->cpf, 16, "Digite o CPF do cliente:");
+        if (!validar_cpf(agd->cpf))
+            printf("CPF inválido! Tente novamente.\n");
+    } while (!validar_cpf(agd->cpf));
 
     do
     {
