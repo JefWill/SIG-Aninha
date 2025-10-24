@@ -6,7 +6,7 @@ typedef struct funcionario Funcionario;
 
 struct funcionario
 {
-    char cpf[15];
+    char cpf[16];
     char nome[50];
     char cargo[50];
     int status;

@@ -111,7 +111,7 @@ void buscar_funcionario(void)
 {
     FILE *arq_funcionarios;
     Funcionario *fnc;
-    char cpf_lido[15];
+    char cpf_lido[16];
     int encontrado = 0;
 
     system("clear||cls");
@@ -123,7 +123,7 @@ void buscar_funcionario(void)
 
     fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
-    input(cpf_lido, 15, "Digite o CPF do funcionário para buscar: ");
+    input(cpf_lido, 16, "Digite o CPF do funcionário para buscar: ");
 
     arq_funcionarios = fopen("funcionarios/funcionarios.dat", "rb");
 
@@ -191,7 +191,7 @@ void excluir_funcionario(void)
 {
     FILE *arq_funcionarios;
     Funcionario *fnc;
-    char cpf_lido[15];
+    char cpf_lido[16];
     char opcao;
     int encontrado = 0;
 
@@ -204,7 +204,7 @@ void excluir_funcionario(void)
 
     fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
-    input(cpf_lido, 15, "Informe o CPF do Funcionário que deseja excluir: ");
+    input(cpf_lido, 16, "Informe o CPF do Funcionário que deseja excluir: ");
 
     arq_funcionarios = fopen("funcionarios/funcionarios.dat", "r+b");
 
@@ -258,7 +258,7 @@ void excluir_funcionario_fisico(void)
     FILE *arq_funcionarios;
     FILE *arq_funcionarios2;
     Funcionario *fnc;
-    char cpf_lido[15];
+    char cpf_lido[16];
     char opcao;
     int encontrado = 0;
 
@@ -270,7 +270,7 @@ void excluir_funcionario_fisico(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     fnc = (Funcionario *)malloc(sizeof(Funcionario));
-    input(cpf_lido, 15, "Informe o CPF do funcionário que deseja excluir: ");
+    input(cpf_lido, 16, "Informe o CPF do funcionário que deseja excluir: ");
 
     arq_funcionarios = fopen("funcionarios/funcionarios.dat", "rb");
     arq_funcionarios2 = fopen("funcionarios/funcionarios2.dat", "wb");
@@ -333,7 +333,7 @@ void alterar_funcionario(void)
 {
     FILE *arq_funcionarios;
     Funcionario *fnc;
-    char cpf_lido[15];
+    char cpf_lido[16];
     char opcao;
     int encontrado = 0;
     system("clear||cls");
@@ -345,7 +345,7 @@ void alterar_funcionario(void)
 
     fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
-    input(cpf_lido, 15, "Informe o CPF do Funcionário que deseja alterar: ");
+    input(cpf_lido, 16, "Informe o CPF do Funcionário que deseja alterar: ");
 
     arq_funcionarios = fopen("funcionarios/funcionarios.dat", "r+b");
 
@@ -496,7 +496,7 @@ void listar_funcionarios_por_cargo(const char *tipo_consulta, char *cpf_escolhid
         return;
     }
 
-    char cpfs[100][15];
+    char cpfs[100][16];
     char nomes[100][100];
     int contador = 0;
     int escolha = 0;
@@ -553,7 +553,13 @@ Funcionario *preenche_funcionario(void)
 {
     Funcionario *fnc;
     fnc = (Funcionario *)malloc(sizeof(Funcionario));
-    input(fnc->cpf, 15, "Digite o CPF: ");
+    
+    do
+    {
+        input(fnc->cpf, 16, "Digite o CPF: ");
+        if (!validar_cpf(fnc->cpf))
+            printf("CPF inválido! Tente novamente.\n");
+    } while (!validar_cpf(fnc->cpf));
 
     do
     {
