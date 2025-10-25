@@ -169,3 +169,31 @@ int validar_cpf(const char *cpf) {
     else
         return 0;
 }
+
+int validar_telefone(const char *telefone) {
+    int i, j = 0;
+    char digitos[12]; // 11 dígitos + '\0'
+
+    // Extrai apenas os dígitos numéricos
+    for (i = 0; telefone[i] != '\0'; i++) {
+        if (telefone[i] >= '0' && telefone[i] <= '9') {
+            if (j < 11)
+                digitos[j++] = telefone[i];
+        }
+    }
+    digitos[j] = '\0';
+
+    // Telefone deve ter 10 (fixo) ou 11 (celular) dígitos
+    if (j != 10 && j != 11)
+        return 0;
+
+    // DDD não pode começar com 0 ou 1
+    if (digitos[0] < '2' || digitos[0] > '9')
+        return 0;
+
+    // O terceiro dígito deve ser 9 para celulares
+    if (j == 11 && digitos[2] != '9')
+        return 0;
+
+    return 1;
+}
