@@ -5,6 +5,7 @@
 #include "servicos.h"
 #include "../utilitarios/utilitarios.h"
 #include "../clientes/cliente.h"
+#include "../validacao/validacao.h"
 
 int tela_menu_servicos(void)
 {
@@ -837,7 +838,11 @@ void descobrir_numero(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     char data_nascimento[12];
-    input(data_nascimento, 12, "Digite a data de nascimento (DD/MM/AAAA): ");
+    do {
+        input(data_nascimento, 12, "Digite a data de nascimento (DD/MM/AAAA): ");
+        if (!validar_data(data_nascimento))
+            printf("Data inválida! Tente novamente.\n");
+    } while (!validar_data(data_nascimento));
 
     int soma = 0;
     for (int i = 0; data_nascimento[i] != '\0'; i++)
