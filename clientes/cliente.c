@@ -441,7 +441,13 @@ void modulo_alteracao(char *nome, char *data_nascimento, char *telefone)
             confirmacao();
             break;
         case 3:
-            input(telefone, 20, "Digite o telefone: ");
+            do
+            {
+                input(telefone, 20, "Digite o telefone: ");
+                if (!validar_telefone(telefone))
+                    printf("Telefone inválido! Digite um telefone válido.\n");
+            } while (!validar_telefone(telefone));
+
             printf("\nTelefone atualizado com sucesso!\n");
             confirmacao();
             break;
@@ -485,7 +491,14 @@ Cliente *preenche_cliente(void)
             printf("Data inválida! Use o formato DD/MM/AAAA.\n");
     } while (!validar_data(clt->data_nascimento));
 
-    input(clt->telefone, 20, "Digite o telefone: ");
+    do
+    {
+        input(clt->telefone, 20, "Digite o telefone: ");
+        if (!validar_telefone(clt->telefone))
+            printf("Telefone inválido! Digite um telefone válido.\n");
+    } while (!validar_telefone(clt->telefone));
+
+    
     clt->status = 1;
     return clt;
 }
