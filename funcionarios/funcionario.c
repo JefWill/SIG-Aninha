@@ -430,7 +430,13 @@ void modulo_alteracao_func(char *nome, char *cargo)
             confirmacao();
             break;
         case 2:
-            input(cargo, 50, "Digite o cargo do funcionário: (Numerologia, Tarot, Signos)");
+            do
+            {
+                input(cargo, 50, "Digite o cargo do funcionário: (Numerologia, Tarot, Signos)");
+                if (!validar_cargo(cargo))
+                    printf("Cargo inválido! Use apenas 'Numerologia', 'Tarot' ou 'Signos'.\n");
+            } while (!validar_cargo(cargo));
+
             printf("\nCargo atualizado com sucesso!\n");
             confirmacao();
             break;
@@ -568,7 +574,12 @@ Funcionario *preenche_funcionario(void)
             printf("Nome inválido! Use apenas letras.\n");
     } while (!validar_nome(fnc->nome));
 
-    input(fnc->cargo, 50, "Digite o cargo do funcionário: (Numerologia, Tarot, Signos)");
+    do
+    {
+        input(fnc->cargo, 50, "Digite o cargo do funcionário: (Numerologia, Tarot, Signos)");
+        if (!validar_cargo(fnc->cargo))
+            printf("Cargo inválido! Use apenas 'Numerologia', 'Tarot' ou 'Signos'.\n");
+    } while (!validar_cargo(fnc->cargo));
 
     fnc->status = 1;
     return fnc;
