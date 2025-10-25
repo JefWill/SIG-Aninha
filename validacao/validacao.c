@@ -197,3 +197,18 @@ int validar_telefone(const char *telefone) {
 
     return 1;
 }
+
+
+int validar_cargo(const char *cargo) {
+    if (cargo == NULL)
+        return 0;
+
+    if (
+        strcasecmp(cargo, "Tarot") == 0 ||
+        strcasecmp(cargo, "Signos") == 0 ||
+        strcasecmp(cargo, "Numerologia") == 0
+    ) {
+        return 1;
+    }
+    return 0;
+}
