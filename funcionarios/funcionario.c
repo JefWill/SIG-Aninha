@@ -225,7 +225,7 @@ void excluir_funcionario(void)
 
             printf("\nConfirma exclusão do Funcionário com CPF %s? (S/N): ", fnc->cpf);
             scanf(" %c", &opcao);
-            getchar();
+            limpar_buffer();
 
             if (opcao == 'S' || opcao == 's')
             {
@@ -236,7 +236,7 @@ void excluir_funcionario(void)
             }
             else
             {
-                printf("Exclusão Cancelada!\n");
+                printf("\nExclusão Cancelada!\n");
             }
             break;
         }
@@ -247,7 +247,7 @@ void excluir_funcionario(void)
 
     if (!encontrado)
     {
-        printf("\nCPF não encontrado!");
+        printf("\nCPF não encontrado!\n");
     }
 
     confirmacao();
@@ -293,7 +293,7 @@ void excluir_funcionario_fisico(void)
 
             printf("\nConfirma exclusão definitiva deste funcionário? (S/N): ");
             scanf(" %c", &opcao);
-            getchar();
+            limpar_buffer();
 
             if (opcao == 'S' || opcao == 's')
             {
@@ -366,7 +366,7 @@ void alterar_funcionario(void)
 
             printf("\nConfirma alteração do funcionário com CPF %s? (S/N): ", fnc->cpf);
             scanf(" %c", &opcao);
-            getchar();
+            limpar_buffer();
 
             if (opcao == 'S' || opcao == 's')
             {
@@ -559,7 +559,7 @@ Funcionario *preenche_funcionario(void)
 {
     Funcionario *fnc;
     fnc = (Funcionario *)malloc(sizeof(Funcionario));
-    
+
     do
     {
         input(fnc->cpf, 16, "Digite o CPF: ");

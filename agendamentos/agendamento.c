@@ -362,7 +362,7 @@ void excluir_agendamento(void)
             printf("\nAgendamento com ID %d encontrado!\n", agd->id);
             printf("Deseja realmente excluir? (S/N): ");
             scanf(" %c", &opcao);
-            getchar();
+            limpar_buffer();
 
             if (opcao == 'S' || opcao == 's')
             {
@@ -544,7 +544,7 @@ void excluir_agendamento_fisico(void)
 
             printf("\nConfirma exclusão definitiva deste agendamento? (S/N): ");
             scanf(" %c", &opcao);
-            getchar();
+            limpar_buffer();
 
             if (opcao == 'S' || opcao == 's')
             {

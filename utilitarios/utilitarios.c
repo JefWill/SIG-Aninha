@@ -33,6 +33,13 @@ void input(char *nome, int tamanho, char *mensagem)
     nome[tam - 1] = '\0';
 }
 
+void limpar_buffer(void)
+{
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF)
+        ;
+}
+
 void header(void)
 {
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");

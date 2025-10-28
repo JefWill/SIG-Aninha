@@ -225,7 +225,7 @@ void excluir_cliente(void)
 
             printf("\nConfirma exclusão do cliente com CPF %s? (S/N): ", clt->cpf);
             scanf(" %c", &opcao);
-            getchar();
+            limpar_buffer();
 
             if (opcao == 'S' || opcao == 's')
             {
@@ -236,7 +236,7 @@ void excluir_cliente(void)
             }
             else
             {
-                printf("Exclusão Cancelada!");
+                printf("\nExclusão Cancelada!\n");
             }
             break;
         }
@@ -246,7 +246,7 @@ void excluir_cliente(void)
 
     if (!encontrado)
     {
-        printf("CPF não encontrado!");
+        printf("\nCPF não encontrado!\n");
     }
 
     confirmacao();
@@ -292,7 +292,7 @@ void excluir_cliente_fisico(void)
 
             printf("\nConfirma exclusão definitiva deste cliente? (S/N): ");
             scanf(" %c", &opcao);
-            getchar();
+            limpar_buffer();
 
             if (opcao == 'S' || opcao == 's')
             {
@@ -300,7 +300,7 @@ void excluir_cliente_fisico(void)
             }
             else
             {
-                printf("        Exclusão cancelada!\n");
+                printf("\n        Exclusão cancelada!\n");
                 fwrite(clt, sizeof(Cliente), 1, arq_clientes2);
             }
         }
@@ -365,7 +365,7 @@ void alterar_cliente(void)
 
             printf("\nConfirma alteração do cliente com CPF %s? (S/N): ", clt->cpf);
             scanf(" %c", &opcao);
-            getchar();
+            limpar_buffer();
 
             if (opcao == 'S' || opcao == 's')
             {
@@ -475,7 +475,7 @@ Cliente *preenche_cliente(void)
         input(clt->cpf, 16, "Digite o CPF: ");
         if (!validar_cpf(clt->cpf))
             printf("CPF inválido! Digite um CPF válido.\n");
-    } while(!validar_cpf(clt->cpf));
+    } while (!validar_cpf(clt->cpf));
 
     do
     {
@@ -498,7 +498,6 @@ Cliente *preenche_cliente(void)
             printf("Telefone inválido! Digite um telefone válido.\n");
     } while (!validar_telefone(clt->telefone));
 
-    
     clt->status = 1;
     return clt;
 }
