@@ -192,7 +192,7 @@ void excluir_funcionario(void)
     FILE *arq_funcionarios;
     Funcionario *fnc;
     char cpf_lido[16];
-    char opcao;
+    char opcao [8];
     int encontrado = 0;
 
     system("clear||cls");
@@ -223,11 +223,13 @@ void excluir_funcionario(void)
             printf("\nFuncionário com CPF %s encontrado!\n", fnc->cpf);
             exibir_funcionario(fnc);
 
-            printf("\nConfirma exclusão do Funcionário com CPF %s? (S/N): ", fnc->cpf);
-            scanf(" %c", &opcao);
-            limpar_buffer();
+            do {
+                input(opcao, 8, "\nConfirma exclusão definitiva deste funcionário? (S/N): ");
+                if (!validar_confirmacao(opcao))
+                    printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
+            } while (!validar_confirmacao(opcao));
 
-            if (opcao == 'S' || opcao == 's')
+            if (validar_confirmacao(opcao))
             {
                 fnc->status = 0;
                 fseek(arq_funcionarios, (-1) * sizeof(Funcionario), SEEK_CUR);
@@ -259,7 +261,7 @@ void excluir_funcionario_fisico(void)
     FILE *arq_funcionarios2;
     Funcionario *fnc;
     char cpf_lido[16];
-    char opcao;
+    char opcao [8];
     int encontrado = 0;
 
     system("clear||cls");
@@ -291,11 +293,13 @@ void excluir_funcionario_fisico(void)
             printf("\nFuncionário encontrado!\n");
             exibir_funcionario(fnc);
 
-            printf("\nConfirma exclusão definitiva deste funcionário? (S/N): ");
-            scanf(" %c", &opcao);
-            limpar_buffer();
+            do {
+                input(opcao, 8, "\nConfirma exclusão definitiva deste funcionário? (S/N): ");
+                if (!validar_confirmacao(opcao))
+                    printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
+            } while (!validar_confirmacao(opcao));
 
-            if (opcao == 'S' || opcao == 's')
+            if (validar_confirmacao(opcao))
             {
                 printf("\nFuncionário com CPF %s excluído com sucesso!\n", fnc->cpf);
             }
@@ -334,7 +338,7 @@ void alterar_funcionario(void)
     FILE *arq_funcionarios;
     Funcionario *fnc;
     char cpf_lido[16];
-    char opcao;
+    char opcao [8];
     int encontrado = 0;
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -364,11 +368,13 @@ void alterar_funcionario(void)
             printf("\nFuncionário com CPF %s encontrado!\n", fnc->cpf);
             exibir_funcionario(fnc);
 
-            printf("\nConfirma alteração do funcionário com CPF %s? (S/N): ", fnc->cpf);
-            scanf(" %c", &opcao);
-            limpar_buffer();
+            do {
+                input(opcao, 8, "\nQuer mesmo alterar os dados deste funcionário? (S/N): ");
+                if (!validar_confirmacao(opcao))
+                    printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
+            } while (!validar_confirmacao(opcao));
 
-            if (opcao == 'S' || opcao == 's')
+            if (validar_confirmacao(opcao))
             {
                 modulo_alteracao_func(fnc->nome, fnc->cargo);
                 fseek(arq_funcionarios, (-1) * sizeof(Funcionario), SEEK_CUR);
