@@ -224,7 +224,7 @@ void excluir_funcionario(void)
             exibir_funcionario(fnc);
 
             do {
-                input(opcao, 8, "\nConfirma exclusão definitiva deste funcionário? (S/N): ");
+                input(opcao, 8, "\nConfirmar a exclusão deste funcionário? (S/N): ");
                 if (!validar_confirmacao(opcao))
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
             } while (!validar_confirmacao(opcao));
@@ -294,7 +294,7 @@ void excluir_funcionario_fisico(void)
             exibir_funcionario(fnc);
 
             do {
-                input(opcao, 8, "\nConfirma exclusão definitiva deste funcionário? (S/N): ");
+                input(opcao, 8, "\nConfirmar a exclusão definitiva deste funcionário? (S/N): ");
                 if (!validar_confirmacao(opcao))
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
             } while (!validar_confirmacao(opcao));

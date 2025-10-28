@@ -304,7 +304,7 @@ void excluir_agendamento(void)
     Agendamento *agd;
     char cpf_lido[16];
     int encontrado = 0, id_escolhido = 0;
-    char opcao;
+    char opcao [8];
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -360,11 +360,15 @@ void excluir_agendamento(void)
         {
             encontrado = 1;
             printf("\nAgendamento com ID %d encontrado!\n", agd->id);
-            printf("Deseja realmente excluir? (S/N): ");
-            scanf(" %c", &opcao);
-            limpar_buffer();
+            exibir_agendamento(agd);
 
-            if (opcao == 'S' || opcao == 's')
+            do {
+                input(opcao, 8, "\nConfirmar a exclusão deste agendamento? (S/N): ");
+                if (!validar_confirmacao(opcao))
+                    printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
+            } while (!validar_confirmacao(opcao));
+
+            if (validar_confirmacao(opcao))
             {
                 agd->status = 0;
                 fseek(arq_agendamentos, -((long)sizeof(Agendamento)), SEEK_CUR);
@@ -509,7 +513,7 @@ void excluir_agendamento_fisico(void)
     FILE *arq_agendamentos;
     FILE *arq_agendamentos2;
     Agendamento *agd;
-    char opcao;
+    char opcao [8];
     int encontrado = 0;
     char cpf_lido[16];
 
@@ -542,11 +546,13 @@ void excluir_agendamento_fisico(void)
             printf("\nAgendamento do cliente com CPF %s encontrado!\n", agd->cpf);
             exibir_agendamento(agd);
 
-            printf("\nConfirma exclusão definitiva deste agendamento? (S/N): ");
-            scanf(" %c", &opcao);
-            limpar_buffer();
+            do {
+                input(opcao, 8, "\nConfirmar a exclusão definitiva deste agendamento? (S/N): ");
+                if (!validar_confirmacao(opcao))
+                    printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
+            } while (!validar_confirmacao(opcao));
 
-            if (opcao == 'S' || opcao == 's')
+            if (validar_confirmacao(opcao))
             {
                 printf("\nAgendamento do cliente com CPF %s excluído com sucesso!\n", agd->cpf);
             }
