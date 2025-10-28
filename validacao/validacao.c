@@ -212,3 +212,18 @@ int validar_cargo(const char *cargo) {
     }
     return 0;
 }
+
+int validar_confirmacao(const char *opcao) {
+    if (opcao == NULL)
+        return 0;
+
+        
+    if (strcasecmp(opcao, "s") == 0 ||
+        strcasecmp(opcao, "n") == 0 ||
+        strcasecmp(opcao, "sim") == 0 ||
+        strcasecmp(opcao, "nao") == 0 ||
+        strcasecmp(opcao, "não") == 0)
+        return 1;
+
+    return 0;
+}
