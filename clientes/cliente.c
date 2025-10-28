@@ -191,7 +191,7 @@ void excluir_cliente(void)
 {
     FILE *arq_clientes;
     Cliente *clt;
-    char opcao;
+    char opcao [8];
     int encontrado;
     char cpf_lido[16];
 
@@ -223,11 +223,13 @@ void excluir_cliente(void)
             printf("\nCliente com CPF %s encontrado!\n", clt->cpf);
             exibir_cliente(clt);
 
-            printf("\nConfirma exclusão do cliente com CPF %s? (S/N): ", clt->cpf);
-            scanf(" %c", &opcao);
-            limpar_buffer();
+            do {
+                input(opcao, 8, "\nConfirma exclusão definitiva deste cliente? (S/N): ");
+                if (!validar_confirmacao(opcao))
+                    printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
+            } while (!validar_confirmacao(opcao));
 
-            if (opcao == 'S' || opcao == 's')
+            if (validar_confirmacao(opcao))
             {
                 clt->status = 0;
                 fseek(arq_clientes, (-1) * sizeof(Cliente), SEEK_CUR);
@@ -257,7 +259,7 @@ void excluir_cliente_fisico(void)
     FILE *arq_clientes;
     FILE *arq_clientes2;
     Cliente *clt;
-    char opcao;
+    char opcao[8];
     int encontrado = 0;
     char cpf_lido[16];
 
@@ -290,11 +292,13 @@ void excluir_cliente_fisico(void)
             printf("\nCliente com CPF %s encontrado!\n", clt->cpf);
             exibir_cliente(clt);
 
-            printf("\nConfirma exclusão definitiva deste cliente? (S/N): ");
-            scanf(" %c", &opcao);
-            limpar_buffer();
+            do {
+                input(opcao, 8, "\nConfirma exclusão definitiva deste cliente? (S/N): ");
+                if (!validar_confirmacao(opcao))
+                    printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
+            } while (!validar_confirmacao(opcao));
 
-            if (opcao == 'S' || opcao == 's')
+            if (validar_confirmacao(opcao))
             {
                 printf("\nCliente com CPF %s excluído com sucesso!\n", clt->cpf);
             }
@@ -332,7 +336,7 @@ void alterar_cliente(void)
 {
     FILE *arq_clientes;
     Cliente *clt;
-    char opcao;
+    char opcao [8];
     int encontrado = 0;
     char cpf_lido[16];
 
@@ -363,11 +367,13 @@ void alterar_cliente(void)
             printf("\nCliente com CPF %s encontrado!\n", clt->cpf);
             exibir_cliente(clt);
 
-            printf("\nConfirma alteração do cliente com CPF %s? (S/N): ", clt->cpf);
-            scanf(" %c", &opcao);
-            limpar_buffer();
+            do {
+                input(opcao, 8, "\nQuer mesmo alterar os dados deste cliente? (S/N): ");
+                if (!validar_confirmacao(opcao))
+                    printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
+            } while (!validar_confirmacao(opcao));
 
-            if (opcao == 'S' || opcao == 's')
+            if (validar_confirmacao(opcao))
             {
                 modulo_alteracao(clt->nome, clt->data_nascimento, clt->telefone);
                 fseek(arq_clientes, (-1) * sizeof(Cliente), SEEK_CUR);
