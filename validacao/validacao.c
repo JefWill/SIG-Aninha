@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include "validacao.h"
+#include "../clientes/cliente.h"
 
 // Obtive ajuda de IA - Chagpt GPT-5
 int validar_data(const char *data)
@@ -121,15 +122,18 @@ int validar_horario_servico(const char *horario)
     return 1;
 }
 
-int validar_cpf(const char *cpf) {
+int validar_cpf(const char *cpf)
+{
     // Tive ajuda do Chat GPT 4.1 para montar a lógica de validação do CPF
     int i, j, digito1 = 0, digito2 = 0;
     int num[11];
     int tamanho = 0;
 
     // Remove caracteres não numéricos e verifica tamanho
-    for (i = 0, j = 0; cpf[i] != '\0'; i++) {
-        if (cpf[i] >= '0' && cpf[i] <= '9') {
+    for (i = 0, j = 0; cpf[i] != '\0'; i++)
+    {
+        if (cpf[i] >= '0' && cpf[i] <= '9')
+        {
             if (j < 11)
                 num[j++] = cpf[i] - '0';
         }
@@ -140,8 +144,10 @@ int validar_cpf(const char *cpf) {
 
     // Verifica se todos os dígitos são iguais (inválido)
     int todos_iguais = 1;
-    for (i = 1; i < 11; i++) {
-        if (num[i] != num[0]) {
+    for (i = 1; i < 11; i++)
+    {
+        if (num[i] != num[0])
+        {
             todos_iguais = 0;
             break;
         }
@@ -170,13 +176,16 @@ int validar_cpf(const char *cpf) {
         return 0;
 }
 
-int validar_telefone(const char *telefone) {
+int validar_telefone(const char *telefone)
+{
     int i, j = 0;
     char digitos[12]; // 11 dígitos + '\0'
 
     // Extrai apenas os dígitos numéricos
-    for (i = 0; telefone[i] != '\0'; i++) {
-        if (telefone[i] >= '0' && telefone[i] <= '9') {
+    for (i = 0; telefone[i] != '\0'; i++)
+    {
+        if (telefone[i] >= '0' && telefone[i] <= '9')
+        {
             if (j < 11)
                 digitos[j++] = telefone[i];
         }
@@ -198,26 +207,26 @@ int validar_telefone(const char *telefone) {
     return 1;
 }
 
-
-int validar_cargo(const char *cargo) {
+int validar_cargo(const char *cargo)
+{
     if (cargo == NULL)
         return 0;
 
     if (
         strcasecmp(cargo, "Tarot") == 0 ||
         strcasecmp(cargo, "Signos") == 0 ||
-        strcasecmp(cargo, "Numerologia") == 0
-    ) {
+        strcasecmp(cargo, "Numerologia") == 0)
+    {
         return 1;
     }
     return 0;
 }
 
-int validar_confirmacao(const char *opcao) {
+int validar_confirmacao(const char *opcao)
+{
     if (opcao == NULL)
         return 0;
 
-        
     if (strcasecmp(opcao, "s") == 0 ||
         strcasecmp(opcao, "n") == 0 ||
         strcasecmp(opcao, "sim") == 0 ||
@@ -226,4 +235,30 @@ int validar_confirmacao(const char *opcao) {
         return 1;
 
     return 0;
+}
+
+int cliente_existe(const char *cpf_procurado)
+{
+    FILE *arq_clientes;
+    Cliente clt;
+    int encontrado = 0;
+
+    arq_clientes = fopen("clientes/clientes.dat", "rb");
+    if (arq_clientes == NULL)
+    {
+        printf("Erro ao abrir o arquivo de clientes!\n");
+        return 0;
+    }
+
+    while (fread(&clt, sizeof(Cliente), 1, arq_clientes))
+    {
+        if ((strcmp(clt.cpf, cpf_procurado) == 0) && (clt.status == 1))
+        {
+            encontrado = 1;
+            break;
+        }
+    }
+
+    fclose(arq_clientes);
+    return encontrado;
 }
