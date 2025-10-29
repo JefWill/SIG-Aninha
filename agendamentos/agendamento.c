@@ -304,7 +304,7 @@ void excluir_agendamento(void)
     Agendamento *agd;
     char cpf_lido[16];
     int encontrado = 0, id_escolhido = 0;
-    char opcao [8];
+    char opcao[8];
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -362,7 +362,8 @@ void excluir_agendamento(void)
             printf("\nAgendamento com ID %d encontrado!\n", agd->id);
             exibir_agendamento(agd);
 
-            do {
+            do
+            {
                 input(opcao, 8, "\nConfirmar a exclusão deste agendamento? (S/N): ");
                 if (!validar_confirmacao(opcao))
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
@@ -513,7 +514,7 @@ void excluir_agendamento_fisico(void)
     FILE *arq_agendamentos;
     FILE *arq_agendamentos2;
     Agendamento *agd;
-    char opcao [8];
+    char opcao[8];
     int encontrado = 0;
     char cpf_lido[16];
 
@@ -546,7 +547,8 @@ void excluir_agendamento_fisico(void)
             printf("\nAgendamento do cliente com CPF %s encontrado!\n", agd->cpf);
             exibir_agendamento(agd);
 
-            do {
+            do
+            {
                 input(opcao, 8, "\nConfirmar a exclusão definitiva deste agendamento? (S/N): ");
                 if (!validar_confirmacao(opcao))
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
@@ -624,9 +626,9 @@ Agendamento *preenche_agendamento(void)
     do
     {
         input(agd->data, 12, "Digite a data da consulta (DD/MM/AAAA): ");
-        if (!validar_data(agd->data))
+        if (!validar_data_agendamento(agd->data))
             printf("Data inválida! Use o formato DD/MM/AAAA e certifique-se de que não é maior que a atual.\n");
-    } while (!validar_data(agd->data));
+    } while (!validar_data_agendamento(agd->data));
 
     do
     {
