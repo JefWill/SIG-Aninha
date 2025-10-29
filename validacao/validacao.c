@@ -262,3 +262,30 @@ int cliente_existe(const char *cpf_procurado)
     fclose(arq_clientes);
     return encontrado;
 }
+
+int buscar_nome_cliente(const char *cpf_procurado, char *nome_cliente)
+{
+    FILE *arq_clientes;
+    Cliente clt;
+    int encontrado = 0;
+
+    arq_clientes = fopen("clientes/clientes.dat", "rb");
+    if (arq_clientes == NULL)
+    {
+        printf("Erro ao abrir o arquivo de clientes!\n");
+        return 0;
+    }
+
+    while (fread(&clt, sizeof(Cliente), 1, arq_clientes))
+    {
+        if ((strcmp(clt.cpf, cpf_procurado) == 0) && (clt.status == 1))
+        {
+            strcpy(nome_cliente, clt.nome);
+            encontrado = 1;
+            break;
+        }
+    }
+
+    fclose(arq_clientes);
+    return encontrado;
+}

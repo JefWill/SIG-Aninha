@@ -6,3 +6,4 @@ int validar_telefone(const char *telefone);
 int validar_cargo(const char *cargo);
 int validar_confirmacao(const char *resposta);
 int cliente_existe(const char *cpf_procurado);
+int buscar_nome_cliente(const char *cpf_procurado, char *nome);
