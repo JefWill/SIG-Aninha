@@ -598,17 +598,23 @@ Agendamento *preenche_agendamento(void)
 
     do
     {
-        input(agd->cpf, 16, "Digite o CPF do cliente:");
-        if (!validar_cpf(agd->cpf))
-            printf("CPF inválido! Tente novamente.\n");
-    } while (!validar_cpf(agd->cpf));
+        input(agd->cpf, 16, "Digite o CPF do cliente: ");
 
-    do
-    {
-        input(agd->nome, 100, "Digite o nome do cliente:");
-        if (!validar_nome(agd->nome))
-            printf("Nome inválido! Use apenas letras.\n");
-    } while (!validar_nome(agd->nome));
+        if (!validar_cpf(agd->cpf))
+        {
+            printf("\nCPF inválido! Tente novamente.\n");
+            continue;
+        }
+
+        if (!cliente_existe(agd->cpf))
+        {
+            printf("\nCliente não encontrado no sistema! Cadastre primeiro.\n");
+        }
+
+    } while (!validar_cpf(agd->cpf) || !cliente_existe(agd->cpf));
+
+    buscar_nome_cliente(agd->cpf, agd->nome);
+    printf("\nCliente encontrado: %s\n", agd->nome);
 
     input(agd->tipo_consulta, 20, "Digite qual tipo de consulta deseja (Tarot, Signos, Numerologia):");
 
