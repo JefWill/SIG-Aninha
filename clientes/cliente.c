@@ -191,7 +191,7 @@ void excluir_cliente(void)
 {
     FILE *arq_clientes;
     Cliente *clt;
-    char opcao [8];
+    char opcao[8];
     int encontrado;
     char cpf_lido[16];
 
@@ -223,7 +223,8 @@ void excluir_cliente(void)
             printf("\nCliente com CPF %s encontrado!\n", clt->cpf);
             exibir_cliente(clt);
 
-            do {
+            do
+            {
                 input(opcao, 8, "\nConfirmar a exclusão deste cliente? (S/N): ");
                 if (!validar_confirmacao(opcao))
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
@@ -292,7 +293,8 @@ void excluir_cliente_fisico(void)
             printf("\nCliente com CPF %s encontrado!\n", clt->cpf);
             exibir_cliente(clt);
 
-            do {
+            do
+            {
                 input(opcao, 8, "\nConfirmar a exclusão definitiva deste cliente? (S/N): ");
                 if (!validar_confirmacao(opcao))
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
@@ -336,7 +338,7 @@ void alterar_cliente(void)
 {
     FILE *arq_clientes;
     Cliente *clt;
-    char opcao [8];
+    char opcao[8];
     int encontrado = 0;
     char cpf_lido[16];
 
@@ -367,7 +369,8 @@ void alterar_cliente(void)
             printf("\nCliente com CPF %s encontrado!\n", clt->cpf);
             exibir_cliente(clt);
 
-            do {
+            do
+            {
                 input(opcao, 8, "\nQuer mesmo alterar os dados deste cliente? (S/N): ");
                 if (!validar_confirmacao(opcao))
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
@@ -476,12 +479,25 @@ Cliente *preenche_cliente(void)
 {
     Cliente *clt;
     clt = (Cliente *)malloc(sizeof(Cliente));
+
     do
     {
         input(clt->cpf, 16, "Digite o CPF: ");
+
         if (!validar_cpf(clt->cpf))
+        {
             printf("CPF inválido! Digite um CPF válido.\n");
-    } while (!validar_cpf(clt->cpf));
+        }
+        else if (cliente_existe(clt->cpf))
+        {
+            printf("Erro: já existe um cliente cadastrado com esse CPF!\n");
+        }
+        else
+        {
+            break;
+        }
+
+    } while (1);
 
     do
     {
