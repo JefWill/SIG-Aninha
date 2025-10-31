@@ -25,11 +25,29 @@ int escolha(void)
 
 void input(char *nome, int tamanho, char *mensagem)
 {
-    int tam;
+    int tam, i, j = 0;
+    char temp[tamanho];
+
     printf("%s\n", mensagem);
     fgets(nome, tamanho, stdin);
     tam = strlen(nome);
-    nome[tam - 1] = '\0';
+
+    if (nome[tam - 1] == '\n')
+    {
+        nome[tam - 1] = '\0';
+        tam--;
+    }
+
+    for (i = 0; i < tam; i++)
+    {
+        if (isalnum(nome[i]) || isspace(nome[i]))
+        {
+            temp[j++] = nome[i];
+        }
+    }
+    temp[j] = '\0';
+
+    strcpy(nome, temp);
 }
 
 void limpar_buffer(void)
