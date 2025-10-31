@@ -10,16 +10,26 @@ int validar_data(const char *data)
 {
     int dia, mes, ano;
 
+    // Verifica se a data tem exatamente 8 caracteres (sem barras)
+    if (strlen(data) != 8)
+        return 0;
+
+    // Verifica se todos os caracteres são dígitos
+    for (int i = 0; i < 8; i++)
+    {
+        if (!isdigit(data[i]))
+            return 0;
+    }
+
+    // Extrai dia, mês e ano a partir da string sem as barras
+    sscanf(data, "%2d%2d%4d", &dia, &mes, &ano);
+
     // Pega o ano atual do sistema
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
     int dia_atual = tm.tm_mday;
     int mes_atual = tm.tm_mon + 1;
     int ano_atual = tm.tm_year + 1900;
-
-    // Verifica se a data está no formato correto
-    if (sscanf(data, "%d/%d/%d", &dia, &mes, &ano) != 3)
-        return 0;
 
     // Verifica se o ano está em um intervalo aceitável
     if (ano < 1900 || ano > ano_atual)
@@ -40,6 +50,7 @@ int validar_data(const char *data)
         dias_mes = 30;
         break;
     case 2:
+        // Verifica se o ano é bissexto para o mês de fevereiro
         dias_mes = (ano % 4 == 0 && (ano % 100 != 0 || ano % 400 == 0)) ? 29 : 28;
         break;
     default:
