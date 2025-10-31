@@ -15,12 +15,11 @@ int escolha(void)
     if (resultado != 1)
     {
         printf("\nOpção inválida! Digite apenas números.\n");
-        while (getchar() != '\n')
-            ;
+        limpar_buffer();
         return -1;
     }
 
-    getchar();
+    limpar_buffer();
     return opcao;
 }
 
