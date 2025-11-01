@@ -302,22 +302,32 @@ int buscar_nome_cliente(const char *cpf_procurado, char *nome_cliente)
     return encontrado;
 }
 
+
 int validar_data_agendamento(const char *data)
 {
     int dia, mes, ano;
 
-    // Pega o ano atual do sistema (usado apenas para validar intervalo)
+    // 1. Verifica se a data tem exatamente 8 caracteres (sem barras)
+    if (strlen(data) != 8)
+        return 0;
+
+    // 2. Verifica se todos os caracteres são dígitos
+    for (int i = 0; i < 8; i++)
+    {
+        if (!isdigit(data[i]))
+            return 0;
+    }
+
+    // 3. Extrai dia, mês e ano a partir da string "DDMMYYYY"
+    sscanf(data, "%2d%2d%4d", &dia, &mes, &ano);
+
+
+    // Pega a data atual do sistema
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
+    int dia_atual = tm.tm_mday;
+    int mes_atual = tm.tm_mon + 1;
     int ano_atual = tm.tm_year + 1900;
-
-    // Verifica se a data está no formato correto
-    if (sscanf(data, "%d/%d/%d", &dia, &mes, &ano) != 3)
-        return 0;
-
-    // Verifica se o ano está em um intervalo aceitável
-    if (ano < 1900 || ano > ano_atual + 5) // permite agendar até 5 anos no futuro
-        return 0;
 
     // Verifica se o mês é válido
     if (mes < 1 || mes > 12)
@@ -334,6 +344,7 @@ int validar_data_agendamento(const char *data)
         dias_mes = 30;
         break;
     case 2:
+        // Verifica se o ano é bissexto para o mês de fevereiro
         dias_mes = (ano % 4 == 0 && (ano % 100 != 0 || ano % 400 == 0)) ? 29 : 28;
         break;
     default:
@@ -344,5 +355,17 @@ int validar_data_agendamento(const char *data)
     if (dia < 1 || dia > dias_mes)
         return 0;
 
-    return 1; // Data válida
+    // 4. Verifica se a data é NO PASSADO.
+    if (ano < ano_atual)
+        return 0;
+    if (ano == ano_atual && mes < mes_atual)
+        return 0;
+    if (ano == ano_atual && mes == mes_atual && dia < dia_atual)
+        return 0;
+
+    // 5. Verifica o limite futuro
+    if (ano > ano_atual + 5) // permite agendar até 5 anos no futuro
+        return 0;
+
+    return 1; // Data válida para agendamento
 }
