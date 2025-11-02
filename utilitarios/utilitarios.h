@@ -7,3 +7,4 @@ void ler_nome(char *nome);
 void ler_data(char *data);
 void ler_telefone(char *telefone);
 void ler_cargo(char *cargo);
+void limpar_espacos_laterais(char *str);

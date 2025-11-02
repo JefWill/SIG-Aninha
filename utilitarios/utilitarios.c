@@ -124,3 +124,32 @@ void ler_cargo(char *cargo)
             printf("Cargo inválido! Use apenas 'Numerologia', 'Tarot' ou 'Signos'.\n");
     } while (!validar_cargo(cargo));
 }
+
+void limpar_espacos_laterais(char *str)
+{
+    int len = strlen(str);
+    int inicio = 0;
+    int fim = len - 1;
+
+    // Acha o primeiro caractere que NÃO é espaço (início)
+    while (inicio < len && isspace(str[inicio]))
+    {
+        inicio++;
+    }
+
+    // Acha o último caractere que NÃO é espaço (fim)
+    while (fim >= inicio && isspace(str[fim]))
+    {
+        fim--;
+    }
+
+    // Move a string "limpa" para o início
+    int i;
+    for (i = 0; i <= (fim - inicio); i++)
+    {
+        str[i] = str[inicio + i];
+    }
+
+    // 4. Coloca o terminador nulo no novo final
+    str[i] = '\0';
+}
