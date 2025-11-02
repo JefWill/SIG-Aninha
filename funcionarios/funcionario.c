@@ -568,19 +568,9 @@ Funcionario *preenche_funcionario(void)
 
     ler_cpf_funcionario(fnc->cpf);
 
-    do
-    {
-        input(fnc->nome, 50, "Digite o nome: ");
-        if (!validar_nome(fnc->nome))
-            printf("Nome inválido! Use apenas letras.\n");
-    } while (!validar_nome(fnc->nome));
+    ler_nome(fnc->nome);
 
-    do
-    {
-        input(fnc->cargo, 50, "Digite o cargo do funcionário: (Numerologia, Tarot, Signos)");
-        if (!validar_cargo(fnc->cargo))
-            printf("Cargo inválido! Use apenas 'Numerologia', 'Tarot' ou 'Signos'.\n");
-    } while (!validar_cargo(fnc->cargo));
+    ler_cargo(fnc->cargo);
 
     fnc->status = 1;
     return fnc;

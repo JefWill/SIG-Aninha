@@ -27,3 +27,4 @@ int validar_funcionario_por_cargo(const char *cpf, const char *tipo_consulta);
 void listar_funcionarios_por_cargo(const char *tipo_consulta, char *cpf_escolhido, char *nome_escolhido);
 Funcionario *preenche_funcionario(void);
 void ler_cpf_funcionario(char *cpf);
+void ler_cargo(char *cargo);

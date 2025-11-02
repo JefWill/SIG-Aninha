@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include <time.h>
 #include "utilitarios.h"
+#include "../validacao/validacao.h"
 
 int escolha(void)
 {
@@ -106,4 +107,14 @@ void ler_telefone(char *telefone){
         if (!validar_telefone(telefone))
             printf("Telefone inválido! Digite um telefone válido. Não esqueça do DDD.\n");
     } while (!validar_telefone(telefone));
+}
+
+void ler_cargo(char *cargo)
+{
+    do
+    {
+        input(cargo, 50, "Digite o cargo do funcionário: (Numerologia, Tarot, Signos)");
+        if (!validar_cargo(cargo))
+            printf("Cargo inválido! Use apenas 'Numerologia', 'Tarot' ou 'Signos'.\n");
+    } while (!validar_cargo(cargo));
 }
