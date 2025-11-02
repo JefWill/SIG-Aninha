@@ -480,24 +480,7 @@ Cliente *preenche_cliente(void)
     Cliente *clt;
     clt = (Cliente *)malloc(sizeof(Cliente));
 
-    do
-    {
-        input(clt->cpf, 16, "Digite o CPF: ");
-
-        if (!validar_cpf(clt->cpf))
-        {
-            printf("CPF inválido! Digite um CPF válido.\n");
-        }
-        else if (cliente_existe(clt->cpf))
-        {
-            printf("Erro: já existe um cliente cadastrado com esse CPF!\n");
-        }
-        else
-        {
-            break;
-        }
-
-    } while (1);
+    ler_cpf_cliente(clt->cpf);
 
     ler_nome(clt->nome);
 
@@ -516,4 +499,32 @@ void exibir_cliente(const Cliente *clt)
     printf("Data de Nascimento: %s\n", clt->data_nascimento);
     printf("Telefone: %s\n", clt->telefone);
     printf("Status: %d\n", clt->status);
+}
+
+void ler_cpf_cliente(char *cpf)
+{
+    int cpf_valido = 0;
+    int cpf_unico = 0;
+
+    do
+    {
+        input(cpf, 16, "Digite o CPF: ");
+        cpf_valido = validar_cpf(cpf);
+
+        if (!cpf_valido)
+        {
+            printf("CPF inválido! Digite um CPF válido.\n");
+            cpf_unico = 0;
+        }
+        else
+        {
+            cpf_unico = !cliente_existe(cpf); // Se cliente_existe = 1 (true), cpf_unico = 0 (false)
+
+            if (!cpf_unico)
+            {
+                printf("Já existe um cliente cadastrado com esse CPF!\n");
+            }
+        }
+
+    } while (!cpf_valido || !cpf_unico); // O loop continua SE (o CPF não for válido) OU (o CPF não for único)
 }
