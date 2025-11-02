@@ -566,12 +566,7 @@ Funcionario *preenche_funcionario(void)
     Funcionario *fnc;
     fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
-    do
-    {
-        input(fnc->cpf, 16, "Digite o CPF: ");
-        if (!validar_cpf(fnc->cpf))
-            printf("CPF inválido! Tente novamente.\n");
-    } while (!validar_cpf(fnc->cpf));
+    ler_cpf_funcionario(fnc->cpf);
 
     do
     {
@@ -597,4 +592,33 @@ void exibir_funcionario(const Funcionario *fnc)
     printf("Nome: %s\n", fnc->nome);
     printf("Cargo: %s\n", fnc->cargo);
     printf("Status: %d\n", fnc->status);
+}
+
+
+void ler_cpf_funcionario(char *cpf)
+{
+    int cpf_valido = 0;
+    int cpf_unico = 0;
+
+    do
+    {
+        input(cpf, 16, "Digite o CPF: ");
+        cpf_valido = validar_cpf(cpf);
+
+        if (!cpf_valido)
+        {
+            printf("CPF inválido! Digite um CPF válido.\n");
+            cpf_unico = 0;
+        }
+        else
+        {
+            cpf_unico = !funcionario_existe(cpf); // Se funcionario_existe = 1 (true), cpf_unico = 0 (false)
+
+            if (!cpf_unico)
+            {
+                printf("Já existe um funcionário cadastrado com esse CPF!\n");
+            }
+        }
+
+    } while (!cpf_valido || !cpf_unico); // O loop continua SE (o CPF não for válido) OU (o CPF não for único)
 }
