@@ -428,34 +428,19 @@ void modulo_alteracao(char *nome, char *data_nascimento, char *telefone)
         switch (opcao)
         {
         case 1:
-            do
-            {
-                input(nome, 50, "Digite o nome: ");
-                if (!validar_nome(nome))
-                    printf("Nome inválido! Use apenas letras.\n");
-            } while (!validar_nome(nome));
+            ler_nome(nome);
 
             printf("\nNome atualizado com sucesso!\n");
             confirmacao();
             break;
         case 2:
-            do
-            {
-                input(data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
-                if (!validar_data(data_nascimento))
-                    printf("Data inválida! Use o formato DD/MM/AAAA.\n");
-            } while (!validar_data(data_nascimento));
+            ler_data(data_nascimento);
 
             printf("\nData de nascimento atualizada com sucesso!\n");
             confirmacao();
             break;
         case 3:
-            do
-            {
-                input(telefone, 20, "Digite o telefone: ");
-                if (!validar_telefone(telefone))
-                    printf("Telefone inválido! Digite um telefone válido.\n");
-            } while (!validar_telefone(telefone));
+            ler_telefone(telefone);
 
             printf("\nTelefone atualizado com sucesso!\n");
             confirmacao();
@@ -494,9 +479,11 @@ Cliente *preenche_cliente(void)
 
 void exibir_cliente(const Cliente *clt)
 {
+    int dia, mes, ano;
     printf("CPF: %s\n", clt->cpf);
     printf("Nome: %s\n", clt->nome);
-    printf("Data de Nascimento: %s\n", clt->data_nascimento);
+    sscanf(clt->data_nascimento, "%2d%2d%4d", &dia, &mes, &ano);
+    printf("Data de Nascimento: %02d/%02d/%04d\n", dia, mes, ano);
     printf("Telefone: %s\n", clt->telefone);
     printf("Status: %d\n", clt->status);
 }

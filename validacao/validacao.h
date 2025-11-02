@@ -8,3 +8,4 @@ int validar_confirmacao(const char *resposta);
 int cliente_existe(const char *cpf_procurado);
 int buscar_nome_cliente(const char *cpf_procurado, char *nome);
 int validar_data_agendamento(const char *data);
+int funcionario_existe(const char *cpf_procurado);
