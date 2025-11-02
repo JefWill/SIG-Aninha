@@ -226,6 +226,7 @@ void excluir_cliente(void)
             do
             {
                 input(opcao, 8, "\nConfirmar a exclusão deste cliente? (S/N): ");
+                limpar_espacos_laterais(opcao);
                 if (!validar_confirmacao(opcao))
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
             } while (!validar_confirmacao(opcao));
@@ -296,6 +297,7 @@ void excluir_cliente_fisico(void)
             do
             {
                 input(opcao, 8, "\nConfirmar a exclusão definitiva deste cliente? (S/N): ");
+                limpar_espacos_laterais(opcao);
                 if (!validar_confirmacao(opcao))
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
             } while (!validar_confirmacao(opcao));
@@ -372,6 +374,7 @@ void alterar_cliente(void)
             do
             {
                 input(opcao, 8, "\nQuer mesmo alterar os dados deste cliente? (S/N): ");
+                limpar_espacos_laterais(opcao);
                 if (!validar_confirmacao(opcao))
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
             } while (!validar_confirmacao(opcao));
