@@ -501,12 +501,7 @@ Cliente *preenche_cliente(void)
 
     ler_nome_cliente(clt->nome);
 
-    do
-    {
-        input(clt->data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
-        if (!validar_data(clt->data_nascimento))
-            printf("Data inválida! Use o formato DD/MM/AAAA.\n");
-    } while (!validar_data(clt->data_nascimento));
+    ler_data_cliente(clt->data_nascimento);
 
     do
     {
@@ -535,4 +530,13 @@ void ler_nome_cliente(char *nome){
         if (!validar_nome(nome))
             printf("Nome inválido! Use apenas letras.\n");
     } while (!validar_nome(nome));
+}
+
+void ler_data_cliente(char *data_nascimento){
+    do
+    {
+        input(data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
+        if (!validar_data(data_nascimento))
+            printf("Data inválida! Use o formato DD/MM/AAAA.\n");
+    } while (!validar_data(data_nascimento));
 }
