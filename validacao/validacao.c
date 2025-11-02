@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include "validacao.h"
 #include "../clientes/cliente.h"
+#include "../funcionarios/funcionario.h"
 
 // Obtive ajuda de IA - Chagpt GPT-5
 int validar_data(const char *data)
@@ -368,4 +369,31 @@ int validar_data_agendamento(const char *data)
         return 0;
 
     return 1; // Data válida para agendamento
+}
+
+
+int funcionario_existe(const char *cpf_procurado)
+{
+    FILE *arq_funcionarios;
+    Funcionario fnc;
+    int encontrado = 0;
+
+    arq_funcionarios = fopen("funcionarios/funcionarios.dat", "rb");
+    if (arq_funcionarios == NULL)
+    {
+        printf("Erro ao abrir o arquivo de funcionarios!\n");
+        return 0;
+    }
+
+    while (fread(&fnc, sizeof(Funcionario), 1, arq_funcionarios))
+    {
+        if ((strcmp(fnc.cpf, cpf_procurado) == 0) && (fnc.status == 1))
+        {
+            encontrado = 1;
+            break;
+        }
+    }
+
+    fclose(arq_funcionarios);
+    return encontrado;
 }
