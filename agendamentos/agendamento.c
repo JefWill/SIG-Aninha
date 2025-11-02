@@ -369,7 +369,7 @@ void excluir_agendamento(void)
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
             } while (!validar_confirmacao(opcao));
 
-            if (validar_confirmacao(opcao))
+            if (strcasecmp(opcao, "s") == 0 || strcasecmp(opcao, "sim") == 0)
             {
                 agd->status = 0;
                 fseek(arq_agendamentos, -((long)sizeof(Agendamento)), SEEK_CUR);
@@ -554,7 +554,7 @@ void excluir_agendamento_fisico(void)
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
             } while (!validar_confirmacao(opcao));
 
-            if (validar_confirmacao(opcao))
+            if (strcasecmp(opcao, "s") == 0 || strcasecmp(opcao, "sim") == 0)
             {
                 printf("\nAgendamento do cliente com CPF %s excluído com sucesso!\n", agd->cpf);
             }

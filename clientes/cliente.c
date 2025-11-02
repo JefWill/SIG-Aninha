@@ -230,7 +230,7 @@ void excluir_cliente(void)
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
             } while (!validar_confirmacao(opcao));
 
-            if (validar_confirmacao(opcao))
+            if (strcasecmp(opcao, "s") == 0 || strcasecmp(opcao, "sim") == 0)
             {
                 clt->status = 0;
                 fseek(arq_clientes, (-1) * sizeof(Cliente), SEEK_CUR);
@@ -300,7 +300,7 @@ void excluir_cliente_fisico(void)
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
             } while (!validar_confirmacao(opcao));
 
-            if (validar_confirmacao(opcao))
+            if (strcasecmp(opcao, "s") == 0 || strcasecmp(opcao, "sim") == 0)
             {
                 printf("\nCliente com CPF %s excluído com sucesso!\n", clt->cpf);
             }
@@ -376,7 +376,7 @@ void alterar_cliente(void)
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
             } while (!validar_confirmacao(opcao));
 
-            if (validar_confirmacao(opcao))
+            if (strcasecmp(opcao, "s") == 0 || strcasecmp(opcao, "sim") == 0)
             {
                 modulo_alteracao(clt->nome, clt->data_nascimento, clt->telefone);
                 fseek(arq_clientes, (-1) * sizeof(Cliente), SEEK_CUR);

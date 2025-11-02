@@ -229,7 +229,7 @@ void excluir_funcionario(void)
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
             } while (!validar_confirmacao(opcao));
 
-            if (validar_confirmacao(opcao))
+            if (strcasecmp(opcao, "s") == 0 || strcasecmp(opcao, "sim") == 0)
             {
                 fnc->status = 0;
                 fseek(arq_funcionarios, (-1) * sizeof(Funcionario), SEEK_CUR);
@@ -299,7 +299,7 @@ void excluir_funcionario_fisico(void)
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
             } while (!validar_confirmacao(opcao));
 
-            if (validar_confirmacao(opcao))
+            if (strcasecmp(opcao, "s") == 0 || strcasecmp(opcao, "sim") == 0)
             {
                 printf("\nFuncionário com CPF %s excluído com sucesso!\n", fnc->cpf);
             }
@@ -374,7 +374,7 @@ void alterar_funcionario(void)
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
             } while (!validar_confirmacao(opcao));
 
-            if (validar_confirmacao(opcao))
+            if (strcasecmp(opcao, "s") == 0 || strcasecmp(opcao, "sim") == 0)
             {
                 modulo_alteracao_func(fnc->nome, fnc->cargo);
                 fseek(arq_funcionarios, (-1) * sizeof(Funcionario), SEEK_CUR);
