@@ -500,13 +500,16 @@ void modulo_alteracao_agend(char *nome, char *tipo_consulta, char *data, char *h
 
 void exibir_agendamento(const Agendamento *agd)
 {
+    int dia, mes, ano, hora, minuto;
     printf("ID: %d\n", agd->id);
     printf("CPF: %s\n", agd->cpf);
     printf("Nome: %s\n", agd->nome);
     printf("Tipo de consulta: %s\n", agd->tipo_consulta);
     printf("Funcionário: %s \n", agd->nome_funcionario);
-    printf("Data: %s\n", agd->data);
-    printf("Horário: %s\n", agd->horario);
+    sscanf(agd->data, "%2d%2d%4d", &dia, &mes, &ano);
+    printf("Data: %02d/%02d/%04d\n", dia, mes, ano);
+    sscanf(agd->horario, "%2d%2d", &hora, &minuto);
+    printf("Horário: %02d:%02d\n", hora, minuto);
     printf("Status: %d\n", agd->status);
 }
 

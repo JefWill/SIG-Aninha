@@ -115,8 +115,6 @@ int validar_nome(const char *nome)
     return 1;
 }
 
-#include <stdio.h>
-
 int validar_horario_servico(const char *horario)
 {
     int hora, minuto;
