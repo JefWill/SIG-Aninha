@@ -499,12 +499,7 @@ Cliente *preenche_cliente(void)
 
     } while (1);
 
-    do
-    {
-        input(clt->nome, 50, "Digite o nome: ");
-        if (!validar_nome(clt->nome))
-            printf("Nome inválido! Use apenas letras.\n");
-    } while (!validar_nome(clt->nome));
+    ler_nome_cliente(clt->nome);
 
     do
     {
@@ -531,4 +526,13 @@ void exibir_cliente(const Cliente *clt)
     printf("Data de Nascimento: %s\n", clt->data_nascimento);
     printf("Telefone: %s\n", clt->telefone);
     printf("Status: %d\n", clt->status);
+}
+
+void ler_nome_cliente(char *nome){
+    do
+    {
+        input(nome, 50, "Digite o nome: ");
+        if (!validar_nome(nome))
+            printf("Nome inválido! Use apenas letras.\n");
+    } while (!validar_nome(nome));
 }
