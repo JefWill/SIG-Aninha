@@ -226,7 +226,9 @@ void listar_agendamentos(void)
         {
             if (!encontrado)
             {
-                printf("\nAgendamentos para a data %s:\n", agd->data);
+                int dia, mes, ano;
+                sscanf(agd->data, "%2d%2d%4d", &dia, &mes, &ano);
+                printf("\nAgendamentos para a data %02d/%02d/%04d:\n", dia, mes, ano);
                 printf("------------------------------------------------\n");
             }
             encontrado = 1;

@@ -119,11 +119,24 @@ int validar_horario_servico(const char *horario)
 {
     int hora, minuto;
 
-    if (sscanf(horario, "%d:%d", &hora, &minuto) != 2)
+    // Verifica se o horário limpo (HHMM) tem exatamente 4 caracteres
+    if (strlen(horario) != 4)
         return 0;
+
+    // Verifica se todos os caracteres são dígitos
+    for (int i = 0; i < 4; i++)
+    {
+        if (!isdigit(horario[i]))
+            return 0;
+    }
+
+    if (sscanf(horario, "%2d%2d", &hora, &minuto) != 2)
+        return 0;
+    
 
     if (hora < 8 || hora > 20)
         return 0;
+    
     if (minuto < 0 || minuto > 59)
         return 0;
 
