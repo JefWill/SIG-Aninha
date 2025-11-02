@@ -27,3 +27,4 @@ void modulo_alteracao(char *nome, char *data_nascimento, char *telefone);
 Cliente *preenche_cliente(void);
 void ler_nome_cliente(char *nome);
 void ler_data_cliente(char *data_nascimento);
+void ler_telefone_cliente(char *telefone);

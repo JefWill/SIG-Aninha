@@ -503,12 +503,7 @@ Cliente *preenche_cliente(void)
 
     ler_data_cliente(clt->data_nascimento);
 
-    do
-    {
-        input(clt->telefone, 20, "Digite o telefone: ");
-        if (!validar_telefone(clt->telefone))
-            printf("Telefone inválido! Digite um telefone válido.\n");
-    } while (!validar_telefone(clt->telefone));
+    ler_telefone_cliente(clt->telefone);
 
     clt->status = 1;
     return clt;
@@ -539,4 +534,13 @@ void ler_data_cliente(char *data_nascimento){
         if (!validar_data(data_nascimento))
             printf("Data inválida! Use o formato DD/MM/AAAA.\n");
     } while (!validar_data(data_nascimento));
+}
+
+void ler_telefone_cliente(char *telefone){
+    do
+    {
+        input(telefone, 20, "Digite o telefone com DDD: EX: (84) 99981-1234 ");
+        if (!validar_telefone(telefone))
+            printf("Telefone inválido! Digite um telefone válido.\n");
+    } while (!validar_telefone(telefone));
 }
