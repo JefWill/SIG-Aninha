@@ -499,11 +499,11 @@ Cliente *preenche_cliente(void)
 
     } while (1);
 
-    ler_nome_cliente(clt->nome);
+    ler_nome(clt->nome);
 
-    ler_data_cliente(clt->data_nascimento);
+    ler_data(clt->data_nascimento);
 
-    ler_telefone_cliente(clt->telefone);
+    ler_telefone(clt->telefone);
 
     clt->status = 1;
     return clt;
@@ -516,31 +516,4 @@ void exibir_cliente(const Cliente *clt)
     printf("Data de Nascimento: %s\n", clt->data_nascimento);
     printf("Telefone: %s\n", clt->telefone);
     printf("Status: %d\n", clt->status);
-}
-
-void ler_nome_cliente(char *nome){
-    do
-    {
-        input(nome, 50, "Digite o nome: ");
-        if (!validar_nome(nome))
-            printf("Nome inválido! Use apenas letras.\n");
-    } while (!validar_nome(nome));
-}
-
-void ler_data_cliente(char *data_nascimento){
-    do
-    {
-        input(data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
-        if (!validar_data(data_nascimento))
-            printf("Data inválida! Use o formato DD/MM/AAAA.\n");
-    } while (!validar_data(data_nascimento));
-}
-
-void ler_telefone_cliente(char *telefone){
-    do
-    {
-        input(telefone, 20, "Digite o telefone com DDD: EX: (84) 99981-1234 ");
-        if (!validar_telefone(telefone))
-            printf("Telefone inválido! Digite um telefone válido.\n");
-    } while (!validar_telefone(telefone));
 }

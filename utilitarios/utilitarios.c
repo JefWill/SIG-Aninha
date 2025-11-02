@@ -80,3 +80,30 @@ void confirmacao(void)
     printf("      >>> Tecle <ENTER> para continuar... <<<\n");
     getchar();
 }
+
+void ler_nome(char *nome){
+    do
+    {
+        input(nome, 50, "Digite o nome: ");
+        if (!validar_nome(nome))
+            printf("Nome inválido! Use apenas letras.\n");
+    } while (!validar_nome(nome));
+}
+
+void ler_data(char *data_nascimento){
+    do
+    {
+        input(data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
+        if (!validar_data(data_nascimento))
+            printf("Data inválida! Use o formato DD/MM/AAAA.\n");
+    } while (!validar_data(data_nascimento));
+}
+
+void ler_telefone(char *telefone){
+    do
+    {
+        input(telefone, 20, "Digite o telefone com DDD: EX: (84) 99981-1234 ");
+        if (!validar_telefone(telefone))
+            printf("Telefone inválido! Digite um telefone válido. Não esqueça do DDD.\n");
+    } while (!validar_telefone(telefone));
+}

@@ -11,7 +11,7 @@ struct servicos
 {
     char cpf[16];
     int id;
-    char data[11];
+    char data[12];
     char hora[9];
 };
 
