@@ -365,6 +365,7 @@ void excluir_agendamento(void)
             do
             {
                 input(opcao, 8, "\nConfirmar a exclusão deste agendamento? (S/N): ");
+                limpar_espacos_laterais(opcao);
                 if (!validar_confirmacao(opcao))
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
             } while (!validar_confirmacao(opcao));
@@ -550,6 +551,7 @@ void excluir_agendamento_fisico(void)
             do
             {
                 input(opcao, 8, "\nConfirmar a exclusão definitiva deste agendamento? (S/N): ");
+                limpar_espacos_laterais(opcao);
                 if (!validar_confirmacao(opcao))
                     printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
             } while (!validar_confirmacao(opcao));
