@@ -6,6 +6,12 @@
 #include "utilitarios.h"
 #include "../validacao/validacao.h"
 
+void limpar_buffer(void)
+{
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
 int escolha(void)
 {
     int opcao;
@@ -34,11 +40,17 @@ void input(char *nome, int tamanho, char *mensagem)
     fgets(nome, tamanho, stdin);
     tam = strlen(nome);
 
+
     if (nome[tam - 1] == '\n')
     {
         nome[tam - 1] = '\0';
         tam--;
     }
+    else
+    {
+        limpar_buffer();
+    }
+
 
     for (i = 0; i < tam; i++)
     {
@@ -52,12 +64,6 @@ void input(char *nome, int tamanho, char *mensagem)
     strcpy(nome, temp);
 }
 
-void limpar_buffer(void)
-{
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF)
-        ;
-}
 
 void header(void)
 {
