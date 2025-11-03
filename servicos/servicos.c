@@ -540,7 +540,7 @@ void calcular_signo(void)
             sscanf(clt->data_nascimento, "%2d%2d%4d", &dia, &mes, &ano);
 
             printf("\nNome: %s\n", clt->nome);
-            printf("Data de nascimento: %s\n", clt->data_nascimento);
+            printf("Data de Nascimento: %02d/%02d/%04d\n", dia, mes, ano);
             printf("Seu signo é: %s\n", obter_signo(dia, mes));
 
             encontrado = 1;
@@ -558,7 +558,6 @@ void calcular_signo(void)
 
     confirmacao();
 }
-
 void calcular_signo_pessoa(void)
 {
 
