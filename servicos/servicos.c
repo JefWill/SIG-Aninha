@@ -581,9 +581,9 @@ void calcular_signo_pessoa(void)
         return;
     }
 
-    sscanf(data, "%d/%d", &dia, &mes);
+    sscanf(data, "%02d%02d", &dia, &mes);
 
-    printf("\nData de nascimento: %s\n", data);
+    printf("\nData de nascimento: %02d/%02d\n", dia, mes);
     printf("Signo: %s\n", obter_signo(dia, mes));
 
     confirmacao();
