@@ -516,7 +516,8 @@ void calcular_signo(void)
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    do {
+    do
+    {
         input(cpf, 16, "Digite o CPF cadastrado: ");
         if (!validar_cpf(cpf))
             printf("CPF inválido! Tente novamente.\n");
@@ -536,7 +537,7 @@ void calcular_signo(void)
     {
         if (strcmp(clt->cpf, cpf) == 0 && clt->status == 1)
         {
-            sscanf(clt->data_nascimento, "%d/%d/%d", &dia, &mes, &ano);
+            sscanf(clt->data_nascimento, "%2d%2d%4d", &dia, &mes, &ano);
 
             printf("\nNome: %s\n", clt->nome);
             printf("Data de nascimento: %s\n", clt->data_nascimento);
@@ -573,17 +574,19 @@ void calcular_signo_pessoa(void)
 
     input(data, 12, "Digite a data de nascimento (dd/mm): ");
 
-    if (!validar_data_signo(data, &dia, &mes))
+    if (!validar_data_signo(data))
     {
+        printf("\nFormato inválido! Use dd/mm.\n");
         confirmacao();
         return;
     }
 
-    printf("\nSua data de nascimento: %s\n", data);
-    printf("Seu signo é: %s\n", obter_signo(dia, mes));
+    sscanf(data, "%d/%d", &dia, &mes);
+
+    printf("\nData de nascimento: %s\n", data);
+    printf("Signo: %s\n", obter_signo(dia, mes));
 
     confirmacao();
-    getchar();
 }
 
 char *obter_signo(int dia, int mes)
@@ -838,7 +841,8 @@ void descobrir_numero(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     char data_nascimento[12];
-    do {
+    do
+    {
         input(data_nascimento, 12, "Digite a data de nascimento (DD/MM/AAAA): ");
         if (!validar_data(data_nascimento))
             printf("Data inválida! Tente novamente.\n");
@@ -940,7 +944,8 @@ void dados_usuario_servico(char *cpf)
     system("clear||cls");
     printf("Antes de continuar, por favor, preencha o dado solicitado: \n\n");
 
-    do {
+    do
+    {
         input(cpf, 16, "Digite o CPF: ");
         if (!validar_cpf(cpf))
             printf("CPF inválido! Tente novamente.\n");
@@ -1002,51 +1007,17 @@ void listar_servicos(void)
 
     confirmacao();
 }
-
-int validar_data_signo(const char *data, int *dia, int *mes)
+int validar_data_signo(const char *data)
 {
-    if (sscanf(data, "%d/%d", dia, mes) != 2)
+    int dia, mes;
+    // Verifica se o formato está correto: dd/mm
+    if (sscanf(data, "%d/%d", &dia, &mes) != 2)
     {
-        printf("\nFormato inválido! Use o formato dd/mm.\n");
         return 0;
     }
-
-    if (*mes < 1 || *mes > 12)
+    if (dia < 1 || dia > 31 || mes < 1 || mes > 12)
     {
-        printf("\nData inválida! O mês deve estar entre 1 e 12.\n");
         return 0;
     }
-
-    int dias_no_mes;
-    switch (*mes)
-    {
-    case 1:
-    case 3:
-    case 5:
-    case 7:
-    case 8:
-    case 10:
-    case 12:
-        dias_no_mes = 31;
-        break;
-    case 4:
-    case 6:
-    case 9:
-    case 11:
-        dias_no_mes = 30;
-        break;
-    case 2:
-        dias_no_mes = 29;
-        break;
-    default:
-        dias_no_mes = 0;
-    }
-
-    if (*dia < 1 || *dia > dias_no_mes)
-    {
-        printf("\nData inválida! O mês %d não possui %d dias.\n", *mes, *dia);
-        return 0;
-    }
-
     return 1;
 }

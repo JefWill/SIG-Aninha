@@ -28,7 +28,7 @@ void exibir_mensagem_signo(int signo);
 void calcular_signo(void);
 void calcular_signo_pessoa(void);
 char *obter_signo(int dia, int mes);
-int validar_data_signo(const char *data, int *dia, int *mes);
+int validar_data_signo(const char *data);
 
 /////  TAROT  //////
 void modulo_tarot(void);
