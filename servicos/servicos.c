@@ -1010,7 +1010,7 @@ int validar_data_signo(const char *data)
 {
     int dia, mes;
     // Verifica se o formato está correto: dd/mm
-    if (sscanf(data, "%d/%d", &dia, &mes) != 2)
+    if (strlen(data) != 4 || sscanf(data, "%2d%2d", &dia, &mes) != 2)
     {
         return 0;
     }
