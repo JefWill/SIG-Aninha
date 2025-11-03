@@ -333,7 +333,6 @@ int validar_data_agendamento(const char *data)
     // 3. Extrai dia, mês e ano a partir da string "DDMMYYYY"
     sscanf(data, "%2d%2d%4d", &dia, &mes, &ano);
 
-
     // Pega a data atual do sistema
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
@@ -378,6 +377,20 @@ int validar_data_agendamento(const char *data)
     // 5. Verifica o limite futuro
     if (ano > ano_atual + 5) // permite agendar até 5 anos no futuro
         return 0;
+
+    // 6. Se a data for igual ao dia atual, verifica a hora atual
+    if (ano == ano_atual && mes == mes_atual && dia == dia_atual)
+    {
+        // Obtém a hora e minuto atual do sistema
+        int hora_atual = tm.tm_hour;
+        int minuto_atual = tm.tm_min;
+
+        // Verifica se a hora atual já passou de 20:00
+        if (hora_atual >= 20 && minuto_atual > 0)
+        {
+            return 2;
+        }
+    }
 
     return 1; // Data válida para agendamento
 }

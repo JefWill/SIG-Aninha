@@ -599,6 +599,7 @@ Agendamento *preenche_agendamento(void)
 {
     Agendamento *agd;
     Funcionario *fnc;
+    int result=0;
 
     agd = (Agendamento *)malloc(sizeof(Agendamento));
     fnc = (Funcionario *)malloc(sizeof(Funcionario));
@@ -635,17 +636,22 @@ Agendamento *preenche_agendamento(void)
         free(fnc);
         return NULL;
     }
-
+    
     do
     {
         input(agd->data, 12, "Digite a data da consulta (DD/MM/AAAA): ");
-        if (!validar_data_agendamento(agd->data))
+        result= validar_data_agendamento(agd->data);
+        
+        if (result==2){
+            printf("\nA consulta não pode ser agendada pois já passa do horário de atendimento para o dia, passa de 20:00. Por favor, insira outra data.\n");
+        }
+        else if (result==0)
             printf("Data inválida! Use o formato DD/MM/AAAA e certifique-se de que não é maior que a atual.\n");
-    } while (!validar_data_agendamento(agd->data));
+    } while (result !=1);
 
     do
     {
-        input(agd->horario, 10, "Digite o horário da consulta (HH:MM): ");
+        input(agd->horario, 10, "Digite o horário da consulta (HH:MM) de 08:00 a 20:00: ");
         if (!validar_horario_servico(agd->horario))
             printf("Horário inválido! Só aceitamos entre 08:00 e 20:00.\n");
     } while (!validar_horario_servico(agd->horario));
