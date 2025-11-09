@@ -1,1 +1,4 @@
-void tela_menu_relatorio(void);
+int tela_menu_relatorio(void);
+void modulo_relatorio(void);
+int menu_relatorio_dados(void);
+void escolha_relatorios_gerais(void);

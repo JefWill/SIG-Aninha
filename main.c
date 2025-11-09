@@ -46,7 +46,7 @@ int main(void)
             modulo_servicos();
             break;
         case 5:
-            tela_menu_relatorio();
+            modulo_relatorio();
             break;
         case 6:
             modulo_informacoes();

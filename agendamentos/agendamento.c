@@ -663,3 +663,54 @@ Agendamento *preenche_agendamento(void)
 
     return agd;
 }
+
+void listar_todos_agendamentos(void)
+{
+    FILE *arq_agendamentos;
+    Agendamento *agd;
+    int encontrado = 0; 
+
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|           ✦✧✦✧✦   Listar TODOS os Agendamentos   ✦✧✦✧✦            |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    agd = (Agendamento *)malloc(sizeof(Agendamento));
+    if (agd == NULL) {
+        printf("Erro na alocação de memória!\n");
+        return;
+    }
+
+    arq_agendamentos = fopen("agendamentos/agendamentos.dat", "rb");
+    if (arq_agendamentos == NULL)
+    {
+        printf("Erro na abertura do arquivo! O arquivo pode não existir.\n");
+        free(agd); 
+        return;
+    }
+
+    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos))
+    {
+        if (!encontrado)
+        {
+            printf("\nListando todos os agendamentos encontrados:\n");
+            printf("================================================\n");
+        }
+        encontrado = 1; 
+
+        exibir_agendamento(agd);
+        printf("------------------------------------------------\n");
+    }
+
+    fclose(arq_agendamentos);
+    free(agd);
+
+    if (!encontrado)
+    {
+        printf("\nNenhum agendamento cadastrado no sistema!\n");
+    }
+
+    confirmacao();
+}
