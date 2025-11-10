@@ -229,7 +229,10 @@ void listar_agendamentos(void)
                 int dia, mes, ano;
                 sscanf(agd->data, "%2d%2d%4d", &dia, &mes, &ano);
                 printf("\nAgendamentos para a data %02d/%02d/%04d:\n", dia, mes, ano);
-                printf("------------------------------------------------\n");
+                printf("--------------------------------------------------------------------------------------------------------------------------\n");
+                printf("| %-5s | %-12s | %-20s | %-15s | %-21s | %-10s | %-8s | %-8s |\n", 
+                   "ID", "CPF", "Nome", "Tipo Consulta", "Funcionário", "Data", "Horário", "Status");
+                printf("--------------------------------------------------------------------------------------------------------------------------\n");
             }
             encontrado = 1;
             exibir_agendamento(agd);
