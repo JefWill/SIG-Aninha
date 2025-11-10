@@ -157,8 +157,7 @@ void buscar_cliente(void)
     }
 }
 
-void listar_clientes(void)
-{
+void listar_clientes(void) {
     FILE *arq_clientes;
     Cliente *clt;
 
@@ -172,13 +171,14 @@ void listar_clientes(void)
     clt = (Cliente *)malloc(sizeof(Cliente));
 
     printf("Lista de clientes: \n");
-    printf("---------------------------------------\n");
+    printf("-----------------------------------------------------------------------------------\n");
+    printf("| %-12s | %-20s | %-16s | %-12s | %-7s |\n", "CPF", "Nome", "Data Nascimento", "Telefone", "Status");
+    printf("-----------------------------------------------------------------------------------\n");
+
     arq_clientes = fopen("clientes/clientes.dat", "rb");
 
-    while (fread(clt, sizeof(Cliente), 1, arq_clientes))
-    {
+    while (fread(clt, sizeof(Cliente), 1, arq_clientes)) {
         exibir_cliente(clt);
-        printf("---------------------------------------\n");
     }
 
     fclose(arq_clientes);
@@ -483,12 +483,10 @@ Cliente *preenche_cliente(void)
 void exibir_cliente(const Cliente *clt)
 {
     int dia, mes, ano;
-    printf("CPF: %s\n", clt->cpf);
-    printf("Nome: %s\n", clt->nome);
     sscanf(clt->data_nascimento, "%2d%2d%4d", &dia, &mes, &ano);
-    printf("Data de Nascimento: %02d/%02d/%04d\n", dia, mes, ano);
-    printf("Telefone: %s\n", clt->telefone);
-    printf("Status: %d\n", clt->status);
+
+    printf("| %-12s | %-20s | %02d/%02d/%04d       | %-12s | %-7d |\n", 
+        clt->cpf, clt->nome, dia, mes, ano, clt->telefone, clt->status);
 }
 
 void ler_cpf_cliente(char *cpf)
@@ -518,3 +516,4 @@ void ler_cpf_cliente(char *cpf)
 
     } while (!cpf_valido || !cpf_unico); // O loop continua SE (o CPF não for válido) OU (o CPF não for único)
 }
+
