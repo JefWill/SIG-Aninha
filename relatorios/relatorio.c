@@ -76,3 +76,48 @@ void modulo_relatorio(void)
     } while (op_rel != 0);
 }
 
+int menu_relatorio_dados(void){
+    int op_dados_gerais;
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                 1. Relatório de Dados de Clientes                      |\n");
+    printf("|                 2. Relatório de Dados de Funcionarios                  |\n");
+    printf("|                 3. Relatório de Dados de Agendamentos                  |\n");
+    printf("|                 0. Voltar ao Menu Principal                            |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    op_dados_gerais=escolha();
+    return op_dados_gerais;
+}
+
+void escolha_relatorios_gerais(void){
+    int op_dados_gerais;
+    do{
+        op_dados_gerais=menu_relatorio_dados();
+
+        switch (op_dados_gerais){
+            case 1:
+                listar_clientes();
+                break;
+            case 2:
+                listar_funcionarios();
+                break;
+            case 3:
+                listar_todos_agendamentos();
+                break;
+            case 0:
+                printf("           Voltando ao menu principal...\n");
+                getchar();
+                break;
+            case -1:
+                confirmacao();
+                break;
+            default:
+                printf("                Opção Inexistente!\n");
+                confirmacao();
+                break;
+
+        }
+    } while (op_dados_gerais!=0);
+}
