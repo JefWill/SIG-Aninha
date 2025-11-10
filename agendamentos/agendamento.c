@@ -503,16 +503,12 @@ void modulo_alteracao_agend(char *nome, char *tipo_consulta, char *data, char *h
 void exibir_agendamento(const Agendamento *agd)
 {
     int dia, mes, ano, hora, minuto;
-    printf("ID: %d\n", agd->id);
-    printf("CPF: %s\n", agd->cpf);
-    printf("Nome: %s\n", agd->nome);
-    printf("Tipo de consulta: %s\n", agd->tipo_consulta);
-    printf("Funcionário: %s \n", agd->nome_funcionario);
     sscanf(agd->data, "%2d%2d%4d", &dia, &mes, &ano);
-    printf("Data: %02d/%02d/%04d\n", dia, mes, ano);
     sscanf(agd->horario, "%2d%2d", &hora, &minuto);
-    printf("Horário: %02d:%02d\n", hora, minuto);
-    printf("Status: %d\n", agd->status);
+
+    printf("| %-5d | %-12s | %-20s | %-15s | %-20s | %02d/%02d/%04d | %02d:%02d   | %-8d |\n", 
+            agd->id, agd->cpf, agd->nome, agd->tipo_consulta, agd->nome_funcionario, 
+            dia, mes, ano, hora, minuto, agd->status);
 }
 
 void excluir_agendamento_fisico(void)
