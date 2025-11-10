@@ -171,16 +171,24 @@ void listar_funcionarios(void)
 
     fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
-    printf("Lista de funcionários: \n");
-    printf("------------------------------------\n");
-    arq_funcionarios = fopen("funcionarios/funcionarios.dat", "rb");
+    printf("-------------------------------------------------------------------------------\n");
+    printf("| %-12s | %-20s | %-20s | %-8s |\n", 
+           "CPF", "Nome", "Cargo", "Status");
+    printf("-------------------------------------------------------------------------------\n");
 
-    while (fread(fnc, sizeof(Funcionario), 1, arq_funcionarios))
-    {
-        exibir_funcionario(fnc);
-        printf("------------------------------------\n");
+    arq_funcionarios = fopen("funcionarios/funcionarios.dat", "rb");
+    if (arq_funcionarios == NULL) {
+        printf("Erro ao abrir o arquivo de funcionários.\n");
+        free(fnc);
+        confirmacao();
+        return;
     }
 
+    while (fread(fnc, sizeof(Funcionario), 1, arq_funcionarios)) {
+        exibir_funcionario(fnc);
+    }
+
+    printf("-------------------------------------------------------------------------------\n");
     fclose(arq_funcionarios);
     free(fnc);
 
