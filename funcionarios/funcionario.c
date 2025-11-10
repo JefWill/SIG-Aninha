@@ -581,10 +581,9 @@ Funcionario *preenche_funcionario(void)
 
 void exibir_funcionario(const Funcionario *fnc)
 {
-    printf("CPF: %s\n", fnc->cpf);
-    printf("Nome: %s\n", fnc->nome);
-    printf("Cargo: %s\n", fnc->cargo);
-    printf("Status: %d\n", fnc->status);
+
+    printf("| %-12s | %-20s | %-20s | %-8d |\n", 
+               fnc->cpf, fnc->nome, fnc->cargo, fnc->status);
 }
 
 
