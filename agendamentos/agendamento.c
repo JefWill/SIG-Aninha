@@ -697,11 +697,13 @@ void listar_todos_agendamentos(void)
         {
             printf("\nListando todos os agendamentos encontrados:\n");
             printf("================================================\n");
+            printf("| %-5s | %-12s | %-20s | %-15s | %-21s | %-10s | %-8s | %-8s |\n", 
+                   "ID", "CPF", "Nome", "Tipo Consulta", "Funcionário", "Data", "Horário", "Status");
+            printf("--------------------------------------------------------------------------------------------------------------------------\n");
         }
         encontrado = 1; 
 
         exibir_agendamento(agd);
-        printf("------------------------------------------------\n");
     }
 
     fclose(arq_agendamentos);
