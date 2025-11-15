@@ -1006,6 +1006,7 @@ void listar_servicos(void)
 
     confirmacao();
 }
+
 int validar_data_signo(const char *data)
 {
     int dia, mes;
@@ -1019,4 +1020,60 @@ int validar_data_signo(const char *data)
         return 0;
     }
     return 1;
+}
+
+void listar_servicos_por_data(void)
+{
+    FILE *arq_servicos;
+    Servicos srv;
+    char data[12];
+    int encontrado = 0;
+
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                          Lista de Serviços Por Data                   |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    input(data, 12, "Digite a data desejada (dd/mm/aaaa): ");
+
+    if (strlen(data) == 8) {
+        char data_com_barras[12];
+        snprintf(data_com_barras, sizeof(data_com_barras),
+                "%c%c/%c%c/%c%c%c%c",
+                data[0], data[1],
+                data[2], data[3],
+                data[4], data[5], data[6], data[7]);
+
+        strcpy(data, data_com_barras);
+    }
+
+    printf("-----------------------------------------------------------\n");
+    printf("| %-12s | %-5s | %-20s | %-9s |\n", 
+           "CPF", "ID", "Data", "Hora");
+    printf("-----------------------------------------------------------\n");
+
+    arq_servicos = fopen("servicos/servicos.dat", "rb");
+    if (arq_servicos == NULL)
+    {
+        printf("\n Erro ao abrir o arquivo de serviços.\n");
+        return;
+    }
+
+    while (fread(&srv, sizeof(Servicos), 1, arq_servicos))
+    {   
+        if (strcmp(srv.data, data) == 0){
+            printf("| %-12s | %-5d | %-20s | %-9s |\n", 
+               srv.cpf, srv.id, srv.data, srv.hora);
+            printf("-----------------------------------------------------------\n");
+            encontrado = 1;
+        }
+    }
+
+    if(!encontrado){
+        printf("Nenhum Serviço Online Realizado");
+    }
+
+    fclose(arq_servicos);
+
+    confirmacao();
 }

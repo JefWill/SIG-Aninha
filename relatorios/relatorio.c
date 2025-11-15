@@ -7,6 +7,7 @@
 #include "../clientes/cliente.h"
 #include "../funcionarios/funcionario.h"
 #include "../agendamentos/agendamento.h"
+#include "../servicos/servicos.h"
 
 //////////////////////////////////////////////
 ///////////// MODULO RELATORIO ///////////////
@@ -96,7 +97,8 @@ int menu_relatorio_dados_filtro(void){
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                 1. Listar Funcionários por Cargos                      |\n");
+    printf("|                 1. Listar Funcionários Por Cargos                      |\n");
+    printf("|                 2. Listar Serviços Por Data                            |\n");
     printf("|                 0. Voltar ao Menu Principal                            |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -136,7 +138,7 @@ void escolha_relatorios_gerais(void){
 }
 
 void escolha_relatorios_filtrados(void){
-    
+
     int op_dados_filtro;
 
     do{
@@ -147,10 +149,7 @@ void escolha_relatorios_filtrados(void){
                 listar_funcionarios_cargo();
                 break;
             case 2:
-                listar_funcionarios();
-                break;
-            case 3:
-                listar_todos_agendamentos();
+                listar_servicos_por_data();
                 break;
             case 0:
                 printf("           Voltando ao menu principal...\n");

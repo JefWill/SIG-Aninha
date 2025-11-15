@@ -42,3 +42,5 @@ void modulo_numerologia(void);
 void descobrir_numero(void);
 void exibir_significados(int n);
 void significado_numeros(void);
+
+void listar_servicos_por_data(void);
