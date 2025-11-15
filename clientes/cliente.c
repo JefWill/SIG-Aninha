@@ -140,6 +140,9 @@ void buscar_cliente(void)
         {
             encontrado = 1;
             printf("\nCliente com CPF %s encontrado!\n", clt->cpf);
+            printf("-----------------------------------------------------------------------------------\n");
+            printf("| %-12s | %-20s | %-16s | %-12s | %-7s |\n", "CPF", "Nome", "Data Nascimento", "Telefone", "Status");
+            printf("-----------------------------------------------------------------------------------\n");
             exibir_cliente(clt);
             confirmacao();
             fclose(arq_clientes);

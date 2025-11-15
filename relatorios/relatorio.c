@@ -25,7 +25,7 @@ int tela_menu_relatorio(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
     printf("|                 1. Relatório de Dados Gerais                           |\n");
-    printf("|                 2. Relatório de Atendimentos Realizados                |\n");
+    printf("|                 2. Relatório com Dados Filtrados                       |\n");
     printf("|                 3. Relatório por Tipo de Serviço                       |\n");
     printf("|                    (Tarot, Signos, Numerologia)                        |\n");
     printf("|                 4. Relatório de Agendamentos Pendentes                 |\n");
@@ -50,7 +50,7 @@ void modulo_relatorio(void)
             escolha_relatorios_gerais();
             break;
          case 2:
-            printf("Relatório de Atendimentos Realizados - Em Desenvolvimento...\n");
+            escolha_relatorios_filtrados();
             break;
         case 3:
             printf("Relatório por Tipo de Serviço - Em Desenvolvimento...\n");
@@ -91,6 +91,19 @@ int menu_relatorio_dados(void){
     return op_dados_gerais;
 }
 
+int menu_relatorio_dados_filtro(void){
+    int op_dados_filtro;
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                 1. Listar Funcionários por Cargos                      |\n");
+    printf("|                 0. Voltar ao Menu Principal                            |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    op_dados_filtro=escolha();
+    return op_dados_filtro;
+}
+
 void escolha_relatorios_gerais(void){
     int op_dados_gerais;
     do{
@@ -120,4 +133,37 @@ void escolha_relatorios_gerais(void){
 
         }
     } while (op_dados_gerais!=0);
+}
+
+void escolha_relatorios_filtrados(void){
+    
+    int op_dados_filtro;
+
+    do{
+        op_dados_filtro=menu_relatorio_dados_filtro();
+
+        switch (op_dados_filtro){
+            case 1:
+                listar_funcionarios_cargo();
+                break;
+            case 2:
+                listar_funcionarios();
+                break;
+            case 3:
+                listar_todos_agendamentos();
+                break;
+            case 0:
+                printf("           Voltando ao menu principal...\n");
+                getchar();
+                break;
+            case -1:
+                confirmacao();
+                break;
+            default:
+                printf("                Opção Inexistente!\n");
+                confirmacao();
+                break;
+
+        }
+    } while (op_dados_filtro!=0);
 }

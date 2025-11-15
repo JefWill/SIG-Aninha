@@ -622,3 +622,43 @@ void ler_cpf_funcionario(char *cpf)
 
     } while (!cpf_valido || !cpf_unico); // O loop continua SE (o CPF não for válido) OU (o CPF não for único)
 }
+
+void listar_funcionarios_cargo(void)
+{
+    FILE *arq_funcionarios;
+    Funcionario *fnc;
+    char tipo_consulta[20];
+
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|            ✦✧✦✧✦   Lista de Funcionários por Cargo   ✦✧✦✧✦                 |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    fnc = (Funcionario *)malloc(sizeof(Funcionario));
+
+    input(tipo_consulta, 20, "Digite qual tipo de consulta deseja (Tarot, Signos, Numerologia):");
+
+    printf("\nLista de funcionários para %s:\n", tipo_consulta);
+
+    printf("-------------------------------------------------------------------------\n");
+    printf("| %-12s | %-20s | %-20s | %-8s |\n", 
+           "CPF", "Nome", "Cargo", "Status");
+    printf("-------------------------------------------------------------------------\n");
+
+    arq_funcionarios = fopen("funcionarios/funcionarios.dat", "rb");
+
+    while (fread(fnc, sizeof(Funcionario), 1, arq_funcionarios))
+    { 
+        if((strcasecmp(fnc->cargo, tipo_consulta) == 0) && (fnc->status == 1)){
+            exibir_funcionario(fnc);
+            printf("-------------------------------------------------------------------------\n");
+        }
+    }
+
+    fclose(arq_funcionarios);
+    free(fnc);
+
+    confirmacao();
+}
