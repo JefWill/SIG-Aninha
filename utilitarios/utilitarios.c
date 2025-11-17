@@ -135,6 +135,16 @@ void ler_tipo(char *tipo)
     } while (!validar_cargo(tipo));
 }
 
+void ler_ddd(char *ddd)
+{
+    do
+    {
+        input(ddd, 5, "Digite o DDD Ex: 84 : ");
+        if (!validar_ddd(ddd))
+            printf("DDD inválido! Digite um DDD válido.\n");
+    } while (!validar_ddd(ddd));
+}
+
 void limpar_espacos_laterais(char *str)
 {
     int len = strlen(str);

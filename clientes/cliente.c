@@ -537,7 +537,7 @@ void listar_clientes_ddd(void) {
 
     clt = (Cliente *)malloc(sizeof(Cliente));
 
-    input(ddd, 5, "Digite o DDD: ");
+    ler_ddd(ddd);
 
     arq_clientes = fopen("clientes/clientes.dat", "rb");
 

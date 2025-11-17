@@ -421,3 +421,21 @@ int funcionario_existe(const char *cpf_procurado)
     fclose(arq_funcionarios);
     return encontrado;
 }
+
+
+
+int validar_ddd(const char *ddd) {
+    int tamanho = strlen(ddd);
+    
+    if (tamanho != 2) {
+        return 0; 
+    }
+
+    for (int i = 0; i < tamanho; i++) {
+        if (!isdigit((unsigned char)ddd[i])) {
+            return 0; 
+        }
+    }
+
+    return 1;
+}

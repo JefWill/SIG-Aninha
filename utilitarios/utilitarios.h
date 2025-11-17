@@ -9,3 +9,4 @@ void ler_telefone(char *telefone);
 void ler_cargo(char *cargo);
 void limpar_espacos_laterais(char *str);
 void ler_tipo(char *tipo);
+void ler_ddd(char *ddd);
