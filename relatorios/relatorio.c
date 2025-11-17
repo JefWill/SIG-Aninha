@@ -99,6 +99,7 @@ int menu_relatorio_dados_filtro(void){
     printf("|                                                                        |\n");
     printf("|                 1. Listar Funcionários Por Cargos                      |\n");
     printf("|                 2. Listar Serviços Por Data                            |\n");
+    printf("|                 3. Listar Agendamentos Por Tipo                        |\n");
     printf("|                 0. Voltar ao Menu Principal                            |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -150,6 +151,9 @@ void escolha_relatorios_filtrados(void){
                 break;
             case 2:
                 listar_servicos_por_data();
+                break;
+            case 3:
+                listar_agendamento_tipo();
                 break;
             case 0:
                 printf("           Voltando ao menu principal...\n");

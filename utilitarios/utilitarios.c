@@ -131,7 +131,7 @@ void ler_tipo(char *tipo)
     {
         input(tipo, 50, "Digite o tipo de consulta: (Numerologia, Tarot, Signos)");
         if (!validar_cargo(tipo))
-            printf("Cargo inválido! Use apenas 'Numerologia', 'Tarot' ou 'Signos'.\n");
+            printf("Tipo inválido! Use apenas 'Numerologia', 'Tarot' ou 'Signos'.\n");
     } while (!validar_cargo(tipo));
 }
 
