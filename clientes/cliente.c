@@ -175,7 +175,7 @@ void listar_clientes(void) {
 
     printf("Lista de clientes: \n");
     printf("-----------------------------------------------------------------------------------\n");
-    printf("| %-12s | %-20s | %-16s | %-12s | %-7s |\n", "CPF", "Nome", "Data Nascimento", "Telefone", "Status");
+    printf("| %-12s | %-20s | %-16s | %-13s | %-7s |\n", "CPF", "Nome", "Data Nascimento", "Telefone", "Status");
     printf("-----------------------------------------------------------------------------------\n");
 
     arq_clientes = fopen("clientes/clientes.dat", "rb");
@@ -488,7 +488,7 @@ void exibir_cliente(const Cliente *clt)
     int dia, mes, ano;
     sscanf(clt->data_nascimento, "%2d%2d%4d", &dia, &mes, &ano);
 
-    printf("| %-12s | %-20s | %02d/%02d/%04d       | %-12s | %-7d |\n", 
+    printf("| %-12s | %-20s | %02d/%02d/%04d       | %-13s | %-7d |\n", 
         clt->cpf, clt->nome, dia, mes, ano, clt->telefone, clt->status);
 }
 
@@ -520,3 +520,47 @@ void ler_cpf_cliente(char *cpf)
     } while (!cpf_valido || !cpf_unico); // O loop continua SE (o CPF não for válido) OU (o CPF não for único)
 }
 
+
+
+void listar_clientes_ddd(void) {
+    FILE *arq_clientes;
+    Cliente *clt;
+    int encontrado = 0;
+    char ddd[5];
+
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                 ✦✧✦✧✦   Lista de Clientes   ✦✧✦✧✦                      |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    clt = (Cliente *)malloc(sizeof(Cliente));
+
+    input(ddd, 5, "Digite o DDD: ");
+
+    arq_clientes = fopen("clientes/clientes.dat", "rb");
+
+    while (fread(clt, sizeof(Cliente), 1, arq_clientes)) {
+        if (strncmp(clt->telefone, ddd, strlen(ddd)) == 0) {
+            if (!encontrado) {
+                printf("Lista de clientes com o DDD %s: \n", ddd);
+                printf("-----------------------------------------------------------------------------------\n");
+                printf("| %-12s | %-20s | %-16s | %-13s | %-7s |\n", "CPF", "Nome", "Data Nascimento", "Telefone", "Status");
+                printf("-----------------------------------------------------------------------------------\n");
+            }
+            encontrado = 1;
+            exibir_cliente(clt);
+        }
+    }
+
+    fclose(arq_clientes);
+    free(clt);
+
+    if (!encontrado)
+    {
+        printf("\nNenhum cliente cadastrado com esse DDD!\n");
+    }
+
+    confirmacao();
+}

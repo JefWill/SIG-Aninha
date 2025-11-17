@@ -26,3 +26,4 @@ int menu_alteracao(void);
 void modulo_alteracao(char *nome, char *data_nascimento, char *telefone);
 Cliente *preenche_cliente(void);
 void ler_cpf_cliente(char *cpf);
+void listar_clientes_ddd(void);
