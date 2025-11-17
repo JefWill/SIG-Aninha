@@ -125,6 +125,16 @@ void ler_cargo(char *cargo)
     } while (!validar_cargo(cargo));
 }
 
+void ler_tipo(char *tipo)
+{
+    do
+    {
+        input(tipo, 50, "Digite o tipo de consulta: (Numerologia, Tarot, Signos)");
+        if (!validar_cargo(tipo))
+            printf("Cargo inválido! Use apenas 'Numerologia', 'Tarot' ou 'Signos'.\n");
+    } while (!validar_cargo(tipo));
+}
+
 void limpar_espacos_laterais(char *str)
 {
     int len = strlen(str);

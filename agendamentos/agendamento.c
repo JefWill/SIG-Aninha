@@ -740,7 +740,7 @@ void listar_agendamento_tipo(void)
         return;
     }
 
-    input(tipo_consulta, 20, "Digite o tipo de consulta: ");
+    ler_tipo(tipo_consulta);
 
     arq_agendamentos = fopen("agendamentos/agendamentos.dat", "rb");
     if (arq_agendamentos == NULL)
