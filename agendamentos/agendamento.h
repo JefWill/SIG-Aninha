@@ -31,3 +31,4 @@ void exibir_agendamento(const Agendamento *agd);
 void excluir_agendamento_fisico(void);
 Agendamento *preenche_agendamento(void);
 void listar_todos_agendamentos(void);
+void listar_agendamento_tipo(void);

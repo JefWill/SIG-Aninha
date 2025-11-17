@@ -675,7 +675,7 @@ void listar_todos_agendamentos(void)
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|           ✦✧✦✧✦   Listar TODOS os Agendamentos   ✦✧✦✧✦            |\n");
+    printf("|           ✦✧✦✧✦   Listar TODOS os Agendamentos   ✦✧✦✧✦             |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
@@ -698,7 +698,7 @@ void listar_todos_agendamentos(void)
         if (!encontrado)
         {
             printf("\nListando todos os agendamentos encontrados:\n");
-            printf("================================================\n");
+            printf("--------------------------------------------------------------------------------------------------------------------------\n");
             printf("| %-5s | %-12s | %-20s | %-15s | %-21s | %-10s | %-8s | %-8s |\n", 
                    "ID", "CPF", "Nome", "Tipo Consulta", "Funcionário", "Data", "Horário", "Status");
             printf("--------------------------------------------------------------------------------------------------------------------------\n");
@@ -707,6 +707,66 @@ void listar_todos_agendamentos(void)
 
         exibir_agendamento(agd);
     }
+
+    fclose(arq_agendamentos);
+    free(agd);
+
+    if (!encontrado)
+    {
+        printf("\nNenhum agendamento cadastrado no sistema!\n");
+    }
+
+    confirmacao();
+}
+
+
+void listar_agendamento_tipo(void)
+{
+    FILE *arq_agendamentos;
+    Agendamento *agd;
+    char tipo_consulta[20];
+    int encontrado = 0; 
+
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|           ✦✧✦✧✦   Listar Agendamentos por Tipo   ✦✧✦✧✦             |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    agd = (Agendamento *)malloc(sizeof(Agendamento));
+    if (agd == NULL) {
+        printf("Erro na alocação de memória!\n");
+        return;
+    }
+
+    input(tipo_consulta, 20, "Digite o tipo de consulta: ");
+
+    arq_agendamentos = fopen("agendamentos/agendamentos.dat", "rb");
+    if (arq_agendamentos == NULL)
+    {
+        printf("Erro na abertura do arquivo! O arquivo pode não existir.\n");
+        free(agd); 
+        return;
+    }
+
+    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos))
+    {
+        if (strcasecmp(agd->tipo_consulta, tipo_consulta) == 0)
+        {
+        if (!encontrado)
+        {
+            printf("\nListando os agendamentos encontrados para o tipo %s:\n", tipo_consulta);
+            printf("--------------------------------------------------------------------------------------------------------------------------\n");
+            printf("| %-5s | %-12s | %-20s | %-15s | %-21s | %-10s | %-8s | %-8s |\n", 
+                   "ID", "CPF", "Nome", "Tipo Consulta", "Funcionário", "Data", "Horário", "Status");
+            printf("--------------------------------------------------------------------------------------------------------------------------\n");
+        }
+        encontrado = 1; 
+
+        exibir_agendamento(agd);
+        }
+    }   
 
     fclose(arq_agendamentos);
     free(agd);
