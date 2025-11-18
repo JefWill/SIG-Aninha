@@ -486,10 +486,26 @@ Cliente *preenche_cliente(void)
 void exibir_cliente(const Cliente *clt)
 {
     int dia, mes, ano;
+    int tam_nome = strlen(clt->nome);
+    int extra_bytes = 0; // Vai contar quantos bytes extras esta usando (1 por acento)
+    
+    for (int i = 0; i < tam_nome; i++) {
+        if ((unsigned char)clt->nome[i] >= 192) {
+            extra_bytes++;
+        }
+    }
+
+    int largura_ajustada = 20 + extra_bytes; 
+    char formato_nome[10];
+
+    sprintf(formato_nome, "%%-%ds", largura_ajustada); 
+
     sscanf(clt->data_nascimento, "%2d%2d%4d", &dia, &mes, &ano);
 
-    printf("| %-12s | %-20s | %02d/%02d/%04d       | %-13s | %-7d |\n", 
-        clt->cpf, clt->nome, dia, mes, ano, clt->telefone, clt->status);
+    printf("| %-12s | ", clt->cpf);
+    printf(formato_nome, clt->nome); 
+    printf(" | %02d/%02d/%04d       | %-13s | %-7d |\n", 
+        dia, mes, ano, clt->telefone, clt->status);
 }
 
 void ler_cpf_cliente(char *cpf)

@@ -31,17 +31,25 @@ int escolha(void)
     return opcao;
 }
 
-void input(char *nome, int tamanho, char *mensagem)
+void input(char *nome, int tamanho, const char *mensagem)
 {
     int tam, i, j = 0;
     char temp[tamanho];
+    
+    const char *proibidos = "/!@#$%^&*()_+={}|[]:;\"'<>,.?~`-";
 
     printf("%s\n", mensagem);
-    fgets(nome, tamanho, stdin);
+    
+
+    if (fgets(nome, tamanho, stdin) == NULL) {
+        fprintf(stderr, "Erro na leitura da entrada.\n");
+        nome[0] = '\0';
+        return;
+    }
+    
     tam = strlen(nome);
-
-
-    if (nome[tam - 1] == '\n')
+    
+    if (tam > 0 && nome[tam - 1] == '\n')
     {
         nome[tam - 1] = '\0';
         tam--;
@@ -51,10 +59,9 @@ void input(char *nome, int tamanho, char *mensagem)
         limpar_buffer();
     }
 
-
     for (i = 0; i < tam; i++)
     {
-        if (isalnum(nome[i]) || isspace(nome[i]))
+        if (strchr(proibidos, nome[i]) == NULL)
         {
             temp[j++] = nome[i];
         }
@@ -63,7 +70,6 @@ void input(char *nome, int tamanho, char *mensagem)
 
     strcpy(nome, temp);
 }
-
 
 void header(void)
 {

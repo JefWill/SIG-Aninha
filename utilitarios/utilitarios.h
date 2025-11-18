@@ -1,4 +1,4 @@
-void input(char *nome, int tamanho, char *mensagem);
+void input(char *nome, int tamanho, const char *mensagem);
 int escolha(void);
 void limpar_buffer(void);
 void header(void);
