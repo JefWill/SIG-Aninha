@@ -97,10 +97,19 @@ void ler_nome(char *nome){
     } while (!validar_nome(nome));
 }
 
-void ler_data(char *data_nascimento){
+void ler_data_nascimento(char *data_nascimento){
     do
     {
         input(data_nascimento, 12, "Digite sua data de nascimento (DD/MM/AAAA): ");
+        if (!validar_data(data_nascimento))
+            printf("Data inválida! Use o formato DD/MM/AAAA.\n");
+    } while (!validar_data(data_nascimento));
+}
+
+void ler_data(char *data_nascimento){
+    do
+    {
+        input(data_nascimento, 12, "Digite sua data (DD/MM/AAAA): ");
         if (!validar_data(data_nascimento))
             printf("Data inválida! Use o formato DD/MM/AAAA.\n");
     } while (!validar_data(data_nascimento));

@@ -440,7 +440,7 @@ void modulo_alteracao(char *nome, char *data_nascimento, char *telefone)
             confirmacao();
             break;
         case 2:
-            ler_data(data_nascimento);
+            ler_data_nascimento(data_nascimento);
 
             printf("\nData de nascimento atualizada com sucesso!\n");
             confirmacao();
@@ -475,7 +475,7 @@ Cliente *preenche_cliente(void)
 
     ler_nome(clt->nome);
 
-    ler_data(clt->data_nascimento);
+    ler_data_nascimento(clt->data_nascimento);
 
     ler_telefone(clt->telefone);
 
