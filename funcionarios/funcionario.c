@@ -590,7 +590,7 @@ Funcionario *preenche_funcionario(void)
 void exibir_funcionario(const Funcionario *fnc)
 {
 
-    printf("| %-12s | %-20s | %-20s | %-8d |\n", 
+    printf("| %-12s | %-20s | %-12s | %-8d |\n", 
                fnc->cpf, fnc->nome, fnc->cargo, fnc->status);
 }
 
@@ -627,6 +627,7 @@ void listar_funcionarios_cargo(void)
 {
     FILE *arq_funcionarios;
     Funcionario *fnc;
+    int encontrado=0;
     char tipo_consulta[20];
 
     system("clear||cls");
@@ -638,22 +639,24 @@ void listar_funcionarios_cargo(void)
 
     fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
-    input(tipo_consulta, 20, "Digite qual tipo de consulta deseja (Tarot, Signos, Numerologia):");
-
+    ler_cargo(tipo_consulta);
     printf("\nLista de funcionários para %s:\n", tipo_consulta);
 
-    printf("-------------------------------------------------------------------------\n");
-    printf("| %-12s | %-20s | %-20s | %-8s |\n", 
-           "CPF", "Nome", "Cargo", "Status");
-    printf("-------------------------------------------------------------------------\n");
+    
 
     arq_funcionarios = fopen("funcionarios/funcionarios.dat", "rb");
 
     while (fread(fnc, sizeof(Funcionario), 1, arq_funcionarios))
     { 
         if((strcasecmp(fnc->cargo, tipo_consulta) == 0) && (fnc->status == 1)){
+            if (!encontrado){
+                printf("-----------------------------------------------------------------\n");
+                printf("| %-12s | %-20s | %-12s | %-8s |\n", 
+                        "CPF", "Nome", "Cargo", "Status");
+                printf("-----------------------------------------------------------------\n");
+            }
+            encontrado=1;
             exibir_funcionario(fnc);
-            printf("-------------------------------------------------------------------------\n");
         }
     }
 
