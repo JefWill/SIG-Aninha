@@ -44,3 +44,4 @@ void exibir_significados(int n);
 void significado_numeros(void);
 
 void listar_servicos_por_data(void);
+void exibir_servicos(const Servicos *srv);

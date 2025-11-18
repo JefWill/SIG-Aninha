@@ -106,13 +106,13 @@ void ler_data_nascimento(char *data_nascimento){
     } while (!validar_data(data_nascimento));
 }
 
-void ler_data(char *data_nascimento){
+void ler_data(char *data){
     do
     {
-        input(data_nascimento, 12, "Digite sua data (DD/MM/AAAA): ");
-        if (!validar_data(data_nascimento))
+        input(data, 12, "Digite sua data (DD/MM/AAAA): ");
+        if (!validar_data(data))
             printf("Data inválida! Use o formato DD/MM/AAAA.\n");
-    } while (!validar_data(data_nascimento));
+    } while (!validar_data(data));
 }
 
 void ler_telefone(char *telefone){

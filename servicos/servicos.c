@@ -963,16 +963,18 @@ void cadastra_arquivo_servico(char *cpf, int id)
     arq_servicos = fopen("servicos/servicos.dat", "ab");
     if (arq_servicos == NULL)
     {
-        printf("\n Erro ao abrir o arquivo de serviços.\n");
+        printf("\nErro ao abrir o arquivo de serviços.\n");
         return;
     }
 
     strncpy(srv.cpf, cpf, 16);
     srv.id = id;
-    strftime(srv.data, sizeof(srv.data), "%d/%m/%Y", tm_info);
-    strftime(srv.hora, sizeof(srv.hora), "%H:%M:%S", tm_info);
+
+    strftime(srv.data, sizeof(srv.data), "%d%m%Y", tm_info);  // Formato: DDMMYYYY
+    strftime(srv.hora, sizeof(srv.hora), "%H%M%S", tm_info);  // Formato: HHMMSS
 
     fwrite(&srv, sizeof(Servicos), 1, arq_servicos);
+
     fclose(arq_servicos);
 }
 
@@ -1025,7 +1027,7 @@ int validar_data_signo(const char *data)
 void listar_servicos_por_data(void)
 {
     FILE *arq_servicos;
-    Servicos srv;
+    Servicos *srv;
     char data[12];
     int encontrado = 0;
 
@@ -1034,46 +1036,40 @@ void listar_servicos_por_data(void)
     printf("|                          Lista de Serviços Por Data                   |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    input(data, 12, "Digite a data desejada (dd/mm/aaaa): ");
-
-    if (strlen(data) == 8) {
-        char data_com_barras[12];
-        snprintf(data_com_barras, sizeof(data_com_barras),
-                "%c%c/%c%c/%c%c%c%c",
-                data[0], data[1],
-                data[2], data[3],
-                data[4], data[5], data[6], data[7]);
-
-        strcpy(data, data_com_barras);
-    }
-
-    printf("-----------------------------------------------------------\n");
-    printf("| %-12s | %-5s | %-20s | %-9s |\n", 
-           "CPF", "ID", "Data", "Hora");
-    printf("-----------------------------------------------------------\n");
+    srv = (Servicos *)malloc(sizeof(Servicos));
+    ler_data(data);
 
     arq_servicos = fopen("servicos/servicos.dat", "rb");
     if (arq_servicos == NULL)
     {
-        printf("\n Erro ao abrir o arquivo de serviços.\n");
+        printf("\nErro ao abrir o arquivo de serviços.\n");
         return;
     }
 
-    while (fread(&srv, sizeof(Servicos), 1, arq_servicos))
+    while (fread(srv, sizeof(Servicos), 1, arq_servicos))
     {   
-        if (strcmp(srv.data, data) == 0){
-            printf("| %-12s | %-5d | %-20s | %-9s |\n", 
-               srv.cpf, srv.id, srv.data, srv.hora);
-            printf("-----------------------------------------------------------\n");
+        if (strcmp(srv->data, data) == 0){
+            if (!encontrado)
+            {
+                int dia, mes, ano;
+                sscanf(srv->data, "%2d%2d%4d", &dia, &mes, &ano);
+                printf("\nServiços para a data %02d/%02d/%04d:\n", dia, mes, ano);
+                printf("------------------------------------------------------\n");
+                printf("| %-12s | %-13s | %-10s | %-8s |\n", 
+                    "CPF", "Serviço", "Data", "Horário");
+                printf("------------------------------------------------------\n");
+            }
             encontrado = 1;
+            exibir_servicos(srv);
         }
     }
 
-    if(!encontrado){
-        printf("Nenhum Serviço Online Realizado");
+    if (!encontrado) {
+        printf("Nenhum Serviço Online Realizado\n");
     }
 
     fclose(arq_servicos);
+    free(srv);
 
     confirmacao();
 }
