@@ -1077,3 +1077,36 @@ void listar_servicos_por_data(void)
 
     confirmacao();
 }
+
+void exibir_servicos(const Servicos *srv)
+{
+    int dia, mes, ano, hora, minuto;
+    char nome_servico[20];  
+    
+    
+    switch (srv->id) {
+        case 1:
+            strcpy(nome_servico, "Signos");
+            break;
+        case 2:
+            strcpy(nome_servico, "Numerologia");
+            break;
+        case 3:
+            strcpy(nome_servico, "Tarot");
+            break;
+        case 4:
+            strcpy(nome_servico, "Perguntas");
+            break;
+        default:
+            strcpy(nome_servico, "Desconhecido");
+            break;
+    }
+
+    
+    sscanf(srv->data, "%2d%2d%4d", &dia, &mes, &ano);
+    sscanf(srv->hora, "%2d%2d", &hora, &minuto);
+
+    
+    printf("| %-12s | %-12s | %02d/%02d/%04d | %02d:%02d   |\n", 
+            srv->cpf, nome_servico, dia, mes, ano, hora, minuto);
+}
