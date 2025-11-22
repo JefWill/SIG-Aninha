@@ -42,25 +42,25 @@ void modulo_servicos(void)
 
         switch (op_servicos)
         {
-        case 1:
+        case Signos:
             id = 1;
             dados_usuario_servico(cpf);
             cadastra_arquivo_servico(cpf, id);
             modulo_signos();
             break;
-        case 2:
+        case Tarot:
             id = 2;
             dados_usuario_servico(cpf);
             cadastra_arquivo_servico(cpf, id);
             modulo_tarot();
             break;
-        case 3:
+        case Numerologia:
             id = 3;
             dados_usuario_servico(cpf);
             cadastra_arquivo_servico(cpf, id);
             modulo_numerologia();
             break;
-        case 4:
+        case Pergunte:
             id = 4;
             dados_usuario_servico(cpf);
             cadastra_arquivo_servico(cpf, id);
@@ -1074,35 +1074,28 @@ void listar_servicos_por_data(void)
     confirmacao();
 }
 
-void exibir_servicos(const Servicos *srv)
-{
+const char* nomes_servicos[] = {
+    "Desconhecido",  // 0: caso default, que não será usado
+    "Signos",        
+    "Tarot",         
+    "Numerologia",   
+    "Perguntas"      
+};
+
+void exibir_servicos(const Servicos *srv) {
     int dia, mes, ano, hora, minuto;
-    char nome_servico[20];  
-    
-    
-    switch (srv->id) {
-        case 1:
-            strcpy(nome_servico, "Signos");
-            break;
-        case 2:
-            strcpy(nome_servico, "Numerologia");
-            break;
-        case 3:
-            strcpy(nome_servico, "Tarot");
-            break;
-        case 4:
-            strcpy(nome_servico, "Perguntas");
-            break;
-        default:
-            strcpy(nome_servico, "Desconhecido");
-            break;
+    char nome_servico[15];
+
+    // Usando o id para pegar o nome do serviço do array
+    if (srv->id >= Signos && srv->id <= Pergunte) {
+        strcpy(nome_servico, nomes_servicos[srv->id]);
+    } else {
+        strcpy(nome_servico, "Desconhecido");
     }
 
-    
     sscanf(srv->data, "%2d%2d%4d", &dia, &mes, &ano);
     sscanf(srv->hora, "%2d%2d", &hora, &minuto);
 
-    
     printf("| %-12s | %-12s | %02d/%02d/%04d | %02d:%02d   |\n", 
-            srv->cpf, nome_servico, dia, mes, ano, hora, minuto);
+           srv->cpf, nome_servico, dia, mes, ano, hora, minuto);
 }

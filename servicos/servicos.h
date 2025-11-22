@@ -7,6 +7,13 @@ void dados_usuario_servico(char *cpf);
 void cadastra_arquivo_servico(char *cpf, int id);
 void listar_servicos(void);
 
+enum Serv{
+    Signos=1,
+    Tarot,
+    Numerologia,
+    Pergunte
+};
+
 struct servicos
 {
     char cpf[16];
