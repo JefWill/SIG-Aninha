@@ -11,3 +11,5 @@ void ler_cargo(char *cargo);
 void limpar_espacos_laterais(char *str);
 void ler_tipo(char *tipo);
 void ler_ddd(char *ddd);
+char* pega_nome_cliente(const char* cpf);
+char* pega_nome_funcionario(const char* cpf);

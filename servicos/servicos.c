@@ -981,12 +981,14 @@ void cadastra_arquivo_servico(char *cpf, int id)
 void listar_servicos(void)
 {
     FILE *arq_servicos;
-    Servicos srv;
+    Servicos *srv;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                        Lista de Serviços Realizados                   |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    srv = (Servicos *)malloc(sizeof(Servicos));
 
     arq_servicos = fopen("servicos/servicos.dat", "rb");
     if (arq_servicos == NULL)
@@ -995,16 +997,19 @@ void listar_servicos(void)
         return;
     }
 
-    while (fread(&srv, sizeof(Servicos), 1, arq_servicos))
+    printf("------------------------------------------------------\n");
+    printf("| %-12s | %-13s | %-10s | %-8s |\n", 
+            "CPF", "Serviço", "Data", "Horário");
+    printf("------------------------------------------------------\n");
+
+    while (fread(srv, sizeof(Servicos), 1, arq_servicos))
     {
-        printf(" CPF : %s\n", srv.cpf);
-        printf(" ID  : %d (1-Signo 2-Tarot 3-Numerologia 4-Pergunte)\n", srv.id);
-        printf(" Data: %s\n", srv.data);
-        printf(" Hora: %s\n", srv.hora);
-        printf("------------------------------------------------------------\n");
+        exibir_servicos(srv);
+        printf("------------------------------------------------------\n");
     }
 
     fclose(arq_servicos);
+    free(srv);
 
     confirmacao();
 }

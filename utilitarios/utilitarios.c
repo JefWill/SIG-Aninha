@@ -5,6 +5,8 @@
 #include <time.h>
 #include "utilitarios.h"
 #include "../validacao/validacao.h"
+#include "../clientes/cliente.h"
+#include "../funcionarios/funcionario.h"
 
 void limpar_buffer(void)
 {
@@ -188,3 +190,39 @@ void limpar_espacos_laterais(char *str)
     // 4. Coloca o terminador nulo no novo final
     str[i] = '\0';
 }
+
+char* pega_nome_cliente(const char* cpf) {
+    FILE *arq_clientes;
+    Cliente *clt;
+    int encontrado = 0;
+    char *nome = (char *)malloc(50 * sizeof(char));
+
+    arq_clientes = fopen("clientes/clientes.dat", "rb");
+    if (arq_clientes == NULL) {
+        printf("Erro ao abrir o arquivo de clientes.\n");
+        free(nome);
+        return NULL;
+    }
+
+    clt = (Cliente *)malloc(sizeof(Cliente));
+
+    while (fread(clt, sizeof(Cliente), 1, arq_clientes)) {
+        if (strcmp(clt->cpf, cpf) == 0 && clt->status == 1) {
+            strcpy(nome, clt->nome);
+            encontrado = 1;
+            break;
+        }
+    }
+
+    fclose(arq_clientes);
+    free(clt);
+
+    if (!encontrado) {
+        free(nome);
+        return NULL;
+    }
+
+    return nome;
+}
+
+
