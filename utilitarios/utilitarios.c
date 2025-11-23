@@ -226,3 +226,36 @@ char* pega_nome_cliente(const char* cpf) {
 }
 
 
+char* pega_nome_funcionario(const char* cpf) {
+    FILE *arq_funcionarios;
+    Funcionario *fnc;
+    int encontrado = 0;
+    char *nome = (char *)malloc(50 * sizeof(char));
+
+    arq_funcionarios = fopen("funcionarios/funcionarios.dat", "rb");
+    if (arq_funcionarios == NULL) {
+        printf("Erro ao abrir o arquivo de funcionários.\n");
+        free(nome);
+        return NULL;
+    }
+
+    fnc = (Funcionario *)malloc(sizeof(Funcionario));
+
+    while (fread(fnc, sizeof(Funcionario), 1, arq_funcionarios)) {
+        if (strcmp(fnc->cpf, cpf) == 0 && fnc->status == 1) {
+            strcpy(nome, fnc->nome);
+            encontrado = 1;
+            break;
+        }
+    }
+
+    fclose(arq_funcionarios);
+    free(fnc);
+
+    if (!encontrado) {
+        free(nome);
+        return NULL;
+    }
+
+    return nome;
+}
