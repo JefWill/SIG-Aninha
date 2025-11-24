@@ -307,6 +307,8 @@ void buscar_agendamento_por_cpf(void)
     Agendamento *agd;
     char cpf_lido[16];
     int encontrado = 0;
+    char *nome_cliente;
+    char *nome_func;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -331,17 +333,32 @@ void buscar_agendamento_por_cpf(void)
     {
         if ((strcmp(agd->cpf, cpf_lido) == 0) && (agd->status == 1))
         {
-            if (!encontrado)
+            nome_cliente = pega_nome_cliente(agd->cpf);
+            nome_func = pega_nome_funcionario(agd->cpf_funcionario);
+
+            if (nome_cliente != NULL && nome_func != NULL) 
             {
-                printf("\nAgendamentos do CPF %s encontrados:\n", cpf_lido);
+                if (!encontrado)
+                {
+                    printf("\nAgendamentos do CPF %s encontrados:\n", cpf_lido);
+                    printf("--------------------------------------------------------------------------------------------------------------------------\n");
+                    printf("| %-5s | %-12s | %-20s | %-15s | %-21s | %-10s | %-8s | %-8s |\n", 
+                       "ID", "CPF", "Nome", "Tipo Consulta", "Funcionário", "Data", "Horário", "Status");
+                    printf("--------------------------------------------------------------------------------------------------------------------------\n");
+                }
+                encontrado = 1;
+                
+                exibir_agendamento(agd, nome_cliente, nome_func);
                 printf("--------------------------------------------------------------------------------------------------------------------------\n");
-                printf("| %-5s | %-12s | %-20s | %-15s | %-21s | %-10s | %-8s | %-8s |\n", 
-                   "ID", "CPF", "Nome", "Tipo Consulta", "Funcionário", "Data", "Horário", "Status");
-                printf("--------------------------------------------------------------------------------------------------------------------------\n");
+                
+                free(nome_cliente);
+                free(nome_func);
+            } 
+            else 
+            {
+                if(nome_cliente) free(nome_cliente);
+                if(nome_func) free(nome_func);
             }
-            encontrado = 1;
-            exibir_agendamento(agd);
-            printf("--------------------------------------------------------------------------------------------------------------------------\n");
         }
     }
 
@@ -363,6 +380,8 @@ void excluir_agendamento(void)
     char cpf_lido[16];
     int encontrado = 0, id_escolhido = 0;
     char opcao[8];
+    char *nome_cliente;
+    char *nome_func;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -389,9 +408,19 @@ void excluir_agendamento(void)
     {
         if ((strcmp(agd->cpf, cpf_lido) == 0) && (agd->status == 1))
         {
-            encontrado = 1;
-            exibir_agendamento(agd);
-            printf("------------------------------------------------\n");
+            nome_cliente = pega_nome_cliente(agd->cpf);
+            nome_func = pega_nome_funcionario(agd->cpf_funcionario);
+
+            if (nome_cliente != NULL && nome_func != NULL) {
+                encontrado = 1;
+                exibir_agendamento(agd, nome_cliente, nome_func);
+                printf("------------------------------------------------\n");
+                free(nome_cliente);
+                free(nome_func);
+            } else {
+                 if(nome_cliente) free(nome_cliente);
+                 if(nome_func) free(nome_func);
+            }
         }
     }
 
@@ -408,7 +437,6 @@ void excluir_agendamento(void)
     scanf("%d", &id_escolhido);
     getchar();
 
-    // Volta para o início do arquivo para procurar o ID
     fseek(arq_agendamentos, 0, SEEK_SET);
     encontrado = 0;
 
@@ -416,28 +444,39 @@ void excluir_agendamento(void)
     {
         if (agd->id == id_escolhido && agd->status == 1)
         {
-            encontrado = 1;
-            printf("\nAgendamento com ID %d encontrado!\n", agd->id);
-            exibir_agendamento(agd);
+            nome_cliente = pega_nome_cliente(agd->cpf);
+            nome_func = pega_nome_funcionario(agd->cpf_funcionario);
 
-            do
-            {
-                input(opcao, 8, "\nConfirmar a exclusão deste agendamento? (S/N): ");
-                limpar_espacos_laterais(opcao);
-                if (!validar_confirmacao(opcao))
-                    printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
-            } while (!validar_confirmacao(opcao));
+            if (nome_cliente != NULL && nome_func != NULL) {
+                encontrado = 1;
+                printf("\nAgendamento com ID %d encontrado!\n", agd->id);
+                exibir_agendamento(agd, nome_cliente, nome_func);
+                
+                free(nome_cliente);
+                free(nome_func);
+                
+                do
+                {
+                    input(opcao, 8, "\nConfirmar a exclusão deste agendamento? (S/N): ");
+                    limpar_espacos_laterais(opcao);
+                    if (!validar_confirmacao(opcao))
+                        printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
+                } while (!validar_confirmacao(opcao));
 
-            if (strcasecmp(opcao, "s") == 0 || strcasecmp(opcao, "sim") == 0)
-            {
-                agd->status = 0;
-                fseek(arq_agendamentos, -((long)sizeof(Agendamento)), SEEK_CUR);
-                fwrite(agd, sizeof(Agendamento), 1, arq_agendamentos);
-                printf("\nAgendamento excluído com sucesso!\n");
-            }
-            else
-            {
-                printf("\nExclusão cancelada!\n");
+                if (strcasecmp(opcao, "s") == 0 || strcasecmp(opcao, "sim") == 0)
+                {
+                    agd->status = 0;
+                    fseek(arq_agendamentos, -((long)sizeof(Agendamento)), SEEK_CUR);
+                    fwrite(agd, sizeof(Agendamento), 1, arq_agendamentos);
+                    printf("\nAgendamento excluído com sucesso!\n");
+                }
+                else
+                {
+                    printf("\nExclusão cancelada!\n");
+                }
+            } else {
+                 if(nome_cliente) free(nome_cliente);
+                 if(nome_func) free(nome_func);
             }
             break;
         }
@@ -483,10 +522,9 @@ int menu_alterar_agendamento(void)
 
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                      1. Alterar Nome                                   |\n");
-    printf("|                      2. Alterar Tipo de Consulta                       |\n");
-    printf("|                      3. Alterar Data                                   |\n");
-    printf("|                      4. Alterar Horário                                |\n");
+    printf("|                      1. Alterar Tipo de Consulta                       |\n");
+    printf("|                      2. Alterar Data                                   |\n");
+    printf("|                      3. Alterar Horário                                |\n");
     printf("|                      0. Salvar e Sair                                  |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -494,6 +532,7 @@ int menu_alterar_agendamento(void)
 
     return opcao;
 }
+
 void modulo_alteracao_agend(const char *nome, char *tipo_consulta, char *data, char *horario)
 {
     int opcao;
@@ -547,6 +586,7 @@ void modulo_alteracao_agend(const char *nome, char *tipo_consulta, char *data, c
     } while (opcao != 0);
 }
 
+
 void exibir_agendamento(const Agendamento *agd, const char* nome_cliente, const char* nome_funcionario)
 {
     int dia, mes, ano, hora, minuto;
@@ -566,6 +606,8 @@ void excluir_agendamento_fisico(void)
     char opcao[8];
     int encontrado = 0;
     char cpf_lido[16];
+    char *nome_cliente;
+    char *nome_func;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -592,25 +634,37 @@ void excluir_agendamento_fisico(void)
     {
         if ((strcmp(agd->cpf, cpf_lido) == 0))
         {
-            encontrado = 1;
-            printf("\nAgendamento do cliente com CPF %s encontrado!\n", agd->cpf);
-            exibir_agendamento(agd);
+            nome_cliente = pega_nome_cliente(agd->cpf);
+            nome_func = pega_nome_funcionario(agd->cpf_funcionario);
 
-            do
-            {
-                input(opcao, 8, "\nConfirmar a exclusão definitiva deste agendamento? (S/N): ");
-                limpar_espacos_laterais(opcao);
-                if (!validar_confirmacao(opcao))
-                    printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
-            } while (!validar_confirmacao(opcao));
+            if (nome_cliente != NULL && nome_func != NULL) {
+                encontrado = 1;
+                printf("\nAgendamento do cliente com CPF %s encontrado!\n", agd->cpf);
+                exibir_agendamento(agd, nome_cliente, nome_func);
 
-            if (strcasecmp(opcao, "s") == 0 || strcasecmp(opcao, "sim") == 0)
-            {
-                printf("\nAgendamento do cliente com CPF %s excluído com sucesso!\n", agd->cpf);
-            }
-            else
-            {
-                printf("        Exclusão cancelada!\n");
+                free(nome_cliente);
+                free(nome_func);
+
+                do
+                {
+                    input(opcao, 8, "\nConfirmar a exclusão definitiva deste agendamento? (S/N): ");
+                    limpar_espacos_laterais(opcao);
+                    if (!validar_confirmacao(opcao))
+                        printf("Resposta inválida! Digite 'S' para sim ou 'N' para não.\n");
+                } while (!validar_confirmacao(opcao));
+
+                if (strcasecmp(opcao, "s") == 0 || strcasecmp(opcao, "sim") == 0)
+                {
+                    printf("\nAgendamento do cliente com CPF %s excluído com sucesso!\n", agd->cpf);
+                }
+                else
+                {
+                    printf("        Exclusão cancelada!\n");
+                    fwrite(agd, sizeof(Agendamento), 1, arq_agendamentos2);
+                }
+            } else {
+                if(nome_cliente) free(nome_cliente);
+                if(nome_func) free(nome_func);
                 fwrite(agd, sizeof(Agendamento), 1, arq_agendamentos2);
             }
         }
@@ -714,6 +768,8 @@ void listar_todos_agendamentos(void)
     FILE *arq_agendamentos;
     Agendamento *agd;
     int encontrado = 0; 
+    char *nome_cliente;
+    char *nome_func;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -738,6 +794,16 @@ void listar_todos_agendamentos(void)
 
     while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos))
     {
+        nome_cliente = pega_nome_cliente(agd->cpf);
+        nome_func = pega_nome_funcionario(agd->cpf_funcionario);
+
+        if (nome_cliente == NULL || nome_func == NULL)
+        {
+            if(nome_cliente) free(nome_cliente);
+            if(nome_func) free(nome_func);
+            continue;
+        }
+
         if (!encontrado)
         {
             printf("\nListando todos os agendamentos encontrados:\n");
@@ -748,7 +814,10 @@ void listar_todos_agendamentos(void)
         }
         encontrado = 1; 
 
-        exibir_agendamento(agd);
+        exibir_agendamento(agd, nome_cliente, nome_func);
+        
+        free(nome_cliente);
+        free(nome_func);
     }
 
     fclose(arq_agendamentos);
@@ -761,7 +830,6 @@ void listar_todos_agendamentos(void)
 
     confirmacao();
 }
-
 
 void listar_agendamento_tipo(void) {
     FILE *arq_agendamentos;
