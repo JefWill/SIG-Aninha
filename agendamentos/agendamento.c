@@ -7,6 +7,7 @@
 #include "../funcionarios/funcionario.h"
 #include "../validacao/validacao.h"
 
+
 //////////////////////////////////////////////
 ///////////// MODULO AGENDAMENTO /////////////
 //////////////////////////////////////////////
@@ -82,7 +83,6 @@ void agendar_consulta(void)
 {
     FILE *arq_agendamentos;
     Agendamento *agd;
-    Funcionario *fnc;
 
     system("clear||cls");
 
@@ -93,14 +93,12 @@ void agendar_consulta(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     agd = (Agendamento *)malloc(sizeof(Agendamento));
-    fnc = (Funcionario *)malloc(sizeof(Funcionario));
 
     arq_agendamentos = fopen("agendamentos/agendamentos.dat", "a+b");
     if (arq_agendamentos == NULL)
     {
         printf("Erro na criacao do arquivo\n!");
         free(agd);
-        free(fnc);
         return;
     }
 
@@ -108,6 +106,7 @@ void agendar_consulta(void)
     if (agd == NULL)
     {
         printf("O agendamento não foi criado.\n");
+        fclose(arq_agendamentos);
         return;
     }
 
@@ -115,7 +114,6 @@ void agendar_consulta(void)
 
     fclose(arq_agendamentos);
     free(agd);
-    free(fnc);
 
     printf("\n         Consulta agendada com sucesso!\n");
     confirmacao();
@@ -127,6 +125,8 @@ void atualizar_agendamento(void)
     Agendamento *agd;
     char cpf_lido[16];
     int id_escolhido, encontrado = 0;
+    char *nome_cliente; 
+    char *nome_func;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -143,24 +143,37 @@ void atualizar_agendamento(void)
     if (!arq_agendamentos)
     {
         printf("Erro ao abrir arquivo de agendamentos!\n");
+        free(agd);
         getchar();
         return;
     }
 
     printf("\nAgendamentos encontrados:\n------------------------------------------------\n");
-    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos) && (!encontrado))
+    
+    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos))
     {
         if ((strcmp(agd->cpf, cpf_lido) == 0) && (agd->status == 1))
         {
-            encontrado = 1;
-            exibir_agendamento(agd);
-            printf("------------------------------------------------\n");
+            nome_cliente = pega_nome_cliente(agd->cpf);
+            nome_func = pega_nome_funcionario(agd->cpf_funcionario);
+            
+            if (nome_cliente != NULL && nome_func != NULL) {
+                encontrado = 1;
+                exibir_agendamento(agd, nome_cliente, nome_func);
+                printf("------------------------------------------------\n");
+                
+                free(nome_cliente);
+                free(nome_func);
+            } else {
+                if(nome_cliente) free(nome_cliente);
+                if(nome_func) free(nome_func);
+            }
         }
     }
 
     if (!encontrado)
     {
-        printf("\nNenhum agendamento encontrado para este CPF!\n");
+        printf("\nNenhum agendamento ativo encontrado para este CPF!\n");
         fclose(arq_agendamentos);
         free(agd);
         confirmacao();
@@ -171,21 +184,36 @@ void atualizar_agendamento(void)
     scanf("%d", &id_escolhido);
     getchar();
 
-    // Volta para o início do arquivo para procurar o ID escolhido
     fseek(arq_agendamentos, 0, SEEK_SET);
+    int achou_id = 0; 
 
     while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos))
     {
         if (agd->id == id_escolhido && agd->status == 1)
         {
+            achou_id = 1;
+
+            
+            nome_cliente = pega_nome_cliente(agd->cpf);
+
+            
             fseek(arq_agendamentos, (-1) * ((long)sizeof(Agendamento)), SEEK_CUR);
 
-            modulo_alteracao_agend(agd->nome, agd->tipo_consulta, agd->data, agd->horario);
+            if (nome_cliente != NULL) {
+                modulo_alteracao_agend(nome_cliente, agd->tipo_consulta, agd->data, agd->horario);
+                free(nome_cliente);
+            } else {
+                modulo_alteracao_agend("DESCONHECIDO", agd->tipo_consulta, agd->data, agd->horario);
+            }
 
             fwrite(agd, sizeof(Agendamento), 1, arq_agendamentos);
             printf("\nAgendamento atualizado com sucesso!\n");
             break;
         }
+    }
+
+    if (!achou_id) {
+        printf("\nID não encontrado ou agendamento inativo.\n");
     }
 
     fclose(arq_agendamentos);
@@ -200,6 +228,8 @@ void listar_agendamentos(void)
     Agendamento *agd;
     int encontrado = 0;
     char data_agendamento[15];
+    char *nome_cliente;
+    char *nome_func;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -209,21 +239,37 @@ void listar_agendamentos(void)
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
     agd = (Agendamento *)malloc(sizeof(Agendamento));
+    if (agd == NULL){
+        printf("Erro de memória!\n");
+        return; 
+    }
 
     input(data_agendamento, 15, "Digite a data desejada (dd/mm/aaaa): ");
 
     arq_agendamentos = fopen("agendamentos/agendamentos.dat", "rb");
     if (arq_agendamentos == NULL)
     {
-        printf("Erro na abertura do arquivo\n!");
+        printf("Erro na abertura do arquivo!\n");
         free(agd);
         return;
     }
 
     while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos))
     {
-        if (strcmp(agd->data, data_agendamento) == 0)
+        if ((strcmp(agd->data, data_agendamento) == 0) && (agd->status == 1))
         {
+            
+            nome_cliente = pega_nome_cliente(agd->cpf);
+            nome_func = pega_nome_funcionario(agd->cpf_funcionario);
+
+            
+            if (nome_cliente == NULL || nome_func == NULL)
+            {
+                if(nome_cliente) free(nome_cliente);
+                if(nome_func) free(nome_func);
+                continue;
+            }
+            
             if (!encontrado)
             {
                 int dia, mes, ano;
@@ -235,8 +281,12 @@ void listar_agendamentos(void)
                 printf("--------------------------------------------------------------------------------------------------------------------------\n");
             }
             encontrado = 1;
-            exibir_agendamento(agd);
+            
+            exibir_agendamento(agd, nome_cliente, nome_func);
             printf("--------------------------------------------------------------------------------------------------------------------------\n");
+            
+            free(nome_cliente); 
+            free(nome_func);
         }
     }
 
@@ -444,32 +494,23 @@ int menu_alterar_agendamento(void)
 
     return opcao;
 }
-void modulo_alteracao_agend(char *nome, char *tipo_consulta, char *data, char *horario)
+void modulo_alteracao_agend(const char *nome, char *tipo_consulta, char *data, char *horario)
 {
     int opcao;
     do
     {
+        printf("\n--- Editando agendamento de: %s ---\n", nome); 
         opcao = menu_alterar_agendamento();
 
         switch (opcao)
         {
-        case 1:
-            do
-            {
-                input(nome, 100, "Digite o novo nome do cliente: ");
-                if (!validar_nome(nome))
-                    printf("Nome inválido! Use apenas letras.\n");
-            } while (!validar_nome(nome));
-
-            printf("\nNome atualizado com sucesso!\n");
-            confirmacao();
-            break;
-        case 2:
+        case 1: 
             input(tipo_consulta, 20, "Digite o novo tipo de consulta (Tarot, Signos, Numerologia): ");
             printf("\nTipo de consulta atualizado com sucesso!\n");
             confirmacao();
             break;
-        case 3:
+
+        case 2: 
             do
             {
                 input(data, 15, "Digite a nova data da consulta (DD/MM/AAAA): ");
@@ -480,7 +521,8 @@ void modulo_alteracao_agend(char *nome, char *tipo_consulta, char *data, char *h
             printf("\nData atualizada com sucesso!\n");
             confirmacao();
             break;
-        case 4:
+
+        case 3: 
             do
             {
                 input(horario, 10, "Digite o novo horário da consulta (HH:MM): ");
@@ -491,13 +533,12 @@ void modulo_alteracao_agend(char *nome, char *tipo_consulta, char *data, char *h
             printf("\nHorário atualizado com sucesso!\n");
             confirmacao();
             break;
+
         case 0:
-            printf("           Voltando ao menu principal...\n");
+            printf("           Voltando ao menu anterior...\n");
             getchar();
             break;
-        case -1:
-            confirmacao();
-            break;
+        
         default:
             printf("                Opção Inexistente!\n");
             confirmacao();
@@ -506,14 +547,14 @@ void modulo_alteracao_agend(char *nome, char *tipo_consulta, char *data, char *h
     } while (opcao != 0);
 }
 
-void exibir_agendamento(const Agendamento *agd)
+void exibir_agendamento(const Agendamento *agd, const char* nome_cliente, const char* nome_funcionario)
 {
     int dia, mes, ano, hora, minuto;
     sscanf(agd->data, "%2d%2d%4d", &dia, &mes, &ano);
     sscanf(agd->horario, "%2d%2d", &hora, &minuto);
-
+    
     printf("| %-5d | %-12s | %-20s | %-15s | %-20s | %02d/%02d/%04d | %02d:%02d   | %-8d |\n", 
-            agd->id, agd->cpf, agd->nome, agd->tipo_consulta, agd->nome_funcionario, 
+            agd->id, agd->cpf, nome_cliente, agd->tipo_consulta, nome_funcionario, 
             dia, mes, ano, hora, minuto, agd->status);
 }
 
@@ -602,6 +643,7 @@ Agendamento *preenche_agendamento(void)
     Agendamento *agd;
     Funcionario *fnc;
     int result=0;
+    char nome_temp[50];
 
     agd = (Agendamento *)malloc(sizeof(Agendamento));
     fnc = (Funcionario *)malloc(sizeof(Funcionario));
@@ -623,16 +665,17 @@ Agendamento *preenche_agendamento(void)
 
     } while (!validar_cpf(agd->cpf) || !cliente_existe(agd->cpf));
 
-    buscar_nome_cliente(agd->cpf, agd->nome);
-    printf("\nCliente encontrado: %s\n", agd->nome);
+    
+    buscar_nome_cliente(agd->cpf, nome_temp);
+    printf("\nCliente encontrado: %s\n", nome_temp);
 
     input(agd->tipo_consulta, 20, "Digite qual tipo de consulta deseja (Tarot, Signos, Numerologia):");
 
     listar_funcionarios_por_cargo(agd->tipo_consulta, fnc->cpf, fnc->nome);
 
-    if (strlen(fnc->cpf) == 0 || strlen(fnc->nome) == 0)
+    if (strlen(fnc->cpf) == 0)
     {
-        printf("\nAgendamento cancelado.\n");
+        printf("\nAgendamento cancelado (nenhum funcionário selecionado).\n");
         confirmacao();
         free(agd);
         free(fnc);
@@ -661,8 +704,8 @@ Agendamento *preenche_agendamento(void)
     agd->id = gerar_novo_id();
     agd->status = 1;
     strcpy(agd->cpf_funcionario, fnc->cpf);
-    strcpy(agd->nome_funcionario, fnc->nome);
 
+    free(fnc);
     return agd;
 }
 
@@ -720,12 +763,13 @@ void listar_todos_agendamentos(void)
 }
 
 
-void listar_agendamento_tipo(void)
-{
+void listar_agendamento_tipo(void) {
     FILE *arq_agendamentos;
     Agendamento *agd;
     char tipo_consulta[20];
     int encontrado = 0; 
+    char *nome_cliente; 
+    char *nome_func;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -743,37 +787,45 @@ void listar_agendamento_tipo(void)
     ler_tipo(tipo_consulta);
 
     arq_agendamentos = fopen("agendamentos/agendamentos.dat", "rb");
-    if (arq_agendamentos == NULL)
-    {
-        printf("Erro na abertura do arquivo! O arquivo pode não existir.\n");
-        free(agd); 
+    if (arq_agendamentos == NULL) {
+        printf("Erro na abertura do arquivo de agendamentos!\n");
+        free(agd);
         return;
     }
 
-    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos))
-    {
-        if (strcasecmp(agd->tipo_consulta, tipo_consulta) == 0)
-        {
-        if (!encontrado)
-        {
-            printf("\nListando os agendamentos encontrados para o tipo %s:\n", tipo_consulta);
-            printf("--------------------------------------------------------------------------------------------------------------------------\n");
-            printf("| %-5s | %-12s | %-20s | %-15s | %-21s | %-10s | %-8s | %-8s |\n", 
-                   "ID", "CPF", "Nome", "Tipo Consulta", "Funcionário", "Data", "Horário", "Status");
-            printf("--------------------------------------------------------------------------------------------------------------------------\n");
-        }
-        encontrado = 1; 
+    while (fread(agd, sizeof(Agendamento), 1, arq_agendamentos)) {
+        if (strcasecmp(agd->tipo_consulta, tipo_consulta) == 0) {
+            
+            nome_cliente = pega_nome_cliente(agd->cpf);
+            nome_func = pega_nome_funcionario(agd->cpf_funcionario);
 
-        exibir_agendamento(agd);
+            if (nome_cliente == NULL || nome_func == NULL) {
+                if(nome_cliente) free(nome_cliente);
+                if(nome_func) free(nome_func);
+                continue; 
+            }
+            
+            if (!encontrado) {
+                printf("\nListando os agendamentos encontrados para o tipo %s:\n", tipo_consulta);
+                printf("--------------------------------------------------------------------------------------------------------------------------\n");
+                printf("| %-5s | %-12s | %-20s | %-15s | %-21s | %-10s | %-8s | %-8s |\n", 
+                       "ID", "CPF", "Nome", "Tipo Consulta", "Funcionário", "Data", "Horário", "Status");
+                printf("--------------------------------------------------------------------------------------------------------------------------\n");
+                encontrado = 1;
+            }
+
+            exibir_agendamento(agd, nome_cliente, nome_func);
+            
+            free(nome_cliente);
+            free(nome_func);
         }
-    }   
+    }
 
     fclose(arq_agendamentos);
     free(agd);
 
-    if (!encontrado)
-    {
-        printf("\nNenhum agendamento cadastrado no sistema!\n");
+    if (!encontrado) {
+        printf("\nNenhum agendamento válido encontrado para esse tipo!\n");
     }
 
     confirmacao();

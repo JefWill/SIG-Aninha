@@ -8,10 +8,8 @@ struct agendamento
 {
     int id;
     char cpf[16];
-    char nome[50];
     char tipo_consulta[20];
     char cpf_funcionario[16];
-    char nome_funcionario[50];
     char data[15];
     char horario[10];
     int status;
@@ -26,8 +24,8 @@ void buscar_agendamento_por_cpf(void);
 void excluir_agendamento(void);
 int gerar_novo_id();
 int menu_alterar_agendamento(void);
-void modulo_alteracao_agend(char *nome, char *tipo_consulta, char *data, char *horario);
-void exibir_agendamento(const Agendamento *agd);
+void modulo_alteracao_agend(const char *nome, char *tipo_consulta, char *data, char *horario);
+void exibir_agendamento(const Agendamento *agd, const char* nome_cliente, const char* nome_funcionario);
 void excluir_agendamento_fisico(void);
 Agendamento *preenche_agendamento(void);
 void listar_todos_agendamentos(void);
