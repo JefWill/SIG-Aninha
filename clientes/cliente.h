@@ -13,6 +13,13 @@ struct cliente
     int status;
 };
 
+typedef struct clienteDinamico ClienteDinamico;
+
+struct clienteDinamico{
+    Cliente cliente;
+    ClienteDinamico* prox;
+};
+
 void modulo_cliente(void);
 void cadastrar_cliente(void);
 void exibir_cliente(const Cliente *clt);
