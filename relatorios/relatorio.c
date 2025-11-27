@@ -27,10 +27,8 @@ int tela_menu_relatorio(void)
     printf("|                                                                        |\n");
     printf("|                 1. Relatório de Dados Gerais                           |\n");
     printf("|                 2. Relatório com Dados Filtrados                       |\n");
-    printf("|                 3. Relatório por Tipo de Serviço                       |\n");
-    printf("|                    (Tarot, Signos, Numerologia)                        |\n");
-    printf("|                 4. Relatório de Agendamentos Pendentes                 |\n");
-    printf("|                 5. Relatório de Clientes Atendidos por Período         |\n");
+    printf("|                 3. Relatório com Lista Dinâmicas                       |\n");
+    printf("|                 4. Relatório com dados ordenados                       |\n");
     printf("|                 0. Voltar ao Menu Principal                            |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -54,13 +52,10 @@ void modulo_relatorio(void)
             escolha_relatorios_filtrados();
             break;
         case 3:
-            printf("Relatório por Tipo de Serviço - Em Desenvolvimento...\n");
+            escolha_relatorios_dinamicos();
             break;
         case 4:
              printf("Relatório de Agendamentos Pendentes - Em Desenvolvimento...\n");
-             break;
-         case 5:
-             printf("Relatório de Clientes Atendidos por Período - Em Desenvolvimento...\n");
              break;
         case 0:
             printf("           Voltando ao menu principal...\n");
@@ -173,4 +168,51 @@ void escolha_relatorios_filtrados(void){
 
         }
     } while (op_dados_filtro!=0);
+}
+
+int menu_relatorio_dinamicos(void){
+    int op_dados_filtro;
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                 1. Listar Clientes Ativos                              |\n");
+    printf("|                 0. Voltar ao Menu Principal                            |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    op_dados_filtro=escolha();
+    return op_dados_filtro;
+}
+
+void escolha_relatorios_dinamicos(void){
+    int op_dados_gerais;
+    ClienteDinamico* lista;
+    do{
+
+        op_dados_gerais=menu_relatorio_dinamicos();
+
+        switch (op_dados_gerais){
+            case 1:
+                lista = carregar_cli_ativos();
+                exibir_cli_ativos(lista);
+                break;
+            case 2:
+                listar_funcionarios();
+                break;
+            case 3:
+                listar_todos_agendamentos();
+                break;
+            case 0:
+                printf("           Voltando ao menu principal...\n");
+                getchar();
+                break;
+            case -1:
+                confirmacao();
+                break;
+            default:
+                printf("                Opção Inexistente!\n");
+                confirmacao();
+                break;
+
+        }
+    } while (op_dados_gerais!=0);
 }

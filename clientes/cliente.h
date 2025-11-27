@@ -34,3 +34,5 @@ void modulo_alteracao(char *nome, char *data_nascimento, char *telefone);
 Cliente *preenche_cliente(void);
 void ler_cpf_cliente(char *cpf);
 void listar_clientes_ddd(void);
+void exibir_cli_ativos(ClienteDinamico* lista);
+ClienteDinamico* carregar_cli_ativos(void);

@@ -4,3 +4,5 @@ int menu_relatorio_dados(void);
 void escolha_relatorios_gerais(void);
 void escolha_relatorios_filtrados(void);
 int menu_relatorio_dados_filtro(void);
+int menu_relatorio_dinamicos(void);
+void escolha_relatorios_dinamicos(void);

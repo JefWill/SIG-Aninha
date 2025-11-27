@@ -580,3 +580,65 @@ void listar_clientes_ddd(void) {
 
     confirmacao();
 }
+
+ClienteDinamico* carregar_cli_ativos(void) {
+
+    FILE* arq_clientes;
+    arq_clientes = fopen("clientes/clientes.dat", "rb");
+
+    if (arq_clientes == NULL) {
+        printf("Erro ao abrir arquivo\n");
+        return NULL;
+    }
+
+    ClienteDinamico* lista = NULL;
+    Cliente temp;
+
+    while (fread(&temp, sizeof(Cliente), 1, arq_clientes) == 1) {
+        
+        ClienteDinamico* novo = malloc(sizeof(ClienteDinamico));
+        if (!novo) {
+            printf("Erro de memória!\n");
+            fclose(arq_clientes);
+            return lista;
+        }
+
+        if(temp.status){
+            novo->cliente = temp;
+            novo->prox = lista;
+            lista = novo;
+        }
+    }
+
+    fclose(arq_clientes);
+    return lista;
+
+}
+
+void exibir_cli_ativos(ClienteDinamico* lista) {
+    ClienteDinamico* aux = lista;
+
+    printf("-----------------------------------------------------------------------------------------\n");
+    printf("| %-12s | %-30s | %-12s | %-13s | %-6s |\n",
+           "CPF", "Nome", "Nascimento", "Telefone", "Status");
+    printf("-----------------------------------------------------------------------------------------\n");
+
+    while (aux != NULL) {
+        printf("| %-12s | %-30s | %-12s | %-13s | %-6d |\n",
+               aux->cliente.cpf,
+               aux->cliente.nome,
+               aux->cliente.data_nascimento,
+               aux->cliente.telefone,
+               aux->cliente.status);
+
+        aux = aux->prox;
+    }
+
+    // Rodapé
+    printf("-----------------------------------------------------------------------------------------\n");
+
+    confirmacao();
+
+}
+
+
