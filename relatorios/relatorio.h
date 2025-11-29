@@ -6,3 +6,5 @@ void escolha_relatorios_filtrados(void);
 int menu_relatorio_dados_filtro(void);
 int menu_relatorio_dinamicos(void);
 void escolha_relatorios_dinamicos(void);
+int menu_relatorio_ordenados(void);
+void escolha_relatorios_ordenados(void);

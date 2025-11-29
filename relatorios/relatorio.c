@@ -55,7 +55,7 @@ void modulo_relatorio(void)
             escolha_relatorios_dinamicos();
             break;
         case 4:
-             printf("Relatório de Agendamentos Pendentes - Em Desenvolvimento...\n");
+            escolha_relatorios_ordenados();
              break;
         case 0:
             printf("           Voltando ao menu principal...\n");
@@ -195,11 +195,46 @@ void escolha_relatorios_dinamicos(void){
                 lista = carregar_cli_ativos();
                 exibir_cli_ativos(lista);
                 break;
-            case 2:
-                listar_funcionarios();
+            case 0:
+                printf("           Voltando ao menu principal...\n");
+                getchar();
                 break;
-            case 3:
-                listar_todos_agendamentos();
+            case -1:
+                confirmacao();
+                break;
+            default:
+                printf("                Opção Inexistente!\n");
+                confirmacao();
+                break;
+
+        }
+    } while (op_dados_gerais!=0);
+}
+
+int menu_relatorio_ordenados(void){
+    int op_dados_filtro;
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|                 1. Lista de Cliente Ordem Alfabética                   |\n");
+    printf("|                 0. Voltar ao Menu Principal                            |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    op_dados_filtro=escolha();
+    return op_dados_filtro;
+}
+
+void escolha_relatorios_ordenados(void){
+    int op_dados_gerais;
+    ClienteDinamico* lista;
+    do{
+
+        op_dados_gerais=menu_relatorio_ordenados();
+
+        switch (op_dados_gerais){
+            case 1:
+                lista = ordenar_clientes();
+                exibir_cli_ativos(lista);
                 break;
             case 0:
                 printf("           Voltando ao menu principal...\n");

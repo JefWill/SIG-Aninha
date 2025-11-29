@@ -641,4 +641,59 @@ void exibir_cli_ativos(ClienteDinamico* lista) {
 
 }
 
+ClienteDinamico* ordenar_clientes(void){
+
+    FILE* arq_clientes = fopen("clientes/clientes.dat", "rb");
+
+    if (!arq_clientes) {
+        printf("Erro ao abrir arquivo!\n");
+        return NULL;
+    }
+
+    ClienteDinamico* lista = NULL;
+    Cliente temp;
+
+    while (fread(&temp, sizeof(Cliente), 1, arq_clientes) == 1) {
+        if (temp.status) {
+
+            ClienteDinamico* novo = malloc(sizeof(ClienteDinamico));
+            if (!novo) {
+                printf("Erro de memória!\n");
+                break;
+            }
+
+            novo->cliente = temp;
+            novo->prox = NULL;
+
+            if (lista == NULL) {
+                lista = novo;
+            }
+            else if (strcmp(novo->cliente.nome, lista->cliente.nome) < 0) {
+                novo->prox = lista;
+                lista = novo;
+            }
+            else {
+                ClienteDinamico* anterior = lista;
+                ClienteDinamico* atual = lista->prox;
+
+                while (atual != NULL &&
+                       strcmp(atual->cliente.nome, novo->cliente.nome) < 0) {
+
+                    anterior = atual;
+                    atual = atual->prox;
+                }
+
+                anterior->prox = novo;
+                novo->prox = atual;
+            }
+        }
+    }
+
+    fclose(arq_clientes);
+    return lista;
+}
+
+
+
+
 
