@@ -62,4 +62,6 @@ void significado_numeros(void);
 void listar_servicos_por_data(void);
 void exibir_servicos(const Servicos *srv);
 ServicosDinamico* carregar_servicos_por_cpf(void);
-void exibir_servicos_por_cpf(ServicosDinamico* lista);
+void exibir_servicos_dinamico(ServicosDinamico* lista);
+int compararDatasDDMMAAAA(const char *d1, const char *d2);
+ServicosDinamico* ordenar_servicos(void);

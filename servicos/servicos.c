@@ -1149,11 +1149,11 @@ ServicosDinamico* carregar_servicos_por_cpf(void){
     return lista;
 }
 
-void exibir_servicos_por_cpf(ServicosDinamico* lista) {
+void exibir_servicos_dinamico(ServicosDinamico* lista) {
     ServicosDinamico* aux = lista;
 
     if (aux == NULL) {
-        printf("\nNenhum serviço encontrado para este CPF.\n");
+        printf("\nNenhum registro encontrado.\n");
         confirmacao();
         return;
     }
@@ -1177,4 +1177,75 @@ void exibir_servicos_por_cpf(ServicosDinamico* lista) {
 
     confirmacao();
 }
+
+int compararDatasDDMMAAAA(const char *d1, const char *d2){
+    char data1[9], data2[9]; 
+
+    snprintf(data1, 9, "%c%c%c%c%c%c%c%c",
+             d1[4], d1[5], d1[6], d1[7], 
+             d1[2], d1[3],               
+             d1[0], d1[1]);              
+
+    snprintf(data2, 9, "%c%c%c%c%c%c%c%c",
+             d2[4], d2[5], d2[6], d2[7],
+             d2[2], d2[3],
+             d2[0], d2[1]);
+
+    return strcmp(data1, data2);
+}
+
+
+ServicosDinamico* ordenar_servicos(void){
+
+    FILE* arq_servicos = fopen("servicos/servicos.dat", "rb");
+
+    if (!arq_servicos) {
+        printf("Erro ao abrir arquivo de serviços!\n");
+        return NULL;
+    }
+
+    ServicosDinamico* lista = NULL;
+    Servicos temp;
+
+    while (fread(&temp, sizeof(Servicos), 1, arq_servicos) == 1) {
+
+        ServicosDinamico* novo = malloc(sizeof(ServicosDinamico));
+        if (!novo) {
+            printf("Erro de memória!\n");
+            break;
+        }
+
+        novo->servico = temp;
+        novo->prox = NULL;
+
+        // Inserção no início
+        if (lista == NULL ||
+            compararDatasDDMMAAAA(novo->servico.data, lista->servico.data) < 0) {
+
+            novo->prox = lista;
+            lista = novo;
+        } 
+        else {
+
+            ServicosDinamico* anterior = lista;
+            ServicosDinamico* atual = lista->prox;
+
+            // Acha a posição correta
+            while (atual != NULL &&
+                   compararDatasDDMMAAAA(atual->servico.data, novo->servico.data) < 0) {
+
+                anterior = atual;
+                atual = atual->prox;
+            }
+
+            // Insere entre anterior e atual
+            anterior->prox = novo;
+            novo->prox = atual;
+        }
+    }
+
+    fclose(arq_servicos);
+    return lista;
+}
+
 

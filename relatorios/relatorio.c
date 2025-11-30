@@ -199,7 +199,7 @@ void escolha_relatorios_dinamicos(void){
                 break;
             case 2:
                 lista_servicos = carregar_servicos_por_cpf();
-                exibir_servicos_por_cpf(lista_servicos);
+                exibir_servicos_dinamico(lista_servicos);
                 break;
             case 0:
                 printf("           Voltando ao menu principal...\n");
@@ -222,7 +222,8 @@ int menu_relatorio_ordenados(void){
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
-    printf("|                 1. Lista de Cliente Ordem Alfabética                   |\n");
+    printf("|                 1. Lista de Clientes ordem Alfabética                  |\n");
+    printf("|                 1. Lista de Serviços ordenados por Data                |\n");
     printf("|                 0. Voltar ao Menu Principal                            |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -232,15 +233,20 @@ int menu_relatorio_ordenados(void){
 
 void escolha_relatorios_ordenados(void){
     int op_dados_gerais;
-    ClienteDinamico* lista;
+    ClienteDinamico* lista_clientes;
+    ServicosDinamico* lista_servicos;
     do{
 
         op_dados_gerais=menu_relatorio_ordenados();
 
         switch (op_dados_gerais){
             case 1:
-                lista = ordenar_clientes();
-                exibir_cli_ativos(lista);
+                lista_clientes = ordenar_clientes();
+                exibir_cli_ativos(lista_clientes);
+                break;
+            case 2:
+                lista_servicos = ordenar_servicos();
+                exibir_servicos_dinamico(lista_servicos);
                 break;
             case 0:
                 printf("           Voltando ao menu principal...\n");
