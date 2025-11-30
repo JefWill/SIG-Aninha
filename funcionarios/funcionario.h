@@ -12,6 +12,14 @@ struct funcionario
     int status;
 };
 
+
+typedef struct funcionarioDinamico FuncionarioDinamico;
+
+struct funcionarioDinamico{
+    Funcionario funcionario;
+    FuncionarioDinamico* prox;
+};
+
 int tela_menu_funcionario(void);
 void modulo_funcionario(void);
 void cadastrar_funcionario(void);
