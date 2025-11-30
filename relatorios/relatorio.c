@@ -223,7 +223,7 @@ int menu_relatorio_ordenados(void){
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
     printf("|                 1. Lista de Clientes ordem Alfabética                  |\n");
-    printf("|                 1. Lista de Serviços ordenados por Data                |\n");
+    printf("|                 1. Lista de Serviços ordenados pela Data               |\n");
     printf("|                 0. Voltar ao Menu Principal                            |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");

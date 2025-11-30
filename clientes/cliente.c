@@ -640,6 +640,13 @@ void exibir_cli_ativos(ClienteDinamico* lista) {
 
     confirmacao();
 
+    aux = lista;
+    while (aux != NULL) {
+        ClienteDinamico* temp = aux;
+        aux = aux->prox;
+        free(temp);
+    }
+
 }
 
 ClienteDinamico* ordenar_clientes(void){

@@ -1176,6 +1176,14 @@ void exibir_servicos_dinamico(ServicosDinamico* lista) {
     printf("------------------------------------------------\n");
 
     confirmacao();
+
+    aux = lista;
+    while (aux != NULL) {
+        ServicosDinamico* temp = aux;
+        aux = aux->prox;
+        free(temp);
+    }
+    
 }
 
 int compararDatasDDMMAAAA(const char *d1, const char *d2){
