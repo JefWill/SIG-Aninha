@@ -259,3 +259,11 @@ char* pega_nome_funcionario(const char* cpf) {
 
     return nome;
 }
+
+void tranformar_nome_maiusculo(char *str){
+    int i = 0;
+    while (str[i] != '\0') {
+        str[i] = toupper((unsigned char)str[i]);
+        i++;
+    }
+}

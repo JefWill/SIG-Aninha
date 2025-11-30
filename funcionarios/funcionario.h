@@ -39,3 +39,4 @@ void ler_cargo(char *cargo);
 void listar_funcionarios_cargo(void);
 FuncionarioDinamico* carregar_func_ativos(void);
 void exibir_func_ativos(FuncionarioDinamico* lista);
+FuncionarioDinamico* ordenar_funcionarios(void);

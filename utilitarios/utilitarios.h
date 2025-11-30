@@ -13,3 +13,4 @@ void ler_tipo(char *tipo);
 void ler_ddd(char *ddd);
 char* pega_nome_cliente(const char* cpf);
 char* pega_nome_funcionario(const char* cpf);
+void tranformar_nome_maiusculo(char *str);

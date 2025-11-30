@@ -730,3 +730,55 @@ void exibir_func_ativos(FuncionarioDinamico* lista) {
     }
 
 }
+
+
+FuncionarioDinamico* ordenar_funcionarios(void){
+
+    FILE* arq_funcionarios = fopen("funcionarios/funcionarios.dat", "rb");
+
+    if (!arq_funcionarios) {
+        printf("Erro ao abrir arquivo!\n");
+        return NULL;
+    }
+
+    FuncionarioDinamico* lista = NULL;
+    Funcionario temp;
+
+    while (fread(&temp, sizeof(Funcionario), 1, arq_funcionarios) == 1) {
+        if (temp.status) {
+
+            FuncionarioDinamico* novo = malloc(sizeof(FuncionarioDinamico));
+            if (!novo) {
+                printf("Erro de memória!\n");
+                break;
+            }
+
+            novo->funcionario = temp;
+            novo->prox = NULL;
+
+            tranformar_nome_maiusculo(novo->funcionario.nome);
+
+            if (lista == NULL) {
+                lista = novo;
+            } else if (strcmp(novo->funcionario.nome, lista->funcionario.nome) < 0) {
+                novo->prox = lista;
+                lista = novo;
+            }else {
+                FuncionarioDinamico* anterior = lista;
+                FuncionarioDinamico* atual = lista->prox;
+
+                while (atual != NULL &&
+                       strcmp(atual->funcionario.nome, novo->funcionario.nome) < 0) {
+                    anterior = atual;
+                    atual = atual->prox;
+                }
+
+                anterior->prox = novo;
+                novo->prox = atual;
+            }
+        }
+    }
+
+    fclose(arq_funcionarios);
+    return lista;
+}

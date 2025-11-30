@@ -701,14 +701,6 @@ ClienteDinamico* ordenar_clientes(void){
     return lista;
 }
 
-void tranformar_nome_maiusculo(char *str){
-    int i = 0;
-    while (str[i] != '\0') {
-        str[i] = toupper((unsigned char)str[i]);
-        i++;
-    }
-}
-
 
 
 
