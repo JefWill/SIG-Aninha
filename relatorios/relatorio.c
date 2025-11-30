@@ -229,7 +229,8 @@ int menu_relatorio_ordenados(void){
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
     printf("|                 1. Lista de Clientes ordem Alfabética                  |\n");
-    printf("|                 1. Lista de Serviços ordenados pela Data               |\n");
+    printf("|                 2. Lista de Serviços ordenados pela Data               |\n");
+    printf("|                 3. Lista de Funcionários ordem Alfabética              |\n");
     printf("|                 0. Voltar ao Menu Principal                            |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -241,6 +242,7 @@ void escolha_relatorios_ordenados(void){
     int op_dados_gerais;
     ClienteDinamico* lista_clientes;
     ServicosDinamico* lista_servicos;
+    FuncionarioDinamico* lista_funcionarios;
     do{
 
         op_dados_gerais=menu_relatorio_ordenados();
@@ -253,6 +255,10 @@ void escolha_relatorios_ordenados(void){
             case 2:
                 lista_servicos = ordenar_servicos();
                 exibir_servicos_dinamico(lista_servicos);
+                break;
+            case 3:
+                lista_funcionarios = ordenar_funcionarios();
+                exibir_func_ativos(lista_funcionarios);
                 break;
             case 0:
                 printf("           Voltando ao menu principal...\n");
