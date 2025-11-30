@@ -665,3 +665,38 @@ void listar_funcionarios_cargo(void)
 
     confirmacao();
 }
+
+
+FuncionarioDinamico* carregar_func_ativos(void) {
+
+    FILE* arq_funcionarios;
+    arq_funcionarios = fopen("funcionarios/funcionarios.dat", "rb");
+
+    if (arq_funcionarios == NULL) {
+        printf("Erro ao abrir arquivo\n");
+        return NULL;
+    }
+
+    FuncionarioDinamico* lista = NULL;
+    Funcionario temp;
+
+    while (fread(&temp, sizeof(Funcionario), 1, arq_funcionarios) == 1) {
+        
+        FuncionarioDinamico* novo = malloc(sizeof(FuncionarioDinamico));
+        if (!novo) {
+            printf("Erro de memória!\n");
+            fclose(arq_funcionarios);
+            return lista;
+        }
+
+        if(temp.status){
+            novo->funcionario = temp;
+            novo->prox = lista;
+            lista = novo;
+        }
+    }
+
+    fclose(arq_funcionarios);
+    return lista;
+
+}
