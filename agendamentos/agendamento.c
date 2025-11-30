@@ -929,7 +929,6 @@ void exibir_agend_ativos(AgendamentoDinamico* lista) {
     AgendamentoDinamico* aux = lista;
     char *nome_cliente;
     char *nome_func;
-    int encontrou_algum = 0;
 
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
