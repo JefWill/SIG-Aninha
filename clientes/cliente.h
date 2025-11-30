@@ -37,3 +37,4 @@ void listar_clientes_ddd(void);
 void exibir_cli_ativos(ClienteDinamico* lista);
 ClienteDinamico* carregar_cli_ativos(void);
 ClienteDinamico* ordenar_clientes(void);
+void tranformar_nome_maiusculo(char *str);

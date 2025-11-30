@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <ctype.h>
 #include "cliente.h"
 #include "../utilitarios/utilitarios.h"
 #include "../validacao/validacao.h"
@@ -665,14 +666,14 @@ ClienteDinamico* ordenar_clientes(void){
             novo->cliente = temp;
             novo->prox = NULL;
 
+            tranformar_nome_maiusculo(novo->cliente.nome);
+
             if (lista == NULL) {
                 lista = novo;
-            }
-            else if (strcmp(novo->cliente.nome, lista->cliente.nome) < 0) {
+            } else if (strcmp(novo->cliente.nome, lista->cliente.nome) < 0) {
                 novo->prox = lista;
                 lista = novo;
-            }
-            else {
+            }else {
                 ClienteDinamico* anterior = lista;
                 ClienteDinamico* atual = lista->prox;
 
@@ -691,6 +692,14 @@ ClienteDinamico* ordenar_clientes(void){
 
     fclose(arq_clientes);
     return lista;
+}
+
+void tranformar_nome_maiusculo(char *str){
+    int i = 0;
+    while (str[i] != '\0') {
+        str[i] = toupper((unsigned char)str[i]);
+        i++;
+    }
 }
 
 
