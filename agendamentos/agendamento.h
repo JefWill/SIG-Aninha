@@ -38,3 +38,4 @@ void excluir_agendamento_fisico(void);
 Agendamento *preenche_agendamento(void);
 void listar_todos_agendamentos(void);
 void listar_agendamento_tipo(void);
+AgendamentoDinamico* carregar_agend_ativos(void);

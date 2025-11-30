@@ -898,3 +898,29 @@ void listar_agendamento_tipo(void) {
 
     confirmacao();
 }
+
+AgendamentoDinamico* carregar_agend_ativos(void) {
+    FILE* arq_agendamentos = fopen("agendamentos/agendamentos.dat", "rb");
+    if (!arq_agendamentos) {
+        printf("Erro ao abrir arquivo de agendamentos!\n");
+        return NULL;
+    }
+
+    AgendamentoDinamico* lista = NULL;
+    Agendamento temp;
+
+    while (fread(&temp, sizeof(Agendamento), 1, arq_agendamentos) == 1) {
+        if (temp.status == 1) {
+            AgendamentoDinamico* novo = malloc(sizeof(AgendamentoDinamico));
+            if (!novo) {
+                printf("Erro de memória!\n");
+                break;
+            }
+            novo->agendamento = temp;
+            novo->prox = lista;
+            lista = novo;
+        }
+    }
+    fclose(arq_agendamentos);
+    return lista;
+}
