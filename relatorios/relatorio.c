@@ -176,6 +176,7 @@ int menu_relatorio_dinamicos(void){
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
     printf("|                 1. Listar Clientes Ativos                              |\n");
+    printf("|                 2. Listar serviços por cliente                         |\n");
     printf("|                 0. Voltar ao Menu Principal                            |\n");
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
@@ -185,15 +186,20 @@ int menu_relatorio_dinamicos(void){
 
 void escolha_relatorios_dinamicos(void){
     int op_dados_gerais;
-    ClienteDinamico* lista;
+    ClienteDinamico* lista_clientes;
+    ServicosDinamico* lista_servicos;
     do{
 
         op_dados_gerais=menu_relatorio_dinamicos();
 
         switch (op_dados_gerais){
             case 1:
-                lista = carregar_cli_ativos();
-                exibir_cli_ativos(lista);
+                lista_clientes = carregar_cli_ativos();
+                exibir_cli_ativos(lista_clientes);
+                break;
+            case 2:
+                lista_servicos = carregar_servicos_por_cpf();
+                exibir_servicos_por_cpf(lista_servicos);
                 break;
             case 0:
                 printf("           Voltando ao menu principal...\n");

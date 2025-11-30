@@ -1091,7 +1091,6 @@ void exibir_servicos(const Servicos *srv) {
     int dia, mes, ano, hora, minuto;
     char nome_servico[15];
 
-    // Usando o id para pegar o nome do serviço do array
     if (srv->id >= Signos && srv->id <= Pergunte) {
         strcpy(nome_servico, nomes_servicos[srv->id]);
     } else {
@@ -1104,3 +1103,78 @@ void exibir_servicos(const Servicos *srv) {
     printf("| %-12s | %-12s | %02d/%02d/%04d | %02d:%02d   |\n", 
            srv->cpf, nome_servico, dia, mes, ano, hora, minuto);
 }
+
+ServicosDinamico* carregar_servicos_por_cpf(void){
+
+    char cpf_cliente[16];
+
+    do {
+        input(cpf_cliente, 16, "\nDigite o CPF do cliente: ");
+
+        if (!validar_cpf(cpf_cliente)){
+            printf("\nCPF inválido! Tente novamente.\n");
+        }
+
+    } while (!validar_cpf(cpf_cliente));
+
+    FILE* arq_clientes;
+    arq_clientes = fopen("servicos/servicos.dat", "rb");
+
+    if (arq_clientes == NULL) {
+        printf("Erro ao abrir arquivo de serviços.\n");
+        return NULL;
+    }
+
+    ServicosDinamico* lista = NULL;
+    Servicos temp;
+
+    while (fread(&temp, sizeof(Servicos), 1, arq_clientes) == 1) {
+
+        if (strcmp(temp.cpf, cpf_cliente) == 0) {
+
+            ServicosDinamico* novo = malloc(sizeof(ServicosDinamico));
+            if (!novo) {
+                printf("Erro de memória!\n");
+                fclose(arq_clientes);
+                return lista;
+            }
+
+            novo->servico = temp;
+            novo->prox = lista; 
+            lista = novo;
+        }
+    }
+
+    fclose(arq_clientes);
+    return lista;
+}
+
+void exibir_servicos_por_cpf(ServicosDinamico* lista) {
+    ServicosDinamico* aux = lista;
+
+    if (aux == NULL) {
+        printf("\nNenhum serviço encontrado para este CPF.\n");
+        confirmacao();
+        return;
+    }
+
+    printf("------------------------------------------------\n");
+    printf("| %-5s | %-10s | %-8s | %-12s |\n",
+           "ID", "Data", "Hora", "CPF");
+    printf("------------------------------------------------\n");
+
+    while (aux != NULL) {
+        printf("| %-5d | %-10s | %-8s | %-12s |\n",
+               aux->servico.id,
+               aux->servico.data, 
+               aux->servico.hora,
+               aux->servico.cpf);
+
+        aux = aux->prox;
+    }
+
+    printf("------------------------------------------------\n");
+
+    confirmacao();
+}
+

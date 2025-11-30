@@ -22,6 +22,15 @@ struct servicos
     char hora[9];
 };
 
+typedef struct servicosDinamico ServicosDinamico;
+
+struct servicosDinamico
+{
+    Servicos servico;
+    ServicosDinamico* prox;
+};
+
+
 /////  SIGNOS  //////
 int tela_menu_signos(void);
 void modulo_signos(void);
@@ -52,3 +61,5 @@ void significado_numeros(void);
 
 void listar_servicos_por_data(void);
 void exibir_servicos(const Servicos *srv);
+ServicosDinamico* carregar_servicos_por_cpf(void);
+void exibir_servicos_por_cpf(ServicosDinamico* lista);
