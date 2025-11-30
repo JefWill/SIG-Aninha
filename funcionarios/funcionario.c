@@ -700,3 +700,33 @@ FuncionarioDinamico* carregar_func_ativos(void) {
     return lista;
 
 }
+
+void exibir_func_ativos(FuncionarioDinamico* lista) {
+    FuncionarioDinamico* aux = lista;
+
+    printf("-----------------------------------------------------------------------------------------\n");
+    printf("| %-12s | %-20s | %-12s | %-8s |\n",
+           "CPF", "Nome", "Cargo", "Status");
+    printf("-----------------------------------------------------------------------------------------\n");
+
+    while (aux != NULL) {
+        printf("| %-12s | %-20s | %-12s | %-8s |\n",
+               aux->funcionario.cpf,
+               aux->funcionario.nome,
+               aux->funcionario.cargo,
+               aux->funcionario.status);
+        aux = aux->prox;
+    }
+
+    printf("-----------------------------------------------------------------------------------------\n");
+
+    confirmacao();
+
+    aux = lista;
+    while (aux != NULL) {
+        FuncionarioDinamico* temp = aux;
+        aux = aux->prox;
+        free(temp);
+    }
+
+}
