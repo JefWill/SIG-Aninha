@@ -15,6 +15,14 @@ struct agendamento
     int status;
 };
 
+
+typedef struct agendamentoDinamico AgendamentoDinamico;
+
+struct agendamentoDinamico{
+    Agendamento agendamento;
+    AgendamentoDinamico* prox;
+};
+
 int tela_menu_agendamento(void);
 void modulo_agendamentos(void);
 void agendar_consulta(void);
