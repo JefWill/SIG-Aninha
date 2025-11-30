@@ -927,29 +927,53 @@ AgendamentoDinamico* carregar_agend_ativos(void) {
 
 void exibir_agend_ativos(AgendamentoDinamico* lista) {
     AgendamentoDinamico* aux = lista;
-    printf("--------------------------------------------------------------------------------------------------------------------------\n");
-    printf("| %-5s | %-12s | %-15s | %-21s | %-10s | %-8s | %-8s |\n", 
-           "ID", "CPF", "Tipo Consulta", "Funcionário", "Data", "Horário", "Status");
-    printf("--------------------------------------------------------------------------------------------------------------------------\n");
-    while (aux != NULL) {
-        printf("| %-5d | %-12s | %-15s | %-21s | %-10s | %-8s | %-8d |\n",
-               aux->agendamento.id,
-               aux->agendamento.cpf,
-               aux->agendamento.tipo_consulta,
-               aux->agendamento.cpf_funcionario,
-               aux->agendamento.data,
-               aux->agendamento.horario,
-               aux->agendamento.status);
-        aux = aux->prox;
-    }
-    printf("--------------------------------------------------------------------------------------------------------------------------\n");
+    char *nome_cliente;
+    char *nome_func;
+    int encontrou_algum = 0;
 
-    
+    system("clear||cls");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
+    printf("|                                                                        |\n");
+    printf("|           ✦✧✦✧✦    Agendamentos Ativos (Dinâmico)    ✦✧✦✧✦         |\n");
+    printf("|                                                                        |\n");
+    printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
+
+    if (aux == NULL) {
+        printf("\nNenhum agendamento ativo na lista!\n");
+    } else {
+        printf("--------------------------------------------------------------------------------------------------------------------------\n");
+        printf("| %-5s | %-12s | %-20s | %-15s | %-21s | %-10s | %-8s | %-8s |\n", 
+               "ID", "CPF", "Nome", "Tipo Consulta", "Funcionário", "Data", "Horário", "Status");
+        printf("--------------------------------------------------------------------------------------------------------------------------\n");
+        
+
+        while (aux != NULL) {
+            nome_cliente = pega_nome_cliente(aux->agendamento.cpf);
+            nome_func = pega_nome_funcionario(aux->agendamento.cpf_funcionario);
+
+            if (nome_cliente == NULL){
+                nome_cliente = strdup("Desconhecido");
+            }  
+            if (nome_func == NULL){
+                nome_func = strdup("Desconhecido");
+            }
+
+            exibir_agendamento(&aux->agendamento, nome_cliente, nome_func);
+
+            free(nome_cliente);
+            free(nome_func);
+
+            aux = aux->prox;
+        }
+        printf("--------------------------------------------------------------------------------------------------------------------------\n");
+    }
+
     aux = lista;
     while (aux != NULL) {
         AgendamentoDinamico* temp = aux;
         aux = aux->prox;
         free(temp);
     }
+
     confirmacao();
 }
