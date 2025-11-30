@@ -924,3 +924,32 @@ AgendamentoDinamico* carregar_agend_ativos(void) {
     fclose(arq_agendamentos);
     return lista;
 }
+
+void exibir_agend_ativos(AgendamentoDinamico* lista) {
+    AgendamentoDinamico* aux = lista;
+    printf("--------------------------------------------------------------------------------------------------------------------------\n");
+    printf("| %-5s | %-12s | %-15s | %-21s | %-10s | %-8s | %-8s |\n", 
+           "ID", "CPF", "Tipo Consulta", "Funcionário", "Data", "Horário", "Status");
+    printf("--------------------------------------------------------------------------------------------------------------------------\n");
+    while (aux != NULL) {
+        printf("| %-5d | %-12s | %-15s | %-21s | %-10s | %-8s | %-8d |\n",
+               aux->agendamento.id,
+               aux->agendamento.cpf,
+               aux->agendamento.tipo_consulta,
+               aux->agendamento.cpf_funcionario,
+               aux->agendamento.data,
+               aux->agendamento.horario,
+               aux->agendamento.status);
+        aux = aux->prox;
+    }
+    printf("--------------------------------------------------------------------------------------------------------------------------\n");
+
+    
+    aux = lista;
+    while (aux != NULL) {
+        AgendamentoDinamico* temp = aux;
+        aux = aux->prox;
+        free(temp);
+    }
+    confirmacao();
+}
