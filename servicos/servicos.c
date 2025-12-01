@@ -1150,6 +1150,9 @@ ServicosDinamico* carregar_servicos_por_cpf(void){
 }
 
 void exibir_servicos_dinamico(ServicosDinamico* lista) {
+    int dia, mes, ano;
+    int hora, minuto, segundo;
+
     ServicosDinamico* aux = lista;
 
     if (aux == NULL) {
@@ -1158,16 +1161,21 @@ void exibir_servicos_dinamico(ServicosDinamico* lista) {
         return;
     }
 
+
     printf("------------------------------------------------\n");
     printf("| %-5s | %-10s | %-8s | %-12s |\n",
            "ID", "Data", "Hora", "CPF");
     printf("------------------------------------------------\n");
 
     while (aux != NULL) {
-        printf("| %-5d | %-10s | %-8s | %-12s |\n",
+
+        sscanf(aux->servico.data, "%2d%2d%4d", &dia, &mes, &ano);
+        sscanf(aux->servico.hora, "%2d%2d%2d", &hora, &minuto, &segundo);
+        
+        printf("| %-5d | %02d/%02d/%04d | %02d:%02d:%02d | %-12s |\n",
                aux->servico.id,
-               aux->servico.data, 
-               aux->servico.hora,
+               dia, mes, ano,
+               hora, minuto, segundo,
                aux->servico.cpf);
 
         aux = aux->prox;
@@ -1226,19 +1234,16 @@ ServicosDinamico* ordenar_servicos(void){
         novo->servico = temp;
         novo->prox = NULL;
 
-        // Inserção no início
-        if (lista == NULL ||
-            compararDatasDDMMAAAA(novo->servico.data, lista->servico.data) < 0) {
-
+        if (lista == NULL) {
+            lista = novo;
+        } else if (compararDatasDDMMAAAA(novo->servico.data, lista->servico.data) < 0){
             novo->prox = lista;
             lista = novo;
-        } 
-        else {
+        } else {
 
             ServicosDinamico* anterior = lista;
             ServicosDinamico* atual = lista->prox;
 
-            // Acha a posição correta
             while (atual != NULL &&
                    compararDatasDDMMAAAA(atual->servico.data, novo->servico.data) < 0) {
 
@@ -1246,7 +1251,6 @@ ServicosDinamico* ordenar_servicos(void){
                 atual = atual->prox;
             }
 
-            // Insere entre anterior e atual
             anterior->prox = novo;
             novo->prox = atual;
         }
