@@ -977,23 +977,18 @@ void exibir_agend_ativos(AgendamentoDinamico* lista) {
     confirmacao();
 }
 
-int comparar_datas_agendamento(const void *a, const void *b) {
+int compara_datas_agendamento(Agendamento a, Agendamento b) {
+    int dia1, mes1, y1, h1, min1;
+    int dia2, mes2, y2, h2, min2;
 
-    Agendamento *agd1 = *(Agendamento **)a;
-    Agendamento *agd2 = *(Agendamento **)b;
-
-    int dia1, mes1, ano1, h1, min1;
-    int dia2, mes2, ano2, h2, min2;
-
-
-    sscanf(agd1->data, "%2d%2d%4d", &dia1, &mes1, &ano1);
-    sscanf(agd1->horario, "%2d%2d", &h1, &min1);
+    // Adaptei para ler a data E a hora para desempatar
+    sscanf(a.data, "%2d%2d%4d", &dia1, &mes1, &y1);
+    sscanf(a.horario, "%2d%2d", &h1, &min1);
     
-    sscanf(agd2->data, "%2d%2d%4d", &dia2, &mes2, &ano2);
-    sscanf(agd2->horario, "%2d%2d", &h2, &min2);
+    sscanf(b.data, "%2d%2d%4d", &dia2, &mes2, &y2);
+    sscanf(b.horario, "%2d%2d", &h2, &min2);
 
-
-    if (ano1 != ano2) return ano1 - ano2;
+    if (y1 != y2) return y1 - y2;
     if (mes1 != mes2) return mes1 - mes2;
     if (dia1 != dia2) return dia1 - dia2;
     if (h1 != h2) return h1 - h2;
@@ -1002,14 +997,6 @@ int comparar_datas_agendamento(const void *a, const void *b) {
 
 
 void exibir_agend_ordenados(AgendamentoDinamico* lista) {
-    AgendamentoDinamico* aux = lista;
-    int contador = 0;
-
-    while (aux != NULL) {
-        contador++;
-        aux = aux->prox;
-    }
-
     system("clear||cls");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n");
     printf("|                                                                        |\n");
@@ -1017,59 +1004,76 @@ void exibir_agend_ordenados(AgendamentoDinamico* lista) {
     printf("|                                                                        |\n");
     printf("☽☉☾━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━☽☉☾\n\n");
 
-    if (contador == 0) {
+    if (lista == NULL) {
         printf("\nNenhum agendamento na lista para ordenar!\n");
         confirmacao();
         return;
     }
 
-    Agendamento **vetor = (Agendamento **)malloc(contador * sizeof(Agendamento *));
-    if (vetor == NULL) {
-        printf("Erro de memória ao tentar ordenar!\n");
-        return;
+    AgendamentoDinamico* lista_ordenada = NULL;
+    AgendamentoDinamico* atual = lista;
+
+    while (atual != NULL) {
+        AgendamentoDinamico* novo = (AgendamentoDinamico*)malloc(sizeof(AgendamentoDinamico));
+        novo->agendamento = atual->agendamento;
+        novo->prox = NULL;
+
+        
+        if (lista_ordenada == NULL || compara_datas_agendamento(novo->agendamento, lista_ordenada->agendamento) < 0) {
+            novo->prox = lista_ordenada;
+            lista_ordenada = novo;
+        } else {
+            AgendamentoDinamico* temp = lista_ordenada;
+            while (temp->prox != NULL && 
+                   compara_datas_agendamento(novo->agendamento, temp->prox->agendamento) >= 0) {
+                temp = temp->prox;
+            }
+            novo->prox = temp->prox;
+            temp->prox = novo;
+        }
+        
+        atual = atual->prox;
     }
 
-    aux = lista;
-    int i = 0;
-    while (aux != NULL) {
-        vetor[i] = &aux->agendamento; //Aponta para a struct dentro do nó
-        aux = aux->prox;
-        i++;
-    }
-
-    // Parâmetros: vetor, tamanho, tamanho do elemento, função de comparação
-    qsort(vetor, contador, sizeof(Agendamento *), comparar_datas_agendamento);
-
-
+    
     printf("--------------------------------------------------------------------------------------------------------------------------\n");
     printf("| %-5s | %-12s | %-20s | %-15s | %-20s | %-10s | %-8s | %-8s |\n", 
            "ID", "CPF", "Nome", "Tipo Consulta", "Funcionário", "Data", "Horário", "Status");
     printf("--------------------------------------------------------------------------------------------------------------------------\n");
 
+    AgendamentoDinamico* percorre = lista_ordenada;
     char *nome_cliente;
     char *nome_func;
 
-    for (int j = 0; j < contador; j++) {
-        nome_cliente = pega_nome_cliente(vetor[j]->cpf);
-        nome_func = pega_nome_funcionario(vetor[j]->cpf_funcionario);
+    while (percorre != NULL) {
+        nome_cliente = pega_nome_cliente(percorre->agendamento.cpf);
+        nome_func = pega_nome_funcionario(percorre->agendamento.cpf_funcionario);
 
         if (nome_cliente == NULL) nome_cliente = strdup("Desconhecido");
         if (nome_func == NULL) nome_func = strdup("Desconhecido");
 
-        exibir_agendamento(vetor[j], nome_cliente, nome_func);
+        
+        exibir_agendamento(&percorre->agendamento, nome_cliente, nome_func);
 
         free(nome_cliente);
         free(nome_func);
+        percorre = percorre->prox;
     }
     printf("--------------------------------------------------------------------------------------------------------------------------\n");
 
     
-    free(vetor);
+    
+    
+    while (lista_ordenada != NULL) {
+        AgendamentoDinamico* temp = lista_ordenada;
+        lista_ordenada = lista_ordenada->prox;
+        free(temp);
+    }
 
-    AgendamentoDinamico* atual = lista;
-    while (atual != NULL) {
-        AgendamentoDinamico* temp = atual;
-        atual = atual->prox;
+    
+    while (lista != NULL) {
+        AgendamentoDinamico* temp = lista;
+        lista = lista->prox;
         free(temp);
     }
 

@@ -40,5 +40,5 @@ void listar_todos_agendamentos(void);
 void listar_agendamento_tipo(void);
 AgendamentoDinamico* carregar_agend_ativos(void);
 void exibir_agend_ativos(AgendamentoDinamico* lista);
-int comparar_datas_agendamento(const void *a, const void *b);
+int compara_datas_agendamento(Agendamento a, Agendamento b);
 void exibir_agend_ordenados(AgendamentoDinamico* lista);
